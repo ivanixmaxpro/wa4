@@ -44,10 +44,10 @@ switch ($ctl) {
 
 
 
-    case "obra":
+    case "missatge":
         switch ($act) {
-            case "afegir":
-                include "controller/afegirObra_ctl.php";
+            case "llistaMissatges":
+                include "controller/llistaMissatges_ctl.php";
                 break;
             case "cercar":
                 include "controller/cercarObra_ctl.php";
