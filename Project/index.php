@@ -14,6 +14,11 @@ if (isset($_REQUEST['ctl'])) {
     }
 }
 
+if(isset($_SESSION["login"]) == false){
+    $ctl = "login";
+    $act = "login";
+}
+
 switch ($ctl) {
     case"login":
         switch ($act) {
