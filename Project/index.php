@@ -15,8 +15,9 @@ if (isset($_REQUEST['ctl'])) {
 }
 
 if(isset($_SESSION["login"]) == false){
-    $ctl = "login";
-    $act = "login";
+    //descomentar per afegir funcionalitat login
+    //$ctl = "login";
+    //$act = "login";
 }
 
 switch ($ctl) {
@@ -47,8 +48,6 @@ switch ($ctl) {
                 break;
         }
 
-
-
     case "missatge":
         switch ($act) {
             case "llistaMissatges":
@@ -68,6 +67,19 @@ switch ($ctl) {
                 break;
         }
         break;
+
+    case "producte":
+        switch ($act){
+            case "llista":
+                include "controller/detallEmpleat_ctl.php";
+                break;
+            case "llista":
+                include "controller/llistaEmpleats_ctl.php";
+                break;
+            case "fitxar":
+                include "controller/fitxarEmpleat_ctl.php";
+                break;
+        }
 
     case "director":
         switch ($act) {
@@ -91,7 +103,6 @@ switch ($ctl) {
                 break;
         }
         break;
-
 
     default:
         include "controller/" . $ctl . "_ctl.php";
