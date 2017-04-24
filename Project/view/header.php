@@ -21,29 +21,35 @@
     <meta name="theme-color" content="#ffffff">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Light Bootstrap Dashboard by Creative Tim</title>
+    <title>WA4</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
-
     <!-- Bootstrap core CSS     -->
     <link href="view/css/bootstrap.min.css" rel="stylesheet" />
-
     <!-- Animation library for notifications   -->
     <link href="view/css/animate.min.css" rel="stylesheet"/>
-
     <!--  Light Bootstrap Table core CSS    -->
     <link href="view/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-
-
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="view/css/demo.css" rel="stylesheet" />
-
-
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="view/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
+    <!--   Core JS Files   -->
+    <script src="view/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="view/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="view/js/bootstrap-checkbox-radio-switch.js"></script>
+    <!--  Charts Plugin -->
+    <script src="view/js/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="view/js/bootstrap-notify.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script src="view/js/light-bootstrap-dashboard.js"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="view/js/demo.js"></script>
 </head>
