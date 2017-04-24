@@ -4,10 +4,10 @@ function __autoload($class_name) {
     $root = $_SERVER['DOCUMENT_ROOT'];
     $curdir = getcwd();
 
-    chdir("$root/WA4/wa4/");
+    chdir("$root/WA4/wa4/Project/");
 
     $nomFile = "class_" . $class_name . ".php";
-    $arxiuPersistence = "model/Persistence/" . $nomFile;
+    $arxiuPersistence = "model/persistence/" . $nomFile;
     $arxiuBusiness = "model/business/" . $nomFile;
 
     if (file_exists($arxiuPersistence)) {

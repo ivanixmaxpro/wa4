@@ -14,6 +14,11 @@ if (isset($_REQUEST['ctl'])) {
     }
 }
 
+if(isset($_SESSION["login"]) == false){
+    $ctl = "login";
+    $act = "login";
+}
+
 switch ($ctl) {
     case"login":
         switch ($act) {
@@ -85,69 +90,6 @@ switch ($ctl) {
                 include "controller/detallDirector_ctl.php";
                 break;
         }
-        break;
-
-    case "actor":
-        switch ($act) {
-            case "afegir":
-                include "controller/afegirActor_ctl.php";
-                break;
-            case "cercar":
-                include "controller/cercarActor_ctl.php";
-                break;
-            case "modificar":
-                include "controller/modificarActor_ctl.php";
-                break;
-            case "eliminar":
-                include "controller/eliminarActor_ctl.php";
-                break;
-        }
-        break;
-
-    case"tipusActor":
-        switch ($act) {
-            case "afegir":
-                include "controller/afegirTipusActor_ctl.php";
-                break;
-        }
-        break;
-
-    case"tipusObra":
-        switch ($act) {
-            case "mostrar":
-                include "controller/tipusObra_ctl.php";
-                break;
-            case "afegir":
-                include "controller/afegirTipusObra_ctl.php";
-                break;
-            case "modificar":
-                include "controller/modificarTipusObra_ctl.php";
-                break;
-            case "eliminar":
-                include "controller/eliminarTipusObra_ctl.php";
-                break;
-        }
-        break;
-    
-    case"tipusPaper":
-        switch ($act) {
-            case "mostrar":
-                include "controller/tipusPaper_ctl.php";
-                break;
-            case "afegir":
-                include "controller/afegirTipusPaper_ctl.php";
-                break;
-            case "modificar":
-                include "controller/modificarTipusPaper_ctl.php";
-                break;
-            case "eliminar":
-                include "controller/eliminarTipusPaper_ctl.php";
-                break;
-        }
-        break;
-
-    case"logout":
-        include "controller/logout_ctl.php";
         break;
 
 
