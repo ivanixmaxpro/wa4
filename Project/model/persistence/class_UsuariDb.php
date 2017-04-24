@@ -1,6 +1,6 @@
 <?php
 
-class UsuariDAO
+class UsuariDb
 {
 
     private $llista = [];
