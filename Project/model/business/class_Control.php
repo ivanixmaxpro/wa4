@@ -1,5 +1,7 @@
 <?php
 
+require_once("controller/function_AutoLoad.php");
+
 class Control{
     private $id_control;
     private $id_usuari;
