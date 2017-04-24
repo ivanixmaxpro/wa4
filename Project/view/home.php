@@ -59,9 +59,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="notifications.html">
+                    <a href="?ctl=missatge&act=llistaMissatges">
                         <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
+                        <p>Missatges</p>
                     </a>
                 </li>
             </ul>
@@ -378,7 +378,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                    &copy; <script>document.write(new Date().getFullYear())</script> , WA4
                 </p>
             </div>
         </footer>
