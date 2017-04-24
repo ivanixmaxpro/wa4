@@ -1,7 +1,9 @@
 <?php
 
+require_once("controller/function_AutoLoad.php");
 
-class Missatge{
+class Missatge {
+
     private $id_missatge;
     private $id_usuari;
     private $llegit;
@@ -10,15 +12,14 @@ class Missatge{
     private $missatge;
 
     function __construct($id_usuari, $llegit, $titol, $data, $missatge) {
-        $this->id_missatge = null;
-        $this->id_usuari = $this->setId_usuari($id_usuari);
-        $this->llegit = $this->setLlegit($llegit);
-        $this->titol = $this->setTitol($titol);
-        $this->data = $this->setData($data);
-        $this->missatge = $this->setMissatge($missatge);
+        $this->setId_missatge(null);
+        $this->setId_usuari($id_usuari);
+        $this->setLlegit($llegit);
+        $this->setTitol($titol);
+        $this->setData($data);
+        $this->setMissatge($missatge);
     }
-    
-    
+
     function getId_missatge() {
         return $this->id_missatge;
     }
@@ -67,9 +68,4 @@ class Missatge{
         $this->missatge = $missatge;
     }
 
-
-    
-
-
 }
-

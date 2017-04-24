@@ -1,17 +1,17 @@
 <?php
 
-require_once("controller/function_AutoLoad.php"); 	
+require_once("controller/function_AutoLoad.php");
 
-class Empresa{
+class Empresa {
+
     private $id_empresa;
     private $nom;
-    
-    
+
     function __construct($nom) {
-        $this->id_empresa = null;
-        $this->nom = $this->setNom($nom);
+        $this->setId_empresa(null);
+        $this->setNom($nom);
     }
-    
+
     function getId_empresa() {
         return $this->id_empresa;
     }
@@ -28,8 +28,4 @@ class Empresa{
         $this->nom = $nom;
     }
 
-
-
-    
 }
-    

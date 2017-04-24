@@ -3,7 +3,7 @@
 require_once("controller/function_AutoLoad.php");
 
 class AlbaraVenta {
-    
+
     private $id_albara;
     private $id_client;
     private $id_empresa;
@@ -12,7 +12,7 @@ class AlbaraVenta {
     private $preu;
     private $data;
     private $localitat;
-    
+
     function __construct($id_client, $id_empresa, $codi, $observacions, $preu, $data, $localitat) {
         $this->setId_albara(null);
         $this->setId_client($id_client);
@@ -23,7 +23,7 @@ class AlbaraVenta {
         $this->setData($data);
         $this->setLocalitat($localitat);
     }
-    
+
     function getId_albara() {
         return $this->id_albara;
     }
@@ -87,7 +87,5 @@ class AlbaraVenta {
     function setLocalitat($localitat) {
         $this->localitat = $localitat;
     }
-
-
 
 }

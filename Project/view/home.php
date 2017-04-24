@@ -41,21 +41,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="?ctl=producte&act=llista">
                         <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
+                        <p>Llistat de productes</p>
                     </a>
                 </li>
                 <li>
                     <a href="icons.html">
                         <i class="pe-7s-science"></i>
                         <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
                     </a>
                 </li>
                 <li>
@@ -116,6 +110,19 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
+                            <a>
+                                <p>
+                                    <?php
+                                    if(isset($_SESSION["usuari"])){
+                                        echo "Benvingut, ". $_SESSION["usuari"];
+                                    }else{
+                                        echo "No estás logejat, ERROR";
+                                    }
+                                    ?>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
                             <a href="">
                                 <p>Account</p>
                             </a>
@@ -139,7 +146,13 @@
                         </li>
                         <li>
                             <a href="?ctl=logout">
-                                <p>Tanca sessió</p>
+                                <p>
+                                    <?php
+                                    if(isset($_SESSION["usuari"])){
+                                        echo "Tanca sessió";
+                                    }
+                                    ?>
+                               </p>
                             </a>
                         </li>
                         <li class="separator hidden-lg hidden-md"></li>
@@ -385,6 +398,20 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
 
+        demo.initChartist();
 
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Lanzar esta notificación solo si el usuario tiene mensajes pendientes. (footer)"
+
+        },{
+            type: 'info',
+            timer: 4000
+        });
+
+    });
+</script>
 </body>

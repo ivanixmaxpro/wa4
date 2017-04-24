@@ -2,20 +2,20 @@
 
 require_once("controller/function_AutoLoad.php");
 
-class Control{
+class Control {
+
     private $id_control;
     private $id_usuari;
     private $fitxat;
     private $data;
-    
-    
+
     function __construct($id_usuari, $fitxat, $data) {
-        $this->id_control = null;
-        $this->id_usuari = $this->setId_usuari($id_usuari);
-        $this->fitxat = $this->setFitxat($fitxat);
-        $this->data = $this->setData($data);
+        $this->setId_control(null);
+        $this->setId_usuari($id_usuari);
+        $this->setFitxat($fitxat);
+        $this->setData($data);
     }
-    
+
     function getId_control() {
         return $this->id_control;
     }
@@ -48,6 +48,4 @@ class Control{
         $this->data = $data;
     }
 
- 
 }
-
