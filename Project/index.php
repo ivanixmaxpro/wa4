@@ -15,6 +15,7 @@ if (isset($_REQUEST['ctl'])) {
 }
 
 if(isset($_SESSION["login"]) == false){
+
     //descomentar per afegir funcionalitat login
     //$ctl = "login";
     //$act = "login";
