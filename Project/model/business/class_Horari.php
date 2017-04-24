@@ -1,21 +1,22 @@
 <?php
 
-class Horari{
+require_once("controller/function_AutoLoad.php");
+
+class Horari {
+
     private $id_horari;
     private $id_usuari;
     private $id_dia;
     private $horaInici;
     private $horaFinal;
-    
-    
+
     function __construct($id_usuari, $id_dia, $horaInici, $horaFinal) {
-        $this->id_horari = null;
-        $this->id_usuari = $this->setId_usuari($id_usuari);
-        $this->id_dia = $this->setId_dia($id_dia);
-        $this->horaInici = $this->setHoraInici($horaInici);
-        $this->horaFinal = $this->setHoraFinal($horaFinal);
+        $this->setId_horari(null);
+        $this->setId_usuari($id_usuari);
+        $this->setId_dia($id_dia);
+        $this->setHoraInici($horaInici);
+        $this->setHoraFinal($horaFinal);
     }
-    
 
     function getId_horari() {
         return $this->id_horari;
@@ -57,10 +58,4 @@ class Horari{
         $this->horaFinal = $horaFinal;
     }
 
-
-    
-    
-    
-    
-    
 }
