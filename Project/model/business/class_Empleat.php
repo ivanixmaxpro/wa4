@@ -1,9 +1,9 @@
 <?php
 
+require_once("controller/function_AutoLoad.php");
 
-require_once("controller/function_AutoLoad.php"); 	
+class Empleat {
 
-class Empleat{
     private $id_empleat;
     private $id_empresa;
     private $nom;
@@ -14,21 +14,20 @@ class Empleat{
     private $nss;
     private $imatge;
     private $descripcio;
-    
+
     function __construct($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio) {
-        $this->id_empleat = null;
-        $this->id_empresa = $this->setId_empresa($id_empresa);
-        $this->nom = $this->setNom($nom);
-        $this->cognom = $this->setCognom($cognom);
-        $this->dni = $this->setDni($dni);
-        $this->localitat = $this->setLocalitat($localitat);
-        $this->nomina = $this->setNomina($nomina);
-        $this->nss = $this->setNss($nss);
-        $this->imatge = $this->setImatge($imatge);
-        $this->descripcio = $this->setDescripcio($descripcio);
+        $this->setId_empleat(null);
+        $this->setId_empresa($id_empresa);
+        $this->setNom($nom);
+        $this->setCognom($cognom);
+        $this->setDni($dni);
+        $this->setLocalitat($localitat);
+        $this->setNomina($nomina);
+        $this->setNss($nss);
+        $this->setImatge($imatge);
+        $this->setDescripcio($descripcio);
     }
-    
-    
+
     function getId_empleat() {
         return $this->id_empleat;
     }
@@ -109,12 +108,4 @@ class Empleat{
         $this->descripcio = $descripcio;
     }
 
-
-
-    
-    
 }
-  
-    
-    
-

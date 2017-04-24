@@ -10,10 +10,10 @@ class Usuari {
     private $contrasenya;
 
     function __construct($id_empleat, $usuari, $contrasenya) {
-        $this->id_empresa = null;
-        $this->id_empleat = $this->setId_empleat($id_empleat);
-        $this->nom = $this->setUsuari($usuari);
-        $this->cognom = $this->setContrasenya($contrasenya);
+        $this->setId_usuari(null);
+        $this->setId_empleat($id_empleat);
+        $this->setUsuari($usuari);
+        $this->setContrasenya($contrasenya);
     }
 
     function getId_usuari() {

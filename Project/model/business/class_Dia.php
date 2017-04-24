@@ -1,13 +1,15 @@
 <?php
 
+require_once("controller/function_AutoLoad.php");
 
-class Dia{
+class Dia {
+
     private $id_dia;
     private $nom;
 
     function __construct($nom) {
-        $this->id_dia = null;
-        $this->nom = $this->setNom($nom);
+        $this->setId_dia(null);
+        $this->setNom($nom);
     }
 
     function getId_dia() {
@@ -26,7 +28,4 @@ class Dia{
         $this->nom = $nom;
     }
 
-
 }
-
-
