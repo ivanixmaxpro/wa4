@@ -2,10 +2,10 @@
 -- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 24, 2017 at 03:17 
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.2
+-- Servidor: localhost
+-- Tiempo de generación: 25-04-2017 a las 16:26:49
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wa4`
+-- Base de datos: `wa4`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `albara_compra`
+-- Estructura de tabla para la tabla `albara_compra`
 --
 
 CREATE TABLE `albara_compra` (
@@ -37,10 +37,17 @@ CREATE TABLE `albara_compra` (
   `localitat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `albara_compra`
+--
+
+INSERT INTO `albara_compra` (`id_albara`, `id_proveidor`, `id_empresa`, `codi`, `observacions`, `preu`, `data`, `localitat`) VALUES
+(1, 1, 1, '000000000001', 'Entregar al medio día.', 548.97, '2017-04-12', 'Lliça d''Amunt');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `albara_venta`
+-- Estructura de tabla para la tabla `albara_venta`
 --
 
 CREATE TABLE `albara_venta` (
@@ -54,10 +61,17 @@ CREATE TABLE `albara_venta` (
   `localitat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `albara_venta`
+--
+
+INSERT INTO `albara_venta` (`id_albara`, `id_client`, `id_empresa`, `codi`, `observacions`, `preu`, `data`, `localitat`) VALUES
+(1, 1, 1, '000000000002', 'Entregar por la mañana.', 687.16, '2017-04-03', 'Granollers');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `altres`
+-- Estructura de tabla para la tabla `altres`
 --
 
 CREATE TABLE `altres` (
@@ -69,7 +83,7 @@ CREATE TABLE `altres` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `client`
+-- Estructura de tabla para la tabla `client`
 --
 
 CREATE TABLE `client` (
@@ -79,10 +93,17 @@ CREATE TABLE `client` (
   `informacio` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `client`
+--
+
+INSERT INTO `client` (`id_client`, `nom`, `codi`, `informacio`) VALUES
+(1, 'Grifols', 1, 'Los proyectos de investigación de Grifols están dirigidos a aumentar el nivel de innovación de productos y servicios que mejoren la calidad de vida de los pacientes y la atención sanitaria.  Las actividades de I+D se desarrollan en los ámbitos de cada división.');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `control`
+-- Estructura de tabla para la tabla `control`
 --
 
 CREATE TABLE `control` (
@@ -92,10 +113,17 @@ CREATE TABLE `control` (
   `data` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `control`
+--
+
+INSERT INTO `control` (`id_control`, `id_usuari`, `fitxat`, `data`) VALUES
+(1, 1, 1, '2017-04-25 10:00:00');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalls_albara_compra`
+-- Estructura de tabla para la tabla `detalls_albara_compra`
 --
 
 CREATE TABLE `detalls_albara_compra` (
@@ -106,10 +134,18 @@ CREATE TABLE `detalls_albara_compra` (
   `preu` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `detalls_albara_compra`
+--
+
+INSERT INTO `detalls_albara_compra` (`id_detalls_albara`, `id_albara`, `id_producte`, `quantitat`, `preu`) VALUES
+(1, 1, 1, 150, 5.5),
+(2, 1, 2, 25, 8.15);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalls_albara_venta`
+-- Estructura de tabla para la tabla `detalls_albara_venta`
 --
 
 CREATE TABLE `detalls_albara_venta` (
@@ -120,10 +156,18 @@ CREATE TABLE `detalls_albara_venta` (
   `preu` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `detalls_albara_venta`
+--
+
+INSERT INTO `detalls_albara_venta` (`id_detalls_albara`, `id_albara`, `id_producte`, `quantitat`, `preu`) VALUES
+(1, 1, 1, 540, 9.15),
+(2, 1, 2, 210, 3.98);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dia`
+-- Estructura de tabla para la tabla `dia`
 --
 
 CREATE TABLE `dia` (
@@ -132,7 +176,7 @@ CREATE TABLE `dia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `dia`
+-- Volcado de datos para la tabla `dia`
 --
 
 INSERT INTO `dia` (`id_dia`, `nom`) VALUES
@@ -147,7 +191,7 @@ INSERT INTO `dia` (`id_dia`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empleat`
+-- Estructura de tabla para la tabla `empleat`
 --
 
 CREATE TABLE `empleat` (
@@ -163,10 +207,17 @@ CREATE TABLE `empleat` (
   `descripcio` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `empleat`
+--
+
+INSERT INTO `empleat` (`id_empleat`, `id_empresa`, `nom`, `cognom`, `dni`, `localitat`, `nomina`, `nss`, `imatge`, `descripcio`) VALUES
+(1, 1, 'Ivan', 'Mir Arroyo', '47921561A', 'Lliça d''Amunt', 2800, 25165464, 'Home/ivan.jpg', 'Developer de la secció I+D.');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa`
+-- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE `empresa` (
@@ -174,10 +225,17 @@ CREATE TABLE `empresa` (
   `nom` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`id_empresa`, `nom`) VALUES
+(1, 'WA4');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `funcionalitat`
+-- Estructura de tabla para la tabla `funcionalitat`
 --
 
 CREATE TABLE `funcionalitat` (
@@ -185,10 +243,17 @@ CREATE TABLE `funcionalitat` (
   `nom` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `funcionalitat`
+--
+
+INSERT INTO `funcionalitat` (`id_funcionalitat`, `nom`) VALUES
+(1, 'Superadmin');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gas`
+-- Estructura de tabla para la tabla `gas`
 --
 
 CREATE TABLE `gas` (
@@ -200,7 +265,7 @@ CREATE TABLE `gas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `horari`
+-- Estructura de tabla para la tabla `horari`
 --
 
 CREATE TABLE `horari` (
@@ -211,10 +276,21 @@ CREATE TABLE `horari` (
   `horaFinal` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `horari`
+--
+
+INSERT INTO `horari` (`id_horari`, `id_usuari`, `id_dia`, `horaInici`, `horaFinal`) VALUES
+(1, 1, 1, '10:00:00', '19:00:00'),
+(2, 1, 2, '10:00:00', '19:00:00'),
+(3, 1, 3, '10:00:00', '19:00:00'),
+(4, 1, 4, '10:00:00', '19:00:00'),
+(5, 1, 5, '10:00:00', '14:00:00');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `liquid`
+-- Estructura de tabla para la tabla `liquid`
 --
 
 CREATE TABLE `liquid` (
@@ -223,10 +299,17 @@ CREATE TABLE `liquid` (
   `capacitatMl` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `liquid`
+--
+
+INSERT INTO `liquid` (`id_liquid`, `id_producte`, `capacitatMl`) VALUES
+(1, 1, 40);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `missatge`
+-- Estructura de tabla para la tabla `missatge`
 --
 
 CREATE TABLE `missatge` (
@@ -238,10 +321,17 @@ CREATE TABLE `missatge` (
   `missatge` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `missatge`
+--
+
+INSERT INTO `missatge` (`id_missatge`, `id_usuari`, `llegit`, `titol`, `data`, `missatge`) VALUES
+(1, 1, 0, 'Advertensia', '2017-04-19 08:21:23', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permis`
+-- Estructura de tabla para la tabla `permis`
 --
 
 CREATE TABLE `permis` (
@@ -254,10 +344,17 @@ CREATE TABLE `permis` (
   `eliminar` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `permis`
+--
+
+INSERT INTO `permis` (`id_permis`, `id_usuari`, `id_funcionalitat`, `visualitzar`, `crear`, `editar`, `eliminar`) VALUES
+(2, 1, 1, 1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producte`
+-- Estructura de tabla para la tabla `producte`
 --
 
 CREATE TABLE `producte` (
@@ -273,10 +370,18 @@ CREATE TABLE `producte` (
   `imatge` char(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `producte`
+--
+
+INSERT INTO `producte` (`id_producte`, `id_ubicacio`, `nom`, `marca`, `preuBase`, `referencia`, `model`, `descripcio`, `conservarFred`, `imatge`) VALUES
+(1, 1, 'Dalsy', 'Dalsy', 5.01, 1, 'Dalsy 2.9', 'El Dalsy® como se conoce en España es el ibuprofeno de 400 mg como se le conoce genéricamente, pertenece al grupo de los antiinflamorios no esteroideos o AINEs. Es utilizado sobretodo en pediatría para aliviar los síntomas de la fiebre, es decir como antipirético de uso infantil. También se puede utilizar contra el dolor de cabeza (cefalea), contra el dolor de los dientes (odontalgia) y contra el dolor postquirúrgico.  Otros síntomas se pueden tratar son el dolor neurológico de características débiles.\r\n', 1, '/img/dalsy.png'),
+(2, 2, 'Ibuprofeno', 'Kern Pharma', 8.59, 2, 'Comprimidos recubiertos con película EFG', 'Ibuprofeno pertenece al grupo de medicamentos llamados antiinflamatorios no esteroideos (AINEs).\r\nEste medicamento está indicado para el tratamiento de la fiebre, el tratamiento del dolor de intensidad leve o moderado incluida la migraña, el tratamiento de la artritis (inflamación de las articulaciones, incluyendo habitualmente las de manos y pies, dando lugar a hinchazón y dolor), la artritis reumatoide juvenil, artrosis (trastorno de carácter crónico que ocasiona el daño del cartílago), espondilitis anquilosante (inflamación que afecta las articulaciones de la columna vertebral), inflamación no reumática y la dismenorrea primaria (menstruación dolorosa).\r\n', 0, 'img/ibuprofeno.png');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proveidor`
+-- Estructura de tabla para la tabla `proveidor`
 --
 
 CREATE TABLE `proveidor` (
@@ -285,10 +390,17 @@ CREATE TABLE `proveidor` (
   `codi` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `proveidor`
+--
+
+INSERT INTO `proveidor` (`id_proveidor`, `nom`, `codi`) VALUES
+(1, 'Vulcania', '00001');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `semisolid`
+-- Estructura de tabla para la tabla `semisolid`
 --
 
 CREATE TABLE `semisolid` (
@@ -300,7 +412,7 @@ CREATE TABLE `semisolid` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `solid`
+-- Estructura de tabla para la tabla `solid`
 --
 
 CREATE TABLE `solid` (
@@ -310,10 +422,17 @@ CREATE TABLE `solid` (
   `unitats` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `solid`
+--
+
+INSERT INTO `solid` (`id_solid`, `id_producte`, `capacitatMg`, `unitats`) VALUES
+(1, 2, 400, 30);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ubicacio`
+-- Estructura de tabla para la tabla `ubicacio`
 --
 
 CREATE TABLE `ubicacio` (
@@ -323,10 +442,18 @@ CREATE TABLE `ubicacio` (
   `situacio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `ubicacio`
+--
+
+INSERT INTO `ubicacio` (`id_ubicacio`, `quantitatTenda`, `quantitatStock`, `situacio`) VALUES
+(1, 150, 75, 'Estantería AB2'),
+(2, 500, 400, 'En mostrador central AA2');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuari`
+-- Estructura de tabla para la tabla `usuari`
 --
 
 CREATE TABLE `usuari` (
@@ -337,11 +464,18 @@ CREATE TABLE `usuari` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Volcado de datos para la tabla `usuari`
+--
+
+INSERT INTO `usuari` (`id_usuari`, `id_empleat`, `usuari`, `contrasenya`) VALUES
+(1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
+--
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `albara_compra`
+-- Indices de la tabla `albara_compra`
 --
 ALTER TABLE `albara_compra`
   ADD PRIMARY KEY (`id_albara`),
@@ -351,7 +485,7 @@ ALTER TABLE `albara_compra`
   ADD KEY `id_empresa_2` (`id_empresa`);
 
 --
--- Indexes for table `albara_venta`
+-- Indices de la tabla `albara_venta`
 --
 ALTER TABLE `albara_venta`
   ADD PRIMARY KEY (`id_albara`),
@@ -359,27 +493,27 @@ ALTER TABLE `albara_venta`
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
--- Indexes for table `altres`
+-- Indices de la tabla `altres`
 --
 ALTER TABLE `altres`
   ADD PRIMARY KEY (`id_altres`),
   ADD UNIQUE KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `client`
+-- Indices de la tabla `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`id_client`);
 
 --
--- Indexes for table `control`
+-- Indices de la tabla `control`
 --
 ALTER TABLE `control`
   ADD PRIMARY KEY (`id_control`),
   ADD KEY `id_usuari` (`id_usuari`);
 
 --
--- Indexes for table `detalls_albara_compra`
+-- Indices de la tabla `detalls_albara_compra`
 --
 ALTER TABLE `detalls_albara_compra`
   ADD PRIMARY KEY (`id_detalls_albara`),
@@ -387,7 +521,7 @@ ALTER TABLE `detalls_albara_compra`
   ADD KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `detalls_albara_venta`
+-- Indices de la tabla `detalls_albara_venta`
 --
 ALTER TABLE `detalls_albara_venta`
   ADD PRIMARY KEY (`id_detalls_albara`),
@@ -395,39 +529,39 @@ ALTER TABLE `detalls_albara_venta`
   ADD KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `dia`
+-- Indices de la tabla `dia`
 --
 ALTER TABLE `dia`
   ADD PRIMARY KEY (`id_dia`);
 
 --
--- Indexes for table `empleat`
+-- Indices de la tabla `empleat`
 --
 ALTER TABLE `empleat`
   ADD PRIMARY KEY (`id_empleat`),
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
--- Indexes for table `empresa`
+-- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   ADD PRIMARY KEY (`id_empresa`);
 
 --
--- Indexes for table `funcionalitat`
+-- Indices de la tabla `funcionalitat`
 --
 ALTER TABLE `funcionalitat`
   ADD PRIMARY KEY (`id_funcionalitat`);
 
 --
--- Indexes for table `gas`
+-- Indices de la tabla `gas`
 --
 ALTER TABLE `gas`
   ADD PRIMARY KEY (`id_gas`),
   ADD UNIQUE KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `horari`
+-- Indices de la tabla `horari`
 --
 ALTER TABLE `horari`
   ADD PRIMARY KEY (`id_horari`),
@@ -435,21 +569,21 @@ ALTER TABLE `horari`
   ADD KEY `id_dia` (`id_dia`);
 
 --
--- Indexes for table `liquid`
+-- Indices de la tabla `liquid`
 --
 ALTER TABLE `liquid`
   ADD PRIMARY KEY (`id_liquid`),
   ADD UNIQUE KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `missatge`
+-- Indices de la tabla `missatge`
 --
 ALTER TABLE `missatge`
   ADD PRIMARY KEY (`id_missatge`),
   ADD KEY `id_usuari` (`id_usuari`);
 
 --
--- Indexes for table `permis`
+-- Indices de la tabla `permis`
 --
 ALTER TABLE `permis`
   ADD PRIMARY KEY (`id_permis`),
@@ -457,256 +591,256 @@ ALTER TABLE `permis`
   ADD KEY `id_dia` (`id_funcionalitat`);
 
 --
--- Indexes for table `producte`
+-- Indices de la tabla `producte`
 --
 ALTER TABLE `producte`
   ADD PRIMARY KEY (`id_producte`),
   ADD UNIQUE KEY `id_ubicacio` (`id_ubicacio`);
 
 --
--- Indexes for table `proveidor`
+-- Indices de la tabla `proveidor`
 --
 ALTER TABLE `proveidor`
   ADD PRIMARY KEY (`id_proveidor`);
 
 --
--- Indexes for table `semisolid`
+-- Indices de la tabla `semisolid`
 --
 ALTER TABLE `semisolid`
   ADD PRIMARY KEY (`id_semisolid`),
   ADD UNIQUE KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `solid`
+-- Indices de la tabla `solid`
 --
 ALTER TABLE `solid`
   ADD PRIMARY KEY (`id_solid`),
   ADD UNIQUE KEY `id_producte` (`id_producte`);
 
 --
--- Indexes for table `ubicacio`
+-- Indices de la tabla `ubicacio`
 --
 ALTER TABLE `ubicacio`
   ADD PRIMARY KEY (`id_ubicacio`);
 
 --
--- Indexes for table `usuari`
+-- Indices de la tabla `usuari`
 --
 ALTER TABLE `usuari`
   ADD PRIMARY KEY (`id_usuari`),
   ADD UNIQUE KEY `id_empleat` (`id_empleat`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `albara_compra`
+-- AUTO_INCREMENT de la tabla `albara_compra`
 --
 ALTER TABLE `albara_compra`
-  MODIFY `id_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `albara_venta`
+-- AUTO_INCREMENT de la tabla `albara_venta`
 --
 ALTER TABLE `albara_venta`
-  MODIFY `id_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `altres`
+-- AUTO_INCREMENT de la tabla `altres`
 --
 ALTER TABLE `altres`
   MODIFY `id_altres` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `client`
+-- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_client` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `control`
+-- AUTO_INCREMENT de la tabla `control`
 --
 ALTER TABLE `control`
-  MODIFY `id_control` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_control` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `detalls_albara_compra`
+-- AUTO_INCREMENT de la tabla `detalls_albara_compra`
 --
 ALTER TABLE `detalls_albara_compra`
-  MODIFY `id_detalls_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalls_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `detalls_albara_venta`
+-- AUTO_INCREMENT de la tabla `detalls_albara_venta`
 --
 ALTER TABLE `detalls_albara_venta`
-  MODIFY `id_detalls_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalls_albara` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `dia`
+-- AUTO_INCREMENT de la tabla `dia`
 --
 ALTER TABLE `dia`
   MODIFY `id_dia` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `empleat`
+-- AUTO_INCREMENT de la tabla `empleat`
 --
 ALTER TABLE `empleat`
-  MODIFY `id_empleat` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empleat` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `empresa`
+-- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empresa` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `funcionalitat`
+-- AUTO_INCREMENT de la tabla `funcionalitat`
 --
 ALTER TABLE `funcionalitat`
-  MODIFY `id_funcionalitat` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_funcionalitat` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `gas`
+-- AUTO_INCREMENT de la tabla `gas`
 --
 ALTER TABLE `gas`
   MODIFY `id_gas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `horari`
+-- AUTO_INCREMENT de la tabla `horari`
 --
 ALTER TABLE `horari`
-  MODIFY `id_horari` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_horari` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `liquid`
+-- AUTO_INCREMENT de la tabla `liquid`
 --
 ALTER TABLE `liquid`
-  MODIFY `id_liquid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_liquid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `missatge`
+-- AUTO_INCREMENT de la tabla `missatge`
 --
 ALTER TABLE `missatge`
-  MODIFY `id_missatge` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_missatge` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `permis`
+-- AUTO_INCREMENT de la tabla `permis`
 --
 ALTER TABLE `permis`
-  MODIFY `id_permis` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_permis` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `producte`
+-- AUTO_INCREMENT de la tabla `producte`
 --
 ALTER TABLE `producte`
-  MODIFY `id_producte` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producte` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `proveidor`
+-- AUTO_INCREMENT de la tabla `proveidor`
 --
 ALTER TABLE `proveidor`
-  MODIFY `id_proveidor` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_proveidor` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `semisolid`
+-- AUTO_INCREMENT de la tabla `semisolid`
 --
 ALTER TABLE `semisolid`
   MODIFY `id_semisolid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `solid`
+-- AUTO_INCREMENT de la tabla `solid`
 --
 ALTER TABLE `solid`
-  MODIFY `id_solid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_solid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `ubicacio`
+-- AUTO_INCREMENT de la tabla `ubicacio`
 --
 ALTER TABLE `ubicacio`
-  MODIFY `id_ubicacio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ubicacio` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `albara_compra`
+-- Filtros para la tabla `albara_compra`
 --
 ALTER TABLE `albara_compra`
   ADD CONSTRAINT `empresa - albara compra ` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`),
   ADD CONSTRAINT `proveidor - albara compra` FOREIGN KEY (`id_proveidor`) REFERENCES `proveidor` (`id_proveidor`);
 
 --
--- Constraints for table `albara_venta`
+-- Filtros para la tabla `albara_venta`
 --
 ALTER TABLE `albara_venta`
   ADD CONSTRAINT `client - albara venta` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`),
   ADD CONSTRAINT `empresa - albara venta` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
 
 --
--- Constraints for table `altres`
+-- Filtros para la tabla `altres`
 --
 ALTER TABLE `altres`
   ADD CONSTRAINT `altres_ibfk_1` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `control`
+-- Filtros para la tabla `control`
 --
 ALTER TABLE `control`
   ADD CONSTRAINT `control_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `detalls_albara_compra`
+-- Filtros para la tabla `detalls_albara_compra`
 --
 ALTER TABLE `detalls_albara_compra`
   ADD CONSTRAINT `detalls_albara_compra_ibfk_1` FOREIGN KEY (`id_albara`) REFERENCES `albara_compra` (`id_albara`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detalls_albara_compra_ibfk_2` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`);
 
 --
--- Constraints for table `detalls_albara_venta`
+-- Filtros para la tabla `detalls_albara_venta`
 --
 ALTER TABLE `detalls_albara_venta`
   ADD CONSTRAINT `detalls_albara_venta_ibfk_1` FOREIGN KEY (`id_albara`) REFERENCES `albara_venta` (`id_albara`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detalls_albara_venta_ibfk_2` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`);
 
 --
--- Constraints for table `empleat`
+-- Filtros para la tabla `empleat`
 --
 ALTER TABLE `empleat`
   ADD CONSTRAINT `empleat_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
 
 --
--- Constraints for table `gas`
+-- Filtros para la tabla `gas`
 --
 ALTER TABLE `gas`
   ADD CONSTRAINT `gas_ibfk_1` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `horari`
+-- Filtros para la tabla `horari`
 --
 ALTER TABLE `horari`
   ADD CONSTRAINT `horari_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `horari_ibfk_2` FOREIGN KEY (`id_dia`) REFERENCES `dia` (`id_dia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `liquid`
+-- Filtros para la tabla `liquid`
 --
 ALTER TABLE `liquid`
   ADD CONSTRAINT `liquid_ibfk_1` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `missatge`
+-- Filtros para la tabla `missatge`
 --
 ALTER TABLE `missatge`
   ADD CONSTRAINT `missatge_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `permis`
+-- Filtros para la tabla `permis`
 --
 ALTER TABLE `permis`
   ADD CONSTRAINT `permis_ibfk_1` FOREIGN KEY (`id_usuari`) REFERENCES `usuari` (`id_usuari`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `permis_ibfk_2` FOREIGN KEY (`id_funcionalitat`) REFERENCES `funcionalitat` (`id_funcionalitat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `producte`
+-- Filtros para la tabla `producte`
 --
 ALTER TABLE `producte`
   ADD CONSTRAINT `producte_ibfk_1` FOREIGN KEY (`id_ubicacio`) REFERENCES `ubicacio` (`id_ubicacio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `semisolid`
+-- Filtros para la tabla `semisolid`
 --
 ALTER TABLE `semisolid`
   ADD CONSTRAINT `semisolid_ibfk_1` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `solid`
+-- Filtros para la tabla `solid`
 --
 ALTER TABLE `solid`
   ADD CONSTRAINT `solid_ibfk_1` FOREIGN KEY (`id_producte`) REFERENCES `producte` (`id_producte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuari`
+-- Filtros para la tabla `usuari`
 --
 ALTER TABLE `usuari`
   ADD CONSTRAINT `usuari_ibfk_1` FOREIGN KEY (`id_empleat`) REFERENCES `empleat` (`id_empleat`) ON DELETE CASCADE ON UPDATE CASCADE;

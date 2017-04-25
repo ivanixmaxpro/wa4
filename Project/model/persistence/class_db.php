@@ -53,8 +53,9 @@ class db extends PDO {
 
 
     private function connect() {
-        $dsn = 'mysql:host=' . $this->server . ';dbname=' . $this->dbname;
-        parent::__construct($dsn, $this->getUsername(), $this->getPassword());   
+        $dsn = 'mysql:host=' . $this->server . ';dbname=' . $this->dbname .";charset=utf8";
+        parent::__construct($dsn, $this->getUsername(), $this->getPassword());
+
     }
 
     public function getLink() {
@@ -71,9 +72,6 @@ class db extends PDO {
 	    $result = $query->FetchAll(PDO::FETCH_ASSOC);
 	    return $result;
 	}
-        
-
-
 }
 
 ?>

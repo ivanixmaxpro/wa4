@@ -6,7 +6,7 @@ require_once("config/db.inc.php");
 class EmpleatDAO {
     public function inserir($empleat) {		
 	
-		$query="insert into autor values('".$empleat->getCognom()."','".$empleat->getDescripcio()."','".$empleat->getDni()."','','','".$empleat->getImatge()."','".$empleat->getLocalitat()."','".$empleat->getNom()."','".$empleat->getNomina()."','".$empleat->getNss()."');";				
+		$query="insert into autor values('','','".$empleat->getNom()."','".$empleat->getCognom()."','".$empleat->getDni()."','".$empleat->getLocalitat()."','".$empleat->getNomina()."','".$empleat->getNss()."','".$empleat->getImatge()."','".$empleat->getDescripcio()."');";				
 		$con = new db();
 		$con->consulta($query);
 		$con->close();
