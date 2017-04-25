@@ -11,20 +11,10 @@ if(isset($_SESSION['empresa'])){
 
 $empleats = $empresa->populateEmpleats();
 
-
-
-
-
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
+require_once 'view/mainNav.php';
 require_once 'view/llistaEmpleats.php';
 require_once 'view/footer.php';
-
-
-
-
-
-
-
 
 ?>

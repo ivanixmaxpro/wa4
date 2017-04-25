@@ -18,6 +18,7 @@ if (isset($_REQUEST['Submit'])) {
     if ($usuariValidat == true) {
         $_SESSION["login"] = true;
         $_SESSION["usuari"] = $usuari;
+        // guardar en sessión id usuario
         header("Location: index.php");
     } else {
         $_SESSION["usuari"] = "";
