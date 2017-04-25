@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="apple-touch-icon" sizes="57x57" href="view/images/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="view/images/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="view/images/favicon/apple-icon-72x72.png">
@@ -25,6 +25,7 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+    <link href="view/css/styles.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
     <link href="view/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Animation library for notifications   -->
