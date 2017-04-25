@@ -4,6 +4,17 @@ require_once("controller/function_AutoLoad.php");
 
 session_start();
 
+//Empresa	
+if(isset($_SESSION['empresa'])){
+	$empresa = unserialize($_SESSION['empresa']);
+} else {
+	$empresa = New Empresa();
+	$empresa->recuperarEmpresa(); 
+
+	$_SESSION['empresa'] = serialize($empresa);
+}
+
+
 $ctl = "home";
 
 if (isset($_REQUEST['ctl'])) {
@@ -15,6 +26,7 @@ if (isset($_REQUEST['ctl'])) {
 }
 
 if(isset($_SESSION["login"]) == false){
+
     //descomentar per afegir funcionalitat login
     //$ctl = "login";
     //$act = "login";
