@@ -3,10 +3,10 @@ include_once("controller/function_AutoLoad.php");
 require_once("config/config.inc.php");
 require_once("config/db.inc.php");
 
-class UsuariDAO {
-    public function inserir($usuari) {		
+class HorariDAO {
+    public function inserir($horari) {		
 	
-		$query="insert into autor values('".$usuari->getContrasenya()."','','','".$usuari->getUsuari()."');";				
+		$query="insert into autor values('".$horari->getHoraFinal()."','".$horari->getHoraInici()."','','','');";				
 		$con = new db();
 		$con->consulta($query);
 		$con->close();
