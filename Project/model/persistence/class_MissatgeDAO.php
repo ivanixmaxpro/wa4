@@ -6,7 +6,7 @@ require_once("config/db.inc.php");
 class MissatgeDAO {
     public function inserir($missatge) {		
 	
-		$query="insert into autor values('".$missatge->getData()."','','','".$missatge->getLlegit()."','".$missatge->getTitol()."');";				
+		$query="insert into autor values('','','".$missatge->getLlegit()."','".$missatge->getTitol()."','".$missatge->getData()."','".$missatge->getMissatge()."');";				
 		$con = new db();
 		$con->consulta($query);
 		$con->close();
