@@ -6,7 +6,7 @@ require_once("config/db.inc.php");
 class HorariDAO {
     public function inserir($horari) {		
 	
-		$query="insert into autor values('".$horari->getHoraFinal()."','".$horari->getHoraInici()."','','','');";				
+		$query="insert into autor values('','','','".$horari->getHoraInici()."','".$horari->getHoraFinal()."');";				
 		$con = new db();
 		$con->consulta($query);
 		$con->close();

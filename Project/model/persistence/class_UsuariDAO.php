@@ -6,7 +6,7 @@ require_once("config/db.inc.php");
 class UsuariDAO {
     public function inserir($usuari) {		
 	
-		$query="insert into autor values('".$usuari->getContrasenya()."','','','".$usuari->getUsuari()."');";				
+		$query="insert into autor values('','','".$usuari->getUsuari()."','".$usuari->getConstrasenya()."');";				
 		$con = new db();
 		$con->consulta($query);
 		$con->close();
