@@ -53,13 +53,13 @@ class EmpresaDAO {
         return $empleatsarray;
     }
 
-    public function searchEmpleats($id_empleat) {
+    public function searchEmpleat($id_empleat) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat");
         $query->bindValue(":id_empleat", $id_empleat);
         $result = $con->consultar($query);
 
-        $empleat = new Empleat();
+        
         foreach ($result as $row) {
             $id_empleat = $row["id_empleat"];
             $id_empresa = $row["id_empresa"];
@@ -72,6 +72,7 @@ class EmpresaDAO {
             $imatge = $row["imatge"];
             $descripcio = $row["descripcio"];
             $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
             
         }
         $con = null;
