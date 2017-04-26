@@ -9,7 +9,7 @@ if(isset($_SESSION['empresa'])){
     $_SESSION['empresa'] = serialize($empresa);
 }
 
-$empleats = $empresa->populateEmpleats();
+$empleat = $empresa->searchEmpleat($_REQUEST['id']);
 // buscar empleat per id agafada de la sessio
 
 require_once 'view/header.php';

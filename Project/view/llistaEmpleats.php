@@ -12,19 +12,27 @@
                 <th>Cognoms</th>
                 <th>DNI</th>
                 <th>Localitat</th>
+                <th></th>
             </tr></thead>
             <tbody>
-            <tr>
+
             <?php
+            
             foreach ($empleats as $row) {
+               
+                echo '<tr>';
                 echo "<td>" .$row->getId_empleat()  . "</td>";
                 echo "<td>" .$row->getNom()  . "</td>";
                 echo "<td>" .$row->getCognom()  . "</td>";
                 echo "<td>" .$row->getDni()  . "</td>";
                 echo "<td>" .$row->getLocalitat()  . "</td>";
+                echo '<td>'.'<a href="?ctl=empleat&act=detall&id='.$row->getId_empleat().'">'.'Veure'.'</a>'.'</td>';
+                echo "</tr>";
+                
+                
             }
             ?>
-            </tr>
+
             </tbody>
         </table>
 
