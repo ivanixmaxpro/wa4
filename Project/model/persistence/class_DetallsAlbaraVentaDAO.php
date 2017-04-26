@@ -6,7 +6,7 @@ require_once("config/db.inc.php");
 class DetallsAlbaraVentaDAO {
     public function inserir($dav) {		
 	
-		$query="insert into autor values('','','','".$dav->getQuantitat()."','".$dav->getPreu()."');";				
+		$query="insert into detalls_albara_venta values('','" . $dav->getId_albara() . "','" . $dav->getId_producte() . "','".$dav->getQuantitat()."','".$dav->getPreu()."');";				
 		$con = new db();
 		$con->consulta($query);
 		$con->close();
