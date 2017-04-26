@@ -2,11 +2,10 @@
 
 require_once("controller/function_AutoLoad.php");
 
-class Solid extends Producte {
+class Semisolid extends Producte {
 
     private $capacitatMg;
-    private $id_solid;
-    private $unitats;
+    private $id_semiSolid;
 
     function __construct() { /* Provar de quitar el primer constructor, 
       aver si no es necesario i solo con el heretado
@@ -15,7 +14,7 @@ class Solid extends Producte {
         switch (func_num_args()) {
             case 0:
                 break;
-            case 10:
+            case 9:
                 parent::setNom(func_get_args()[0]);
                 parent::setMarca(func_get_args()[1]);
                 parent::setPreuBase(func_get_args()[2]);
@@ -25,9 +24,8 @@ class Solid extends Producte {
                 parent::setConservarFred(func_get_args()[6]);
                 parent::setImatge(func_get_args()[7]);
                 $this->setCapacitatMg(func_get_args()[8]);
-                $this->setUnitats(func_get_args()[9]);
                 break;
-            case 13:
+            case 12:
                 parent::setId_producte(func_get_args()[0]);
                 parent::setId_ubicacio(func_get_args()[1]);
                 parent::setNom(func_get_args()[2]);
@@ -38,35 +36,26 @@ class Solid extends Producte {
                 parent::setDescripcio(func_get_args()[7]);
                 parent::setConservarFred(func_get_args()[8]);
                 parent::setImatge(func_get_args()[9]);
-                $this->setId_solid(func_get_args()[10]);
+                $this->setId_semiSolid(func_get_args()[10]);
                 $this->setCapacitatMg(func_get_args()[11]);
-                $this->setUnitats(func_get_args()[12]);
                 break;
         }
+    }
+
+    function getId_semiSolid() {
+        return $this->id_semiSolid;
+    }
+
+    function setId_semiSolid($id_semiSolid) {
+        $this->id_semiSolid = $id_semiSolid;
     }
 
     function getCapacitatMg() {
         return $this->capacitatMg;
     }
 
-    function getId_solid() {
-        return $this->id_solid;
-    }
-
-    function getUnitats() {
-        return $this->unitats;
-    }
-
     function setCapacitatMg($capacitatMg) {
         $this->capacitatMg = $capacitatMg;
-    }
-
-    function setId_solid($id_solid) {
-        $this->id_solid = $id_solid;
-    }
-
-    function setUnitats($unitats) {
-        $this->unitats = $unitats;
     }
 
 }
