@@ -27,10 +27,26 @@ class UsuariDAO {
 
     public function inserir($usuari) {
 
-        $query = "insert into usuari values('','" . $usuari->getId_empleat() . "','" . $usuari->getUsuari() . "','" . $usuari->getConstrasenya() . "');";
+        $pass = password_hash($usuari->getUsuari(), PASSWORD_BCRYPT);
+
+        $query = "insert into usuari values('','" . $usuari->getId_empleat() . "','" . $pass . "','" . $usuari->getConstrasenya() . "');";
         $con = new db();
         $con->consulta($query);
         $con->close();
+    }
+
+    public function validateUser($usuari, $pass) {
+
+        $query = "SELECT contrasenya FROM usuari WHERE user = '".$usuari."' ";
+        $con = new db();
+        $contra = $con->consultar($query);
+        $con->close();
+
+        if(password_verify($pass, $contra)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
