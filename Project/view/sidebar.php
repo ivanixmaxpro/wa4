@@ -16,19 +16,19 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
+                    <li <?php if ($ctl == "home") {echo 'class="active"';} ?>>
                         <a href="?ctl=home">
                             <i class="pe-7s-graph"></i>
                             <p>Home</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="?ctl=empleat&act=detall">
+                    <li <?php if ($ctl == "empleat" && $act == "detall") {echo 'class="active"';} ?>>
+                        <a href="?ctl=empleat&act=detall&id=<?php echo $_SESSION["id_usuari"]?>">
                             <i class="pe-7s-user"></i>
                             <p>Empleat</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php if ($ctl == "empleat" && $act == "llista") {echo 'class="active"';} ?>>
                         <a href="?ctl=empleat&act=llista">
                             <i class="pe-7s-id"></i>
                             <p>Llista empleats</p>

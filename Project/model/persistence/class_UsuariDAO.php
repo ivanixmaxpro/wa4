@@ -6,10 +6,11 @@ require_once("config/db.inc.php");
 
 class UsuariDAO {
   
-    public function populateUsuariDAO (){
-        $usuaris = array();
+    public function searchUsuari ($nom_usuari){
+
         $con = new db();
-        $query = $con->prepare("SELECT * FROM usuari;");
+        $query = $con->prepare("SELECT * FROM usuari WHERE usuari = :usuari;");
+        $query->bindValue(":usuari", $nom_usuari);
         $result = $con->consultar($query);
 
         foreach ($result as $row) {
@@ -18,11 +19,10 @@ class UsuariDAO {
             $usuari = $row["usuari"];
             $contrasenya = $row["contrasenya"];
             $usuari = new Usuari($id_usuari, $id_empleat, $usuari, $contrasenya);
-            array_push($usuaris, $usuari);
         }
 
         $con = null;
-        return $usuaris;
+        return $usuari;
     }
 
     public function inserir($usuari) {
