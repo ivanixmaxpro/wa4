@@ -48,4 +48,21 @@ class Usuari {
         $this->contrasenya = $contrasenya;
     }
 
-}
+    function populateUsuaris() {
+        $usuariDAO = new UsuariDAO();
+        return $llistaUsuaris = $usuariDAO->populateUsuariDAO();
+    }
+
+    function validateUser($usuari, $clau) {
+        $validat = false;
+        if (!trim($usuari) == '' && !trim($clau) == '') {
+            $llistaUsuaris = populateUsuaris();
+            foreach ($llistaUsuaris as $user) {
+                if ($user->getUsuari() && $user->getConstrassenya()){
+                    $validat= true;
+                }
+            }
+        }
+        return $validat;
+    }
+} 
