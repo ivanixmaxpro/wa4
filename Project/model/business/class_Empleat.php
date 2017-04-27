@@ -15,17 +15,24 @@ class Empleat {
     private $imatge;
     private $descripcio;
 
-    function __construct($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio) {
-        $this->setId_empleat(null);
-        $this->setId_empresa($id_empresa);
-        $this->setNom($nom);
-        $this->setCognom($cognom);
-        $this->setDni($dni);
-        $this->setLocalitat($localitat);
-        $this->setNomina($nomina);
-        $this->setNss($nss);
-        $this->setImatge($imatge);
-        $this->setDescripcio($descripcio);
+    function __construct() {
+
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 9:
+                $this->setId_empleat(null);
+                $this->setId_empresa(func_get_args()[0]);
+                $this->setNom(func_get_args()[1]);
+                $this->setCognom(func_get_args()[2]);
+                $this->setDni(func_get_args()[3]);
+                $this->setLocalitat(func_get_args()[4]);
+                $this->setNomina(func_get_args()[5]);
+                $this->setNss(func_get_args()[6]);
+                $this->setImatge(func_get_args()[7]);
+                $this->setDescripcio(func_get_args()[8]);
+                break;
+        }
     }
 
     function getId_empleat() {
