@@ -9,12 +9,25 @@ class Usuari {
     private $usuari;
     private $contrasenya;
 
-    function __construct($id_empleat, $usuari, $contrasenya) {
-        $this->setId_usuari(null);
-        $this->setId_empleat($id_empleat);
-        $this->setUsuari($usuari);
-        $this->setContrasenya($contrasenya);
+    public function __construct() {
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 3:
+                $this->setId_empleat(func_get_args()[0]);
+                $this->setUsuari(func_get_args()[1]);
+                $this->setContrasenya(func_get_args()[2]);
+                break;
+            case 4:
+                $this->setId_usuari(func_get_args()[0]);
+                $this->setId_empleat(func_get_args()[1]);
+                $this->setUsuari(func_get_args()[2]);
+                $this->setContrasenya(func_get_args()[3]);
+                break;
+        }
     }
+    
+   
 
     function getId_usuari() {
         return $this->id_usuari;
@@ -47,18 +60,20 @@ class Usuari {
     function setContrasenya($contrasenya) {
         $this->contrasenya = $contrasenya;
     }
-
-    function populateUsuaris() {
-        $usuariDAO = new UsuariDAO();
-        return $llistaUsuaris = $usuariDAO->populateUsuariDAO();
-    }
+//
+//    function populateUsuaris() {
+//        $usuariDAO = new UsuariDAO();
+//        return $llistaUsuaris = $usuariDAO->populateUsuariDAO();
+//    }
 
     function validateUser($usuari, $clau) {
         $validat = false;
+        $usuariDAO = new UsuariDAO();
+        $llistaUsuaris = $usuariDAO->populateUsuariDAO();
         if (!trim($usuari) == '' && !trim($clau) == '') {
-            $llistaUsuaris = populateUsuaris();
+           
             foreach ($llistaUsuaris as $user) {
-                if ($user->getUsuari() && $user->getConstrassenya()){
+                if ($user->getUsuari() && $user->getContrasenya()){
                     $validat= true;
                 }
             }
