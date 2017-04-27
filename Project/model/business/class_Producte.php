@@ -42,7 +42,7 @@ class Producte {
                 $this->setMarca(func_get_args()[3]);
                 $this->setPreuBase(func_get_args()[4]);
                 $this->setReferencia(func_get_args()[5]);
-                $this->setModel(func_get_arg()[6]);
+                $this->setModel(func_get_args()[6]);
                 $this->setDescripcio(func_get_args()[7]);
                 $this->setConservarFred(func_get_args()[8]);
                 $this->setImatge(func_get_args()[9]);
