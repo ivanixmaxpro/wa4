@@ -13,7 +13,7 @@ if (isset($_COOKIE['usuari'])) {
                 </div>
                 <div class="col-xs-11 col-md-4 col-xs-offset-1 col-md-offset-4 ">
                     <div class="container-login">
-                        <form action="?ctl=login" method="POST">
+                        <form action="?ctl=login&act=login" method="POST">
                             <h1 class="text-center">Iniciar Sessió</h1>
                             <div class="form-group">
                                 <label><strong>Usuari:</strong></label>
