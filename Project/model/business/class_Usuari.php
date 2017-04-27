@@ -26,8 +26,6 @@ class Usuari {
                 break;
         }
     }
-    
-   
 
     function getId_usuari() {
         return $this->id_usuari;
@@ -60,6 +58,7 @@ class Usuari {
     function setContrasenya($contrasenya) {
         $this->contrasenya = $contrasenya;
     }
+
 //
 //    function populateUsuaris() {
 //        $usuariDAO = new UsuariDAO();
@@ -69,15 +68,15 @@ class Usuari {
     function validateUser($usuari, $clau) {
         $validat = false;
         $usuariDAO = new UsuariDAO();
-        $llistaUsuaris = $usuariDAO->populateUsuariDAO();
         if (!trim($usuari) == '' && !trim($clau) == '') {
-           
-            foreach ($llistaUsuaris as $user) {
-                if ($user->getUsuari() && $user->getContrasenya()){
-                    $validat= true;
-                }
+            $usuari_trobat = $usuariDAO->searchUsuari($usuari);
+
+            if ($usuari_trobat->getUsuari() && $usuari_trobat->getContrasenya()) {
+                $validat = true;
+                $this->setId_usuari($usuari_trobat->getId_usuari());
             }
         }
         return $validat;
     }
-} 
+
+}
