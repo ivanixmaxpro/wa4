@@ -46,6 +46,12 @@ class Empresa {
         $empleats = $EmpresaDAO->populateEmpleats();
         return $empleats;
     }
+    
+    function populateProductes() {
+        $EmpresaDAO = new EmpresaDAO();
+        $productes = $EmpresaDAO->populateProductes();
+        return $productes;
+    }
 
     function searchEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();

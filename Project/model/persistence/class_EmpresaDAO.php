@@ -52,6 +52,31 @@ class EmpresaDAO {
         $con = null;
         return $empleatsarray;
     }
+    
+        public function populateProductes() {
+        $productesarray = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM producte;");
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_producte = $row["id_producte"];
+            $id_ubicacio = $row["id_ubicacio"];
+            $nom = $row["nom"];
+            $marca = $row["marca"];
+            $preuBase = $row["preuBase"];
+            $referencia = $row["referencia"];
+            $model = $row["model"];
+            $descripcio = $row["descripcio"];
+            $conservarFred = $row["conservarFred"];
+            $imatge = $row["imatge"];
+            $producte = new Producte($id_producte,$id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge);
+            array_push($productesarray, $producte);
+        }
+        $con = null;
+        return $productesarray;
+    }
 
     public function searchEmpleat($id_empleat) {
         $con = new db();
