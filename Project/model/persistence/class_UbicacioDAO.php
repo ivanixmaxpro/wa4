@@ -4,11 +4,11 @@ include_once("controller/function_AutoLoad.php");
 require_once("config/config.inc.php");
 require_once("config/db.inc.php");
 
-class ControlDAO {
+class UbicacioDAO {
 
-    public function inserir($control) {
+    public function inserir($ubi) {
 
-        $query = "insert into control values('','" . $control->getId_usuari() . "','" . $control->getFitxat() . "','" . $control->getData() . "');";
+        $query = "insert into ubicacio values(''," . $ubi->getQuantitatTenda() . "','" . $ubi->getQuantitatStock() . "','" . $ubi->getSituacio() . "');";
         $con = new db();
         $con->consulta($query);
         $con->close();
