@@ -10,6 +10,24 @@ class UsuariDAO {
 		$con = new db();
 		$con->consulta($query);
 		$con->close();
-	} 
+	}
+    public function populateUsuariDAO (){
+        $usuaris = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM usuari;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_usuari = $row["id_usuari"];
+            $id_empleat = $row["id_empleat"];
+            $usuari = $row["usuari"];
+            $contrasenya = $row["contrasenya"];
+            $usuari = new Usuari($id_usuari, $id_empleat, $usuari, $contrasenya);
+            array_push($usuaris, $usuari);
+        }
+
+        $con = null;
+        return $usuaris;
+    }
 }
 ?>
