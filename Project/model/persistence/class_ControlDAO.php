@@ -6,12 +6,18 @@ require_once("config/db.inc.php");
 
 class ControlDAO {
 
-    public function inserir($control) {
-
-        $query = "insert into control values('','" . $control->getId_usuari() . "','" . $control->getFitxat() . "','" . $control->getData() . "');";
-        $con = new db();
-        $con->consulta($query);
-        $con->close();
+    public function insert($control) {
+        try {
+            $con = new db();
+            $query = $con->prepare("INSERT INTO control (id_usuari,fitxat,data) 
+		        VALUES (:id_usuari, :fitxat, :data)");
+            $query->bindValue(":id_usuari", $control->getId_usuari());
+            $query->bindValue(":fitxat", $control->getFitxat());
+            $query->bindValue(":data", $control->getData());
+            $con->consulta($query);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
 }
