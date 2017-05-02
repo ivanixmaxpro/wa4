@@ -9,11 +9,27 @@ class Control {
     private $fitxat;
     private $data;
 
-    function __construct($id_usuari, $fitxat, $data) {
-        $this->setId_control(null);
-        $this->setId_usuari($id_usuari);
-        $this->setFitxat($fitxat);
-        $this->setData($data);
+    function __construct() {
+        switch (func_num_args()) {
+            case 0:
+                $this->setId_control(null);
+                $this->setId_usuari(null);
+                $this->setFitxat(null);
+                $this->setData(null);
+                break;
+            case 3:
+                $this->setId_control(null);
+                $this->setId_usuari(func_get_args()[0]);
+                $this->setFitxat(func_get_args()[1]);
+                $this->setData(func_get_args()[2]);
+                break;
+            case 4:
+                $this->setId_control(func_get_args()[0]);
+                $this->setId_usuari(func_get_args()[1]);
+                $this->setFitxat(func_get_args()[2]);
+                $this->setData(func_get_args()[3]);
+                break;
+        }
     }
 
     function getId_control() {
@@ -46,6 +62,11 @@ class Control {
 
     function setData($data) {
         $this->data = $data;
+    }
+
+    function insert() {
+        $ControlDAO = new ControlDAO();
+        $ControlDAO->insert($this);
     }
 
 }

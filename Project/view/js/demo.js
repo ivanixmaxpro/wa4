@@ -1,5 +1,4 @@
 type = ['','info','success','warning','danger'];
-    	
 
 demo = {
     initPickColor: function(){

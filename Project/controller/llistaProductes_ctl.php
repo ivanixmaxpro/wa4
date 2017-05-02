@@ -1,7 +1,9 @@
 <?php
 require_once 'view/tablaProducte.php';
+
 //Empresa
 $tipus = "tots";
+
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -53,6 +55,5 @@ require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
 require_once 'view/llistaProductes.php';
-
 require_once 'view/footer.php';
 ?>
