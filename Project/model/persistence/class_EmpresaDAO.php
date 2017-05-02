@@ -122,6 +122,25 @@ class EmpresaDAO {
         $con = null;
         return $empleat;
     }
+    
+        public function searchLastControl($id_empleat) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM control WHERE id_empleat = :id_empleat ORDER BY 'id_control' DESC LIMIT 1");
+        $query->bindValue(":id_empleat", $id_empleat);
+        $result = $con->consultar($query);
+
+        
+        foreach ($result as $row) {
+            $id_control = $row["id_control"];
+            $id_usuari = $row["id_usuari"];
+            $fitxat = $row["fitxat"];
+            $data = $row["data"];
+            $control = new Control($id_control, $id_usuari, $fitxat, $data);
+            
+        }
+        $con = null;
+        return $control;
+    }
 
 }
 
