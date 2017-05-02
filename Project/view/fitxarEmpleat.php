@@ -7,22 +7,18 @@
             <div class="content">
                 <?php
                 // if user is not filed
-                if(true){
+                if($control->getFitxat() == 1){
                     ?>
-                    <div class="img-thumbnail">
-                        <div>
-                            U NEED TO WORK
+                        <div class="img-thumbnail" >
+                            <img src="view/images/fitxar_on.png" height="75" width="75" />
+                            <button id="fitxarOn">Fitxar</button>
                         </div>
-                        <img src="view/images/fitxar_on.png" height="75" width="75"/>
-                    </div>
                 <?php
                 }else{
                     ?>
                     <div class="img-thumbnail">
-                        <div>
-                            U NEED TO TAKE BREAK
-                        </div>
-                        <img src="view/images/fitxar_off.png" height="75" width="75"/>
+                        <img src="view/images/fitxar_off.png" height="75" width="75" />
+                        <button id="fitxarOff" >Desfitxar</button>
                     </div>
                 <?php
                 }
