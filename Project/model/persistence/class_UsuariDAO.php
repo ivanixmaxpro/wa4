@@ -37,11 +37,15 @@ class UsuariDAO {
 
     public function validateUser($usuari, $pass) {
 
-        $query = "SELECT contrasenya FROM usuari WHERE user = '".$usuari."' ";
         $con = new db();
+        $query = $con->prepare("SELECT contrasenya FROM usuari WHERE usuari = :usuari");
+        $query->bindValue(":usuari", $usuari);
         $contra = $con->consultar($query);
-        $con->close();
 
+        foreach ($contra as $row){
+            $contra = $row['contrasenya'];
+        }
+         
         if(password_verify($pass, $contra)){
             return true;
         }else{
