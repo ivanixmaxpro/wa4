@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li <?php if ($ctl == "empleat" && $act == "detall") {echo 'class="active"';} ?>>
-                        <a href="?ctl=empleat&act=detall">
+                        <a href="?ctl=empleat&act=detall&id=<?php echo $_SESSION["id_usuari"]?>">
                             <i class="pe-7s-user"></i>
                             <p>Empleat</p>
                         </a>
