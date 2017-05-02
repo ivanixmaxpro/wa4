@@ -74,6 +74,7 @@ class Usuari {
             if ($usuari_trobat->getUsuari() && $usuari_trobat->getContrasenya()) {
                 $validat = true;
                 $this->setId_usuari($usuari_trobat->getId_usuari());
+                $this->setId_empleat($usuari_trobat->getId_empleat());
             }
         }
         return $validat;

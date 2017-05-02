@@ -85,11 +85,11 @@ switch ($ctl) {
             case "llista":
                 include "controller/llistaProductes_ctl.php";
                 break;
-            case "llista":
-                include "controller/llistaProductes_ctl.php";
+            case "modificar":
+                include "controller/modificarProductes_ctl.php";
                 break;
-            case "fitxar":
-                include "controller/fitxarEmpleat_ctl.php";
+            case "eliminar":
+                include "controller/eliminarEmpleat_ctl.php";
                 break;
         }
 
