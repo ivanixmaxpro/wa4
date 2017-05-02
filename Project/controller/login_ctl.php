@@ -32,5 +32,6 @@ if (isset($_REQUEST['Submit'])) {
     }
 } else {
     require_once 'view/login.php';
+    
 }
 ?>
