@@ -12,7 +12,8 @@ class UsuariDAO {
         $query = $con->prepare("SELECT * FROM usuari WHERE usuari = :usuari;");
         $query->bindValue(":usuari", $nom_usuari);
         $result = $con->consultar($query);
-
+        $usuari = null;
+        
         foreach ($result as $row) {
             $id_usuari = $row["id_usuari"];
             $id_empleat = $row["id_empleat"];
@@ -35,23 +36,23 @@ class UsuariDAO {
         $con->close();
     }
 
-    public function validateUser($usuari, $pass) {
-
-        $con = new db();
-        $query = $con->prepare("SELECT contrasenya FROM usuari WHERE usuari = :usuari");
-        $query->bindValue(":usuari", $usuari);
-        $contra = $con->consultar($query);
-
-        foreach ($contra as $row){
-            $contra = $row['contrasenya'];
-        }
-         
-        if(password_verify($pass, $contra)){
-            return true;
-        }else{
-            return false;
-        }
-    }
+//    public function validateUser($usuari, $pass) {
+//
+//        $con = new db();
+//        $query = $con->prepare("SELECT contrasenya FROM usuari WHERE usuari = :usuari");
+//        $query->bindValue(":usuari", $usuari);
+//        $contra = $con->consultar($query);
+//
+//        foreach ($contra as $row){
+//            $contra = $row['contrasenya'];
+//        }
+//         
+//        if(password_verify($pass, $contra)){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
 
 }
 
