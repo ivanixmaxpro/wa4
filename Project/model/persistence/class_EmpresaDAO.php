@@ -125,11 +125,11 @@ class EmpresaDAO {
     
         public function searchLastControl($id_usuari) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY 'id_control' DESC LIMIT 1");
+        $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 1");
         $query->bindValue(":id_usuari", $id_usuari);
         $result = $con->consultar($query);
 
-        
+        $control = new Control();
         foreach ($result as $row) {
             $id_control = $row["id_control"];
             $id_usuari = $row["id_usuari"];
