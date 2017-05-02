@@ -115,19 +115,5 @@ class Empleat {
         $this->descripcio = $descripcio;
     }
 
-    function cercarProducte($conservarenfred, $quantitat, $array) {
-        $arrDeProductes = array();
-        
-        for ($i = $quantitat; $i < count($array); $i--) {
-
-            if ($conservarenfred == 1) {
-                array_push($arrDeProductes, $array[$i]);
-            } else if ($conservarenfred == 0) {
-                array_push($arrDeProductes, $array[$i]);
-            }
-        }
-
-        return $arrDeProductes;
-    }
 
 }
