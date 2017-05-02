@@ -70,11 +70,12 @@ class Usuari {
         $usuariDAO = new UsuariDAO();
         if (!trim($usuari) == '' && !trim($clau) == '') {
             $usuari_trobat = $usuariDAO->searchUsuari($usuari);
-
-            if ($usuari_trobat->getUsuari() && $usuari_trobat->getContrasenya()) {
-                $validat = true;
-                $this->setId_usuari($usuari_trobat->getId_usuari());
-                $this->setId_empleat($usuari_trobat->getId_empleat());
+            if ($usuari_trobat != null) {
+                if ($usuari_trobat->getUsuari() && password_verify($clau, $usuari_trobat->getContrasenya())) {
+                    $validat = true;
+                    $this->setId_usuari($usuari_trobat->getId_usuari());
+                    $this->setId_empleat($usuari_trobat->getId_empleat());
+                }
             }
         }
         return $validat;
