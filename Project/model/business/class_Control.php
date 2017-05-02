@@ -58,4 +58,9 @@ class Control {
         $this->data = $data;
     }
 
+    function insert() {
+        $ControlDAO = new ControlDAO();
+        $ControlDAO->insert($this);
+    }
+
 }
