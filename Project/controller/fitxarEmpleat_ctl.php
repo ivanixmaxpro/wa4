@@ -9,8 +9,22 @@ if(isset($_SESSION['empresa'])){
     $_SESSION['empresa'] = serialize($empresa);
 }
 
-//$empleat = $empresa->searchEmpleat($_REQUEST['id']);
-// buscar empleat per id agafada de la sessio
+$control = new Control();
+$control = $empresa->searchLastControl($_SESSION['id_usuari']);
+
+if(isset($_POST['action']) && !empty($_POST['action'])) {
+    $action = $_POST['action'];
+    switch($action) {
+        case 'fitxarOn' :
+                $fitxar = new Control($_SESSION['id_usuari'], 1, date('Y-m-d H:i:s'));
+                $fitxar->insert();
+            break;
+        case 'fitxarOff' :
+                $fitxar = new Control($_SESSION['id_usuari'], 0, date('Y-m-d H:i:s'));
+                $fitxar->insert();
+            break;
+    }
+}
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';

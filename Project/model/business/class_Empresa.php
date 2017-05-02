@@ -59,9 +59,9 @@ class Empresa {
         return $empleat;
     }
     
-        function searchLastControl($id_empleat) {
+        function searchLastControl($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
-        $control = $EmpresaDAO->searchLastControl($id_empleat);
+        $control = $EmpresaDAO->searchLastControl($id_usuari);
         return $control;
     }
     
