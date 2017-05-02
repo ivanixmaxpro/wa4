@@ -88,5 +88,11 @@ class Empresa {
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
         return $empleat;
     }
-
+    
+        function searchLastControl($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $control = $EmpresaDAO->searchLastControl($id_usuari);
+        return $control;
+    }
+    
 }
