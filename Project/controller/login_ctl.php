@@ -21,7 +21,6 @@ if (isset($_REQUEST['Submit'])) {
         $_SESSION["login"] = true;
         $_SESSION["usuari"] = $usuari;
         $_SESSION["id_usuari"] = $usuari_objecte->getId_usuari();
-        // guardar en sessión id usuario
         header("Location: index.php");
     } else {
         $_SESSION["usuari"] = "";
@@ -36,17 +35,5 @@ if (isset($_REQUEST['Submit'])) {
     require_once 'view/login.php';
     
 }
-
-// para insertar un password a la base de datos hace falta usar la siguiente funcion:
-//
-//$pass = $_POST['password'];
-//$passHash = password_hash($pass, PASSWORD_BCRYPT);
-//
-//para desencriptar usar:
-// password_verify($pass, $passHash)
-//
-// link info:
-//https://es.stackoverflow.com/questions/2994/de-que-manera-se-puede-encriptar-una-contrase%C3%B1a-para-una-base-de-datos
-//
 
 ?>
