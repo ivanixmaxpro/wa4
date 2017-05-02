@@ -268,8 +268,8 @@ class EmpresaDAO {
         $con = null;
         return $empleat;
     }
-    
-        public function searchLastControl($id_usuari) {
+
+    public function searchLastControl($id_usuari) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 1");
         $query->bindValue(":id_usuari", $id_usuari);

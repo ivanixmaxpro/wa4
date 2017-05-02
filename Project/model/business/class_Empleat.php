@@ -115,4 +115,5 @@ class Empleat {
         $this->descripcio = $descripcio;
     }
 
+
 }
