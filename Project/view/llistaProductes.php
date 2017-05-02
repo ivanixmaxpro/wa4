@@ -12,7 +12,7 @@
                         <th>Nom</th>
                         <th>marca</th>
                         <th>preuBase</th>
-                        th>referència</th>
+                        <th>referència</th>
                         <th>model</th>
                         <th>conservar en fred</th>
                         <th>detall</th>
@@ -22,7 +22,7 @@
                 <tbody>
 
                     <?php
-                    foreach ($productes as $row) {
+                    foreach ($productesGas as $row) {
 
                         echo '<tr>';
                         echo "<td>" . $row->getId_producte() . "</td>";
@@ -31,7 +31,7 @@
                         echo "<td>" . $row->getpreuBase() . "</td>";
                         echo "<td>" . $row->getReferencia() . "</td>";
                         echo "<td>" . $row->getModel() . "</td>";
-                        echo "<td>" . $row->getConservarEnFred() . "</td>";
+                        echo "<td>" . $row->getConservarFred() . "</td>";
                         echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
                         ?>   <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a>
                         <?php echo "</tr>";
