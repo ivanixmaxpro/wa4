@@ -38,16 +38,4 @@ if (isset($_REQUEST['Submit'])) {
     
 }
 
-// para insertar un password a la base de datos hace falta usar la siguiente funcion:
-//
-//$pass = $_POST['password'];
-//$passHash = password_hash($pass, PASSWORD_BCRYPT);
-//
-//para desencriptar usar:
-// password_verify($pass, $passHash)
-//
-// link info:
-//https://es.stackoverflow.com/questions/2994/de-que-manera-se-puede-encriptar-una-contrase%C3%B1a-para-una-base-de-datos
-//
-
 ?>
