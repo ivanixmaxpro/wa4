@@ -21,6 +21,7 @@ if (isset($_REQUEST['Submit'])) {
         $_SESSION["login"] = true;
         $_SESSION["usuari"] = $usuari;
         $_SESSION["id_usuari"] = $usuari_objecte->getId_usuari();
+        $_SESSION["id_empleat"] = $usuari_objecte->getId_empleat();
         // guardar en sessión id usuario
         header("Location: index.php");
     } else {
