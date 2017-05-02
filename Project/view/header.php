@@ -43,6 +43,7 @@
     <script src="view/js/bootstrap.min.js" type="text/javascript"></script>
     <!--  Checkbox, Radio & Switch Plugins -->
     <script src="view/js/bootstrap-checkbox-radio-switch.js"></script>
+    <script src="view/js/custom.js"></script>
     <!--  Charts Plugin -->
     <script src="view/js/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
