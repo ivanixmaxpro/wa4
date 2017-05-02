@@ -4,46 +4,63 @@
         <h4 class="title">Llista productes</h4>
         <p class="category">A continuació un llistat:</p>
     </div>
-    <form action="?ctl=actors" method="post">
-        <div class="content table-responsive table-full-width">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr><th>ID</th>
-                        <th>Nom</th>
-                        <th>marca</th>
-                        <th>preuBase</th>
-                        <th>referència</th>
-                        <th>model</th>
-                        <th>conservar en fred</th>
-                        <th>detall</th>
-                        <th>modificar</th>
-                        <th>eliminar</th>
-                    </tr></thead>
-                <tbody>
-
-                    <?php
-                    foreach ($productesGas as $row) {
-
-                        echo '<tr>';
-                        echo "<td>" . $row->getId_producte() . "</td>";
-                        echo "<td>" . $row->getNom() . "</td>";
-                        echo "<td>" . $row->getMarca() . "</td>";
-                        echo "<td>" . $row->getpreuBase() . "</td>";
-                        echo "<td>" . $row->getReferencia() . "</td>";
-                        echo "<td>" . $row->getModel() . "</td>";
-                        echo "<td>" . $row->getConservarFred() . "</td>";
-                        echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
-                        ?>   <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a>
-                        <?php echo "</tr>";
-                        ?>   <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a>
-                    <?php
-                    echo "</tr>";
-                }
-                ?>
-
-                </tbody>
-            </table>
+    <form action="?ctl=producte&act=llista" method="post">
+        <div class="form-group">
+            Cercar per Nom:
+            <input type="text" name="nom" >
+            Conservar en fred:
+            <select name="conservar">
+                <option value="no">no</option>
+                <option value="si">si</option>
+            </select>
+            Quantitat de registres:
+            <select name="quantitat">
+                <option value=" "> </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+                <option value="72">72</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+            </select>
+            Tipus:
+            <select name="tipus">
+                <option value=" "> </option>
+                <option value="solid">solid</option>
+                <option value="semisolid">semisolid</option>
+                <option value="liquid">liquid</option>
+                <option value="gas">gas</option>
+                <option value="altres">altres</option>
+               
+            </select>
+            <button name="Submit" class="btn btn-primary">Buscar</button>
         </div>
-    </form>  
-</div>
+    </form> 
+    <?php
+
+    switch ($tipus) {
+    case "tots":
+         tablaTot($productes);
+        break;
+    case "solid":
+        tablaSolid($productes);
+        break;
+    case "semisolid":
+        tablaSemiSolid($productes);
+        break;
+    case "liquid":
+        tablaLiquid($productes);
+        break;
+    case "gas":
+        tablasGas($productes);
+        break;
+    
+    default:
+        echo "Your favorite color is neither red, blue, nor green!";
+}
+    ?>
 </div>
