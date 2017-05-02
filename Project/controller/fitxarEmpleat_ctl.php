@@ -1,4 +1,7 @@
 <?php
+//require_once("function_AutoLoad.php");
+//session_start();
+
 
 if(isset($_SESSION['empresa'])){
     $empresa = unserialize($_SESSION['empresa']);
@@ -11,6 +14,9 @@ if(isset($_SESSION['empresa'])){
 
 $control = new Control();
 $control = $empresa->searchLastControl($_SESSION['id_usuari']);
+if($control == null || $control == ""){
+    $control = null;
+}
 
 if(isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
@@ -31,4 +37,5 @@ require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
 require_once 'view/fitxarEmpleat.php';
 require_once 'view/footer.php';
+unset($control);
 ?>

@@ -4,8 +4,19 @@
 
 // Metodes per fitxar
 $(document).ready(function (){
+    var fix = $('#fixat').html();
+
+    if (fix == 0 || fix == null) {
+        $("#fitxarOn").show();
+        $("#fitxarOff").hide();
+    } else {
+        $("#fitxarOff").show();
+        $("#fitxarOn").hide();
+    }
+
+
     $("#fitxarOn").click(function(){
-        $.ajax({ url: './controller/fitxarEmpleat_ctl.php',
+        $.ajax({ url: 'http://localhost/WA4/wa4/Project/index.php?ctl=empleat&act=fitxar',
             data: {action: 'fitxarOn'},
             type: 'post',
             success: function(output) {
@@ -13,13 +24,14 @@ $(document).ready(function (){
                     icon: "pe-7s-gift",
                     message: "Has fitxat correctament."
                 });
+                $('#fitxarOff').show();
+                $('#fitxarOn').hide();
             }
         });
     });
 
     $("#fitxarOff").click(function(){
-        alert('yeah');
-        $.ajax({ url: './controller/fitxarEmpleat_ctl.php',
+        $.ajax({ url: 'http://localhost/WA4/wa4/Project/index.php?ctl=empleat&act=fitxar',
             data: {action: 'fitxarOff'},
             type: 'post',
             success: function(output) {
@@ -27,6 +39,8 @@ $(document).ready(function (){
                     icon: "pe-7s-gift",
                     message: "Ja no estás fitxat."
                 });
+                $('#fitxarOn').show();
+                $('#fitxarOff').hide();
             }
         });
     });
