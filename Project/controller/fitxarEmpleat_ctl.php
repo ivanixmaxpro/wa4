@@ -16,7 +16,19 @@ $control = new Control();
 $control = $empresa->searchLastControl($_SESSION['id_usuari']);
 if($control == null || $control == ""){
     $control = null;
+}else{
+    if($control->getData() < date('Y-m-d H:i:s')){
+        $datetime1 = new DateTime($control->getData());
+        $datetime2 = new DateTime(date('Y-m-d H:i:s'));
+        $interval = $datetime1->diff($datetime2);
+        $temps = $interval->format('%H');
+
+        if($temps > 8){
+            $eight = true;
+        }
+    }
 }
+
 
 if(isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
