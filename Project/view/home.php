@@ -3,7 +3,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
+                                <h4 class="title">Ventas por proovedor</h4>
                                 <p class="category">Last Campaign Performance</p>
                             </div>
                             <div class="content">
@@ -27,7 +27,7 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Users Behavior</h4>
+                                <h4 class="title">Ventas por día</h4>
                                 <p class="category">24 Hours performance</p>
                             </div>
                             <div class="content">
@@ -54,7 +54,7 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2014 Sales</h4>
+                                <h4 class="title">2016 Ventas</h4>
                                 <p class="category">All products including Taxes</p>
                             </div>
                             <div class="content">
@@ -77,8 +77,8 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Tasks</h4>
-                                <p class="category">Backend development</p>
+                                <h4 class="title">Missatges</h4>
+                                <p class="category">Tots els missatges rebuts per l'usuari</p>
                             </div>
                             <div class="content">
                                 <div class="table-full-width">

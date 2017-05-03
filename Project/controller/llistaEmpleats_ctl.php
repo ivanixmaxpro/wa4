@@ -8,6 +8,7 @@ if(isset($_SESSION['empresa'])){
 
 	$_SESSION['empresa'] = serialize($empresa);
 }
+$title = "Llista empleats";
 
 $empleats = $empresa->populateEmpleats();
 
