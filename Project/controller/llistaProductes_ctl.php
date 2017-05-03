@@ -23,6 +23,8 @@ if (isset($_REQUEST["Submit"])) {
 }else{
    $productes = $empresa->populateProductes();
 }
+$title = "Llista productes";
+
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';

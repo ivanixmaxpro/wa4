@@ -1,5 +1,6 @@
 <?php
 
+$title = "Detall empleat";
 if(isset($_SESSION['empresa'])){
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -10,7 +11,6 @@ if(isset($_SESSION['empresa'])){
 }
 
 $empleat = $empresa->searchEmpleat($_REQUEST['id']);
-// buscar empleat per id agafada de la sessio
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
