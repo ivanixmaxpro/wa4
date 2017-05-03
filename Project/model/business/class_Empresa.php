@@ -89,23 +89,10 @@ class Empresa {
         return $empleat;
     }
 
-    function cercarProducte($conservarenfred, $quantitat, $array) {
-        $arrDeProductes = array();
-
-        if (count($array) < $quantitat) {
-            $quantitat = count($array);
-        }
-
-        for ($i = $quantitat; $i < count($array); $i--) {
-
-            if ($conservarenfred == 1) {
-                array_push($arrDeProductes, $array[$i]);
-            } else if ($conservarenfred == 0) {
-                array_push($arrDeProductes, $array[$i]);
-            }
-        }
-
-        return $arrDeProductes;
+    function filtrarProductes($conservarenfred, $quantitat, $tipus) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->aplicarFiltre($conservarenfred, $quantitat, $tipus);
+        return $resultatDelFiltre;
     }
 
     function searchLastControl($id_usuari) {

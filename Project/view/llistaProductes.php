@@ -9,13 +9,14 @@
             Cercar per Nom:
             <input type="text" name="nom" >
             Conservar en fred:
-            <select name="conservar">
-                <option value="no">no</option>
-                <option value="si">si</option>
+            <select name="conservarFred">
+                <option value=""></option>
+                <option value="no">No</option>
+                <option value="si">Si</option>
             </select>
             Quantitat de registres:
-            <select name="quantitat">
-                <option value=" "> </option>
+            <select name="qqa">
+                <option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="10">10</option>
@@ -29,38 +30,37 @@
             </select>
             Tipus:
             <select name="tipus">
-                <option value=" "> </option>
-                <option value="solid">solid</option>
-                <option value="semisolid">semisolid</option>
-                <option value="liquid">liquid</option>
-                <option value="gas">gas</option>
-                <option value="altres">altres</option>
-               
+                <option value="tots"></option>
+                <option value="solid">Solid</option>
+                <option value="semisolid">Semisolid</option>
+                <option value="liquid">Liquid</option>
+                <option value="gas">Gas</option>
+                <option value="altres">Altres</option>
+
             </select>
             <button name="Submit" class="btn btn-primary">Buscar</button>
         </div>
     </form> 
     <?php
-
     switch ($tipus) {
-    case "tots":
-         tablaTot($productes);
-        break;
-    case "solid":
-        tablaSolid($productes);
-        break;
-    case "semisolid":
-        tablaSemiSolid($productes);
-        break;
-    case "liquid":
-        tablaLiquid($productes);
-        break;
-    case "gas":
-        tablasGas($productes);
-        break;
-    
-    default:
-        echo "Your favorite color is neither red, blue, nor green!";
-}
+        case "tots":
+            tablaTot($productes);
+            break;
+        case "solid":
+            tablaSolid($productes);
+            break;
+        case "semisolid":
+            tablaSemiSolid($productes);
+            break;
+        case "liquid":
+            tablaLiquid($productes);
+            break;
+        case "gas":
+            tablaGas($productes);
+            break;
+        case "altres";
+            tablaAltres($productes);
+            break;
+    }
     ?>
 </div>

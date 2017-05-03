@@ -244,6 +244,10 @@ class EmpresaDAO {
         return $usuaris;
     }
 
+    /*public function aplicarFiltre($conservarFred, $limitRegistres, $tipusProducte) {
+        
+    }*/
+
     public function searchEmpleat($id_empleat) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat");
