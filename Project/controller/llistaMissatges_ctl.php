@@ -5,3 +5,4 @@
  * Date: 19/04/17
  * Time: 17:32
  */
+$title = "Llista missatges";
