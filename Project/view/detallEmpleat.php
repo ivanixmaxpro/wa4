@@ -113,5 +113,62 @@
 
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="content">
+                <div class="author">
+                    <script>
+                        $(function() {
+                            $("#dialog").dialog({
+                                autoOpen: false,
+                                width: 1000,
+                                height: 400,
+                                show: {
+                                    effect: "blind",
+                                    duration: 1000
+                                },
+                                hide: {
+                                    effect: "explode",
+                                    duration: 1000
+                                }
+                            });
+
+                            $("#opener").on("click", function() {
+                                $("#dialog").dialog("open");
+                            });
+                        } );
+                    </script>
+                    </head>
+                    <body>
+
+                    <div id="dialog" title="Horari del empleat">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Dia</th>
+                                <th>Hora entrada</th>
+                                <th>Hora sortida</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            if(isarray($horari)){
+                                foreach ($horari as $dia){
+                                    echo "<tr>";
+                                    echo "<td>".$dia[0]."</td>";
+                                    echo "<td>".$dia[1]."</td>";
+                                    echo "<td>".$dia[2]."</td>";
+                                    echo "</tr>";
+                                }
+                            }else{
+                                echo $horari;
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="opener">HORARI</button>
+        </div>
+    </div>
 
 </div>
