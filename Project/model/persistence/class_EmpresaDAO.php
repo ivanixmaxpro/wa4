@@ -223,6 +223,25 @@ class EmpresaDAO {
         $con = null;
         return $horari;
     }
+    
+        public function searchUsuariByEmpleat($id_empleat) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM usuari WHERE id_empleat = :id_empleat");
+        $query->bindValue(":id_empleat", $id_empleat);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_usuari = $row["id_empleat"];
+            $id_empleat = $row["id_empresa"];
+            $nomusuari = $row["usuari"];
+            $contrasenya = $row["contrasenya"];
+            
+            $usuari = new Usuari($id_usuari,$id_empleat,$nomusuari,$contrasenya);
+        }
+        $con = null;
+        return $usuari;
+    }
 
 }
 

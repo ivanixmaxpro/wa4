@@ -5,15 +5,15 @@ require_once("config/config.inc.php");
 require_once("config/db.inc.php");
 
 class UsuariDAO {
-  
-    public function searchUsuari ($nom_usuari){
+
+    public function searchUsuari($nom_usuari) {
 
         $con = new db();
         $query = $con->prepare("SELECT * FROM usuari WHERE usuari = :usuari;");
         $query->bindValue(":usuari", $nom_usuari);
         $result = $con->consultar($query);
         $usuari = null;
-        
+
         foreach ($result as $row) {
             $id_usuari = $row["id_usuari"];
             $id_empleat = $row["id_empleat"];
@@ -36,6 +36,19 @@ class UsuariDAO {
         $con->close();
     }
 
+    public function updateContrasenya($id_usuari, $contrasenya) {
+        try {
+            $con = new db();
+            $query = $con->prepare("UPDATE usuari SET contrasenya  = :contrasenya WHERE id_usuari = :id_usuari");
+            $query->bindValue(":contrasenya", $contrasenya);
+            $query->bindValue(":id_usuari", $id_ususari);
+
+            $con->consulta($query);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
 //    public function validateUser($usuari, $pass) {
 //
 //        $con = new db();
@@ -53,7 +66,6 @@ class UsuariDAO {
 //            return false;
 //        }
 //    }
-
 }
 
 ?>
