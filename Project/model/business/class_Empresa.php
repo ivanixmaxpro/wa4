@@ -68,6 +68,12 @@ class Empresa {
         return $empleat;
     }
 
+    function filtrarProductes($conservarenfred, $quantitat, $tipus) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filterProducte($conservarenfred, $quantitat, $tipus);
+        return $resultatDelFiltre;
+    }
+
     function searchLastControl($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
         $control = $EmpresaDAO->searchLastControl($id_usuari);
