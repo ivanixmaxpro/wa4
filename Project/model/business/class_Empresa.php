@@ -91,7 +91,7 @@ class Empresa {
 
     function filtrarProductes($conservarenfred, $quantitat, $tipus) {
         $EmpresaDAO = new EmpresaDAO();
-        $resultatDelFiltre = $EmpresaDAO->aplicarFiltre($conservarenfred, $quantitat, $tipus);
+        $resultatDelFiltre = $EmpresaDAO->filterProducte($conservarenfred, $quantitat, $tipus);
         return $resultatDelFiltre;
     }
 

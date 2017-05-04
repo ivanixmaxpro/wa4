@@ -10,13 +10,13 @@
             <input type="text" name="nom" >
             Conservar en fred:
             <select name="conservarFred">
-                <option value=""></option>
-                <option value="no">No</option>
-                <option value="si">Si</option>
+                <option value="tots">-</option>
+                <option value="0">No</option>
+                <option value="1">Si</option>
             </select>
             Quantitat de registres:
             <select name="qqa">
-                <option value=""></option>
+                <option value="tots">-</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="10">10</option>
@@ -30,7 +30,7 @@
             </select>
             Tipus:
             <select name="tipus">
-                <option value="tots"></option>
+                <option value="tots">-</option>
                 <option value="solid">Solid</option>
                 <option value="semisolid">Semisolid</option>
                 <option value="liquid">Liquid</option>
@@ -42,25 +42,6 @@
         </div>
     </form> 
     <?php
-    switch ($tipus) {
-        case "tots":
-            tablaTot($productes);
-            break;
-        case "solid":
-            tablaSolid($productes);
-            break;
-        case "semisolid":
-            tablaSemiSolid($productes);
-            break;
-        case "liquid":
-            tablaLiquid($productes);
-            break;
-        case "gas":
-            tablaGas($productes);
-            break;
-        case "altres";
-            tablaAltres($productes);
-            break;
-    }
+    tablaTot($productes);
     ?>
 </div>

@@ -244,9 +244,9 @@ class EmpresaDAO {
         return $usuaris;
     }
 
-    /*public function aplicarFiltre($conservarFred, $limitRegistres, $tipusProducte) {
-        
-    }*/
+    /* public function aplicarFiltre($conservarFred, $limitRegistres, $tipusProducte) {
+
+      } */
 
     public function searchEmpleat($id_empleat) {
         $con = new db();
@@ -289,6 +289,66 @@ class EmpresaDAO {
         }
         $con = null;
         return $control;
+    }
+
+    function filterProducte($conservarenfred, $quantitat, $tipus) {
+        $productesArray = array();
+        $con = new db();
+        $consulta = "SELECT * FROM";
+
+        switch ($tipus) {
+            case "tots":
+                $consulta .= " producte";
+
+                break;
+
+            default:
+                $consulta .= " " . $tipus . " INNER JOIN producte ON " . $tipus . ".id_producte = producte.id_producte";
+                break;
+        }
+
+
+        switch ($conservarenfred) {
+            case "tots":
+                $consulta .= "";
+
+                break;
+
+            default:
+                $consulta .= " WHERE producte.conservarFred=" . $conservarenfred;
+                break;
+        }
+        switch ($quantitat) {
+            case "tots":
+                $consulta .= "";
+
+                break;
+
+            default:
+                $consulta .= " LIMIT " . $quantitat;
+                break;
+        }
+        $consulta .= ";";
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_producte = $row["id_producte"];
+            $id_ubicacio = $row["id_ubicacio"];
+            $nom = $row["nom"];
+            $marca = $row["marca"];
+            $preuBase = $row["preuBase"];
+            $referencia = $row["referencia"];
+            $model = $row["model"];
+            $descripcio = $row["descripcio"];
+            $conservarFred = $row["conservarFred"];
+            $imatge = $row["imatge"];
+            $producte = new Producte($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge);
+            array_push($productesArray, $producte);
+        }
+
+        $con = null;
+        return $productesArray;
     }
 
 }
