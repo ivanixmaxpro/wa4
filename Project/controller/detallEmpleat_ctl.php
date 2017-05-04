@@ -11,6 +11,10 @@ if(isset($_SESSION['empresa'])){
 }
 
 $empleat = $empresa->searchEmpleat($_REQUEST['id']);
+$horari = $empresa->showHorari($_SESSION['id_usuari']);
+if($horari == null || $horari == ""){
+    $horari = "Aquest usuari no té un horari assignat, siusplau, posis amb contace amb resursus humans per establir-lo.";
+}
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';

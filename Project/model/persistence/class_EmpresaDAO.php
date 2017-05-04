@@ -148,9 +148,9 @@ class EmpresaDAO {
         $result = $con->consultar($query);
         
         foreach ($result as $row) {
-            $nom = $row["dia.nom"];
-            $horaInici = $row["horari.horaInici"];
-            $horaFinal = $row["horari.horaFinal"];
+            $nom = $row["nom"];
+            $horaInici = $row["horaInici"];
+            $horaFinal = $row["horaFinal"];
             
             array_push($horari, array($nom,$horaInici,$horaFinal));
         }
