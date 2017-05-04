@@ -41,7 +41,7 @@ class UsuariDAO {
             $con = new db();
             $query = $con->prepare("UPDATE usuari SET contrasenya  = :contrasenya WHERE id_usuari = :id_usuari");
             $query->bindValue(":contrasenya", $contrasenya);
-            $query->bindValue(":id_usuari", $id_ususari);
+            $query->bindValue(":id_usuari", $id_usuari);
 
             $con->consulta($query);
         } catch (Exception $e) {
