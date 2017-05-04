@@ -4,6 +4,11 @@
 
 // Metodes per fitxar
 $(document).ready(function (){
+
+    // mostrar horari
+
+    // final horari
+    // fitxar
     var fix = $('#fixat').html();
 
     if (fix == 0 || fix == null) {
@@ -16,12 +21,12 @@ $(document).ready(function (){
 
 
     $("#fitxarOn").click(function(){
-        $.ajax({ url: 'http://localhost/WA4/wa4/Project/index.php?ctl=empleat&act=fitxar',
+        $.ajax({ url: 'http://localhost/wa4/Project/index.php?ctl=empleat&act=fitxar',
             data: {action: 'fitxarOn'},
             type: 'post',
             success: function(output) {
                 $.notify({
-                    icon: "pe-7s-gift",
+                    icon: "pe-7s-smile",
                     message: "Has fitxat correctament."
                 });
                 $('#fitxarOff').show();
@@ -31,12 +36,12 @@ $(document).ready(function (){
     });
 
     $("#fitxarOff").click(function(){
-        $.ajax({ url: 'http://localhost/WA4/wa4/Project/index.php?ctl=empleat&act=fitxar',
+        $.ajax({ url: 'http://localhost/wa4/Project/index.php?ctl=empleat&act=fitxar',
             data: {action: 'fitxarOff'},
             type: 'post',
             success: function(output) {
                 $.notify({
-                    icon: "pe-7s-gift",
+                    icon: "pe-7s-smile",
                     message: "Ja no estás fitxat."
                 });
                 $('#fitxarOn').show();

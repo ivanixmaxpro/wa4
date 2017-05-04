@@ -71,8 +71,8 @@ switch ($ctl) {
             case "modificar":
                 include "controller/modificarObra_ctl.php";
                 break;
-            case "detalls":
-                include "controller/detallObra_ctl.php";
+            case "detall":
+                include "controller/detallMissatge_ctl.php";
                 break;
             case "eliminar":
                 include "controller/eliminarObra_ctl.php";
