@@ -40,6 +40,15 @@ class Empresa {
         $this->setId_empresa($dades[0]);
         $this->setNom($dades[1]);
     }
+    /**
+     * Metodes per cridar al DAO i tenir la llista de missatges
+     * @return array de missatges
+     */
+    function populateMissatges(){
+        $missatgesDAO = new MissatgeDAO();
+        $missatges = $missatgesDAO->populateMissatges();
+        return $missatges;
+    }
 
     function populateEmpleats() {
         $EmpresaDAO = new EmpresaDAO();
@@ -51,36 +60,6 @@ class Empresa {
         $EmpresaDAO = new EmpresaDAO();
         $productes = $EmpresaDAO->populateProductes();
         return $productes;
-    }
-
-    function populateLiquid() {
-        $EmpresaDAO = new EmpresaDAO();
-        $productesLiquid = $EmpresaDAO->populateProductesLiquid();
-        return $productesLiquid;
-    }
-
-    function populateAltres() {
-        $EmpresaDAO = new EmpresaDAO();
-        $productesAltre = $EmpresaDAO->populateProductesAltre();
-        return $productesAltre;
-    }
-
-    function populateSemiSolid() {
-        $EmpresaDAO = new EmpresaDAO();
-        $productesSemiSolid = $EmpresaDAO->populateProductesSemiSolid();
-        return $productesSemiSolid;
-    }
-
-    function populateSolid() {
-        $EmpresaDAO = new EmpresaDAO();
-        $productesSolid = $EmpresaDAO->populateProductesSolid();
-        return $productesSolid;
-    }
-
-    function populateGas() {
-        $EmpresaDAO = new EmpresaDAO();
-        $productesGas = $EmpresaDAO->populateProductesGas();
-        return $productesGas;
     }
 
     function searchEmpleat($id_empleat) {
@@ -99,6 +78,12 @@ class Empresa {
         $EmpresaDAO = new EmpresaDAO();
         $control = $EmpresaDAO->searchLastControl($id_usuari);
         return $control;
+    }
+
+    function showHorari($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $horari = $EmpresaDAO->showHorari($id_usuari);
+        return $horari;
     }
 
 }
