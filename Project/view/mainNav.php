@@ -8,16 +8,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="?ctl=home">Home</a>
+                <a class="navbar-brand" href="?ctl=home"><?php echo ucwords($title); ?></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="?ctl=home" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-dashboard"></i>
-                            <p class="hidden-lg hidden-md">Home</p>
-                        </a>
-                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
@@ -36,12 +30,6 @@
                             <li><a href="#">Another notification</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                            <p class="hidden-lg hidden-md">Search</p>
-                        </a>
-                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -50,7 +38,7 @@
                             <p>
                                 <?php
                                 if (isset($_SESSION["usuari"])) {
-                                    echo "Benvingut, " . $_SESSION["usuari"];
+                                    echo "Benvingut, " . ucwords($_SESSION["usuari"]);
                                 } else {
                                     echo "No estás logejat, ERROR";
                                 }
@@ -60,36 +48,29 @@
                     </li>
                     <li>
                         <a href="">
-                            <p>Account</p>
+                            <p>Compte</p>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <p>
-                                Dropdown
+                                Opcions
                                 <b class="caret"></b>
                             </p>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Action1</a></li>
+                            <li><a href="#">Action2</a></li>
+                            <li><a href="#">Action3</a></li>
                             <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something</a></li>
+                            <li><a href="#">Action action2</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <?php
+                            if (isset($_SESSION["usuari"])) {
+                                echo "<li><a href='?ctl=logout'>Tanca sessió</a></li>";
+                            }
+                            ?>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="?ctl=logout">
-                            <p>
-                                <?php
-                                if (isset($_SESSION["usuari"])) {
-                                    echo "Tanca sessió";
-                                }
-                                ?>
-                            </p>
-                        </a>
                     </li>
                     <li class="separator hidden-lg hidden-md"></li>
                 </ul>

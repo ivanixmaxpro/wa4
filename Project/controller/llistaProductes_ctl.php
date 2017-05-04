@@ -1,28 +1,28 @@
 <?php
-//Empresa	
-if(isset($_SESSION['empresa'])){
-	$empresa = unserialize($_SESSION['empresa']);
+
+require_once 'view/tablaProducte.php';
+
+if (isset($_SESSION['empresa'])) {
+    $empresa = unserialize($_SESSION['empresa']);
 } else {
-	$empresa = New Empresa();
-	$empresa->recuperarEmpresa(); 
+    $empresa = new Empresa();
+    $empresa->recuperarEmpresa();
 
 	$_SESSION['empresa'] = serialize($empresa);
 }
 
 if (isset($_REQUEST["Submit"])) {
-    if (isset($_REQUEST['marca'])) {
-        $marca = $_REQUEST['marca'];
-    }
-    if (isset($_REQUEST['conservarFred'])) {
-        $conservarFred = $_REQUEST['conservarFred'];
-    }
-    if (isset($_REQUEST['quantitat'])) {
-        $quantitat = $_REQUEST['quantitat'];      
-    }
-    $productes = $empresa->cercar($marca, $conservarFred,$quantitat);
-}else{
-   $productes = $empresa->populateProductes();
+
+    $conservarFred = $_REQUEST['conservarFred'];
+    $limitRegistres = $_REQUEST['qqa'];
+    $tipusProducte = $_REQUEST['tipus'];
+
+    $productes = $empresa->filtrarProductes($conservarFred, $limitRegistres, $tipusProducte);
+} else {
+    $productes = $empresa->populateProductes();
 }
+$title = "Llista productes";
+
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
