@@ -232,8 +232,8 @@ class EmpresaDAO {
 
 
         foreach ($result as $row) {
-            $id_usuari = $row["id_empleat"];
-            $id_empleat = $row["id_empresa"];
+            $id_usuari = $row["id_usuari"];
+            $id_empleat = $row["id_empleat"];
             $nomusuari = $row["usuari"];
             $contrasenya = $row["contrasenya"];
             
