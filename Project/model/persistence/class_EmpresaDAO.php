@@ -26,6 +26,8 @@ class EmpresaDAO {
         $con = null;
         return $empresa;
     }
+    
+
 
     public function populateEmpleats() {
         $empleatsarray = array();
