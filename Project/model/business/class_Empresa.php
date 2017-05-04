@@ -40,11 +40,12 @@ class Empresa {
         $this->setId_empresa($dades[0]);
         $this->setNom($dades[1]);
     }
+
     /**
      * Metodes per cridar al DAO i tenir la llista de missatges
      * @return array de missatges
      */
-    function populateMissatges(){
+    function populateMissatges() {
         $missatgesDAO = new MissatgeDAO();
         $missatges = $missatgesDAO->populateMissatges();
         return $missatges;
@@ -84,6 +85,12 @@ class Empresa {
         $EmpresaDAO = new EmpresaDAO();
         $horari = $EmpresaDAO->showHorari($id_usuari);
         return $horari;
+    }
+
+    function searchUsuariByEmpleat($id_empleat) {
+        $EmpresaDAO = new EmpresaDAO();
+        $usuari = $EmpresaDAO->searchUsuariByEmpleat($id_empleat);
+        return $usuari;
     }
 
 }
