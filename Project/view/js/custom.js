@@ -4,6 +4,11 @@
 
 // Metodes per fitxar
 $(document).ready(function (){
+
+    // mostrar horari
+
+    // final horari
+    // fitxar
     var fix = $('#fixat').html();
 
     if (fix == 0 || fix == null) {

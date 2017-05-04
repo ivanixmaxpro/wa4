@@ -12,6 +12,7 @@ if(isset($_SESSION['empresa'])){
     $_SESSION['empresa'] = serialize($empresa);
 }
 
+$title = "Fitxar";
 $control = new Control();
 $control = $empresa->searchLastControl($_SESSION['id_usuari']);
 if($control == null || $control == ""){

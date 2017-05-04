@@ -49,13 +49,13 @@ class Empresa {
         $missatges = $missatgesDAO->populateMissatges();
         return $missatges;
     }
-    
+
     function populateEmpleats() {
         $EmpresaDAO = new EmpresaDAO();
         $empleats = $EmpresaDAO->populateEmpleats();
         return $empleats;
     }
-    
+
     function populateProductes() {
         $EmpresaDAO = new EmpresaDAO();
         $productes = $EmpresaDAO->populateProductes();
@@ -67,11 +67,17 @@ class Empresa {
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
         return $empleat;
     }
-    
-        function searchLastControl($id_usuari) {
+
+    function searchLastControl($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
         $control = $EmpresaDAO->searchLastControl($id_usuari);
         return $control;
     }
-    
+
+    function showHorari($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $horari = $EmpresaDAO->showHorari($id_usuari);
+        return $horari;
+    }
+
 }
