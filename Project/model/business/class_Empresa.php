@@ -40,6 +40,15 @@ class Empresa {
         $this->setId_empresa($dades[0]);
         $this->setNom($dades[1]);
     }
+    /**
+     * Metodes per cridar al DAO i tenir la llista de missatges
+     * @return array de missatges
+     */
+    function populateMissatges(){
+        $missatgesDAO = new MissatgeDAO();
+        $missatges = $missatgesDAO->populateMissatges();
+        return $missatges;
+    }
 
     function populateEmpleats() {
         $EmpresaDAO = new EmpresaDAO();
