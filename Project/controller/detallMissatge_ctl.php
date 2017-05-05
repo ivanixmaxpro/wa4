@@ -2,6 +2,7 @@
 
 $missatgesDAO = new MissatgeDAO();
 $id = $_REQUEST['id'];
+$title = "detall missatge, id = ".$id;
 $missatge = $missatgesDAO->buscarPerId($id);
 
 

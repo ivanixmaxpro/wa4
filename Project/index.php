@@ -65,17 +65,12 @@ switch ($ctl) {
             case "llistaMissatges":
                 include "controller/llistaMissatges_ctl.php";
                 break;
-            case "cercar":
-                include "controller/cercarObra_ctl.php";
-                break;
-            case "modificar":
-                include "controller/modificarObra_ctl.php";
-                break;
+          
             case "detall":
                 include "controller/detallMissatge_ctl.php";
                 break;
-            case "eliminar":
-                include "controller/eliminarObra_ctl.php";
+            case "crear":
+                include "controller/crearMissatge_ctl.php";
                 break;
         }
         break;
