@@ -1,5 +1,10 @@
 <?php
 
+require_once("function_AutoLoad.php");
+
+session_start();
+
+
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -10,4 +15,16 @@ if (isset($_SESSION['empresa'])) {
 }
 
 
-$ubicacio = $empresa->searchUbicacio($idubicacio);
+$ubicacio = $empresa->searchUbicacio($_REQUEST['id_ubicacio']);
+
+
+if ($ubicacio != null) {
+
+    $tenda = $ubicacio->getQuantitatTenda();
+    $stock = $ubicacio->getQuantitatStock();
+    $total = $tenda + $stock;
+
+
+
+    echo "{\"total\":\"$total\"}";
+}
