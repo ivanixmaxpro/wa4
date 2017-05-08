@@ -5,13 +5,13 @@ require_once("controller/function_AutoLoad.php");
 session_start();
 
 //Empresa	
-if(isset($_SESSION['empresa'])){
-	$empresa = unserialize($_SESSION['empresa']);
+if (isset($_SESSION['empresa'])) {
+    $empresa = unserialize($_SESSION['empresa']);
 } else {
-	$empresa = New Empresa();
-	$empresa->recuperarEmpresa(); 
+    $empresa = New Empresa();
+    $empresa->recuperarEmpresa();
 
-	$_SESSION['empresa'] = serialize($empresa);
+    $_SESSION['empresa'] = serialize($empresa);
 }
 
 
@@ -25,7 +25,7 @@ if (isset($_REQUEST['ctl'])) {
     }
 }
 
-if(isset($_SESSION["login"]) == false){
+if (isset($_SESSION["login"]) == false) {
 
     //descomentar per afegir funcionalitat login
     //$ctl = "login";
@@ -51,7 +51,7 @@ switch ($ctl) {
         break;
 
     case "empleat":
-        switch ($act){
+        switch ($act) {
             case "detall":
                 include "controller/detallEmpleat_ctl.php";
                 break;
@@ -62,7 +62,7 @@ switch ($ctl) {
                 include "controller/fitxarEmpleat_ctl.php";
                 break;
         }
-
+        break;
     case "missatge":
         switch ($act) {
             case "llistaMissatges":
@@ -79,7 +79,7 @@ switch ($ctl) {
         break;
 
     case "producte":
-        switch ($act){
+        switch ($act) {
             case "llista":
                 include "controller/llistaProductes_ctl.php";
                 break;
@@ -90,26 +90,12 @@ switch ($ctl) {
                 include "controller/eliminarEmpleat_ctl.php";
                 break;
         }
+        break;
 
-    case "director":
+    case "albaraVenta":
         switch ($act) {
             case "afegir":
-                include "controller/afegirDirector_ctl.php";
-                break;
-            case "cercar":
-                include "controller/cercarDirector_ctl.php";
-                break;
-            case "modificar":
-                include "controller/modificarDirector_ctl.php";
-                break;
-            case "eliminar":
-                include "controller/eliminarDirector_ctl.php";
-                break;
-            case "cercar2":
-                include "view/cercarDirector.php";
-                break;
-            case "detall":
-                include "controller/detallDirector_ctl.php";
+                include "controller/addAlbaraVenta_ctl.php";
                 break;
         }
         break;
