@@ -20,12 +20,18 @@ function loadUbicacio() {
     var producteJSON = JSON.parse(producte);
     //var producte = document.getElementById("campProductes").value;
 
+    var idUbi = producteJSON.id_ubicacio;
+
     if (!isNaN(producteJSON.id_ubicacio)) {
-        $.getJSON("../../controller/peticionsUbicacio.php", {id_ubicacio: producteJSON.id_ubicacio}, gestionarUbicacio);
+        $.getJSON("./controller/peticionsUbicacio.php?", {id_ubicacio: idUbi}, gestionarTotalVenta);
     }
 }
 
-function gestionarUbicacio(ubicacio) {
+function gestionarTotalVenta(totalProductes) {
+    
+    var totalJSON = JSON.parse(totalProductes["total"]);
+
+    $("#campQuantitatDeProductes").attr("max", totalJSON);
 
 }
 
