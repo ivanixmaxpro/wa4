@@ -243,7 +243,7 @@ class EmpresaDAO {
         return $usuari;
     }
     
-        public function populateClientsDAO() {
+        public function populateClients() {
         $clients = array();
         $con = new db();
         $query = $con->prepare("SELECT * FROM client;");
@@ -260,6 +260,25 @@ class EmpresaDAO {
 
         $con = null;
         return $clients;
+    }
+    
+        public function searchUbicacio($id_ubicacio) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM ubicacio WHERE id_ubicacio = :id_ubicacio");
+        $query->bindValue(":id_ubicacio", $id_ubicacio);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_ubicacio = $row["id_ubicacio"];
+            $quantitatTenda = $row["quantitatTenda"];
+            $quantitatStock = $row["quantitatStock"];
+            $situacio = $row["situacio"];
+            
+            $ubicacio = new Ubicacio($id_ubicacio,$quantitatTenda,$quantitatStock,$situacio);
+        }
+        $con = null;
+        return $ubicacio;
     }
 
 }
