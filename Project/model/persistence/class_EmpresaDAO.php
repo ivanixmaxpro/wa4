@@ -242,6 +242,25 @@ class EmpresaDAO {
         $con = null;
         return $usuari;
     }
+    
+        public function populateClientsDAO() {
+        $clients = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM client;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_client"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $informacio = $row["informacio"];
+            $client = new Client($id_client, $nom, $codi, $informacio);
+            array_push($clients, $client);
+        }
+
+        $con = null;
+        return $clients;
+    }
 
 }
 
