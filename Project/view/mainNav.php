@@ -46,21 +46,16 @@
                             </p>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <p>Compte</p>
-                        </a>
-                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <p>
-                                Opcions
+                                Compte
                                 <b class="caret"></b>
                             </p>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action1</a></li>
-                            <li><a href="#">Action2</a></li>
+                            <li><a href="#">Informació</a></li>
+                            <li><a href="?ctl=login&act=canviar">Canviar contrasenya</a></li>
                             <li><a href="#">Action3</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Action action2</a></li>

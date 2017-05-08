@@ -38,6 +38,9 @@ switch ($ctl) {
             case "login":
                 include "controller/login_ctl.php";
                 break;
+            case "canviar":
+                include "controller/canviarContra_ctl.php";
+                break;
             case "registre":
                 include "controller/registreusuari_ctl.php";
                 break;

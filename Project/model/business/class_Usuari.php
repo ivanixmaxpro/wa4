@@ -81,4 +81,9 @@ class Usuari {
         return $validat;
     }
 
+    function updateContrasenya() {
+        $UsuariDAO = new UsuariDAO();
+        $UsuariDAO->updateContrasenya($this->getId_usuari(), $this->getContrasenya());
+    }
+
 }
