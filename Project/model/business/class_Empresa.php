@@ -92,5 +92,11 @@ class Empresa {
         $usuari = $EmpresaDAO->searchUsuariByEmpleat($id_empleat);
         return $usuari;
     }
+    
+    function populateClients() {
+        $EmpresaDAO = new EmpresaDAO();
+        $clients = $EmpresaDAO->populateClients();
+        return $clients;
+    }
 
 }
