@@ -98,5 +98,11 @@ class Empresa {
         $clients = $EmpresaDAO->populateClients();
         return $clients;
     }
+    
+        function searchUbicacio($id_ubicacio) {
+        $EmpresaDAO = new EmpresaDAO();
+        $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
+        return $ubicacio;
+    }
 
 }
