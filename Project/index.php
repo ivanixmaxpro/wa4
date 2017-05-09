@@ -113,7 +113,29 @@ switch ($ctl) {
                 break;
         }
         break;
-
+    
+    case "client":
+        switch ($act) {
+            case "afegir":
+                include "controller/afegirClient_ctl.php";
+                break;
+            case "cercar":
+                include "controller/cercarClient_ctl.php";
+                break;
+            case "modificar":
+                include "controller/modificarClient_ctl.php";
+                break;
+            case "eliminar":
+                include "controller/eliminarClient_ctl.php";
+                break;
+            case "detall":
+                include "controller/detallClient_ctl.php";
+                break;
+            case "llista":
+                include "controller/llistaClient_ctl.php";
+                break;
+        }
+        break;
     default:
         include "controller/" . $ctl . "_ctl.php";
         break;
