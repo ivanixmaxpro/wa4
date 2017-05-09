@@ -1,8 +1,8 @@
 
 <div class="card">
     <div class="header">
-        <h4 class="title">Llista empleats</h4>
-        <p class="category">A continuació un llistat de tots els nostres empleats:</p>
+        <h4 class="title">Missatges</h4>
+        <p class="category">Missatges interns:</p>
     </div>
     <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">

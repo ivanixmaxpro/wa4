@@ -9,7 +9,6 @@ if (isset($_REQUEST['recordarUsuari'])) {
     setcookie("usuari", "", time() - 3600, "/");
 }
 
-require_once 'view/header.php';
 
 if (isset($_REQUEST['Submit'])) {
 
@@ -28,7 +27,6 @@ if (isset($_REQUEST['Submit'])) {
         $_SESSION["usuari"] = "";
         session_unset("usuari");
         session_destroy();
-        require_once 'view/header.php';
         $missatge = "Error Login";
         require_once 'view/error.php';
         require_once 'view/footer.php';

@@ -40,7 +40,16 @@ class Empresa {
         $this->setId_empresa($dades[0]);
         $this->setNom($dades[1]);
     }
-
+    /**
+     * Metode per cridar al DAO faci la consulata a la base de dades
+     * @return array de proveidors
+     */
+    function populateProveidors(){
+        $proveidorsDAO = new ProveidorDAO();
+        $proveidors =  $proveidorsDAO->populateProveidors();
+        return $proveidors;
+    }
+    
     /**
      * Metodes per cridar al DAO i tenir la llista de missatges
      * @return array de missatges
@@ -81,11 +90,18 @@ class Empresa {
         return $control;
     }
 
+    function showAllControl($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $control = $EmpresaDAO->searchAllControl($id_usuari);
+        return $control;
+    }
+
     function showHorari($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
         $horari = $EmpresaDAO->showHorari($id_usuari);
         return $horari;
     }
+
 
     function searchUsuariByEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();
