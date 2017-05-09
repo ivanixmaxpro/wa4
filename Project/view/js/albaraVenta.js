@@ -60,7 +60,7 @@ function generarTaula() {
 
     for (var prod in arrProTotal) {
         aux = str + count;
-        var myButton = "<input type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte('" + prod + "')'></input>";
+        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'></button>";
 
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')
@@ -92,7 +92,7 @@ function generarTaula() {
 function eliminarProducte(pos) {
 
 
-    arrProTotal.splice(pos, 0);
+    arrProTotal.splice(pos, 1);
     generarTaula();
 
 
