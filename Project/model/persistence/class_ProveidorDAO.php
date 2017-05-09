@@ -82,7 +82,10 @@ class ProveidorDAO {
         $con->consulta($query);
         $con = null;
     }
-
+    /**
+     * metode per eliminar un proveidor determinat a la base de dades
+     * @param type $id
+     */
     public function eliminar($id) {
         $con = new db();
         $query = $con->prepare("DELETE FROM proveidor WHERE id_proveidor='$id';");

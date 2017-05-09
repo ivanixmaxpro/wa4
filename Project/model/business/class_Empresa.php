@@ -50,6 +50,12 @@ class Empresa {
         return $proveidors;
     }
     
+    function populateClients(){
+        $clientDAO = new ClientDAO();
+        $clients =  $clientDAO->populateClients();
+        return $clients;
+    }
+    
     /**
      * Metodes per cridar al DAO i tenir la llista de missatges
      * @return array de missatges
