@@ -128,9 +128,9 @@ class Empresa {
         return $ubicacio;
     }
     
-    function searchProducte($id_producte) {
+    function searchProducteChilds($id_producte) {
         $EmpresaDAO = new EmpresaDAO();
-        $producte = $EmpresaDAO->searchProducte($id_producte);
+        $producte = $EmpresaDAO->searchProducteChilds($id_producte);
         return $producte;
     }
 }
