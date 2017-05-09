@@ -29,6 +29,10 @@ if($control == null || $control == ""){
         }
     }
 }
+if(isset($empresa)){
+    $fitxesEmpleat = $empresa->showAllControl($_SESSION['id_usuari']);
+}
+
 
 
 if(isset($_POST['action']) && !empty($_POST['action'])) {
