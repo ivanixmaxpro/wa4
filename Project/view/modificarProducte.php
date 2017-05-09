@@ -1,9 +1,9 @@
 <form role="form" action="?ctl=login&act=canviar" method="POST">
     <div class="row">
         <?php
-        //echo "<pre>";
-        //var_dump($producte);
-       //echo "</pre>";
+        echo "<pre>";
+        var_dump($producte);
+       echo "</pre>";
 ?>
         <div class="col-md-6">
             <?php

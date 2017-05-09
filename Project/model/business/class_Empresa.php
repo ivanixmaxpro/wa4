@@ -121,11 +121,6 @@ class Empresa {
         return $usuari;
     }
     
-    function populateClients() {
-        $EmpresaDAO = new EmpresaDAO();
-        $clients = $EmpresaDAO->populateClients();
-        return $clients;
-    }
     
     function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();
