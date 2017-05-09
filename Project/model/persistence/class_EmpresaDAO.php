@@ -287,6 +287,10 @@ class EmpresaDAO {
         $con = null;
         return $usuari;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
     public function populateClients() {
         $clients = array();
@@ -325,6 +329,10 @@ class EmpresaDAO {
         $con = null;
         return $ubicacio;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
     public function searchProducte($id_producte) {
         $con = new db();
