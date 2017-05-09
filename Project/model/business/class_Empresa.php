@@ -40,7 +40,16 @@ class Empresa {
         $this->setId_empresa($dades[0]);
         $this->setNom($dades[1]);
     }
-
+    /**
+     * Metode per cridar al DAO faci la consulata a la base de dades
+     * @return array de proveidors
+     */
+    function populateProveidors(){
+        $proveidorsDAO = new ProveidorDAO();
+        $proveidors =  $proveidorsDAO->populateProveidors();
+        return $proveidors;
+    }
+    
     /**
      * Metodes per cridar al DAO i tenir la llista de missatges
      * @return array de missatges

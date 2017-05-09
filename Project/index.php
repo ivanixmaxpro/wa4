@@ -68,7 +68,7 @@ switch ($ctl) {
             case "llistaMissatges":
                 include "controller/llistaMissatges_ctl.php";
                 break;
-          
+
             case "detall":
                 include "controller/detallMissatge_ctl.php";
                 break;
@@ -91,11 +91,26 @@ switch ($ctl) {
                 break;
         }
         break;
-
-    case "albaraVenta":
+    
+    case "proveidor":
         switch ($act) {
             case "afegir":
-                include "controller/addAlbaraVenta_ctl.php";
+                include "controller/afegirProveidor_ctl.php";
+                break;
+            case "cercar":
+                include "controller/cercarProveidor_ctl.php";
+                break;
+            case "modificar":
+                include "controller/modificarProveidor_ctl.php";
+                break;
+            case "eliminar":
+                include "controller/eliminarProveidor_ctl.php";
+                break;
+            case "detall":
+                include "controller/detallProveidor_ctl.php";
+                break;
+            case "llista":
+                include "controller/llistaProveidor_ctl.php";
                 break;
         }
         break;
