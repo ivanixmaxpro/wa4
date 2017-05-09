@@ -37,10 +37,23 @@
         ?>      
         <label for="campQuantitatDeProductes">Quantitat que vol afegir a l'albara?</label>
         <input type="number" min="0" max="99" step="1" value="0" class="" id="campQuantitatDeProductes">
-        <input type="submit" id="botoAfegirQuantProducte" name="submit" value="Afegir" class="btn btn-danger"></input>
+        <button type="button" id="botoAfegirQuantProducte" name="submit" value="Afegir" class="btn btn-danger"/>
     </div>
 
-
+    <table id="taulaProductes" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Quantitat</th>
+                <th>Preu total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 
     <input type="submit" id="botoCrearAlbaraVenta" name="submit" value="Crear" class="btn btn-danger"></input>
 </form>
+
+
