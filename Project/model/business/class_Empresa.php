@@ -132,5 +132,10 @@ class Empresa {
         $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
         return $ubicacio;
     }
-
+    
+    function searchProducte($id_producte) {
+        $EmpresaDAO = new EmpresaDAO();
+        $producte = $EmpresaDAO->searchProducte($id_producte);
+        return $producte;
+    }
 }
