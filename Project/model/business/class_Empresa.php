@@ -50,6 +50,12 @@ class Empresa {
         return $proveidors;
     }
     
+    function populateClients(){
+        $clientDAO = new ClientDAO();
+        $clients =  $clientDAO->populateClients();
+        return $clients;
+    }
+    
     /**
      * Metodes per cridar al DAO i tenir la llista de missatges
      * @return array de missatges
@@ -107,18 +113,6 @@ class Empresa {
         $EmpresaDAO = new EmpresaDAO();
         $usuari = $EmpresaDAO->searchUsuariByEmpleat($id_empleat);
         return $usuari;
-    }
-    
-    function populateClients() {
-        $EmpresaDAO = new EmpresaDAO();
-        $clients = $EmpresaDAO->populateClients();
-        return $clients;
-    }
-    
-        function searchUbicacio($id_ubicacio) {
-        $EmpresaDAO = new EmpresaDAO();
-        $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
-        return $ubicacio;
     }
 
 }

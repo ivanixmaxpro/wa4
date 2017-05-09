@@ -9,23 +9,11 @@ class Client {
     private $codi;
     private $informacio;
 
-    function __construct() {
-        switch (func_num_args()) {
-            case 0:
-                break;
-            case 3:
-                $this->setId_client(null);
-                $this->setNom(func_get_args()[0]);
-                $this->setCodi(func_get_args()[1]);
-                $this->setInformacio(func_get_args()[2]);
-                break;
-            case 4:
-                $this->setId_client(func_get_args()[0]);
-                $this->setNom(func_get_args()[1]);
-                $this->setCodi(func_get_args()[2]);
-                $this->setInformacio(func_get_args()[3]);
-                break;
-        }
+    function __construct($nom, $codi, $informacio) {
+        $this->setId_client(null);
+        $this->setNom($nom);
+        $this->setCodi($codi);
+        $this->setInformacio($informacio);
     }
 
     function getId_client() {
