@@ -19,7 +19,6 @@ $usuariId = $_SESSION['id_usuari'];
 
 
 if(isset($_REQUEST['id'])){
-    $producte = new Producte();
     $producte = $empresa->searchProducte($_REQUEST['id']);
 }
 
