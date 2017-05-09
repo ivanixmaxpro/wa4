@@ -28,9 +28,9 @@ if (isset($_REQUEST['Submit'])) {
 
     $proveidor = new Proveidor($nom, $codi);
     $proveidorsDAO->inserir($proveidor);
-
-   // falta missatge confirmacio
-   
+    $missatge = 'proveidor afegit';
+    $redireccio = 'index.php?ctl=proveidor&act=llista';
+    require_once 'view/confirmacio.php';
 } else {
     require_once 'view/afegirProveidor.php';
 }

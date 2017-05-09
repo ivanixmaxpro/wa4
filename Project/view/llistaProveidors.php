@@ -35,6 +35,7 @@
                     echo "<td>" . $row->getCodi() . "</td>";
                     echo '<td>' . '<a href="?ctl=proveidor&act=detall&id=' . $row->getId_proveidor() . '&missatge">' . 'Veure' . '</a>' . '</td>';
                     echo '<td>' . '<a href="?ctl=proveidor&act=modificar&id=' . $row->getId_proveidor() . '&missatge">' . 'modificar' . '</a>' . '</td>';
+                    echo '<td>' . '<a href="?ctl=proveidor&act=eliminar&id=' . $row->getId_proveidor() . '&missatge">' . 'eliminar' . '</a>' . '</td>';
                     echo "</tr>";
                 }
                 ?>

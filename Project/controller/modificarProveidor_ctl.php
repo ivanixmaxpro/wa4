@@ -1,4 +1,5 @@
 <?php
+
 $title = "modificar proveidor";
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
@@ -27,10 +28,11 @@ if (isset($_REQUEST['Submit'])) {
 
 
     $proveidor = new Proveidor($nom, $codi);
-    $proveidorsDAO->modificar($proveidor,$id);
-
-   // falta missatge confirmacio
-   
+    $proveidorsDAO->modificar($proveidor, $id);
+    $missatge = 'proveidor modificat';
+    $redireccio = 'index.php?ctl=proveidor&act=llista';
+    require_once 'view/confirmacio.php';
+    // falta missatge confirmacio
 } else {
     require_once 'view/modificarProveidor.php';
 }

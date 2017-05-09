@@ -6,6 +6,10 @@ require_once("config/db.inc.php");
 
 class ProveidorDAO {
 
+    /**
+     * funcio per afegir proveidors a la base de dades, li tirem un objecte proveidor
+     * @param type $proveidor
+     */
     public function inserir($proveidor) {
         $con = new db();
         $query = $con->prepare("insert into proveidor (nom, codi) values (:nom, :codi)");
@@ -15,6 +19,10 @@ class ProveidorDAO {
         $con = null;
     }
 
+    /**
+     * metode per carregar tots el proveidors de la base de dades
+     * @return array de proveidors
+     */
     public function populateProveidors() {
         $proveidorsArray = array();
         $con = new db();
@@ -34,6 +42,11 @@ class ProveidorDAO {
         return $proveidorsArray;
     }
 
+    /**
+     * metode per buscar a la base de dades un proveidor a partir de la seva id
+     * @param type $id
+     * @return \Proveidor
+     */
     public function searchById($id) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM proveidor WHERE id_proveidor='$id';");
@@ -54,13 +67,25 @@ class ProveidorDAO {
         return $proveidor;
     }
 
-    public function modificar($proveidor,$id) {
+    /**
+     * metode per modificar les dades de un proveidor a la base de dades
+     * @param type $proveidor
+     * @param type $id
+     */
+    public function modificar($proveidor, $id) {
         $con = new db();
         $nom = $proveidor->getNom();
         $codi = $proveidor->getCodi();
         $query = $con->prepare("UPDATE proveidor set nom='$nom', codi='$codi' WHERE id_proveidor='$id';");
 
 
+        $con->consulta($query);
+        $con = null;
+    }
+
+    public function eliminar($id) {
+        $con = new db();
+        $query = $con->prepare("DELETE FROM proveidor WHERE id_proveidor='$id';");
         $con->consulta($query);
         $con = null;
     }
