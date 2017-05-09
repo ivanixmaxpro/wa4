@@ -90,11 +90,18 @@ class Empresa {
         return $control;
     }
 
+    function showAllControl($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $control = $EmpresaDAO->searchAllControl($id_usuari);
+        return $control;
+    }
+
     function showHorari($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
         $horari = $EmpresaDAO->showHorari($id_usuari);
         return $horari;
     }
+
 
     function searchUsuariByEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();
