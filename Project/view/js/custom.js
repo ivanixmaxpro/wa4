@@ -5,9 +5,34 @@
 // Metodes per fitxar
 $(document).ready(function (){
 
-    // mostrar horari
+    // seleccionar producte
+    $("#selector").change(function(){
+        var select = $('#selector>option:selected').val();
+        switch(select) {
+            case 'solid':
+                $("#capacitatMg").show();
+                $("#unitats").show();
+                $("#capacitatMl").hide();
+                break;
+            case 'semi-solid':
+                $("#capacitatMg").show();
+                $("#unitats").hide();
+                $("#capacitatMl").hide();
+                break;
+            case 'liquid':
+                $("#capacitatMl").show();
+                $("#unitats").hide();
+                $("#capacitatMg").hide();
+                break;
+            case 'gas':
+                $("#capacitatMl").show();
+                $("#capacitatMg").hide();
+                $("#unitats").hide();
+                break;
+        }
+    });
 
-    // final horari
+    //seleccionar producte
     // fitxar
     var fix = $('#fixat').html();
 
