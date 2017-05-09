@@ -62,7 +62,7 @@ switch ($ctl) {
                 include "controller/fitxarEmpleat_ctl.php";
                 break;
         }
-
+        break;
     case "missatge":
         switch ($act) {
             case "llistaMissatges":
@@ -90,7 +90,8 @@ switch ($ctl) {
                 include "controller/eliminarEmpleat_ctl.php";
                 break;
         }
-
+        break;
+    
     case "proveidor":
         switch ($act) {
             case "afegir":
