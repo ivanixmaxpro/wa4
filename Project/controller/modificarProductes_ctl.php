@@ -19,7 +19,7 @@ $usuariId = $_SESSION['id_usuari'];
 
 
 if(isset($_REQUEST['id'])){
-    $producte = $empresa->searchProducte($_REQUEST['id']);
+    $producte = $empresa->searchProducteChilds($_REQUEST['id']);
 }
 
 
