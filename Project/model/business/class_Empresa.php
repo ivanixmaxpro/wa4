@@ -72,6 +72,12 @@ class Empresa {
         return $productes;
     }
 
+    function searchProducte($id_producte) {
+        $EmpresaDAO = new EmpresaDAO();
+        $producte = $EmpresaDAO->searchProducte($id_producte);
+        return $producte;
+    }
+
     function searchEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
@@ -115,7 +121,7 @@ class Empresa {
         return $clients;
     }
     
-        function searchUbicacio($id_ubicacio) {
+    function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();
         $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
         return $ubicacio;

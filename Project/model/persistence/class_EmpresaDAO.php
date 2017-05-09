@@ -128,6 +128,31 @@ class EmpresaDAO {
         return $empleat;
     }
 
+    public function searchProducte($id_producte) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM producte WHERE id_producte = :id_producte");
+        $query->bindValue(":id_producte", $id_producte);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_producte = $row["id_producte"];
+            $id_ubicacio = $row["id_ubicacio"];
+            $nom = $row["nom"];
+            $marca = $row["marca"];
+            $preuBase = $row["preuBase"];
+            $referencia = $row["referencia"];
+            $model = $row["model"];
+            $descripcio = $row["descripcio"];
+            $conservarFred = $row["conservarFred"];
+            $imatge = $row["imatge"];
+            $producte = new Producte($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge);
+            $producte->setId_producte($id_producte);
+        }
+        $con = null;
+        return $producte;
+    }
+
     public function searchLastControl($id_usuari) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 1");
