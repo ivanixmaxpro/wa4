@@ -7,11 +7,15 @@ require_once("config/db.inc.php");
 class MissatgeDAO {
 
     public function inserir($missatge) {
-
-        $query = "insert into missatge values('','" . $missatge->getId_usuari() . "','" . $missatge->getLlegit() . "','" . $missatge->getTitol() . "','" . $missatge->getData() . "','" . $missatge->getMissatge() . "');";
         $con = new db();
-        $con->consulta($query);
-        $con->close();
+        $query = $con->prepare("insert into missatge (id_usuari, llegit, titol, data, missatge) values (:id_usuari, :llegit, :titol, :data, :missatge)");
+        $query->bindValue(":id_usuari", $missatge->getId_usuari());
+        $query->bindValue(":llegit", $missatge->getLlegit());
+        $query->bindValue(":titol", $missatge->getTitol());
+        $query->bindValue(":data", $missatge->getData());
+        $query->bindValue(":missatge", $missatge->getMissatge());
+        $con->consultar($query);
+        $con = null;
     }
 
     /**
@@ -27,9 +31,9 @@ class MissatgeDAO {
         foreach ($result as $row) {
             $usuari = $row["usuari"];
             $llegit = $row["llegit"];
-            if ($llegit == '0'){
+            if ($llegit == '0') {
                 $llegit = 'no';
-            }else{
+            } else {
                 $llegit = 'si';
             }
             $titol = $row["titol"];
@@ -50,33 +54,33 @@ class MissatgeDAO {
      * @return objecte Missatge
      */
     function buscarPerId($id) {
-   
+
         $con = new db();
         $query = $con->prepare("SELECT * FROM missatge INNER JOIN usuari ON missatge.id_usuari = usuari.id_usuari WHERE id_missatge='$id';");
         $result = $con->consultar($query);
 
         $usuari = $result[0]["usuari"];
         $llegit = $result[0]["llegit"];
-        if ($llegit == '0'){
-                $llegit = 'no';
-            }else{
-                $llegit = 'si';
-            }
+        if ($llegit == '0') {
+            $llegit = 'no';
+        } else {
+            $llegit = 'si';
+        }
         $titol = $result[0]["titol"];
         $data = $result[0]["data"];
         $text = $result[0]["missatge"];
         $id_missatge = $result[0]["id_missatge"];
         $missatge = new Missatge($usuari, $llegit, $titol, $data, $text);
         $missatge->setId_missatge($id_missatge);
-        
-        if ($llegit=='no'){
+
+        if ($llegit == 'no') {
             $query = $con->prepare("UPDATE missatge set llegit=1 WHERE id_missatge='$id';");
         }
-        
+
         $con->consulta($query);
         $con = null;
 
-        
+
         return $missatge;
     }
 

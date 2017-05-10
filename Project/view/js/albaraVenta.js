@@ -29,14 +29,27 @@ function emmagatzemarProducte() {
     var idPro = producteJSON.id_producte;
     var preuBase = producteJSON.preuBase;
     var quantProducte = $("#campQuantitatDeProductes").val();
+    var preuTotal = preuBase * quantProducte;
+    var nomProducte = producteJSON.nom;
 
-    var arrPro = [idPro, preuBase, quantProducte];
+    var arrPro = [idPro, preuTotal, quantProducte, nomProducte];
+    var repetit = false;
 
-    if (quantProducte != 0) {
+    for (var prod in arrProTotal) {
+        if (arrProTotal[prod][0] == idPro) {
+            repetit = true;
+        }
+    }
+
+
+
+    if (quantProducte != 0 && repetit == false) {
 
         arrProTotal.push(arrPro);
 
         generarTaula();
+    } else {
+        alert("No es pot introduir dues vegades el mateix producte");
     }
 
 
@@ -65,7 +78,7 @@ function generarTaula() {
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')
                         .append($('<td>')
-                                .text(arrProTotal[prod][0])
+                                .text(arrProTotal[prod][3])
 
                                 )
                         .append($('<td>')
@@ -73,7 +86,7 @@ function generarTaula() {
 
                                 )
                         .append($('<td>')
-                                .text(arrProTotal[prod][2] * arrProTotal[prod][1])
+                                .text(arrProTotal[prod][1])
 
                                 )
                         .append($('<td>')
@@ -85,7 +98,8 @@ function generarTaula() {
         count++;
     }
 
-
+    pasarArray();
+    canviarPreu();
 }
 
 
@@ -96,4 +110,28 @@ function eliminarProducte(pos) {
     generarTaula();
 
 
+}
+
+function pasarArray() {
+
+    var str = "";
+    var arrFinal = [];
+
+    for (var prod in arrProTotal) {
+        str = arrProTotal[prod][0]+"-"+arrProTotal[prod][1]+"-"+arrProTotal[prod][2];
+        arrFinal.push(str);
+    }
+
+    $("#passarArray").val(arrFinal.toString());
+
+}
+
+function canviarPreu() {
+    var preuTotal = 0;
+    
+    for (var prod in arrProTotal) {
+        preuTotal += arrProTotal[prod][1];
+    }
+    
+    $("#campPreu").val(preuTotal);
 }

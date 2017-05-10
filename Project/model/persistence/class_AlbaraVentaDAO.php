@@ -6,12 +6,36 @@ require_once("config/db.inc.php");
 
 class AlbaraVentaDAO {
 
-    public function inserir($av) {
+    public function insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara) {
 
-        $query = "insert into albara_venta values('','" . $av->getId_client() . "','" . $av->getId_empresa() . "','" . $av->getCodi() . "','" . $av->getObservacions() . "','" . $av->getPreu() . "','" . $av->getData() . "','" . $av->getLocalitat() . "');";
-        $con = new db();
-        $con->consulta($query);
-        $con->close();
+        try {
+            $con = new db();
+            $query = $con->prepare("INSERT INTO albara_venta (id_client,id_empresa,codi,observacions,preu,data,localitat) 
+                VALUES (:id_client,:id_empresa,:codi,:observacions,:preu,:data,:localitat)");
+            $query->bindValue(":id_client", $campClient);
+            $query->bindValue(":id_empresa", $campEmpresa);
+            $query->bindValue(":codi", $campCodi);
+            $query->bindValue(":observacions", $campObservacions);
+            $query->bindValue(":preu", $campPreu);
+            $query->bindValue(":data", $campData);
+            $query->bindValue(":localitat", $campLocalitat);
+            $con->consulta($query);
+            $id = ($con->lastInsertId());
+
+
+            foreach ($arrProductesDelAlbara as $producte) {
+
+                $query = $con->prepare("INSERT INTO detalls_albara_venta (id_albara,id_producte,quantitat,preu) 
+                VALUES (:id_albara,:id_producte,:quantitat,:preu)");
+                $query->bindValue(":id_albara", $id);
+                $query->bindValue(":id_producte", $producte[0]);
+                $query->bindValue(":quantitat", $producte[2]);
+                $query->bindValue(":preu", $producte[1]);
+                $con->consulta($query);
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
 }

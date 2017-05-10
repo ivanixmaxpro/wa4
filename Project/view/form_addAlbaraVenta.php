@@ -1,35 +1,35 @@
-<form role="form" method="post" action="?ctl=albaraVenta&act=afegir">
+<form role="form" method="post" action="?ctl=albaraVenta&act=afegir" >
     <div class="form-group">
         <label for="campClient">Client</label>
-        <input type="text" class="" id="campClient">
+        <br/>
+        <input type="text" class="" id="campClient" name="campClient">
     </div>
     <div class="form-group">
         <label for="campEmpresa">Empresa</label>
-        <input type="text" class="" id="campEmpresa">
+        <br/>
+        <input type="text" class="" id="campEmpresa" name="campEmpresa">
     </div>
     <div class="form-group">
         <label for="campCodi">Codi</label>
-        <input type="text" class="" id="campCodi">
+        <br/>
+        <input type="text" class="" id="campCodi" name="campCodi">
     </div>
     <div class="form-group">
         <label for="campObservacions">Observacions</label>
-        <input type="text" class="" id="campObservacions">
-    </div>
-    <div class="form-group">
-        <label for="campPreu">Preu</label>
-        <input type="text" class="" id="campPreu">
+        <br/>
+        <input type="text" class="" id="campObservacions" name="campObservacions">
     </div>
     <div class="form-group">
         <label for="campData">Data</label>
-        <input type="text" class="" id="campData">
+        <br/>
+        <input type="text" class="" id="campData" name="campData">
     </div>
     <div class="form-group">
         <label for="campLocalitat">Localitat</label>
-        <input type="text" class="" id="campLocalitat">
-    </div>   
-
-    <br/><br/><br/><br/>
-
+        <br/>
+        <input type="text" class="" id="campLocalitat" name="campLocalitat">
+    </div>
+    <br/>
     <div class="form-group">
         <label for="campProductes">Productes</label>
         <?php
@@ -53,6 +53,11 @@
         </tbody>
     </table>
 
+    <div class="form-group">
+        <label for="campPreu">Preu</label>
+        <input type="text" class="" id="campPreu" name="campPreu" value="0" readonly>
+    </div>
+    <input name="passarArrProductes" id="passarArray" type="hidden"></input>
     <input type="submit" id="botoCrearAlbaraVenta" name="submit" value="Crear" class="btn btn-danger"></input>
 </form>
 
