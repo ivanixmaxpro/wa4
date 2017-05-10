@@ -40,7 +40,22 @@ class Empresa {
         $this->setId_empresa($dades[0]);
         $this->setNom($dades[1]);
     }
-
+    /**
+     * Metode per cridar al DAO faci la consulata a la base de dades
+     * @return array de proveidors
+     */
+    function populateProveidors(){
+        $proveidorsDAO = new ProveidorDAO();
+        $proveidors =  $proveidorsDAO->populateProveidors();
+        return $proveidors;
+    }
+    
+    function populateClients(){
+        $clientDAO = new ClientDAO();
+        $clients =  $clientDAO->populateClients();
+        return $clients;
+    }
+    
     /**
      * Metodes per cridar al DAO i tenir la llista de missatges
      * @return array de missatges
@@ -63,6 +78,12 @@ class Empresa {
         return $productes;
     }
 
+    function searchProducte($id_producte) {
+        $EmpresaDAO = new EmpresaDAO();
+        $producte = $EmpresaDAO->searchProducte($id_producte);
+        return $producte;
+    }
+
     function searchEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
@@ -81,11 +102,18 @@ class Empresa {
         return $control;
     }
 
+    function showAllControl($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $control = $EmpresaDAO->searchAllControl($id_usuari);
+        return $control;
+    }
+
     function showHorari($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
         $horari = $EmpresaDAO->showHorari($id_usuari);
         return $horari;
     }
+
 
     function searchUsuariByEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();
@@ -93,16 +121,16 @@ class Empresa {
         return $usuari;
     }
     
-    function populateClients() {
-        $EmpresaDAO = new EmpresaDAO();
-        $clients = $EmpresaDAO->populateClients();
-        return $clients;
-    }
     
-        function searchUbicacio($id_ubicacio) {
+    function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();
         $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
         return $ubicacio;
     }
-
+    
+    function searchProducteChilds($id_producte) {
+        $EmpresaDAO = new EmpresaDAO();
+        $producte = $EmpresaDAO->searchProducteChilds($id_producte);
+        return $producte;
+    }
 }

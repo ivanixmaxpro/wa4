@@ -1,5 +1,5 @@
 <?php
-$title= "Crear Missatge";
+$title= "Llista proveidor";
 if(isset($_SESSION['empresa'])){
 	$empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -9,12 +9,19 @@ if(isset($_SESSION['empresa'])){
 	$_SESSION['empresa'] = serialize($empresa);
 }
 
-$missatges = $empresa->populateMissatges();
+if (isset($_REQUEST["Submit"])) {
+    $nom = $_REQUEST['nom'];
+    $proveidors = $empresa->filtrarProveidors($conservarFred, $limitRegistres, $tipusProducte);
+} else {
+    $proveidors = $empresa->populateProveidors();
+}
+
+
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
-require_once 'view/llistaMissatges.php';
+require_once 'view/llistaProveidors.php';
 require_once 'view/footer.php';
 
 ?>
