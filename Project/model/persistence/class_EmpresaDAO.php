@@ -334,9 +334,9 @@ class EmpresaDAO {
 
 >>>>>>> master
 
-    public function searchProducte($id_producte) {
+    public function searchProducteChilds($id_producte) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM producte LEFT JOIN solid on producte.id_producte = solid.id_producte LEFT JOIN semisolid on producte.id_producte = semisolid.id_producte LEFT JOIN liquid on producte.id_producte = liquid.id_producte LEFT JOIN gas on producte.id_producte = gas.id_producte LEFT JOIN altres on producte.id_producte = altres.id_producte WHERE producte.id_producte = :id_producte ;");
+        $query = $con->prepare("select producte.id_producte,producte.id_ubicacio,producte.nom,producte.marca,producte.preuBase,producte.referencia,producte.model,producte.descripcio,producte.conservarFred,producte.imatge,solid.id_solid,solid.capacitatMg as capacitatSolid,solid.unitats as unitatsSolid,semisolid.id_semisolid,semisolid.capacitatMg as capacitatSemisolid,liquid.id_liquid,liquid.capacitatMl as capacitatLiquid,gas.id_gas,gas.capacitatMl as capacitatGas,altres.id_altres,altres.unitats as unitatsAltres from producte left join solid on producte.id_producte = solid.id_producte left join semisolid on producte.id_producte = semisolid.id_producte left join liquid on producte.id_producte = liquid.id_producte left join gas on producte.id_producte = gas.id_producte left join altres on producte.id_producte = altres.id_producte WHERE producte.id_producte = :id_producte;");
         $query->bindValue(":id_producte", $id_producte);
         $result = $con->consultar($query);
 
@@ -356,8 +356,8 @@ class EmpresaDAO {
                 $conservarFred = $row["conservarFred"];
                 $imatge = $row["imatge"];
                 $id_solid = $row["id_solid"];
-                $capacitatMg = $row["capacitatMg"];
-                $unitats = $row["unitats"];
+                $capacitatMg = $row["capacitatSolid"];
+                $unitats = $row["unitatsSolid"];
 
                 $producte = new Solid($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_solid, $capacitatMg, $unitats);
             }
@@ -373,7 +373,7 @@ class EmpresaDAO {
                 $conservarFred = $row["conservarFred"];
                 $imatge = $row["imatge"];
                 $id_semisolid = $row["id_semisolid"];
-                $capacitatMg = $row["capacitatMg"];
+                $capacitatMg = $row["capacitatSemisolid"];
 
                 $producte = new Semisolid($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_semisolid, $capacitatMg);
             }
@@ -390,9 +390,10 @@ class EmpresaDAO {
                 $conservarFred = $row["conservarFred"];
                 $imatge = $row["imatge"];
                 $id_liquid = $row["id_liquid"];
-                $capacitatMl = $row["capacitatMl"];
+                $capacitatMl = $row["capacitatLiquid"];
 
                 $producte = new Liquid($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_liquid, $capacitatMl);
+
             }
             if ($row["id_gas"] != null) {
 
@@ -407,9 +408,9 @@ class EmpresaDAO {
                 $conservarFred = $row["conservarFred"];
                 $imatge = $row["imatge"];
                 $id_gas = $row["id_gas"];
-                $capacitatMl = $row["capacitatMl"];
+                $capacitatMl = $row["capacitatGas"];
 
-                $producte = new Liquid($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_gas, $capacitatMl);
+                $producte = new Gas($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_gas, $capacitatMl);
             }
             if ($row["id_altres"] != null) {
                 $id_producte = $row["id_producte"];
@@ -423,7 +424,7 @@ class EmpresaDAO {
                 $conservarFred = $row["conservarFred"];
                 $imatge = $row["imatge"];
                 $id_altres = $row["id_altres"];
-                $unitats = $row["unitats"];
+                $unitats = $row["unitatsAltres"];
 
                 $producte = new Gas($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_altres, $unitats);
                 

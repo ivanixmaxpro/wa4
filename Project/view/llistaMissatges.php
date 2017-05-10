@@ -4,6 +4,14 @@
         <h4 class="title">Missatges</h4>
         <p class="category">Missatges interns:</p>
     </div>
+    <form action="?ctl=missatge&act=llista" method="post">
+        <div class="form-group">
+            Cercar per Nom:
+            <input type="text" name="nom" >
+            <button name="Submit" class="btn btn-primary">Buscar</button>
+            <a href="?ctl=missatge&act=crear" class="btn btn-primary"></span> crear missatge</a>
+        </div>
+    </form> 
     <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
             <thead>
@@ -11,7 +19,7 @@
                 <th>Emissor</th>
                 <th>Llegit</th>
                 <th>Titol</th>
-                <th>data</th>
+                <th>Data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hora</th>
                 <th>Obrir</th>
             </tr></thead>
             <tbody>
