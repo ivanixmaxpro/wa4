@@ -91,7 +91,7 @@ switch ($ctl) {
                 break;
         }
         break;
-    
+
     case "proveidor":
         switch ($act) {
             case "afegir":
@@ -114,7 +114,7 @@ switch ($ctl) {
                 break;
         }
         break;
-    
+
     case "client":
         switch ($act) {
             case "afegir":
@@ -134,6 +134,12 @@ switch ($ctl) {
                 break;
             case "llista":
                 include "controller/llistaClient_ctl.php";
+                break;
+        }
+    case "albaraVenta":
+        switch ($act) {
+            case "afegir":
+                include "controller/addAlbaraVenta_ctl.php";
                 break;
         }
         break;
