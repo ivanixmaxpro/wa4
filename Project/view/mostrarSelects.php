@@ -9,18 +9,20 @@
 function mostrarSelectProductes($productes) {
 
     echo "<select id='campProductes'>";
-        
-        $id = null;
-        $ubi = null;
-        $str =  "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\"}";
-        echo "<option value='" . $str . "'> - </option>";
-    
+
+    $id = null;
+    $ubi = null;
+    $preuProducte = null;
+    $str = "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\",\"preuBase\":\"$preuProducte\"}";
+    echo "<option value='" . $str . "' selected> - </option>";
+
     foreach ($productes as $producte) {
-        
+
         $id = $producte->getId_producte();
         $ubi = $producte->getId_ubicacio();
-        
-        $str =  "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\"}";
+        $preuProducte = $producte->getPreuBase();
+
+        $str = "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\",\"preuBase\":\"$preuProducte\"}";
         echo "<option value='" . $str . "'>" . $producte->getNom() . "</option>";
     }
     echo "</select>";
