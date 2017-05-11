@@ -13,7 +13,8 @@ function mostrarSelectProductes($productes) {
     $id = null;
     $ubi = null;
     $preuProducte = null;
-    $str = "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\",\"preuBase\":\"$preuProducte\"}";
+    $nomProducte = null;
+    $str = "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\",\"preuBase\":\"$preuProducte\",\"nom\":\"$nomProducte\"}";
     echo "<option value='" . $str . "' selected> - </option>";
 
     foreach ($productes as $producte) {
@@ -21,8 +22,9 @@ function mostrarSelectProductes($productes) {
         $id = $producte->getId_producte();
         $ubi = $producte->getId_ubicacio();
         $preuProducte = $producte->getPreuBase();
+        $nomProducte = $producte->getNom();
 
-        $str = "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\",\"preuBase\":\"$preuProducte\"}";
+        $str = "{\"id_producte\":\"$id\",\"id_ubicacio\":\"$ubi\",\"preuBase\":\"$preuProducte\",\"nom\":\"$nomProducte\"}";
         echo "<option value='" . $str . "'>" . $producte->getNom() . "</option>";
     }
     echo "</select>";

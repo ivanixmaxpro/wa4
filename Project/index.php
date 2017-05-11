@@ -80,14 +80,20 @@ switch ($ctl) {
 
     case "producte":
         switch ($act) {
+            case "afegir":
+                include "controller/afegirProducte_ctl.php";
+                break;
             case "llista":
                 include "controller/llistaProductes_ctl.php";
+                break;
+            case "detall":
+                include "controller/detallProducte_ctl.php";
                 break;
             case "modificar":
                 include "controller/modificarProductes_ctl.php";
                 break;
             case "eliminar":
-                include "controller/eliminarEmpleat_ctl.php";
+                include "controller/eliminarProducte_ctl.php";
                 break;
         }
         break;
@@ -134,6 +140,12 @@ switch ($ctl) {
                 break;
             case "llista":
                 include "controller/llistaClient_ctl.php";
+                break;
+        }
+    case "albaraVenta":
+        switch ($act) {
+            case "afegir":
+                include "controller/addAlbaraVenta_ctl.php";
                 break;
         }
         break;

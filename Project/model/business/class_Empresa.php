@@ -138,6 +138,12 @@ class Empresa {
         return $client;
     }
 
+
+    function eliminarProducte($producte) {
+        $EmpresaDAO = new EmpresaDAO();
+        $EmpresaDAO->eliminarProducte($producte);
+    }
+    
     function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();
         $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
@@ -150,4 +156,9 @@ class Empresa {
         return $producte;
     }
 
+    
+    function updateProducte($producte,$type) {
+        $EmpresaDAO = new EmpresaDAO();
+        $producte = $EmpresaDAO->updateProducte($producte,$type);
+    }
 }

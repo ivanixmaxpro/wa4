@@ -19,7 +19,7 @@ class Gas extends Producte {
                 parent::setMarca(func_get_args()[1]);
                 parent::setPreuBase(func_get_args()[2]);
                 parent::setReferencia(func_get_args()[3]);
-                parent::setModel(func_get_arg()[4]);
+                parent::setModel(func_get_args()[4]);
                 parent::setDescripcio(func_get_args()[5]);
                 parent::setConservarFred(func_get_args()[6]);
                 parent::setImatge(func_get_args()[7]);
@@ -32,7 +32,7 @@ class Gas extends Producte {
                 parent::setMarca(func_get_args()[3]);
                 parent::setPreuBase(func_get_args()[4]);
                 parent::setReferencia(func_get_args()[5]);
-                parent::setModel(func_get_arg()[6]);
+                parent::setModel(func_get_args()[6]);
                 parent::setDescripcio(func_get_args()[7]);
                 parent::setConservarFred(func_get_args()[8]);
                 parent::setImatge(func_get_args()[9]);
