@@ -10,26 +10,32 @@ $(document).ready(function (){
     switch(select) {
         case 'solid':
             $("#capacitatMg").show();
+            $("#capacitatMg").prop('required',true);
             $("#unitats").show();
+            $("#unitats").prop('required',true);
             $("#capacitatMl").hide();
             break;
         case 'altres':
             $("#capacitatMg").hide();
             $("#unitats").show();
+            $("#unitats").prop('required',true);
             $("#capacitatMl").hide();
             break;
         case 'semi-solid':
             $("#capacitatMg").show();
+            $("#capacitatMg").prop('required',true);
             $("#unitats").hide();
             $("#capacitatMl").hide();
             break;
         case 'liquid':
             $("#capacitatMl").show();
+            $("#capacitatMl").prop('required',true);
             $("#unitats").hide();
             $("#capacitatMg").hide();
             break;
         case 'gas':
             $("#capacitatMl").show();
+            $("#capacitatMl").prop('required',true);
             $("#capacitatMg").hide();
             $("#unitats").hide();
             break;
@@ -41,26 +47,32 @@ $(document).ready(function (){
         switch(select) {
             case 'solid':
                 $("#capacitatMg").show();
+                $("#capacitatMg").prop('required', true);
                 $("#unitats").show();
+                $("#unitats").prop('required', true);
                 $("#capacitatMl").hide();
                 break;
             case 'altres':
                 $("#capacitatMg").hide();
                 $("#unitats").show();
+                $("#unitats").prop('required', true);
                 $("#capacitatMl").hide();
                 break;
             case 'semi-solid':
                 $("#capacitatMg").show();
+                $("#capacitatMg").prop('required', true);
                 $("#unitats").hide();
                 $("#capacitatMl").hide();
                 break;
             case 'liquid':
                 $("#capacitatMl").show();
+                $("#capacitatMl").prop('required', true);
                 $("#unitats").hide();
                 $("#capacitatMg").hide();
                 break;
             case 'gas':
                 $("#capacitatMl").show();
+                $("#capacitatMl").prop('required', true);
                 $("#capacitatMg").hide();
                 $("#unitats").hide();
                 break;

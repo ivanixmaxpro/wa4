@@ -17,18 +17,26 @@ if(isset($_SESSION['empresa'])){
 }
 $usuariId = $_SESSION['id_usuari'];
 
+if(empty($_POST)) {
+    if (isset($_REQUEST['id'])) {
+        $producte = $empresa->searchProducteChilds($_REQUEST['id']);
 
-if(isset($_REQUEST['id'])){
-    $producte = $empresa->searchProducteChilds($_REQUEST['id']);
+
+        require_once 'view/header.php';
+        require_once 'view/sidebar.php';
+        require_once 'view/mainNav.php';
+        require_once 'view/modificarProducte.php';
+        require_once 'view/footer.php';
+
+    }
 }
 
 if(!empty($_POST)){
-    if($_REQUEST['modify']){
-        //require_once 'view/header.php';
-        //require_once 'view/sidebar.php';
-        //require_once 'view/mainNav.php';
+    if(isset($_REQUEST['modify'])){
+        require_once 'view/header.php';
+        require_once 'view/sidebar.php';
+        require_once 'view/mainNav.php';
 
-        $select = $_REQUEST['selector'];
         $nom = $_REQUEST['nom'];
         $marca = $_REQUEST['marca'];
         $preu = $_REQUEST['preu'];
@@ -36,15 +44,15 @@ if(!empty($_POST)){
         $model = $_REQUEST['model'];
         $descripcio = $_REQUEST['descripcio'];
         $conservar = $_REQUEST['conservar'];
-        $imagte = $_REQUEST['imagte'];
+        $imatge = $_REQUEST['imagte'];
         $capacitatMl = $_REQUEST['capacitatMlInput'];
         $capacitatMg = $_REQUEST['capacitatMgInput'];
         $unitats = $_REQUEST['unitatsInput'];
         $dades = true;
 
-        if(!isset($select)){
-            $dades = false;
-        }
+
+        $producte = $empresa->searchProducteChilds($_REQUEST['id']);
+
         if(!isset($nom) && !is_string($nom)){
             $dades = false;
         }
@@ -64,19 +72,10 @@ if(!empty($_POST)){
             $dades = false;
         }
         // mirar que fer amb imatges
-        if(!isset($imatge)){
+        if(!is_string($imatge)){
             $dades = false;
         }
         if(!isset($conservar) && !is_bool($conservar)){
-            $dades = false;
-        }
-        if(!is_numeric($capacitatMl)){
-            $dades = false;
-        }
-        if(!is_numeric($capacitatMg)){
-            $dades = false;
-        }
-        if(!is_numeric($unitats)){
             $dades = false;
         }
 
@@ -84,7 +83,7 @@ if(!empty($_POST)){
         if($dades == true) {
             switch (get_class($producte)) {
                 case 'Solid':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imagte) && isset($capacitatMg) && isset($unitats)) {
+                    if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg) && isset($unitats)) {
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -92,18 +91,18 @@ if(!empty($_POST)){
                         $producte->setModel($model);
                         $producte->setDescripcio($descripcio);
                         $producte->setConservarFred($conservar);
-                        $producte->setImatge($imagte);
+                        $producte->setImatge($imatge);
                         $producte->setCapacitatMg($capacitatMg);
                         $producte->setUnitats($unitats);
 
 
                         $empresa->UpdateProduct($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
-                        //require_once 'view/footer.php';
+                        require_once 'view/footer.php';
                     }
                     break;
                 case 'Semisolid':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imagte) && isset($capacitatMg)) {
+                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg)) {
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -111,17 +110,17 @@ if(!empty($_POST)){
                         $producte->setModel($model);
                         $producte->setDescripcio($descripcio);
                         $producte->setConservarFred($conservar);
-                        $producte->setImatge($imagte);
+                        $producte->setImatge($imatge);
                         $producte->setCapacitatMg($capacitatMg);
 
 
                         $empresa->UpdateProduct($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
-                        //require_once 'view/footer.php';
+                        require_once 'view/footer.php';
                     }
                     break;
                 case 'Liquid':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imagte) && isset($capacitatMl)) {
+                    if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMl)) {
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -129,17 +128,19 @@ if(!empty($_POST)){
                         $producte->setModel($model);
                         $producte->setDescripcio($descripcio);
                         $producte->setConservarFred($conservar);
-                        $producte->setImatge($imagte);
+                        $producte->setImatge($imatge);
                         $producte->setCapacitatMl($capacitatMl);
 
 
                         $empresa->UpdateProduct($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
-                        //require_once 'view/footer.php';
+                        require_once 'view/footer.php';
+                   }else{
+                        echo "fuck";
                     }
                     break;
                 case 'Gas':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imagte) && isset($capacitatMl)) {
+                    if ( isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMl)) {
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -147,17 +148,17 @@ if(!empty($_POST)){
                         $producte->setModel($model);
                         $producte->setDescripcio($descripcio);
                         $producte->setConservarFred($conservar);
-                        $producte->setImatge($imagte);
+                        $producte->setImatge($imatge);
                         $producte->setCapacitatMl($capacitatMl);
 
 
                         $empresa->UpdateProduct($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
-                        //require_once 'view/footer.php';
+                        require_once 'view/footer.php';
                     }
                     break;
                 case 'Altres':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imagte) && isset($unitats)) {
+                    if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($unitats)) {
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -165,13 +166,13 @@ if(!empty($_POST)){
                         $producte->setModel($model);
                         $producte->setDescripcio($descripcio);
                         $producte->setConservarFred($conservar);
-                        $producte->setImatge($imagte);
+                        $producte->setImatge($imatge);
                         $producte->setUnitats($unitats);
 
 
                         $empresa->UpdateProduct($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
-                        //require_once 'view/footer.php';
+                        require_once 'view/footer.php';
                     }
                     break;
             }
@@ -183,10 +184,3 @@ if(!empty($_POST)){
     }
 }
 
-
-
-require_once 'view/header.php';
-require_once 'view/sidebar.php';
-require_once 'view/mainNav.php';
-require_once 'view/modificarProducte.php';
-require_once 'view/footer.php';
