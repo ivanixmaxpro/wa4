@@ -133,4 +133,9 @@ class Empresa {
         $producte = $EmpresaDAO->searchProducteChilds($id_producte);
         return $producte;
     }
+    
+    function updateProducte($producte,$type) {
+        $EmpresaDAO = new EmpresaDAO();
+        $producte = $EmpresaDAO->updateProducte($producte,$type);
+    }
 }
