@@ -288,7 +288,6 @@ class EmpresaDAO {
         return $usuari;
     }
 
-
     public function populateClients() {
         $clients = array();
         $con = new db();
@@ -326,7 +325,6 @@ class EmpresaDAO {
         $con = null;
         return $ubicacio;
     }
-
 
     public function searchProducteChilds($id_producte) {
         $con = new db();
@@ -387,7 +385,6 @@ class EmpresaDAO {
                 $capacitatMl = $row["capacitatLiquid"];
 
                 $producte = new Liquid($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_liquid, $capacitatMl);
-
             }
             if ($row["id_gas"] != null) {
 
@@ -421,11 +418,67 @@ class EmpresaDAO {
                 $unitats = $row["unitatsAltres"];
 
                 $producte = new Gas($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_altres, $unitats);
-                
             }
         }
         $con = null;
         return $producte;
+    }
+
+    function updateProducte($producte, $type) {
+        try {
+            $con = new db();
+
+            $query = $con->prepare("UPDATE producte SET nom = :nom, marca  = :marca, preuBase = :preuBase, referencia = :referencia, model = :model, descripcio = :descripcio, conservarFred = :conservarFred, imatge = :imatge WHERE id_producte = :id_producte");
+            $query->bindValue(":id_producte", $producte->getId_producte());
+            $query->bindValue(":nom", $producte->getNom());
+            $query->bindValue(":marca", $producte->getMarca());
+            $query->bindValue(":preuBase", $producte->getPreuBase());
+            $query->bindValue(":referencia", $producte->getReferencia());
+            $query->bindValue(":model", $producte->getModel());
+            $query->bindValue(":descripcio", $producte->getDescripcio());
+            $query->bindValue(":conservarFred", $producte->getConservarFred());
+            $query->bindValue(":imatge", $producte->getImatge());
+            $con->consulta($query);
+            switch ($type) {
+                case "Solid":
+                    $query = $con->prepare("UPDATE solid SET capacitatMg = :capacitatMg, unitats  = :unitats WHERE id_producte = :id_producte");
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
+                    $query->bindValue(":unitats", $producte->getUnitats());
+                    $con->consulta($query);
+                    break;
+                case "Semisolid":
+                    $query = $con->prepare("UPDATE semisolid SET capacitatMg = :capacitatMg WHERE id_producte = :id_producte");
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
+                    $con->consulta($query);
+
+                    break;
+                case "Liquid":
+                    $query = $con->prepare("UPDATE liquid SET capacitatMl = :capacitatMl WHERE id_producte = :id_producte");
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
+                    $con->consulta($query);
+                    break;
+                case "Gas":
+                    $query = $con->prepare("UPDATE gas SET capacitatMl = :capacitatMl WHERE id_producte = :id_producte");
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
+                    $con->consulta($query);
+                    break;
+                case "Altres":
+                    $query = $con->prepare("UPDATE altres SET unitats = :unitats WHERE id_producte = :id_producte");
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":unitats", $producte->getUnitats());
+                    $con->consulta($query);
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 
 }
