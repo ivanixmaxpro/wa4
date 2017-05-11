@@ -1,4 +1,4 @@
-<form role="form" action="?ctl=producte&act=eliminar" method="POST">
+<form role="form" action="?ctl=producte&act=eliminar&id=<?= $producte->getId_producte();?>" method="POST">
     <div class="row">
         <div class="col-md-6">
             <h3>Estas segur que vols eliminar el següent producte?</h3>

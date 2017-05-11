@@ -10,6 +10,16 @@ class EmpresaDAO {
         
     }
 
+
+    public function eliminarProducte($producte) {
+        $con = new db();
+        $query = $con->prepare("DELETE FROM producte WHERE id_producte = :id;");
+        $query->bindValue(":id", $producte->getId_producte());
+        $con->consultar($query);
+
+        $con = null;
+    }
+
     public function recuperarEmpresa() {
         $empresa = array();
         $con = new db();
