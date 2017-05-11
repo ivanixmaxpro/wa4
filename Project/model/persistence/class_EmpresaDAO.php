@@ -78,6 +78,29 @@ class EmpresaDAO {
         return $productesarray;
     }
 
+    public function populateAlbaransVenta() {
+        $albaransVentaArray = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM albara_venta;");
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_client = $row["id_client"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preu = $row["preu"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $albaraVenta = new AlbaraVenta($id_albara, $id_client, $id_empresa, $codi, $observacions, $preu, $data, $localitat);
+            array_push($albaransVentaArray, $albaraVenta);
+        }
+        $con = null;
+        return $albaransVentaArray;
+    }
+
     public function populateUsuariDAO() {
         $usuaris = array();
         $con = new db();
@@ -288,6 +311,23 @@ class EmpresaDAO {
         return $usuari;
     }
 
+    public function searchClientById($id_client) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM client WHERE id_client = :id_client");
+        $query->bindValue(":id_client", $id_client);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_client = $row["id_client"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $informacio = $row["informacio"];
+            $client = new Client($id_client, $nom, $codi, $informacio);
+        }
+        $con = null;
+        return $client;
+    }
 
     public function populateClients() {
         $clients = array();
@@ -326,7 +366,6 @@ class EmpresaDAO {
         $con = null;
         return $ubicacio;
     }
-
 
     public function searchProducteChilds($id_producte) {
         $con = new db();
@@ -387,7 +426,6 @@ class EmpresaDAO {
                 $capacitatMl = $row["capacitatLiquid"];
 
                 $producte = new Liquid($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_liquid, $capacitatMl);
-
             }
             if ($row["id_gas"] != null) {
 
@@ -421,11 +459,63 @@ class EmpresaDAO {
                 $unitats = $row["unitatsAltres"];
 
                 $producte = new Gas($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_altres, $unitats);
-                
             }
         }
         $con = null;
         return $producte;
+    }
+
+    public function afegirProducte($producte, $tipusProdcute) {
+        switch ($tipusProdcute) {
+            case "Liquid":
+
+                try {
+                    $con = new db();
+                    $query = $con->prepare("INSERT INTO liquid (id_liquid,id_producte,capacitatMl) 
+                VALUES (:id_client,:id_empresa,:codi,:observacions,:preu,:data,:localitat)");
+                    $query->bindValue(":id_liquid", $producte->getId_liquid());
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
+                    $con->consulta($query);
+                    $con = null;
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+
+                break;
+            case "Gas":
+
+
+                break;
+            case "Semisolid":
+
+
+                break;
+            case "Altres":
+
+
+                break;
+            case "Solid":
+
+
+                break;
+
+            default:
+                break;
+        }
+
+
+//        try {
+//            $con = new db();
+//            $query = $con->prepare("INSERT INTO liquid (id_liquid,id_producte,capacitatMl) 
+//                VALUES (:id_client,:id_empresa,:codi,:observacions,:preu,:data,:localitat)");
+//            $query->bindValue(":id_liquid", $producte->getId_liquid());
+//            $query->bindValue(":id_producte", $producte->getId_producte());
+//            $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
+//            $con->consulta($query);
+//        } catch (Exception $e) {
+//            die($e->getMessage());
+//        }
     }
 
 }

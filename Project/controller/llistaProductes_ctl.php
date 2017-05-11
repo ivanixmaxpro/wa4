@@ -1,6 +1,6 @@
 <?php
 
-require_once 'view/tablaProducte.php';
+require_once 'view/tablas.php';
 
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
