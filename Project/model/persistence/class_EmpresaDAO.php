@@ -321,7 +321,6 @@ class EmpresaDAO {
         return $usuari;
     }
 
-<<<<<<< HEAD
     public function searchClientById($id_client) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM client WHERE id_client = :id_client");
@@ -340,8 +339,7 @@ class EmpresaDAO {
         return $client;
     }
 
-=======
->>>>>>> master
+
     public function populateClients() {
         $clients = array();
         $con = new db();
@@ -478,7 +476,6 @@ class EmpresaDAO {
         return $producte;
     }
 
-<<<<<<< HEAD
     public function afegirProducte($producte, $tipusProdcute) {
         switch ($tipusProdcute) {
             case "Liquid":
@@ -518,19 +515,9 @@ class EmpresaDAO {
                 break;
         }
 
+ }
 
-//        try {
-//            $con = new db();
-//            $query = $con->prepare("INSERT INTO liquid (id_liquid,id_producte,capacitatMl) 
-//                VALUES (:id_client,:id_empresa,:codi,:observacions,:preu,:data,:localitat)");
-//            $query->bindValue(":id_liquid", $producte->getId_liquid());
-//            $query->bindValue(":id_producte", $producte->getId_producte());
-//            $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
-//            $con->consulta($query);
-//        } catch (Exception $e) {
-//            die($e->getMessage());
-//        }
-=======
+        
     function updateProducte($producte, $type) {
         try {
             $con = new db();
@@ -586,7 +573,6 @@ class EmpresaDAO {
         } catch (Exception $e) {
             die($e->getMessage());
         }
->>>>>>> master
     }
 
 }

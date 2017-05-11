@@ -132,21 +132,18 @@ class Empresa {
         return $usuari;
     }
 
-<<<<<<< HEAD
     function searchClientById($id_client) {
         $EmpresaDAO = new EmpresaDAO();
         $client = $EmpresaDAO->searchClientById($id_client);
         return $client;
     }
 
-=======
 
     function eliminarProducte($producte) {
         $EmpresaDAO = new EmpresaDAO();
         $EmpresaDAO->eliminarProducte($producte);
     }
     
->>>>>>> master
     function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();
         $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
@@ -158,13 +155,10 @@ class Empresa {
         $producte = $EmpresaDAO->searchProducteChilds($id_producte);
         return $producte;
     }
-<<<<<<< HEAD
 
-=======
     
     function updateProducte($producte,$type) {
         $EmpresaDAO = new EmpresaDAO();
         $producte = $EmpresaDAO->updateProducte($producte,$type);
     }
->>>>>>> master
 }
