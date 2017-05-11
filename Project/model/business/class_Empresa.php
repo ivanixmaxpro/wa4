@@ -120,7 +120,12 @@ class Empresa {
         $usuari = $EmpresaDAO->searchUsuariByEmpleat($id_empleat);
         return $usuari;
     }
-    
+
+
+    function eliminarProducte($producte) {
+        $EmpresaDAO = new EmpresaDAO();
+        $EmpresaDAO->eliminarProducte($producte);
+    }
     
     function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();

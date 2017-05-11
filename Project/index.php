@@ -80,6 +80,9 @@ switch ($ctl) {
 
     case "producte":
         switch ($act) {
+            case "afegir":
+                include "controller/afegirProducte_ctl.php";
+                break;
             case "llista":
                 include "controller/llistaProductes_ctl.php";
                 break;
