@@ -1,9 +1,17 @@
 
 <div class="card">
-    <div class="header">
-        <h4 class="title">Llista productes</h4>
-        <p class="category">A continuació un llistat:</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header">
+                <h4 class="title">Llista productes</h4>
+                <p class="category">A continuació un llistat:</p>
+            </div>
+        </div>
+        <div class="col-md-6"><a href="?ctl=producte&act=afegir">
+            <button class="btn btn-primary">Afeguir producte</button></a>
+        </div>
     </div>
+
     <form action="?ctl=producte&act=llista" method="post">
         <div class="form-group">
             Cercar per Nom:
@@ -42,6 +50,6 @@
         </div>
     </form> 
     <?php
-    tablaTot($productes);
+    tablaTotProductes($productes);
     ?>
 </div>

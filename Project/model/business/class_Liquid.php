@@ -4,8 +4,8 @@ require_once("controller/function_AutoLoad.php");
 
 class Liquid extends Producte {
 
-    private $capacitatMl;
     private $id_liquid;
+    private $capacitatMl;
 
     function __construct() { /* Provar de quitar el primer constructor, 
       aver si no es necesario i solo con el heretado

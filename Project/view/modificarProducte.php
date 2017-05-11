@@ -1,4 +1,4 @@
-<form role="form" action="?ctl=producte&act=modificar" method="POST">
+<form role="form" action="?ctl=producte&act=modificar&id=<?= $producte->getId_producte();?>" method="POST">
     <div class="row">
         <div class="col-md-6">
             <label>Tipus de producte:</label>
@@ -49,8 +49,8 @@
                     $fred = $producte->getConservarFred();
                 }
                 ?>
-                <input type="checkbox" id="conservar" name="conservar" value="0" <?php if($fred == 1){echo "checked";}?>> Si<br>
-                <input type="checkbox" id="conservar" name="conservar" value="1" <?php if($fred != 1){echo "checked";}?>>No<br>
+                <input type="radio" id="conservar" name="conservar" value="1" <?php if($fred == 1){echo "checked";}?>> Si<br>
+                <input type="radio" id="conservar" name="conservar" value="0" <?php if($fred != 1){echo "checked";}?>>No<br>
             </div>
             <div class="form-group">
                 <label>Imatge</label>
@@ -60,17 +60,17 @@
             <div class="form-group" id="capacitatMl" hidden>
                 <label>Capacitat Ml</label>
                 <input type="text" name="capacitatMlInput" class="form-control"
-                       placeholder="Capacitat en Ml" required value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMl')){ echo $producte->getCapacitatMl(); }?>">
+                       placeholder="Capacitat en Ml" value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMl')){ echo $producte->getCapacitatMl(); }?>">
             </div>
             <div class="form-group" id="capacitatMg" >
                 <label>Capacitat Mg</label>
                 <input type="text" name="capacitatMgInput" class="form-control"
-                       placeholder="Capacitat en Mg" required value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMg')){ echo $producte->getCapacitatMg(); }?>">
+                       placeholder="Capacitat en Mg" value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMg')){ echo $producte->getCapacitatMg(); }?>">
             </div>
             <div class="form-group" id="unitats">
                 <label>Unitats</label>
                 <input type="text" name="unitatsInput" class="form-control"
-                       placeholder="Número d'unitats" required value="<?php if(isset($producte) && method_exists($producte,'getUnitats')){ echo $producte->getUnitats(); }?>">
+                       placeholder="Número d'unitats" value="<?php if(isset($producte) && method_exists($producte,'getUnitats')){ echo $producte->getUnitats(); }?>">
             </div>
         </div>
     </div>
