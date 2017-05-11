@@ -34,7 +34,11 @@ function tablaTotProductes($productes) {
                     echo "<td>" . $row->getMarca() . "</td>";
                     echo "<td>" . $row->getModel() . "</td>";
                     echo "<td>" . $row->getpreuBase() . "</td>";
-                    echo "<td>" . $row->getConservarFred() . "</td>";
+                    if($row->getConservarFred() == 0){
+                        echo "<td>No</td>";
+                    }else{
+                        echo "<td>Si</td>";
+                    }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
                     ?>  <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
                 <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>

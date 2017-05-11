@@ -30,8 +30,9 @@ function emmagatzemarProducte() {
     var preuBase = producteJSON.preuBase;
     var quantProducte = $("#campQuantitatDeProductes").val();
     var preuTotal = preuBase * quantProducte;
+    var nomProducte = producteJSON.nom;
 
-    var arrPro = [idPro, preuTotal, quantProducte];
+    var arrPro = [idPro, preuTotal, quantProducte, nomProducte];
     var repetit = false;
 
     for (var prod in arrProTotal) {
@@ -77,7 +78,7 @@ function generarTaula() {
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')
                         .append($('<td>')
-                                .text(arrProTotal[prod][0])
+                                .text(arrProTotal[prod][3])
 
                                 )
                         .append($('<td>')
@@ -98,6 +99,7 @@ function generarTaula() {
     }
 
     pasarArray();
+    canviarPreu();
 }
 
 
@@ -122,4 +124,14 @@ function pasarArray() {
 
     $("#passarArray").val(arrFinal.toString());
 
+}
+
+function canviarPreu() {
+    var preuTotal = 0;
+    
+    for (var prod in arrProTotal) {
+        preuTotal += arrProTotal[prod][1];
+    }
+    
+    $("#campPreu").val(preuTotal);
 }

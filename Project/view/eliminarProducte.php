@@ -1,6 +1,7 @@
-<form role="form" action="?ctl=producte&act=modificar&id=<?= $producte->getId_producte();?>" method="POST">
+<form role="form" action="?ctl=producte&act=eliminar&id=<?= $producte->getId_producte();?>" method="POST">
     <div class="row">
         <div class="col-md-6">
+            <h3>Estas segur que vols eliminar el següent producte?</h3>
             <label>Tipus de producte:</label>
             <select id="selector" name="selector">
                 <option disabled="disabled" value="solid" <?php if(get_class($producte) == 'Solid'){ echo "selected";} ?>>Solid</option>
@@ -11,17 +12,17 @@
             </select>
             <div class="form-group">
                 <label>Nom</label>
-                <input type="text" class="form-control" id="nom"
+                <input type="text" class="form-control" id="nom" readonly
                        placeholder="Nom del producte" name="nom" required value="<?php if(isset($producte)){ echo $producte->getNom(); }?>">
             </div>
             <div class="form-group">
                 <label >Marca</label>
-                <input type="text" name="marca" class="form-control" id="marca"
+                <input type="text" name="marca" class="form-control" id="marca" readonly
                        placeholder="Marca del producte" required value="<?php if(isset($producte)){ echo $producte->getMarca(); }?>">
             </div>
             <div class="form-group">
                 <label>Preu</label>
-                <input type="text" name="preu" class="form-control" id="preu"
+                <input type="text" name="preu" class="form-control" id="preu" readonly
                        placeholder="Preu del producte" required value="<?php if(isset($producte)){ echo $producte->getPreuBase(); }?>">
             </div>
             <div class="form-group">
@@ -31,14 +32,14 @@
             </div>
             <div class="form-group">
                 <label>Model</label>
-                <input type="text" name="model" class="form-control" id="model"
+                <input type="text" name="model" class="form-control" id="model" readonly
                        placeholder="Model del producte" required value="<?php if(isset($producte)){ echo $producte->getModel(); }?>">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Descripció</label>
-                <textarea  name="descripcio" class="form-control" id="descripcio" style="resize:none; height:150px;"
+                <textarea  name="descripcio" class="form-control" id="descripcio" readonly
                            placeholder="Descripció del producte" required ><?php if(isset($producte)){ echo $producte->getDescripcio(); }?></textarea>
             </div>
             <div class="form-group">
@@ -49,31 +50,31 @@
                     $fred = $producte->getConservarFred();
                 }
                 ?>
-                <input type="radio" id="conservar" name="conservar" value="1" <?php if($fred == 1){echo "checked";}?>> Si<br>
-                <input type="radio" id="conservar" name="conservar" value="0" <?php if($fred != 1){echo "checked";}?>>No<br>
+                <input type="radio" id="conservar" name="conservar" value="0" disabled readonly <?php if($fred == 1){echo "checked";}?>> Si<br>
+                <input type="radio" id="conservar" name="conservar" value="1" disabled readonly <?php if($fred != 1){echo "checked";}?>>No<br>
             </div>
             <div class="form-group">
                 <label>Imatge</label>
-                <input type="text" name="imagte" class="form-control" id="imagte"
+                <input type="text" name="imagte" class="form-control" id="imagte" readonly
                        placeholder="Imatge del producte" required value="<?php if(isset($producte)){ echo $producte->getImatge(); }?>">
             </div>
             <div class="form-group" id="capacitatMl" hidden>
                 <label>Capacitat Ml</label>
-                <input type="text" name="capacitatMlInput" class="form-control"
-                       placeholder="Capacitat en Ml" value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMl')){ echo $producte->getCapacitatMl(); }?>">
+                <input type="text" name="capacitatMlInput" class="form-control" readonly
+                       placeholder="Capacitat en Ml" required value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMl')){ echo $producte->getCapacitatMl(); }?>">
             </div>
             <div class="form-group" id="capacitatMg" >
                 <label>Capacitat Mg</label>
-                <input type="text" name="capacitatMgInput" class="form-control"
-                       placeholder="Capacitat en Mg" value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMg')){ echo $producte->getCapacitatMg(); }?>">
+                <input type="text" name="capacitatMgInput" class="form-control" readonly
+                       placeholder="Capacitat en Mg" required value="<?php if(isset($producte) && method_exists($producte,'getCapacitatMg')){ echo $producte->getCapacitatMg(); }?>">
             </div>
             <div class="form-group" id="unitats">
                 <label>Unitats</label>
-                <input type="text" name="unitatsInput" class="form-control"
-                       placeholder="Número d'unitats" value="<?php if(isset($producte) && method_exists($producte,'getUnitats')){ echo $producte->getUnitats(); }?>">
+                <input type="text" name="unitatsInput" class="form-control" readonly
+                       placeholder="Número d'unitats" required value="<?php if(isset($producte) && method_exists($producte,'getUnitats')){ echo $producte->getUnitats(); }?>">
             </div>
         </div>
     </div>
-    <button name="modify" type="submit" class="btn btn-default">Modificar</button>
+    <button name="modify" type="submit" class="btn btn-default">Eliminar</button>
     <a name="tornar" class="btn btn-default" href="?ctl=producte&act=llista">Tornar</a>
 </form>
