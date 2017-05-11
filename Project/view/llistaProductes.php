@@ -50,6 +50,6 @@
         </div>
     </form> 
     <?php
-    tablaTot($productes);
+    tablaTotProductes($productes);
     ?>
 </div>

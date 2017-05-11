@@ -149,6 +149,22 @@ switch ($ctl) {
                 break;
         }
         break;
+    case "albaraVenta":
+        switch ($act) {
+            case "afegir":
+                include "controller/addAlbaraVenta_ctl.php";
+                break;
+            case "modificar":
+                include "controller/modificarClient_ctl.php";
+                break;
+            case "detall":
+                include "controller/detallAlbaraVenta_ctl.php";
+                break;
+            case "llista":
+                include "controller/llistaAlbaransVenta_ctl.php";
+                break;
+        }
+        break;
     default:
         include "controller/" . $ctl . "_ctl.php";
         break;

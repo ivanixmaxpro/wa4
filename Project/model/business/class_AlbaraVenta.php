@@ -13,30 +13,20 @@ class AlbaraVenta {
     private $data;
     private $localitat;
 
-    function __construct() { //$id_client, $id_empresa, $codi, $observacions, $preu, $data, $localitat
-//        $this->setId_albara(null);
-//        $this->setId_client($id_client);
-//        $this->setId_empresa($id_empresa);
-//        $this->setCodi($codi);
-//        $this->setObservacions($observacions);
-//        $this->setPreu($preu);
-//        $this->setData($data);
-//        $this->setLocalitat($localitat);
+    function __construct() {
         switch (func_num_args()) {
             case 0:
                 break;
-//            case 3:
-//                $this->setId_client(null);
-//                $this->setNom(func_get_args()[0]);
-//                $this->setCodi(func_get_args()[1]);
-//                $this->setInformacio(func_get_args()[2]);
-//                break;
-//            case 4:
-//                $this->setId_client(func_get_args()[0]);
-//                $this->setNom(func_get_args()[1]);
-//                $this->setCodi(func_get_args()[2]);
-//                $this->setInformacio(func_get_args()[3]);
-//                break;
+            case 8:
+                $this->setId_albara(func_get_args()[0]);
+                $this->setId_client(func_get_args()[1]);
+                $this->setId_empresa(func_get_args()[2]);
+                $this->setCodi(func_get_args()[3]);
+                $this->setObservacions(func_get_args()[4]);
+                $this->setPreu(func_get_args()[5]);
+                $this->setData(func_get_args()[6]);
+                $this->setLocalitat(func_get_args()[7]);
+                break;
         }
     }
 
