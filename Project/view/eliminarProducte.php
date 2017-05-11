@@ -1,4 +1,4 @@
-<form role="form" action="?ctl=producte&act=eliminar" method="POST">
+<form role="form" action="?ctl=producte&act=eliminar&id=<?= $producte->getId_producte();?>" method="POST">
     <div class="row">
         <div class="col-md-6">
             <h3>Estas segur que vols eliminar el següent producte?</h3>
@@ -50,8 +50,8 @@
                     $fred = $producte->getConservarFred();
                 }
                 ?>
-                <input type="checkbox" id="conservar" name="conservar" value="0" disabled readonly <?php if($fred == 1){echo "checked";}?>> Si<br>
-                <input type="checkbox" id="conservar" name="conservar" value="1" disabled readonly <?php if($fred != 1){echo "checked";}?>>No<br>
+                <input type="radio" id="conservar" name="conservar" value="0" disabled readonly <?php if($fred == 1){echo "checked";}?>> Si<br>
+                <input type="radio" id="conservar" name="conservar" value="1" disabled readonly <?php if($fred != 1){echo "checked";}?>>No<br>
             </div>
             <div class="form-group">
                 <label>Imatge</label>

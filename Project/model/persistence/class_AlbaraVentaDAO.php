@@ -32,6 +32,18 @@ class AlbaraVentaDAO {
                 $query->bindValue(":quantitat", $producte[2]);
                 $query->bindValue(":preu", $producte[1]);
                 $con->consulta($query);
+                
+                
+                $query = $con->prepare("UPDATE ubicacio SET quantitatTenda = :quantitatTenda, quantitatStock  = :quantitatStock WHERE id_ubicacio = :id_ubicacio");
+                $query->bindValue(":id_ubicacio", $producte[5]);
+                $query->bindValue(":quantitatTenda", $producte[3]);
+                $query->bindValue(":quantitatStock", $producte[4]);
+                
+                $con->consulta($query);
+                
+                
+                
+                
             }
         } catch (Exception $e) {
             die($e->getMessage());
