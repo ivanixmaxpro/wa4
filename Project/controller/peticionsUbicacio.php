@@ -22,9 +22,10 @@ if ($ubicacio != null) {
 
     $tenda = $ubicacio->getQuantitatTenda();
     $stock = $ubicacio->getQuantitatStock();
+    $id_ubicacio = $_REQUEST['id_ubicacio'];
     $total = $tenda + $stock;
 
 
 
-    echo "{\"total\":\"$total\"}";
+    echo "{\"total\":\"$total\",\"tenda\":\"$tenda\",\"stock\":\"$stock\",\"id_ubicacio\":\"$id_ubicacio\"}";
 }
