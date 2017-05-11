@@ -1,4 +1,4 @@
-<form role="form" action="?ctl=producte&act=modificar" method="POST">
+<form role="form" action="?ctl=producte&act=modificar&id=<?= $producte->getId_producte();?>" method="POST">
     <div class="row">
         <div class="col-md-6">
             <label>Tipus de producte:</label>
@@ -49,8 +49,8 @@
                     $fred = $producte->getConservarFred();
                 }
                 ?>
-                <input type="checkbox" id="conservar" name="conservar" value="0" <?php if($fred == 1){echo "checked";}?>> Si<br>
-                <input type="checkbox" id="conservar" name="conservar" value="1" <?php if($fred != 1){echo "checked";}?>>No<br>
+                <input type="radio" id="conservar" name="conservar" value="0" <?php if($fred == 1){echo "checked";}?>> Si<br>
+                <input type="radio" id="conservar" name="conservar" value="1" <?php if($fred != 1){echo "checked";}?>>No<br>
             </div>
             <div class="form-group">
                 <label>Imatge</label>

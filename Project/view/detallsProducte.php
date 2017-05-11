@@ -49,8 +49,8 @@
                     $fred = $producte->getConservarFred();
                 }
                 ?>
-                <input type="checkbox" id="conservar" name="conservar" value="0" disabled readonly <?php if($fred == 1){echo "checked";}?>> Si<br>
-                <input type="checkbox" id="conservar" name="conservar" value="1" disabled readonly <?php if($fred != 1){echo "checked";}?>>No<br>
+                <input type="radio" id="conservar" name="conservar" value="0" disabled readonly <?php if($fred == 1){echo "checked";}?>> Si<br>
+                <input type="radio" id="conservar" name="conservar" value="1" disabled readonly <?php if($fred != 1){echo "checked";}?>>No<br>
             </div>
             <div class="form-group">
                 <label>Imatge</label>
