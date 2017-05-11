@@ -472,7 +472,7 @@ class EmpresaDAO {
                 try {
                     $con = new db();
                     $query = $con->prepare("INSERT INTO liquid (id_liquid,id_producte,capacitatMl) 
-                VALUES (:id_client,:id_empresa,:codi,:observacions,:preu,:data,:localitat)");
+                VALUES (:id_liquid,:id_producte,:capacitatMl)");
                     $query->bindValue(":id_liquid", $producte->getId_liquid());
                     $query->bindValue(":id_producte", $producte->getId_producte());
                     $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
@@ -485,18 +485,67 @@ class EmpresaDAO {
                 break;
             case "Gas":
 
+                try {
+                    $con = new db();
+                    $query = $con->prepare("INSERT INTO gas (id_gas,id_producte,capacitatMl) 
+                VALUES (:id_gas,:id_producte,:capacitatMl)");
+                    $query->bindValue(":id_gas", $producte->getId_gas());
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
+                    $con->consulta($query);
+                    $con = null;
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
 
                 break;
             case "Semisolid":
 
+                try {
+                    $con = new db();
+                    $query = $con->prepare("INSERT INTO semisolid (id_semisolid,id_producte,capacitatMg) 
+                VALUES (:id_semisolid,:id_producte,:capacitatMg)");
+                    $query->bindValue(":id_semisolid", $producte->getId_liquid());
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
+                    $con->consulta($query);
+                    $con = null;
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
 
                 break;
             case "Altres":
 
+                try {
+                    $con = new db();
+                    $query = $con->prepare("INSERT INTO altres (id_liquid,id_producte,unitats) 
+                VALUES (:id_altres,:id_producte,:unitats)");
+                    $query->bindValue(":id_altres", $producte->getId_altres());
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":unitats", $producte->getUnitats());
+                    $con->consulta($query);
+                    $con = null;
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
 
                 break;
             case "Solid":
 
+                try {
+                    $con = new db();
+                    $query = $con->prepare("INSERT INTO solid (id_solid,id_producte,capacitatMg,unitats) 
+                VALUES (:id_solid,:id_producte,:capacitatMg,:unitats)");
+                    $query->bindValue(":id_solid", $producte->getId_solid());
+                    $query->bindValue(":id_producte", $producte->getId_producte());
+                    $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
+                    $query->bindValue(":unitats", $producte->getUnitats());
+                    $con->consulta($query);
+                    $con = null;
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
 
                 break;
 
