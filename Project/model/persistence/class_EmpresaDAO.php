@@ -327,7 +327,7 @@ class EmpresaDAO {
         $result = $con->consultar($query);
 
         foreach ($result as $row) {
-            $id_ubicacio = $row["id_client"];
+            $id_ubicacio = $row["id_ubicacio"];
             $quantitatTenda = $row["quantitatTenda"];
             $quantitatStock = $row["quantitatStock"];
             $situacio = $row["situacio"];
