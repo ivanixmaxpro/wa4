@@ -48,6 +48,7 @@
         <script src="view/js/bootstrap-checkbox-radio-switch.js"></script>
         <script src="view/js/custom.js"></script>
         <script src="view/js/albaraVenta.js"></script>
+        <script src="view/js/busquedaNom.js"></script>
         <!--  Charts Plugin -->
         <script src="view/js/chartist.min.js"></script>
         <!--  Notifications Plugin    -->

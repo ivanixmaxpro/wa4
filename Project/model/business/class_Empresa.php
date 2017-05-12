@@ -49,7 +49,10 @@ class Empresa {
         $proveidors =  $proveidorsDAO->populateProveidors();
         return $proveidors;
     }
-    
+    /**
+     * metode per consultar els clients a la base de dades
+     * @return array de clients
+     */
     function populateClients(){
         $clientDAO = new ClientDAO();
         $clients =  $clientDAO->populateClients();
