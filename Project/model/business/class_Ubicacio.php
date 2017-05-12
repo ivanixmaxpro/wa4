@@ -18,14 +18,14 @@ class Ubicacio {
             case 0:
                 break;
             case 3:
-                $this->setQuantitatStock(func_get_args()[0]);
-                $this->setQuantitatTenda(func_get_args()[1]);
+                $this->setQuantitatTenda(func_get_args()[0]);
+                $this->setQuantitatStock(func_get_args()[1]);
                 $this->setSituacio(func_get_args()[2]);
                 break;
             case 4:
                 $this->setId_ubicacio(func_get_args()[0]);
-                $this->setQuantitatStock(func_get_args()[1]);
-                $this->setQuantitatTenda(func_get_args()[2]);
+                $this->setQuantitatTenda(func_get_args()[1]);
+                $this->setQuantitatStock(func_get_args()[2]);
                 $this->setSituacio(func_get_args()[3]);
                 break;
         }

@@ -4,16 +4,16 @@
         <h4 class="title">Missatges</h4>
         <p class="category">Missatges interns:</p>
     </div>
-    <form action="?ctl=missatge&act=llista" method="post">
+    <form action="?ctl=missatge&act=llista" method="post" onkeyup="cercar()">
         <div class="form-group">
             Cercar per Nom:
-            <input type="text" name="nom" >
+            <input type="text" name="nom" id="nom" >
             <button name="Submit" class="btn btn-primary">Buscar</button>
             <a href="?ctl=missatge&act=crear" class="btn btn-primary"></span> crear missatge</a>
         </div>
     </form> 
     <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" id="tabla">
             <thead>
             <tr>
                 <th>Emissor</th>

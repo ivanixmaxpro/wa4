@@ -34,6 +34,11 @@
                 <input type="text" name="model" class="form-control" id="model" readonly
                        placeholder="Model del producte" required value="<?php if(isset($producte)){ echo $producte->getModel(); }?>">
             </div>
+            <div class="form-group">
+                <label>Situació:</label>
+                <input type="text" name="situcacio" class="form-control" id="situcacio" readonly
+                       placeholder="Situació del producte" required value="<?php if(isset($ubicacio)){ echo $ubicacio->getSituacio(); }?>">
+            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
@@ -71,6 +76,16 @@
                 <label>Unitats</label>
                 <input type="text" name="unitatsInput" class="form-control" readonly
                        placeholder="Número d'unitats" required value="<?php if(isset($producte) && method_exists($producte,'getUnitats')){ echo $producte->getUnitats(); }?>">
+            </div>
+            <div class="form-group">
+                <label>Quantitat en tenda:</label>
+                <input type="text" name="quantitatTenda" class="form-control" id="quantitatTenda" readonly
+                       placeholder="Quantitat en tenda" required value="<?php if(isset($ubicacio)){ echo $ubicacio->getQuantitatTenda(); }?>">
+            </div>
+            <div class="form-group">
+                <label>Quantitat en magatzem: </label>
+                <input type="text" name="quantitatMagatzem" class="form-control" id="quantitatMagatzem" readonly
+                       placeholder="Quantitat en magatzem" required value="<?php if(isset($ubicacio)){ echo $ubicacio->getQuantitatStock(); }?>">
             </div>
         </div>
     </div>

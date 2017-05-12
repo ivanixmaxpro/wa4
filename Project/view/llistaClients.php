@@ -5,7 +5,7 @@
         <p class="category">A continuació un llistat de tots els nostres Clients:</p>
     </div>
 
-    <form action="?ctl=client&act=llista" method="post">
+    <form action="?ctl=client&act=llista"onkeyup="doSearch()" method="post">
         <div class="form-group">
             Cercar per Nom:
             <input type="text" name="nom" >
@@ -24,7 +24,7 @@
                     <th>Modificar</th>
                     <th>Eliminar</th>
                 </tr></thead>
-            <tbody>
+            <tbody id="lista">
 
                 <?php
                 foreach ($clients as $row) {
