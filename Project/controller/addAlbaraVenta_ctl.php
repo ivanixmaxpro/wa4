@@ -34,6 +34,7 @@ if (isset($_REQUEST["submit"])) {
 } else {
 
     $productes = $empresa->populateProductes();
+    $clients = $empresa->populateClients();
 }
 
 

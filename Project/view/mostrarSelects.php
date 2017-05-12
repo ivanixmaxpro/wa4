@@ -29,3 +29,24 @@ function mostrarSelectProductes($productes) {
     }
     echo "</select>";
 }
+
+function mostrarSelectClients($clients) {
+
+    echo "<select id='campClient'>";
+
+
+    echo "<option value='-' selected> - </option>";
+
+    foreach ($clients as $client) {
+
+        $id = $client->getId_client();
+        $nom = $client->getNom();
+
+        echo "<option value='" . $id . "'>" . $nom . "</option>";
+    }
+    echo "</select>";
+}
+
+
+
+
