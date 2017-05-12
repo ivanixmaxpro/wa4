@@ -20,7 +20,7 @@ $usuariId = $_SESSION['id_usuari'];
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
-require_once 'view/afeguirProducte.php';
+require_once 'view/afegirProducte.php';
 require_once 'view/footer.php';
 
 if(!empty($_POST)){
