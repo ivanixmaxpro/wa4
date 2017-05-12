@@ -28,7 +28,7 @@ if (isset($_REQUEST['Submit'])) {
         $informacio = $_REQUEST['informacio'];
     }
 
-    $client = new Client($nom, $codi,$informacio);
+    $client = new Client(null,$nom, $codi,$informacio);
     $clientDAO->inserir($client);
     $missatge = 'client afegit';
     $redireccio = 'index.php?ctl=client&act=llista';
