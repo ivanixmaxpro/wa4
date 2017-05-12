@@ -135,7 +135,7 @@ class EmpresaDAO {
 
     public function searchEmpleat($id_empleat) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat");
+        $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat;");
         $query->bindValue(":id_empleat", $id_empleat);
         $result = $con->consultar($query);
 
@@ -160,7 +160,7 @@ class EmpresaDAO {
 
     public function searchProducte($id_producte) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM producte WHERE id_producte = :id_producte");
+        $query = $con->prepare("SELECT * FROM producte WHERE id_producte = :id_producte;");
         $query->bindValue(":id_producte", $id_producte);
         $result = $con->consultar($query);
 
@@ -185,7 +185,7 @@ class EmpresaDAO {
 
     public function searchLastControl($id_usuari) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 1");
+        $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 1;");
         $query->bindValue(":id_usuari", $id_usuari);
         $result = $con->consultar($query);
 
@@ -205,7 +205,7 @@ class EmpresaDAO {
 
         $con = new db();
         $fitxesArray = array();
-        $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 5");
+        $query = $con->prepare("SELECT * FROM control WHERE id_usuari = :id_usuari ORDER BY id_control DESC LIMIT 5;");
         $query->bindValue(":id_usuari", $id_usuari);
         $result = $con->consultar($query);
 
@@ -256,7 +256,7 @@ class EmpresaDAO {
                 break;
 
             default:
-                $consulta .= " LIMIT " . $quantitat;
+                $consulta .= " LIMIT " . $quantitat + ";";
                 break;
         }
         $consulta .= ";";
@@ -285,7 +285,7 @@ class EmpresaDAO {
     public function showHorari($id_usuari) {
         $horari = array();
         $con = new db();
-        $query = $con->prepare("SELECT dia.nom,horari.horaInici,horari.horaFinal FROM horari INNER JOIN dia ON horari.id_dia = dia.id_dia WHERE horari.id_usuari = :id_usuari ORDER BY dia.id_dia ASC");
+        $query = $con->prepare("SELECT dia.nom,horari.horaInici,horari.horaFinal FROM horari INNER JOIN dia ON horari.id_dia = dia.id_dia WHERE horari.id_usuari = :id_usuari ORDER BY dia.id_dia ASC;");
         $query->bindValue(":id_usuari", $id_usuari);
         $result = $con->consultar($query);
 
@@ -303,7 +303,7 @@ class EmpresaDAO {
 
     public function searchUsuariByEmpleat($id_empleat) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM usuari WHERE id_empleat = :id_empleat");
+        $query = $con->prepare("SELECT * FROM usuari WHERE id_empleat = :id_empleat;");
         $query->bindValue(":id_empleat", $id_empleat);
         $result = $con->consultar($query);
 
@@ -319,10 +319,19 @@ class EmpresaDAO {
         $con = null;
         return $usuari;
     }
+    
+    public function searchUbicacioById($id_ubicacio) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM producte INNER JOIN ubicacio ON producte.id_ubicacio = ubicacio.id_ubicacio WHERE ubicacio.id_ubicacio = :id_ubicacio;");
+        $query->bindValue(":id_ubicacio", $id_ubicacio);
+        $result = $con->consultar($query);
+        $con = null;
+        return $ubicacio;
+    }
 
     public function searchClientById($id_client) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM client WHERE id_client = :id_client");
+        $query = $con->prepare("SELECT * FROM client WHERE id_client = :id_client;");
         $query->bindValue(":id_client", $id_client);
         $result = $con->consultar($query);
 
@@ -359,7 +368,7 @@ class EmpresaDAO {
 
     public function searchUbicacio($id_ubicacio) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM ubicacio WHERE id_ubicacio = :id_ubicacio");
+        $query = $con->prepare("SELECT * FROM ubicacio WHERE id_ubicacio = :id_ubicacio;");
         $query->bindValue(":id_ubicacio", $id_ubicacio);
         $result = $con->consultar($query);
 
@@ -479,7 +488,7 @@ class EmpresaDAO {
         try {
             $con = new db();
             $query = $con->prepare("INSERT INTO ubicacio (quantitatTenda, quantitatStock, situacio) 
-                VALUES (:quantitatTenda,:quantitatStock,:situacio)");
+                VALUES (:quantitatTenda,:quantitatStock,:situacio);");
             $query->bindValue(":quantitatTenda", 0);
             $query->bindValue(":quantitatStock", 0);
             $query->bindValue(":situacio", "NULL");
@@ -488,7 +497,7 @@ class EmpresaDAO {
 
 
             $query = $con->prepare("INSERT INTO producte (id_ubicacio, nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge) 
-                VALUES (:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge)");
+                VALUES (:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge);");
             $query->bindValue(":id_ubicacio", $idUbicacio);
             $query->bindValue(":nom", $producte->getNom());
             $query->bindValue(":marca", $producte->getMarca());
@@ -506,7 +515,7 @@ class EmpresaDAO {
                 case "Solid":
 
                     $query = $con->prepare("INSERT INTO solid (id_producte, capacitatMg, unitats) 
-                VALUES (:id_producte,:capacitatMg,:unitats)");
+                VALUES (:id_producte,:capacitatMg,:unitats);");
                     $query->bindValue(":id_producte", $idProducte);
                     $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
                     $query->bindValue(":unitats", $producte->getUnitats());
@@ -516,7 +525,7 @@ class EmpresaDAO {
                 case "Semisolid":
 
                     $query = $con->prepare("INSERT INTO semisolid (id_producte, capacitatMg) 
-                VALUES (:id_producte,:capacitatMg)");
+                VALUES (:id_producte,:capacitatMg);");
                     $query->bindValue(":id_producte", $idProducte);
                     $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
                     $con->consulta($query);
@@ -525,7 +534,7 @@ class EmpresaDAO {
                 case "Liquid":
 
                     $query = $con->prepare("INSERT INTO liquid (id_producte, capacitatMl) 
-                VALUES (:id_producte,:capacitatMl)");
+                VALUES (:id_producte,:capacitatMl);");
                     $query->bindValue(":id_producte", $idProducte);
                     $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
                     $con->consulta($query);
@@ -534,7 +543,7 @@ class EmpresaDAO {
                 case "Gas":
 
                     $query = $con->prepare("INSERT INTO gas (id_producte, capacitatMl) 
-                VALUES (:id_producte,:capacitatMl)");
+                VALUES (:id_producte,:capacitatMl);");
                     $query->bindValue(":id_producte", $idProducte);
                     $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
                     $con->consulta($query);
@@ -543,7 +552,7 @@ class EmpresaDAO {
                 case "Altres":
 
                     $query = $con->prepare("INSERT INTO altres (id_producte, unitats) 
-                VALUES (:id_producte,:unitats)");
+                VALUES (:id_producte,:unitats);");
                     $query->bindValue(":id_producte", $idProducte);
                     $query->bindValue(":unitats", $producte->getUnitats());
                     $con->consulta($query);
@@ -563,7 +572,7 @@ class EmpresaDAO {
         try {
             $con = new db();
 
-            $query = $con->prepare("UPDATE producte SET nom = :nom, marca  = :marca, preuBase = :preuBase, referencia = :referencia, model = :model, descripcio = :descripcio, conservarFred = :conservarFred, imatge = :imatge WHERE id_producte = :id_producte");
+            $query = $con->prepare("UPDATE producte SET nom = :nom, marca  = :marca, preuBase = :preuBase, referencia = :referencia, model = :model, descripcio = :descripcio, conservarFred = :conservarFred, imatge = :imatge WHERE id_producte = :id_producte;");
             $query->bindValue(":id_producte", $producte->getId_producte());
             $query->bindValue(":nom", $producte->getNom());
             $query->bindValue(":marca", $producte->getMarca());
@@ -576,33 +585,33 @@ class EmpresaDAO {
             $con->consulta($query);
             switch ($type) {
                 case "Solid":
-                    $query = $con->prepare("UPDATE solid SET capacitatMg = :capacitatMg, unitats  = :unitats WHERE id_producte = :id_producte");
+                    $query = $con->prepare("UPDATE solid SET capacitatMg = :capacitatMg, unitats  = :unitats WHERE id_producte = :id_producte;");
                     $query->bindValue(":id_producte", $producte->getId_producte());
                     $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
                     $query->bindValue(":unitats", $producte->getUnitats());
                     $con->consulta($query);
                     break;
                 case "Semisolid":
-                    $query = $con->prepare("UPDATE semisolid SET capacitatMg = :capacitatMg WHERE id_producte = :id_producte");
+                    $query = $con->prepare("UPDATE semisolid SET capacitatMg = :capacitatMg WHERE id_producte = :id_producte;");
                     $query->bindValue(":id_producte", $producte->getId_producte());
                     $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
                     $con->consulta($query);
 
                     break;
                 case "Liquid":
-                    $query = $con->prepare("UPDATE liquid SET capacitatMl = :capacitatMl WHERE id_producte = :id_producte");
+                    $query = $con->prepare("UPDATE liquid SET capacitatMl = :capacitatMl WHERE id_producte = :id_producte;");
                     $query->bindValue(":id_producte", $producte->getId_producte());
                     $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
                     $con->consulta($query);
                     break;
                 case "Gas":
-                    $query = $con->prepare("UPDATE gas SET capacitatMl = :capacitatMl WHERE id_producte = :id_producte");
+                    $query = $con->prepare("UPDATE gas SET capacitatMl = :capacitatMl WHERE id_producte = :id_producte;");
                     $query->bindValue(":id_producte", $producte->getId_producte());
                     $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
                     $con->consulta($query);
                     break;
                 case "Altres":
-                    $query = $con->prepare("UPDATE altres SET unitats = :unitats WHERE id_producte = :id_producte");
+                    $query = $con->prepare("UPDATE altres SET unitats = :unitats WHERE id_producte = :id_producte;");
                     $query->bindValue(":id_producte", $producte->getId_producte());
                     $query->bindValue(":unitats", $producte->getUnitats());
                     $con->consulta($query);
