@@ -10,7 +10,6 @@ class EmpresaDAO {
         
     }
 
-
     public function eliminarProducte($producte) {
         $con = new db();
         $query = $con->prepare("DELETE FROM producte WHERE id_producte = :id;");
@@ -339,7 +338,6 @@ class EmpresaDAO {
         return $client;
     }
 
-
     public function populateClients() {
         $clients = array();
         $con = new db();
@@ -469,7 +467,7 @@ class EmpresaDAO {
                 $id_altres = $row["id_altres"];
                 $unitats = $row["unitatsAltres"];
 
-                $producte = new Gas($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_altres, $unitats);
+                $producte = new Altres($id_producte, $id_ubicacio, $nom, $marca, $preuBase, $referencia, $model, $descripcio, $conservarFred, $imatge, $id_altres, $unitats);
             }
         }
         $con = null;
@@ -477,140 +475,90 @@ class EmpresaDAO {
     }
 
     public function afegirProducte($producte, $tipusProdcute) {
-        switch ($tipusProdcute) {
-            case "Liquid":
 
-                try {
-                    $con = new db();
-                    $query = $con->prepare("INSERT INTO liquid (id_liquid,id_producte, id_ubicacio, nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge, capacitatMl) 
-                VALUES (:id_liquid,:id_producte,:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge,:capacitatMl)");
-                    $query->bindValue(":id_liquid", $producte->getId_liquid());
-                    $query->bindValue(":id_producte", $producte->getId_producte());
-                    $query->bindValue(":id_ubicacio", $producte->getId_ubicacio());
-                    $query->bindValue(":nom", $producte->getNom());
-                    $query->bindValue(":marca", $producte->getMarca());
-                    $query->bindValue(":preuBase", $producte->getPreuBase());
-                    $query->bindValue(":referencia", $producte->getReferencia());
-                    $query->bindValue(":model", $producte->getModel());
-                    $query->bindValue(":descripcio", $producte->getDescripcio());
-                    $query->bindValue(":conservarFred", $producte->getConservarFred());
-                    $query->bindValue(":imatge", $producte->getImatge());
-                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
-                    $con->consulta($query);
-                    $con = null;
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
+        try {
+            $con = new db();
+            $query = $con->prepare("INSERT INTO ubicacio (quantitatTenda, quantitatStock, situacio) 
+                VALUES (:quantitatTenda,:quantitatStock,:situacio)");
+            $query->bindValue(":quantitatTenda", 0);
+            $query->bindValue(":quantitatStock", 0);
+            $query->bindValue(":situacio", "NULL");
+            $con->consulta($query);
+            $idUbicacio = ($con->lastInsertId());
 
-                break;
-            case "Gas":
 
-                try {
-                    $con = new db();
-                    $query = $con->prepare("INSERT INTO gas (id_gas,id_producte, id_ubicacio ,nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge, capacitatMl) 
-                VALUES (:id_gas,:id_producte,:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge,:capacitatMl)");
-                    $query->bindValue(":id_gas", $producte->getId_gas());
-                    $query->bindValue(":id_producte", $producte->getId_producte());
-                    $query->bindValue(":id_ubicacio", $producte->getId_ubicacio());
-                    $query->bindValue(":nom", $producte->getNom());
-                    $query->bindValue(":marca", $producte->getMarca());
-                    $query->bindValue(":preuBase", $producte->getPreuBase());
-                    $query->bindValue(":referencia", $producte->getReferencia());
-                    $query->bindValue(":model", $producte->getModel());
-                    $query->bindValue(":descripcio", $producte->getDescripcio());
-                    $query->bindValue(":conservarFred", $producte->getConservarFred());
-                    $query->bindValue(":imatge", $producte->getImatge());
-                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
-                    $con->consulta($query);
-                    $con = null;
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
+            $query = $con->prepare("INSERT INTO producte (id_ubicacio, nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge) 
+                VALUES (:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge)");
+            $query->bindValue(":id_ubicacio", $idUbicacio);
+            $query->bindValue(":nom", $producte->getNom());
+            $query->bindValue(":marca", $producte->getMarca());
+            $query->bindValue(":preuBase", $producte->getPreuBase());
+            $query->bindValue(":referencia", $producte->getReferencia());
+            $query->bindValue(":model", $producte->getModel());
+            $query->bindValue(":descripcio", $producte->getDescripcio());
+            $query->bindValue(":conservarFred", $producte->getConservarFred());
+            $query->bindValue(":imatge", $producte->getImatge());
+            $con->consulta($query);
+            $idProducte = ($con->lastInsertId());
 
-                break;
-            case "Semisolid":
 
-                try {
-                    $con = new db();
-                    $query = $con->prepare("INSERT INTO semisolid (id_semisolid,id_producte, id_ubicacio ,nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge, capacitatMg) 
-                VALUES (:id_semisolid,:id_producte,:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge,:capacitatMg)");
-                    $query->bindValue(":id_semisolid", $producte->getId_liquid());
-                    $query->bindValue(":id_producte", $producte->getId_producte());
-                    $query->bindValue(":id_ubicacio", $producte->getId_ubicacio());
-                    $query->bindValue(":nom", $producte->getNom());
-                    $query->bindValue(":marca", $producte->getMarca());
-                    $query->bindValue(":preuBase", $producte->getPreuBase());
-                    $query->bindValue(":referencia", $producte->getReferencia());
-                    $query->bindValue(":model", $producte->getModel());
-                    $query->bindValue(":descripcio", $producte->getDescripcio());
-                    $query->bindValue(":conservarFred", $producte->getConservarFred());
-                    $query->bindValue(":imatge", $producte->getImatge());
-                    $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
-                    $con->consulta($query);
-                    $con = null;
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
+            switch ($tipusProdcute) {
+                case "Solid":
 
-                break;
-            case "Altres":
-
-                try {
-                    $con = new db();
-                    $query = $con->prepare("INSERT INTO altres (id_liquid,id_producte, id_ubicacio ,nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge, unitats) 
-                VALUES (:id_altres,:id_producte,:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge,:unitats)");
-                    $query->bindValue(":id_altres", $producte->getId_altres());
-                    $query->bindValue(":id_producte", $producte->getId_producte());
-                    $query->bindValue(":id_ubicacio", $producte->getId_ubicacio());
-                    $query->bindValue(":nom", $producte->getNom());
-                    $query->bindValue(":marca", $producte->getMarca());
-                    $query->bindValue(":preuBase", $producte->getPreuBase());
-                    $query->bindValue(":referencia", $producte->getReferencia());
-                    $query->bindValue(":model", $producte->getModel());
-                    $query->bindValue(":descripcio", $producte->getDescripcio());
-                    $query->bindValue(":conservarFred", $producte->getConservarFred());
-                    $query->bindValue(":imatge", $producte->getImatge());
-                    $query->bindValue(":unitats", $producte->getUnitats());
-                    $con->consulta($query);
-                    $con = null;
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
-
-                break;
-            case "Solid":
-
-                try {
-                    $con = new db();
-                    $query = $con->prepare("INSERT INTO solid (id_solid,id_producte, id_ubicacio ,nom, marca, preuBase, referencia, model, descripcio, conservarFred, imatge, capacitatMg, unitats) 
-                VALUES (:id_solid,:id_producte,:id_ubicacio,:nom,:marca,:preuBase,:referencia,:model,:descripcio,:conservarFred,:imatge,:capacitatMg,:unitats)");
-                    $query->bindValue(":id_solid", $producte->getId_solid());
-                    $query->bindValue(":id_producte", $producte->getId_producte());
-                    $query->bindValue(":id_ubicacio", $producte->getId_ubicacio());
-                    $query->bindValue(":nom", $producte->getNom());
-                    $query->bindValue(":marca", $producte->getMarca());
-                    $query->bindValue(":preuBase", $producte->getPreuBase());
-                    $query->bindValue(":referencia", $producte->getReferencia());
-                    $query->bindValue(":model", $producte->getModel());
-                    $query->bindValue(":descripcio", $producte->getDescripcio());
-                    $query->bindValue(":conservarFred", $producte->getConservarFred());
-                    $query->bindValue(":imatge", $producte->getImatge());
+                    $query = $con->prepare("INSERT INTO solid (id_producte, capacitatMg, unitats) 
+                VALUES (:id_producte,:capacitatMg,:unitats)");
+                    $query->bindValue(":id_producte", $idProducte);
                     $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
                     $query->bindValue(":unitats", $producte->getUnitats());
                     $con->consulta($query);
+
+                    break;
+                case "Semisolid":
+
+                    $query = $con->prepare("INSERT INTO semisolid (id_producte, capacitatMg) 
+                VALUES (:id_producte,:capacitatMg)");
+                    $query->bindValue(":id_producte", $idProducte);
+                    $query->bindValue(":capacitatMg", $producte->getCapacitatMg());
+                    $con->consulta($query);
+
+                    break;
+                case "Liquid":
+
+                    $query = $con->prepare("INSERT INTO liquid (id_producte, capacitatMl) 
+                VALUES (:id_producte,:capacitatMl)");
+                    $query->bindValue(":id_producte", $idProducte);
+                    $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
+                    $con->consulta($query);
+
+                    break;
+                case "Gas":
+
+                    $query = $con->prepare("INSERT INTO gas (id_producte, capacitatMl) 
+                VALUES (:id_producte,:capacitatMl)");
+                    $query->bindValue(":id_producte", $idProducte);
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
+                    $con->consulta($query);
+
+                    break;
+                case "Altres":
+
+                    $query = $con->prepare("INSERT INTO altres (id_producte, unitats) 
+                VALUES (:id_producte,:unitats)");
+                    $query->bindValue(":id_producte", $idProducte);
+                    $query->bindValue(":unitats", $producte->getUnitats());
+                    $con->consulta($query);
+
+                    break;
+                default:
                     $con = null;
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
-
-                break;
-
-            default:
-                break;
+                    break;
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
- }
+        $con = null;
+    }
 
-        
     function updateProducte($producte, $type) {
         try {
             $con = new db();
@@ -661,11 +609,13 @@ class EmpresaDAO {
                     break;
 
                 default:
+                    $con = null;
                     break;
             }
         } catch (Exception $e) {
             die($e->getMessage());
         }
+        $con = null;
     }
 
 }
