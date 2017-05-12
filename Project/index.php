@@ -142,12 +142,6 @@ switch ($ctl) {
                 include "controller/llistaClient_ctl.php";
                 break;
         }
-    case "albaraVenta":
-        switch ($act) {
-            case "afegir":
-                include "controller/addAlbaraVenta_ctl.php";
-                break;
-        }
         break;
     case "albaraVenta":
         switch ($act) {

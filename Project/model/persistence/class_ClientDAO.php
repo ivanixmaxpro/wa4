@@ -21,8 +21,8 @@ class ClientDAO {
             $codi = $row["codi"];
             $informacio = $row["informacio"];
             $id_client = $row["id_client"];
-            $client = new Client($nom, $codi, $informacio);
-            $client->setId_client($id_client);
+            $client = new Client($id_client,$nom, $codi, $informacio);
+            
 
             array_push($clientsArray, $client);
         }
@@ -44,8 +44,8 @@ class ClientDAO {
         $codi = $result[0]["codi"];
         $informacio = $result[0]["informacio"];
         $id_client = $result[0]["id_client"];
-        $client = new Client($nom, $codi, $informacio);
-        $client->setId_client($id_client);
+        $client = new Client($id_client,$nom, $codi, $informacio);
+        
         $con->consulta($query);
         $con = null;
         return $client;

@@ -51,6 +51,10 @@ class Empresa {
         return $proveidors;
     }
 
+    /**
+     * metode per consultar els clients a la base de dades
+     * @return array de clients
+     */
     function populateClients() {
         $clientDAO = new ClientDAO();
         $clients = $clientDAO->populateClients();
@@ -132,18 +136,23 @@ class Empresa {
         return $usuari;
     }
 
+    function searchUbicacioById($id_ubicacio) {
+        $EmpresaDAO = new EmpresaDAO();
+        $ubicacio = $EmpresaDAO->searchUbicacioById($id_ubicacio);
+        return $ubicacio;
+    }
+
     function searchClientById($id_client) {
         $EmpresaDAO = new EmpresaDAO();
         $client = $EmpresaDAO->searchClientById($id_client);
         return $client;
     }
 
-
     function eliminarProducte($producte) {
         $EmpresaDAO = new EmpresaDAO();
         $EmpresaDAO->eliminarProducte($producte);
     }
-    
+
     function searchUbicacio($id_ubicacio) {
         $EmpresaDAO = new EmpresaDAO();
         $ubicacio = $EmpresaDAO->searchUbicacio($id_ubicacio);
@@ -156,9 +165,9 @@ class Empresa {
         return $producte;
     }
 
-    
-    function updateProducte($producte,$type) {
+    function updateProducte($producte, $type) {
         $EmpresaDAO = new EmpresaDAO();
-        $producte = $EmpresaDAO->updateProducte($producte,$type);
+        $producte = $EmpresaDAO->updateProducte($producte, $type);
     }
+
 }

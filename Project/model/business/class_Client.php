@@ -13,6 +13,12 @@ class Client {
         switch (func_num_args()) {
             case 0:
                 break;
+            case 3:
+                $this->setId_client(null);
+                $this->setNom(func_get_args()[0]);
+                $this->setCodi(func_get_args()[1]);
+                $this->setInformacio(func_get_args()[2]);
+                break;
             case 4:
                 $this->setId_client(func_get_args()[0]);
                 $this->setNom(func_get_args()[1]);
