@@ -2,12 +2,14 @@
     <div class="form-group">
         <label for="campClient">Client</label>
         <br/>
-        <input type="text" class="" id="campClient" name="campClient">
+        <?php
+        mostrarSelectClients($clients);
+        ?>  
     </div>
     <div class="form-group">
         <label for="campEmpresa">Empresa</label>
         <br/>
-        <input type="text" class="" id="campEmpresa" name="campEmpresa">
+        <input type="text" class="" id="campEmpresa" name="campEmpresa" value="<?php echo $empresa->getId_empresa(); ?>" readonly>
     </div>
     <div class="form-group">
         <label for="campCodi">Codi</label>
