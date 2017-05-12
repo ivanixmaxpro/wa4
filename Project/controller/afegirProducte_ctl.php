@@ -6,7 +6,7 @@
  * Time: 16:20
  */
 
-$title = "Modificar producte";
+$title = "Afegir producte";
 if(isset($_SESSION['empresa'])){
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -17,26 +17,19 @@ if(isset($_SESSION['empresa'])){
 }
 $usuariId = $_SESSION['id_usuari'];
 
-if(empty($_POST)) {
-    if (isset($_REQUEST['id'])) {
-        $producte = $empresa->searchProducteChilds($_REQUEST['id']);
-
-
-        require_once 'view/header.php';
-        require_once 'view/sidebar.php';
-        require_once 'view/mainNav.php';
-        require_once 'view/modificarProducte.php';
-        require_once 'view/footer.php';
-
-    }
-}
+require_once 'view/header.php';
+require_once 'view/sidebar.php';
+require_once 'view/mainNav.php';
+require_once 'view/afegirProducte.php';
+require_once 'view/footer.php';
 
 if(!empty($_POST)){
-    if(isset($_REQUEST['modify'])){
+    if(isset($_REQUEST['afegir'])){
         require_once 'view/header.php';
         require_once 'view/sidebar.php';
         require_once 'view/mainNav.php';
 
+        $selector = $_REQUEST['selector'];
         $nom = $_REQUEST['nom'];
         $marca = $_REQUEST['marca'];
         $preu = $_REQUEST['preu'];
@@ -50,8 +43,6 @@ if(!empty($_POST)){
         $unitats = $_REQUEST['unitatsInput'];
         $dades = true;
 
-
-        $producte = $empresa->searchProducteChilds($_REQUEST['id']);
 
         if(!isset($nom) && !is_string($nom)){
             $dades = false;
@@ -79,11 +70,11 @@ if(!empty($_POST)){
             $dades = false;
         }
 
-
         if($dades == true) {
-            switch (get_class($producte)) {
-                case 'Solid':
+            switch ($selector) {
+                case 'solid':
                     if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg) && isset($unitats)) {
+                        $producte = new Solid();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -96,13 +87,14 @@ if(!empty($_POST)){
                         $producte->setUnitats($unitats);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
+                        $empresa->afegirProducte($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;
-                case 'Semisolid':
+                case 'semi-solid':
                     if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg)) {
+                        $producte = new Semisolid();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -114,13 +106,14 @@ if(!empty($_POST)){
                         $producte->setCapacitatMg($capacitatMg);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
+                        $empresa->afegirProducte($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;
-                case 'Liquid':
+                case 'liquid':
                     if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMl)) {
+                        $producte = new Liquid();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -132,15 +125,16 @@ if(!empty($_POST)){
                         $producte->setCapacitatMl($capacitatMl);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
+                        $empresa->afegirProducte($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
                         require_once 'view/footer.php';
-                   }else{
+                    }else{
                         echo "fuck";
                     }
                     break;
-                case 'Gas':
+                case 'gas':
                     if ( isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMl)) {
+                        $producte = new Gas();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -152,13 +146,14 @@ if(!empty($_POST)){
                         $producte->setCapacitatMl($capacitatMl);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
+                        $empresa->afegirProducte($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;
-                case 'Altres':
+                case 'altres':
                     if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($unitats)) {
+                        $producte = new Altres();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
                         $producte->setPreuBase($preu);
@@ -170,7 +165,7 @@ if(!empty($_POST)){
                         $producte->setUnitats($unitats);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
+                        $empresa->afegirProducte($producte, get_class($producte));
                         echo "S'ha modificar satisfactoriament.";
                         require_once 'view/footer.php';
                     }
@@ -184,3 +179,5 @@ if(!empty($_POST)){
     }
 }
 
+
+?>

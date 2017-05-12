@@ -10,19 +10,32 @@ if (isset($_SESSION['empresa'])) {
 }
 
 if (isset($_REQUEST["submit"])) {
-    
+
+    $arrProductesDelAlbara = array();
+
+    $ss = $_POST['passarArrProductes'];
+    $campClient = $_POST['campClient'];
+    $campEmpresa = $_POST['campEmpresa'];
+    $campCodi = $_POST['campCodi'];
+    $campObservacions = $_POST['campObservacions'];
+    $campPreu = $_POST['campPreu'];
+    $campData = $_POST['campData'];
+    $campLocalitat = $_POST['campLocalitat'];
+    $arrDePosProductes = explode(',', $ss);
+
+    foreach ($arrDePosProductes as $prod) {
+        array_push($arrProductesDelAlbara, explode('-', $prod));
+    }
+
+    $albara = new AlbaraVenta();
+
+    $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+    header("Location: index.php");
 } else {
 
     $productes = $empresa->populateProductes();
-
 }
-//    $cars = array
-//  (
-//  array("Volvo",22,18),
-//  array("BMW",15,13),
-//  array("Saab",5,2),
-//  array("Land Rover",17,15)
-//  );
+
 
 $title = "Creacio d'un Albar de venta";
 
