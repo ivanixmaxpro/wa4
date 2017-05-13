@@ -101,6 +101,12 @@ class Empresa {
         return $empleat;
     }
 
+    function searchAlbaraVenta($id_albaraVenta) {
+        $EmpresaDAO = new EmpresaDAO();
+        $albaraVentaComplet = $EmpresaDAO->searchAlbaraVenta($id_albaraVenta);
+        return $albaraVentaComplet;
+    }
+
     function filtrarProductes($conservarenfred, $quantitat, $tipus) {
         $EmpresaDAO = new EmpresaDAO();
         $resultatDelFiltre = $EmpresaDAO->filterProducte($conservarenfred, $quantitat, $tipus);

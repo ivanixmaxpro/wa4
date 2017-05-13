@@ -159,7 +159,7 @@ switch ($ctl) {
                 break;
         }
         break;
-        case "albaraCompra":
+    case "albaraCompra":
         switch ($act) {
             case "afegir":
                 include "controller/addAlbaraCompra_ctl.php";
