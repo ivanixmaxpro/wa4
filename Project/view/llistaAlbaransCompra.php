@@ -1,12 +1,12 @@
 <div class="card">
     <div class="header">
-        <h4 class="title">Llista Albarans Venta</h4>
+        <h4 class="title">Llista Albarans Compra</h4>
         <p class="category">A continuació un llistat:</p>
     </div>
     <li>
-        <a href="?ctl=albaraVenta&act=afegir">
+        <a href="?ctl=albaraCompra&act=afegir">
             <i class="pe-7s-news-paper"></i>
-            <p>Afegir Albara Venta</p>
+            <p>Afegir Albara Compra</p>
         </a>
     </li>
     <?php
