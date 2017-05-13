@@ -47,7 +47,10 @@
         <!--  Checkbox, Radio & Switch Plugins -->
         <script src="view/js/bootstrap-checkbox-radio-switch.js"></script>
         <script src="view/js/custom.js"></script>
-        <script src="view/js/albaraVenta.js"></script>
+        <?php if($ctl == "albaraVenta" && $act == "afegir" ) { echo '<script src="view/js/albaraVenta.js"></script>'; }
+		?>
+	<?php if($ctl == "albaraCompra" && $act == "afegir" ) { echo '<script src="view/js/albaraCompra.js"></script>'; }
+		?>
         <script src="view/js/busquedaNom.js"></script>
         <!--  Charts Plugin -->
         <script src="view/js/chartist.min.js"></script>
