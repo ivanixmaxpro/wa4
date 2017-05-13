@@ -16,25 +16,31 @@
                 </div>
 
                 <ul class="nav">
-                    <li <?php if ($ctl == "home") {
-    echo 'class="active"';
-} ?>>
+                    <li <?php
+                    if ($ctl == "home") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=home">
                             <i class="pe-7s-graph"></i>
                             <p>Home</p>
                         </a>
                     </li>
-                    <li <?php if ($ctl == "empleat" && $act == "detall") {
-    echo 'class="active"';
-} ?>>
+                    <li <?php
+                    if ($ctl == "empleat" && $act == "detall") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=empleat&act=detall&id=<?php echo $_SESSION["id_empleat"] ?>">
                             <i class="pe-7s-user"></i>
                             <p>Empleat</p>
                         </a>
                     </li>
-                    <li <?php if ($ctl == "empleat" && $act == "llista") {
-    echo 'class="active"';
-} ?>>
+                    <li <?php
+                    if ($ctl == "empleat" && $act == "llista") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=empleat&act=llista">
                             <i class="pe-7s-id"></i>
                             <p>Llista empleats</p>
@@ -56,6 +62,12 @@
                         <a href="?ctl=albaraVenta&act=llista">
                             <i class="pe-7s-news-paper"></i>
                             <p>Llistat de Albarans Venta</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?ctl=albaraCompra&act=llista">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>Llistat de Albarans Compra</p>
                         </a>
                     </li>
                     <li>
