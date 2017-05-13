@@ -1,6 +1,6 @@
 <div class="card">
     <div class="header">
-        <h4 class="title">Llista Albarans Venta</h4>
+        <h4 class="title">Llista Albarans Compra</h4>
         <p class="category">A continuació un llistat:</p>
     </div>
     <li>
