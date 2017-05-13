@@ -4,9 +4,9 @@
         <p class="category">A continuació un llistat:</p>
     </div>
     <li>
-        <a href="?ctl=albaraVenta&act=afegir">
+        <a href="?ctl=albaraCompra&act=afegir">
             <i class="pe-7s-news-paper"></i>
-            <p>Afegir Albara Venta</p>
+            <p>Afegir Albara Compra</p>
         </a>
     </li>
     <?php
