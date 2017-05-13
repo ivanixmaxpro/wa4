@@ -88,13 +88,13 @@ class Empresa {
         $albaransVenta = $EmpresaDAO->populateAlbaransVenta();
         return $albaransVenta;
     }
-    
+
     function populateAlbaransCompra() {
         $EmpresaDAO = new EmpresaDAO();
         $albaransCompra = $EmpresaDAO->populateAlbaransCompra();
         return $albaransCompra;
     }
-    
+
     function searchProducte($id_producte) {
         $EmpresaDAO = new EmpresaDAO();
         $producte = $EmpresaDAO->searchProducte($id_producte);

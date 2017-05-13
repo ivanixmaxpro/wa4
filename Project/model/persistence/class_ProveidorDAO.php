@@ -33,8 +33,7 @@ class ProveidorDAO {
             $nom = $row["nom"];
             $codi = $row["codi"];
             $id_proveidor = $row["id_proveidor"];
-            $proveidor = new Proveidor($nom, $codi);
-            $proveidor->setId_proveidor($id_proveidor);
+            $proveidor = new Proveidor($id_proveidor, $nom, $codi);
 
             array_push($proveidorsArray, $proveidor);
         }
@@ -82,6 +81,7 @@ class ProveidorDAO {
         $con->consulta($query);
         $con = null;
     }
+
     /**
      * metode per eliminar un proveidor determinat a la base de dades
      * @param type $id
