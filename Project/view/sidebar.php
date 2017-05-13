@@ -59,9 +59,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="icons.html">
+                        <a href="?ctl=client&act=llista">
                             <i class="pe-7s-science"></i>
-                            <p>Icons</p>
+                            <p>Llistat clients</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?ctl=proveidor&act=llista">
+                            <i class="pe-7s-science"></i>
+                            <p>Llistat proveidors</p>
                         </a>
                     </li>
                     <li>
