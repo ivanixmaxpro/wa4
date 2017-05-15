@@ -34,9 +34,9 @@ function tablaTotProductes($productes) {
                     echo "<td>" . $row->getMarca() . "</td>";
                     echo "<td>" . $row->getModel() . "</td>";
                     echo "<td>" . $row->getpreuBase() . "</td>";
-                    if($row->getConservarFred() == 0){
+                    if ($row->getConservarFred() == 0) {
                         echo "<td>No</td>";
-                    }else{
+                    } else {
                         echo "<td>Si</td>";
                     }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
@@ -83,6 +83,56 @@ function tablaTotAlbaransVenta($albaransVenta, $empresa) {
                     echo "<td>" . $row->getCodi() . "</td>";
                     echo "<td>" . $row->getData() . "</td>";
                     echo '<td>' . '<a href="?ctl=albaraVenta&act=detall&id=' . $row->getId_albara() . '">' . 'Veure' . '</a>' . '</td>';
+                    ?>  
+                    <?php
+                    echo "</tr>";
+                }
+                ?> 
+
+            </tbody> 
+        </table> 
+    </div> 
+    <?php
+    /* <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
+      <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
+     */
+}
+?>
+<?php
+
+function tablaTotAlbaransCompra($albaransCompra, $empresa) {
+    ?> 
+    <div class="content table-responsive table-full-width"> 
+        <table class="table table-hover table-striped"> 
+            <thead> 
+                <tr><th>ID</th> 
+                    <th>Proveidor</th> 
+                    <th>Empresa</th> 
+                    <th>Codi</th> 
+                    <th>Observacions</th>
+                    <th>Preu</th>
+                    <th>Data</th>
+                    <th>Localitat</th>
+
+                    <th>Detall</th>
+                </tr>
+            </thead> 
+            <tbody> 
+
+                <?php
+                foreach ($albaransCompra as $row) {
+                    $proveidor = $empresa->searchProveidorById($row->getId_proveidor());
+
+                    echo '<tr>';
+                    echo "<td>" . $row->getId_albara() . "</td>";
+                    echo "<td>" . $proveidor->getNom() . "</td>";
+                    echo "<td>" . $row->getId_empresa() . "</td>";
+                    echo "<td>" . $row->getCodi() . "</td>";
+                    echo "<td>" . $row->getObservacions() . "</td>";
+                    echo "<td>" . $row->getPreu() . "</td>";
+                    echo "<td>" . $row->getData() . "</td>";
+                    echo "<td>" . $row->getLocalitat() . "</td>";
+                    echo '<td>' . '<a href="?ctl=albaraCompra&act=detall&id=' . $row->getId_albara() . '">' . 'Veure' . '</a>' . '</td>';
                     ?>  
                     <?php
                     echo "</tr>";

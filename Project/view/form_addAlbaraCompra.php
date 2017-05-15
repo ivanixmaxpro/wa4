@@ -1,9 +1,9 @@
-<form role="form" method="post" action="?ctl=albaraVenta&act=afegir" >
+<form role="form" method="post" action="?ctl=albaraCompra&act=afegir" >
     <div class="form-group">
-        <label for="campClient">Client</label>
+        <label for="campClient">Proveidor</label>
         <br/>
         <?php
-        mostrarSelectClients($clients);
+        mostrarSelectProveidors($proveidors);
         ?>  
     </div>
     <div class="form-group">
@@ -38,11 +38,9 @@
         mostrarSelectProductes($productes);
         ?>      
         <label for="campQuantitatDeProductes">Quantitat que vol afegir a l'albara?</label>
-        <input type="number" min="0" max="99" step="1" value="0" class="" id="campQuantitatDeProductes">
+        <input type="number" min="0" max="9999" step="1" value="0" class="" id="campQuantitatDeProductes">
         <button type="button" id="botoAfegirQuantProducte" name="submit" value="Afegir" class="btn btn-danger"></button>
         <input name="idUbicacio" id="idUbicacio" type="hidden"/>
-        <input name="quantitatTenda" id="quantitatTenda" type="hidden"/>
-        <input name="quantitatStock" id="quantitatStock" type="hidden"/>
     </div>
 
     <table id="taulaProductes" class="table table-bordered">
