@@ -14,7 +14,7 @@ class AlbaraCompra {
     private $localitat;
 
     function __construct() {
-		switch (func_num_args()) {
+        switch (func_num_args()) {
             case 0:
                 break;
             case 8:
@@ -93,8 +93,8 @@ class AlbaraCompra {
     function setLocalitat($localitat) {
         $this->localitat = $localitat;
     }
-	
-	function insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara) {
+
+    function insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara) {
         $albaraVentaDAO = new AlbaraCompraDAO();
         $albaraVentaDAO->insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
     }
