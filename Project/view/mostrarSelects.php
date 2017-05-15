@@ -64,6 +64,13 @@ function mostrarSelectProveidors($proveidors) {
     echo "</select>";
 }
 
+function mostrarSelectUsuaris($usuaris) {
 
+    echo '<select name="usuari" id="usuari">';
+    echo "<option value='-' selected> - </option>";
+    foreach ($usuaris as $usuari) {
 
-
+        echo '<option value="' . $usuari->getId_usuari() . '">' . $usuari->getUsuari() . '</option>';
+    }
+    echo '</select>';
+}

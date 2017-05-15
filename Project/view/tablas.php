@@ -148,3 +148,43 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
      */
 }
 ?>
+
+<?php
+
+function tablaTotControlUsuaris($control, $empresa) {
+    ?> 
+    <div class="content table-responsive table-full-width"> 
+        <table class="table table-hover table-striped"> 
+            <thead> 
+                <tr><th>ID</th> 
+                    <th>Usuari</th> 
+                    <th>Fitxat</th> 
+                    <th>Data</th>
+                </tr>
+            </thead> 
+            <tbody> 
+
+                <?php
+                foreach ($control as $row) {
+                    $usuari = $empresa->searchUsuariById($row->getId_usuari());
+
+                    echo '<tr>';
+                    echo "<td>" . $row->getId_control() . "</td>";
+                    echo "<td>" . $usuari->getUsuari() . "</td>";
+                    echo "<td>" . $row->getFitxat() . "</td>";
+                    echo "<td>" . $row->getData() . "</td>";
+                    ?>  
+                    <?php
+                    echo "</tr>";
+                }
+                ?> 
+
+            </tbody> 
+        </table> 
+    </div> 
+    <?php
+    /* <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
+      <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
+     */
+}
+?>

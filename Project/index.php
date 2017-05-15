@@ -151,6 +151,14 @@ switch ($ctl) {
                 break;
         }
         break;
+    case "control":
+        switch ($act) {
+           
+            case "llista":
+                include "controller/llistaControl_ctl.php";
+                break;
+        }
+        break;
     case "albaraVenta":
         switch ($act) {
             case "afegir":

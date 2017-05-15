@@ -54,8 +54,8 @@ class ProveidorDAO {
         $codi = $result[0]["codi"];
 
         $id_proveidor = $result[0]["id_proveidor"];
-        $proveidor = new Proveidor($nom, $codi);
-        $proveidor->setId_proveidor($id_proveidor);
+        $proveidor = new Proveidor($id_proveidor,$nom, $codi);
+        
 
 
         $con->consulta($query);
