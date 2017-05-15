@@ -27,13 +27,15 @@ if (isset($_REQUEST['Submit'])) {
         $_SESSION["usuari"] = "";
         session_unset("usuari");
         session_destroy();
+        require_once 'view/header.php';
         $missatge = "Error Login";
         require_once 'view/error.php';
         require_once 'view/footer.php';
     }
 } else {
+    require_once 'view/header.php';
     require_once 'view/login.php';
-    
+    require_once 'view/footer.php';
 }
 // para insertar un password a la base de datos hace falta usar la siguiente funcion:
 //
@@ -46,6 +48,4 @@ if (isset($_REQUEST['Submit'])) {
 // link info:
 //https://es.stackoverflow.com/questions/2994/de-que-manera-se-puede-encriptar-una-contrase%C3%B1a-para-una-base-de-datos
 //
-
-
 ?>

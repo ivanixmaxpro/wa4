@@ -33,9 +33,7 @@ class ProveidorDAO {
             $nom = $row["nom"];
             $codi = $row["codi"];
             $id_proveidor = $row["id_proveidor"];
-            $proveidor = new Proveidor($nom, $codi);
-            $proveidor->setId_proveidor($id_proveidor);
-
+            $proveidor = new Proveidor($id_proveidor, $nom, $codi);
             array_push($proveidorsArray, $proveidor);
         }
         $con = null;
