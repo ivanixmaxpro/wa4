@@ -132,6 +132,25 @@ class EmpresaDAO {
         return $albaransCompraArray;
     }
 
+    public function populateControl() {
+
+        $arrControl = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM control;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_control = $row["id_control"];
+            $id_usuari = $row["id_usuari"];
+            $fitxat = $row["fitxat"];
+            $data = $row["data"];
+            $control = new Control($id_control, $id_usuari, $fitxat, $data);
+            array_push($arrControl, $control);
+        }
+        $con = null;
+        return $arrControl;
+    }
+
     public function populateUsuariDAO() {
         $usuaris = array();
         $con = new db();
@@ -490,6 +509,22 @@ class EmpresaDAO {
         $con = null;
         return $client;
     }
+    
+    function searchUsuariById($id_usuari) {
+        
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM usuari WHERE id_usuari = :id_usuari;");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $usuari = $row["usuari"];
+            $client = new Usuari($usuari);
+        }
+        $con = null;
+        return $client;
+    }
 
     function searchProveidorById($id_proveidor) {
         $con = new db();
@@ -786,6 +821,30 @@ class EmpresaDAO {
             die($e->getMessage());
         }
         $con = null;
+    }
+    
+    public function searchPermissos($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_permis WHERE id_usuari = :id_usuari");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $permisos = array();
+
+        foreach ($result as $row) {
+            $id_permis = $row['id_permis'];
+            $id_usuari = $row['id_usuari'];
+            $id_funcionalitat = $row['id_funcionalitat'];
+            $visualitzar = $row['visualitzar'];
+            $crear = $row['crear'];
+            $editar = $row['editar'];
+            $eliminar = $row['eliminar'];
+            $nom = $row['nom'];
+ 
+            $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar,$crear,$editar,$eliminar,$nom);
+            array_push($permisos, $permis);
+        }
+        $con = null;
+        return $permisos;
     }
 
     function updateEmpleat($empleat) {

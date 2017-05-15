@@ -83,6 +83,12 @@
                             <p>Missatges</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="?ctl=control&act=llista">
+                            <i class="pe-7s-bell"></i>
+                            <p>Control</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

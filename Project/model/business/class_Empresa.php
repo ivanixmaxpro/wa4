@@ -88,13 +88,26 @@ class Empresa {
         $albaransVenta = $EmpresaDAO->populateAlbaransVenta();
         return $albaransVenta;
     }
-    
+
     function populateAlbaransCompra() {
         $EmpresaDAO = new EmpresaDAO();
         $albaransCompra = $EmpresaDAO->populateAlbaransCompra();
         return $albaransCompra;
     }
     
+    function populateUsuaris() {
+        $EmpresaDAO = new EmpresaDAO();
+        $usuaris = $EmpresaDAO->populateUsuariDAO();
+        return $usuaris;
+    }
+    
+    function populateControl() {
+        $EmpresaDAO = new EmpresaDAO();
+        $control = $EmpresaDAO->populateControl();
+        return $control;
+    }
+    
+
     function searchProducte($id_producte) {
         $EmpresaDAO = new EmpresaDAO();
         $producte = $EmpresaDAO->searchProducte($id_producte);
@@ -129,6 +142,12 @@ class Empresa {
         $EmpresaDAO = new EmpresaDAO();
         $resultatDelFiltre = $EmpresaDAO->filterProducte($conservarenfred, $quantitat, $tipus);
         return $resultatDelFiltre;
+    }
+    
+    function filtrarControlUsuari($id_usuari) {
+        $EmpresaDAO = new ControlDAO();
+        $usuari = $EmpresaDAO->filtrarControlUsuari($id_usuari);
+        return $usuari;
     }
 
     function searchLastControl($id_usuari) {
@@ -165,6 +184,12 @@ class Empresa {
         $ubicacio = $EmpresaDAO->searchUbicacioById($id_ubicacio);
         return $ubicacio;
     }
+    
+    function searchUsuariById($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $ubicacio = $EmpresaDAO->searchUsuariById($id_usuari);
+        return $ubicacio;
+    }
 
     function searchClientById($id_client) {
         $EmpresaDAO = new EmpresaDAO();
@@ -196,6 +221,12 @@ class Empresa {
     function updateEmpleat($empleat) {
         $EmpresaDAO = new EmpresaDAO();
         $EmpresaDAO->updateEmpleat($empleat);
+    }
+
+    function searchPermissos($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $permisos = $EmpresaDAO->searchPermissos($id_usuari);
+        return $permisos;
     }
 
 }

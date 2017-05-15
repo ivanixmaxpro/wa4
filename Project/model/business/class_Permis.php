@@ -6,7 +6,6 @@ class Permis extends Funcionalitat {
 
     private $id_permis;
     private $id_usuari;
-    private $id_funcionalitat;
     private $visualitzar;
     private $crear;
     private $editar;
@@ -17,14 +16,15 @@ class Permis extends Funcionalitat {
         switch (func_num_args()) {
             case 0:
                 break;
-            case 7:
-                $this->setId_usuari(func_get_args()[0]);
-                parent::setId_funcionalita(func_get_args()[1]);
-                $this->setVisualitzar(func_get_args()[2]);
-                $this->setCrear(func_get_args()[3]);
-                $this->setEditar(func_get_args()[4]);
-                $this->setEliminar(func_get_args()[5]);
-                parent::setNom(func_get_args()[6]);
+            case 8:
+                $this->setId_permis(func_get_args()[0]);
+                $this->setId_usuari(func_get_args()[1]);
+                parent::setId_funcionalitat(func_get_args()[2]);
+                $this->setVisualitzar(func_get_args()[3]);
+                $this->setCrear(func_get_args()[4]);
+                $this->setEditar(func_get_args()[5]);
+                $this->setEliminar(func_get_args()[6]);
+                parent::setNom(func_get_args()[7]);
                 break;
             case 5:
                 $this->setVisualitzar(func_get_args()[0]);
@@ -82,6 +82,11 @@ class Permis extends Funcionalitat {
 
     function setEliminar($eliminar) {
         $this->eliminar = $eliminar;
+    }
+    
+    function updatePermis (){
+        $PermisDAO = new PermisDAO();
+        $PermisDAO->updatePermis($this);
     }
 
 }
