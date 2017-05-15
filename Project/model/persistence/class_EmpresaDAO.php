@@ -796,6 +796,30 @@ class EmpresaDAO {
         }
         $con = null;
     }
+    
+    public function searchPermissos($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_permis WHERE id_usuari = :id_usuari");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $permisos = array();
+
+        foreach ($result as $row) {
+            $id_permis = $row['id_permis'];
+            $id_usuari = $row['id_usuari'];
+            $id_funcionalitat = $row['id_funcionalitat'];
+            $visualitzar = $row['visualitzar'];
+            $crear = $row['crear'];
+            $editar = $row['editar'];
+            $eliminar = $row['eliminar'];
+            $nom = $row['nom'];
+ 
+            $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar,$crear,$editar,$eliminar,$nom);
+            array_push($permisos, $permis);
+        }
+        $con = null;
+        return $permisos;
+    }
 
 }
 
