@@ -59,17 +59,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="?ctl=albaraVenta&act=llista">
+                        <a href="?ctl=albara&act=llista">
                             <i class="pe-7s-news-paper"></i>
-                            <p>Llistat de Albarans Venta</p>
+                            <p>Llistat de Albarans</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="?ctl=albaraCompra&act=llista">
-                            <i class="pe-7s-news-paper"></i>
-                            <p>Llistat de Albarans Compra</p>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="?ctl=client&act=llista">
                             <i class="pe-7s-science"></i>
