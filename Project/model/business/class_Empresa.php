@@ -88,7 +88,7 @@ class Empresa {
         $albaransVenta = $EmpresaDAO->populateAlbaransVenta();
         return $albaransVenta;
     }
-    
+
     function populateAlbaransCompra() {
         $EmpresaDAO = new EmpresaDAO();
         $albaransCompra = $EmpresaDAO->populateAlbaransCompra();
@@ -107,6 +107,7 @@ class Empresa {
         return $control;
     }
     
+
     function searchProducte($id_producte) {
         $EmpresaDAO = new EmpresaDAO();
         $producte = $EmpresaDAO->searchProducte($id_producte);
@@ -215,7 +216,17 @@ class Empresa {
 
     function updateProducte($producte, $type) {
         $EmpresaDAO = new EmpresaDAO();
-        $producte = $EmpresaDAO->updateProducte($producte, $type);
+        $EmpresaDAO->updateProducte($producte, $type);
+    }
+    function updateEmpleat($empleat) {
+        $EmpresaDAO = new EmpresaDAO();
+        $EmpresaDAO->updateEmpleat($empleat);
+    }
+
+    function searchPermissos($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $permisos = $EmpresaDAO->searchPermissos($id_usuari);
+        return $permisos;
     }
 
 }

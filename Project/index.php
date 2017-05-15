@@ -55,6 +55,12 @@ switch ($ctl) {
             case "detall":
                 include "controller/detallEmpleat_ctl.php";
                 break;
+            case "eliminar":
+                include "controller/eliminarEmpleat_ctl.php";
+                break;
+            case "modificar":
+                include "controller/modificarEmpleat_ctl.php";
+                break;
             case "llista":
                 include "controller/llistaEmpleats_ctl.php";
                 break;
@@ -145,7 +151,7 @@ switch ($ctl) {
         break;
     case "albara":
         switch ($act) {
-           
+
             case "llista":
                 include "controller/llistaAlbarans_ctl.php";
                 break;
@@ -188,6 +194,15 @@ switch ($ctl) {
                 break;
             case "llista":
                 include "controller/llistaAlbaransCompra_ctl.php";
+                break;
+        }
+        break;
+
+
+    case "permis":
+        switch ($act) {
+            case "modificar":
+                include "controller/modificarPermissos_ctl.php";
                 break;
         }
         break;
