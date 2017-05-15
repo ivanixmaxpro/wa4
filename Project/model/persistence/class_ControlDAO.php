@@ -19,6 +19,7 @@ class ControlDAO {
             die($e->getMessage());
         }
     }
+   
 
     public function filtrarControlUsuari($id_usuari) {
         $con = new db();
