@@ -148,3 +148,16 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
      */
 }
 ?>
+
+<?php 
+  function createSelectUsuaris($usuaris) {
+
+        $select = '<select name="usuaris" id="usuari">';
+        foreach ($usuaris as $usuari) {
+
+            $select = $select . '<option value="' . $usuari->getId_usuari() . '">' . $usuari->getUsuari() . '</option>';
+        }
+        $select = $select . '</select>';
+        return $select;
+    }
+?>
