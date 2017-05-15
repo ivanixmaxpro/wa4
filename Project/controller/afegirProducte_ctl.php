@@ -17,12 +17,15 @@ if(isset($_SESSION['empresa'])){
 }
 $usuariId = $_SESSION['id_usuari'];
 
-require_once 'view/header.php';
-require_once 'view/sidebar.php';
-require_once 'view/mainNav.php';
-require_once 'view/afegirProducte.php';
-require_once 'view/footer.php';
+if(empty($_POST)){
 
+    require_once 'view/header.php';
+    require_once 'view/sidebar.php';
+    require_once 'view/mainNav.php';
+    require_once 'view/afegirProducte.php';
+    require_once 'view/footer.php';
+
+}
 if(!empty($_POST)){
     if(isset($_REQUEST['afegir'])){
         require_once 'view/header.php';
@@ -88,7 +91,9 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha Afegit satisfactoriament.";
+                        $missatge ="Sha afegit satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;
@@ -107,7 +112,9 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha afegit satisfactoriament.";
+                        $missatge ="Sha afegit satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;
@@ -126,7 +133,9 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha afegit satisfactoriament.";
+                        $missatge ="Sha afegit satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }else{
                         echo "fuck";
@@ -147,7 +156,9 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha afegit satisfactoriament.";
+                        $missatge ="Sha afegit satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;
@@ -166,7 +177,9 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha afegit satisfactoriament.";
+                        $missatge ="Sha afegit satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;

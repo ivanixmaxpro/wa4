@@ -54,7 +54,7 @@
                     </li>
                     <li>
                         <a href="?ctl=producte&act=llista">
-                            <i class="pe-7s-news-paper"></i>
+                            <i class="pe-7s-note2"></i>
                             <p>Llistat de productes</p>
                         </a>
                     </li>
@@ -67,19 +67,19 @@
 
                     <li>
                         <a href="?ctl=client&act=llista">
-                            <i class="pe-7s-science"></i>
+                            <i class="pe-7s-users"></i>
                             <p>Llistat clients</p>
                         </a>
                     </li>
                     <li>
                         <a href="?ctl=proveidor&act=llista">
-                            <i class="pe-7s-science"></i>
+                            <i class="pe-7s-plugin"></i>
                             <p>Llistat proveidors</p>
                         </a>
                     </li>
                     <li>
                         <a href="?ctl=missatge&act=llistaMissatges">
-                            <i class="pe-7s-bell"></i>
+                            <i class="pe-7s-mail"></i>
                             <p>Missatges</p>
                         </a>
                     </li>
