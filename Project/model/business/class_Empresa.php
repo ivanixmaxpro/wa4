@@ -196,8 +196,8 @@ class Empresa {
 
     function searchPermissos($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
-        $client = $EmpresaDAO->searchPermissos($id_usuari);
-        return $client;
+        $permisos = $EmpresaDAO->searchPermissos($id_usuari);
+        return $permisos;
     }
 
 }
