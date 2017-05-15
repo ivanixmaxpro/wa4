@@ -29,3 +29,41 @@ function mostrarSelectProductes($productes) {
     }
     echo "</select>";
 }
+
+function mostrarSelectClients($clients) {
+
+    echo "<select id='campClient' name='campClient'>";
+
+
+    echo "<option value='-' selected> - </option>";
+
+    foreach ($clients as $client) {
+
+        $id = $client->getId_client();
+        $nom = $client->getNom();
+
+        echo "<option value='" . $id . "'>" . $nom . "</option>";
+    }
+    echo "</select>";
+}
+
+function mostrarSelectProveidors($proveidors) {
+
+    echo "<select id='campProveidor' name='campProveidor'>";
+
+
+    echo "<option value='-' selected> - </option>";
+
+    foreach ($proveidors as $proveidor) {
+
+        $id = $proveidor->getId_proveidor();
+        $nom = $proveidor->getNom();
+
+        echo "<option value='" . $id . "'>" . $nom . "</option>";
+    }
+    echo "</select>";
+}
+
+
+
+

@@ -10,12 +10,18 @@ class DetallAlbaraCompra {
     private $quantitat;
     private $preu;
 
-    function __construct($id_albara, $id_producte, $quantitat, $preu) {
-        $this->setId_detalls_albara(null);
-        $this->setId_albara($id_albara);
-        $this->setId_producte($id_producte);
-        $this->setQuantitat($quantitat);
-        $this->setPreu($preu);
+    function __construct() {
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 5:
+                $this->setId_detalls_albara(func_get_args()[0]);
+                $this->setId_albara(func_get_args()[1]);
+                $this->setId_producte(func_get_args()[2]);
+                $this->setQuantitat(func_get_args()[3]);
+                $this->setPreu(func_get_args()[4]);
+                break;
+        }
     }
 
     function getId_detalls_albara() {

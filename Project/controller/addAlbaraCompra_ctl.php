@@ -14,7 +14,7 @@ if (isset($_REQUEST["submit"])) {
     $arrProductesDelAlbara = array();
 
     $ss = $_POST['passarArrProductes'];
-    $campClient = $_POST['campClient'];
+    $campProveidor = $_POST['campProveidor'];
     $campEmpresa = $_POST['campEmpresa'];
     $campCodi = $_POST['campCodi'];
     $campObservacions = $_POST['campObservacions'];
@@ -27,22 +27,22 @@ if (isset($_REQUEST["submit"])) {
         array_push($arrProductesDelAlbara, explode('-', $prod));
     }
 
-    $albara = new AlbaraVenta();
+    $albara = new AlbaraCompra();
 
-    $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+    $albara->insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
     header("Location: index.php");
 } else {
 
     $productes = $empresa->populateProductes();
-    $clients = $empresa->populateClients();
+    $proveidors = $empresa->populateProveidors();
 }
 
 
-$title = "Creacio d'un Albar de venta";
+$title = "Creacio d'un Albar de compra";
 
 include 'view/mostrarSelects.php';
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
-require_once 'view/form_addAlbaraVenta.php';
+require_once 'view/form_addAlbaraCompra.php';
 require_once 'view/footer.php';

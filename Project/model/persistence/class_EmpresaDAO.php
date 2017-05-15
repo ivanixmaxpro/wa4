@@ -110,6 +110,28 @@ class EmpresaDAO {
         return $albaransVentaArray;
     }
 
+    function populateAlbaransCompra() {
+        $albaransCompraArray = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM albara_compra;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_proveidor = $row["id_proveidor"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preu = $row["preu"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $albaraCompra = new AlbaraCompra($id_albara, $id_proveidor, $id_empresa, $codi, $observacions, $preu, $data, $localitat);
+            array_push($albaransCompraArray, $albaraCompra);
+        }
+        $con = null;
+        return $albaransCompraArray;
+    }
+
     public function populateUsuariDAO() {
         $usuaris = array();
         $con = new db();
@@ -156,6 +178,94 @@ class EmpresaDAO {
         }
         $con = null;
         return $empleat;
+    }
+
+    public function searchAlbaraVenta($id_albaraVenta) {
+        $con = new db();
+        $albaraTrobatIGuardat = false;
+        $arrInfoAlbaraIDetalls = array();
+        $arrAlbaransVenta = array();
+        $arrDetallsAlbaransVenta = array();
+
+        $query = $con->prepare("SELECT *, albara_venta.preu as preuAlbaraTotal FROM albara_venta INNER JOIN detalls_albara_venta ON detalls_albara_venta.id_albara = albara_venta.id_albara WHERE detalls_albara_venta.id_albara = :id_albaraVenta;");
+        $query->bindValue(":id_albaraVenta", $id_albaraVenta);
+
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_client = $row["id_client"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preuAlbaraTotal = $row["preuAlbaraTotal"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $id_detalls_albara = $row["id_detalls_albara"];
+            $id_producte = $row["id_producte"];
+            $quanitat = $row["quantitat"];
+            $preuDetall = $row["preu"];
+
+            $albaraVenta = new AlbaraVenta($id_albara, $id_client, $id_empresa, $codi, $observacions, $preuAlbaraTotal, $data, $localitat);
+
+            if (!$albaraTrobatIGuardat) {
+                array_push($arrAlbaransVenta, $albaraVenta);
+                $albaraTrobatIGuardat = true;
+            }
+
+            $detallAlbaraVenta = new DetallAlbaraVenta($id_detalls_albara, $id_albara, $id_producte, $quanitat, $preuDetall);
+            array_push($arrDetallsAlbaransVenta, $detallAlbaraVenta);
+        }
+        $con = null;
+
+        $arrInfoAlbaraIDetalls[0] = $arrAlbaransVenta;
+        $arrInfoAlbaraIDetalls[1] = $arrDetallsAlbaransVenta;
+
+        return $arrInfoAlbaraIDetalls;
+    }
+
+    public function searchAlbaraCompra($id_albaraCompra) {
+        $con = new db();
+        $albaraTrobatIGuardat = false;
+        $arrInfoAlbaraIDetalls = array();
+        $arrAlbaransCompra = array();
+        $arrDetallsAlbaransCompra = array();
+
+        $query = $con->prepare("SELECT *, albara_compra.preu as preuAlbaraTotal FROM albara_compra INNER JOIN detalls_albara_compra ON detalls_albara_compra.id_albara = albara_compra.id_albara WHERE detalls_albara_compra.id_albara = :id_albaraCompra;");
+        $query->bindValue(":id_albaraCompra", $id_albaraCompra);
+
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_proveidor = $row["id_proveidor"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preuAlbaraTotal = $row["preuAlbaraTotal"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $id_detalls_albara = $row["id_detalls_albara"];
+            $id_producte = $row["id_producte"];
+            $quanitat = $row["quantitat"];
+            $preuDetall = $row["preu"];
+
+            $albaraCompra = new AlbaraCompra($id_albara, $id_proveidor, $id_empresa, $codi, $observacions, $preuAlbaraTotal, $data, $localitat);
+
+            if (!$albaraTrobatIGuardat) {
+                array_push($arrAlbaransCompra, $albaraCompra);
+                $albaraTrobatIGuardat = true;
+            }
+
+            $detallAlbaraCompra = new DetallAlbaraCompra($id_detalls_albara, $id_albara, $id_producte, $quanitat, $preuDetall);
+            array_push($arrDetallsAlbaransCompra, $detallAlbaraCompra);
+        }
+        $con = null;
+
+        $arrInfoAlbaraIDetalls[0] = $arrAlbaransCompra;
+        $arrInfoAlbaraIDetalls[1] = $arrDetallsAlbaransCompra;
+
+        return $arrInfoAlbaraIDetalls;
     }
 
     public function searchProducte($id_producte) {
@@ -327,7 +437,7 @@ class EmpresaDAO {
         $result = $con->consultar($query);
 
         foreach ($result as $row) {
-            $id_ubicacio = $row["id_client"];
+            $id_ubicacio = $row["id_ubicacio"];
             $quantitatTenda = $row["quantitatTenda"];
             $quantitatStock = $row["quantitatStock"];
             $situacio = $row["situacio"];
@@ -353,6 +463,23 @@ class EmpresaDAO {
         }
         $con = null;
         return $client;
+    }
+
+    function searchProveidorById($id_proveidor) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM proveidor WHERE id_proveidor = :id_proveidor;");
+        $query->bindValue(":id_proveidor", $id_proveidor);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_client = $row["id_proveidor"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $proveidor = new Proveidor($id_proveidor, $nom, $codi);
+        }
+        $con = null;
+        return $proveidor;
     }
 
     public function populateClients() {

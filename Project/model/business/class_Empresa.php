@@ -88,17 +88,41 @@ class Empresa {
         $albaransVenta = $EmpresaDAO->populateAlbaransVenta();
         return $albaransVenta;
     }
-
+    
+    function populateAlbaransCompra() {
+        $EmpresaDAO = new EmpresaDAO();
+        $albaransCompra = $EmpresaDAO->populateAlbaransCompra();
+        return $albaransCompra;
+    }
+    
     function searchProducte($id_producte) {
         $EmpresaDAO = new EmpresaDAO();
         $producte = $EmpresaDAO->searchProducte($id_producte);
         return $producte;
     }
 
+    function searchProveidorById($id_proveidor) {
+        $EmpresaDAO = new EmpresaDAO();
+        $proveidor = $EmpresaDAO->searchProveidorById($id_proveidor);
+        return $proveidor;
+    }
+
     function searchEmpleat($id_empleat) {
         $EmpresaDAO = new EmpresaDAO();
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
         return $empleat;
+    }
+
+    function searchAlbaraVenta($id_albaraVenta) {
+        $EmpresaDAO = new EmpresaDAO();
+        $albaraVentaComplet = $EmpresaDAO->searchAlbaraVenta($id_albaraVenta);
+        return $albaraVentaComplet;
+    }
+
+    function searchAlbaraCompra($id_albaraCompra) {
+        $EmpresaDAO = new EmpresaDAO();
+        $albaraCompraComplet = $EmpresaDAO->searchAlbaraCompra($id_albaraCompra);
+        return $albaraCompraComplet;
     }
 
     function filtrarProductes($conservarenfred, $quantitat, $tipus) {

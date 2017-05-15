@@ -20,6 +20,7 @@ $usuariId = $_SESSION['id_usuari'];
 
 if(isset($_REQUEST['id'])){
     $producte = $empresa->searchProducteChilds($_REQUEST['id']);
+    $ubicacio = $empresa->searchUbicacioById($producte->getId_ubicacio());
 }
 
 require_once 'view/header.php';

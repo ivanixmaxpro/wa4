@@ -88,7 +88,7 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        echo "S'ha Afegit satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;
@@ -107,7 +107,7 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        echo "S'ha afegit satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;
@@ -126,7 +126,7 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        echo "S'ha afegit satisfactoriament.";
                         require_once 'view/footer.php';
                     }else{
                         echo "fuck";
@@ -147,7 +147,7 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        echo "S'ha afegit satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;
@@ -166,7 +166,7 @@ if(!empty($_POST)){
 
 
                         $empresa->afegirProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        echo "S'ha afegit satisfactoriament.";
                         require_once 'view/footer.php';
                     }
                     break;

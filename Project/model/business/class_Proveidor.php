@@ -8,10 +8,16 @@ class Proveidor {
     private $nom;
     private $codi;
 
-    function __construct($nom, $codi) {
-        $this->setId_proveidor(null);
-        $this->setNom($nom);
-        $this->setCodi($codi);
+    function __construct() {
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 3:
+                $this->setId_proveidor(func_get_args()[0]);
+                $this->setNom(func_get_args()[1]);
+                $this->setCodi(func_get_args()[2]);
+                break;
+        }
     }
 
     function getId_proveidor() {
