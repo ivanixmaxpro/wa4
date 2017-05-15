@@ -26,7 +26,7 @@ if (isset($_REQUEST['Submit'])) {
     }
 
 
-    $proveidor = new Proveidor($nom, $codi);
+    $proveidor = new Proveidor(null,$nom, $codi);
     $proveidorsDAO->inserir($proveidor);
     $missatge = 'proveidor afegit';
     $redireccio = 'index.php?ctl=proveidor&act=llista';
