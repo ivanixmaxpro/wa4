@@ -13,4 +13,4 @@ var_dump($albaraCompraComplet);
 
 echo $albaraCompraComplet[1][0]->getQuantitat();
 echo "<hr/>";
-echo $albaraCompraComplet[1][1]->getQuantitat();
+//echo $albaraCompraComplet[1][1]->getQuantitat();

@@ -13,6 +13,9 @@ class Usuari {
         switch (func_num_args()) {
             case 0:
                 break;
+            case 1:
+                $this->setUsuari(func_get_args()[0]);
+                break;
             case 3:
                 $this->setId_empleat(func_get_args()[0]);
                 $this->setUsuari(func_get_args()[1]);
