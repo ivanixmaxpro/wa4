@@ -14,6 +14,18 @@ class Horari {
         switch (func_num_args()) {
             case 0:
                 break;
+            case 2:
+                $this->setId_horari(null);
+                $this->setId_usuari(func_get_args()[0]);
+                $this->setId_dia(func_get_args()[1]);
+                $this->setHoraInici(null);
+                $this->setHoraFinal(null);
+            case 4:
+                $this->setId_horari(null);
+                $this->setId_usuari(func_get_args()[0]);
+                $this->setId_dia(func_get_args()[1]);
+                $this->setHoraInici(func_get_args()[2]);
+                $this->setHoraFinal(func_get_args()[3]);
             case 5:
                 $this->setId_horari(func_get_args()[0]);
                 $this->setId_usuari(func_get_args()[1]);
