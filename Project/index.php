@@ -52,6 +52,9 @@ switch ($ctl) {
 
     case "empleat":
         switch ($act) {
+            case "afegir":
+                include "controller/afegirEmpleat_ctl.php";
+                break;
             case "menu":
                 include "controller/menuEmpleat_ctl.php";
                 break;
