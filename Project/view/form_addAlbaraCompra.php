@@ -24,7 +24,7 @@
     <div class="form-group">
         <label for="campData">Data</label>
         <br/>
-        <input type="text" class="" id="campData" name="campData">
+        <input type="text" value="<?php echo $data ?>" class="" id="campData" name="campData">
     </div>
     <div class="form-group">
         <label for="campLocalitat">Localitat</label>
