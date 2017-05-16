@@ -54,7 +54,7 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2016 Ventas</h4>
+                                <h4 class="title">2016 Ventas</h4>   
                                 <p class="category">All products including Taxes</p>
                             </div>
                             <div class="content">

@@ -12,10 +12,6 @@ class Control {
     function __construct() {
         switch (func_num_args()) {
             case 0:
-                $this->setId_control(null);
-                $this->setId_usuari(null);
-                $this->setFitxat(null);
-                $this->setData(null);
                 break;
             case 3:
                 $this->setId_control(null);

@@ -2,24 +2,38 @@
 
 require_once("controller/function_AutoLoad.php");
 
-class Permis {
+class Permis extends Funcionalitat {
 
     private $id_permis;
     private $id_usuari;
-    private $id_funcionalitat;
     private $visualitzar;
     private $crear;
     private $editar;
     private $eliminar;
 
-    function __construct($id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar) {
-        $this->setId_permis(null);
-        $this->setId_usuari($id_usuari);
-        $this->setId_funcionalitat($id_funcionalitat);
-        $this->setVisualitzar($visualitzar);
-        $this->setCrear($crear);
-        $this->setEditar($editar);
-        $this->setEliminar($eliminar);
+    function __construct() {
+        parent::__construct();
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 8:
+                $this->setId_permis(func_get_args()[0]);
+                $this->setId_usuari(func_get_args()[1]);
+                parent::setId_funcionalitat(func_get_args()[2]);
+                $this->setVisualitzar(func_get_args()[3]);
+                $this->setCrear(func_get_args()[4]);
+                $this->setEditar(func_get_args()[5]);
+                $this->setEliminar(func_get_args()[6]);
+                parent::setNom(func_get_args()[7]);
+                break;
+            case 5:
+                $this->setVisualitzar(func_get_args()[0]);
+                $this->setCrear(func_get_args()[1]);
+                $this->setEditar(func_get_args()[2]);
+                $this->setEliminar(func_get_args()[3]);
+                parent::setNom(func_get_args()[4]);
+                break;
+        }
     }
 
     function getId_permis() {
@@ -28,10 +42,6 @@ class Permis {
 
     function getId_usuari() {
         return $this->id_usuari;
-    }
-
-    function getId_funcionalitat() {
-        return $this->id_funcionalitat;
     }
 
     function getVisualitzar() {
@@ -58,10 +68,6 @@ class Permis {
         $this->id_usuari = $id_usuari;
     }
 
-    function setId_funcionalitat($id_funcionalitat) {
-        $this->id_funcionalitat = $id_funcionalitat;
-    }
-
     function setVisualitzar($visualitzar) {
         $this->visualitzar = $visualitzar;
     }
@@ -76,6 +82,11 @@ class Permis {
 
     function setEliminar($eliminar) {
         $this->eliminar = $eliminar;
+    }
+    
+    function updatePermis (){
+        $PermisDAO = new PermisDAO();
+        $PermisDAO->updatePermis($this);
     }
 
 }
