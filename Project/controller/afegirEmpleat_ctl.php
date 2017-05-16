@@ -1,6 +1,6 @@
 <?php
 
-$title = "afegir client";
+$title = "afegir empleat";
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
@@ -33,7 +33,7 @@ if (isset($_REQUEST['Submit'])) {
      $llistatFuncionalitats = $empresa->populateFuncionalitats();
      $dies = $empresa->populateDia();
     
-    require_once 'view/afegirClient.php';
+    require_once 'view/afegirEmpleat.php';
 }
 require_once 'view/footer.php';
 ?>
