@@ -1,14 +1,6 @@
-<form role="form" action="?ctl=producte&act=afegir" method="POST">
+<form role="form" action="?ctl=producte&act=afegir" method="POST" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
-            <label>Tipus de producte:</label>
-            <select id="selector" name="selector">
-                <option  value="solid">Solid</option>
-                <option  value="semi-solid" >Semi-solid</option>
-                <option  value="liquid" >Líquid</option>
-                <option  value="gas" >Gas</option>
-                <option  value="altres" >Altres</option>
-            </select>
             <div class="form-group">
                 <label>Nom</label>
                 <input type="text" class="form-control" id="nom"
@@ -39,6 +31,14 @@
                        placeholder="Model del producte" required >
             </div>
             <span id="errorModel"></span>
+            <label>Tipus de producte:</label>
+            <select id="selector" name="selector">
+                <option  value="solid">Sòlid</option>
+                <option  value="semi-solid" >Semisòlid</option>
+                <option  value="liquid" >Líquid</option>
+                <option  value="gas" >Gas</option>
+                <option  value="altres" >Altres</option>
+            </select>
         </div>
         <div class="col-md-6">
             <div class="form-group">

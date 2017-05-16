@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#nom').focusout(validarNoBuitIAlfa);
     $('#marca').focusout(validarNoBuitIAlfa);
-    $('#imatge').focusout(validarImatge);
+    $('#imatge').change(validarImatge);
     $('#preu').focusout(validarAmb2Decimals);
     $('#referencia').focusout(validarNum4Digits);
     $('#model').focusout(validarNoBuitIAlfa);
@@ -9,7 +9,7 @@ $(document).ready(function () {
     $('#capacitatMlInput').focusout(validarAmb2Decimals);
     $('#capacitatMgInput').focusout(validarAmb2Decimals);
     $('#unitatsInput').focusout(validarNum);
-    //$("#botoGuardar").click(validarFormulari);
+    $("#botoGuardar").click(validarFormulariAmbImatge);
 });
 
 var totOkFormulari = true;
@@ -57,7 +57,7 @@ function validarNum() {
 
 
 function validarNum4Digits() {
-    var reg = /^\d{4}/;
+    var reg = /^\d{4}$/;
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
     var val = $('#' + idCamp).val();
@@ -94,7 +94,7 @@ function validarNoBuit() {
 
 function validarAmb2Decimals() {
 
-    var reg = /^\d+([\.|\,]{1}\d{1,2})$/;
+    var reg = /^\d+([\.|\,]{1}\d{1,2}){0,1}$/;
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
     var val = $('#' + idCamp).val();
@@ -102,10 +102,10 @@ function validarAmb2Decimals() {
 
     if (!valor.match(reg)) {
         $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("El camp ha de ser un nombre amb 2 decimal.");
+        $('#error' + errorCamp).html("El camp ha de ser un nombre positiu o amb 2 decimal.");
         totOkFormulari = false;
     } else {
-        $('#errorPreu').html("");
+        $('#error' + errorCamp).html("");
         totOkFormulari = true;
     }
 }
@@ -125,17 +125,22 @@ function primeraLletraMayus(idCamp) {
 }
 
 function validarImatge() {
-    var archivo = $('#imatge').val();
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var val = $('#' + idCamp).val();
+    var valor = val.trim();
+
     var extensiones_permitidas = new Array(".png", ".jpg", ".jpeg");
     var mierror = "";
-    if (!archivo) {
 
-//        mierror = "No has seleccionat cap imatge encara.";
-//        $('#errorImg').html(mierror);
+    if (!valor) {
+
+        mierror = "No has seleccionat cap imatge encara.";
+        $('#error' + errorCamp).html(mierror);
         totOkFormulari = false;
     } else {
 
-        var extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
+        var extension = (valor.substring(valor.lastIndexOf("."))).toLowerCase();
 
         var permitida = false;
 
@@ -147,11 +152,50 @@ function validarImatge() {
         }
         if (!permitida) {
             mierror = "Comprova la extensió dels fitxers a pujar. \nNomés és pot pujar els fitxers amb extensió: " + extensiones_permitidas.join();
-            $('#errorImg').html(mierror);
+            $('#error' + errorCamp).html(mierror);
             totOkFormulari = false;
         } else {
-            $('#errorImg').html("Imatge correcte!");
+            $('#error' + errorCamp).html("Imatge correcte!");
             totOkFormulari = true;
         }
+    }
+}
+
+function validarFormulariAmbImatge() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+
+    if (!$('#imatge').val()) {
+        var mierror = "No has seleccionat cap imatge encara.";
+        $('#errorImatge').html(mierror);
+        totOkFormulari = false;
+    }
+
+    if (!$('input:radio[name=conservar]:checked').val()) {
+        var mierror = "No has seleccionat cap opció.";
+        $('#errorConservar').html(mierror);
+        totOkFormulari = false;
+    } else {
+        $('#errorConservar').html("");
+    }
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        $('#error' + errorCamp).html("Revisa els camps del formulari, falten camps per omplir!");
+        return false;
+    }
+
+}
+
+function validarFormulari() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        $('#error' + errorCamp).html("Revisa els camps del formulari, falten camps per omplir!");
+        return false;
     }
 }
