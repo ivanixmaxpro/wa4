@@ -1,5 +1,6 @@
 <?php
 
+include 'emmagatzemarFoto.php';
 /**
  * Created by PhpStorm.
  * User: ivan
@@ -39,7 +40,7 @@ if (!empty($_POST)) {
         $model = $_REQUEST['model'];
         $descripcio = $_REQUEST['descripcio'];
         $conservar = $_REQUEST['conservar'];
-        $imatge = $_REQUEST['imatge'];
+        $imatge = guardarImatge('productes');
         $capacitatMl = $_REQUEST['capacitatMlInput'];
         $capacitatMg = $_REQUEST['capacitatMgInput'];
         $unitats = $_REQUEST['unitatsInput'];
@@ -64,10 +65,10 @@ if (!empty($_POST)) {
         if (!isset($descripcio) && !is_string($descripcio)) {
             $dades = false;
         }
-        // mirar que fer amb imatges
-        if (!is_string($imatge)) {
+        if (($imatge) < 0) {
             $dades = false;
         }
+
         if (!isset($conservar) && !is_bool($conservar)) {
             $dades = false;
         }

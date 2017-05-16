@@ -26,11 +26,13 @@ function validarNoBuitIAlfa() {
         totOkFormulari = false;
     } else {
         if (valor.length < 5) {
+            $('#' + idCamp).focus();
             $('#error' + errorCamp).html("Ha de tenir un mínim de 5 lletres.");
             totOkFormulari = false;
+        } else {
+            $('#error' + errorCamp).html("");
+            totOkFormulari = true;
         }
-        $('#error' + errorCamp).html("");
-        totOkFormulari = true;
     }
 
 }
@@ -46,7 +48,7 @@ function validarNum() {
 
     if (!valor.match(reg)) {
         $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("Ha de ser nombres numèrics.");
+        $('#error' + errorCamp).html("Han de ser nombres numèrics.");
         totOkFormulari = false;
     } else {
         $('#error' + errorCamp).html("");
