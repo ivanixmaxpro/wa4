@@ -1,4 +1,4 @@
-<div class="row">
+
     <div class="col-md-12">
         <div class="card">
             <div class="header">
@@ -21,7 +21,6 @@
                             }
                             ?>
                         </div>
-                        <div>fet una vista per fitxar, posar si está o no está treballant</div>
                 </div>
                 <div class="col-md-6 content">
                     <h5>Últims 8 registres d'entrada y sortida:</h5>
@@ -78,4 +77,3 @@
             </div>
         </div>
     </div>
-</div>
