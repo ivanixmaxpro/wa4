@@ -21,13 +21,11 @@ if(empty($_POST)) {
     if (isset($_REQUEST['id'])) {
         $empleat = $empresa->searchEmpleat($_REQUEST['id']);
 
-
         require_once 'view/header.php';
         require_once 'view/sidebar.php';
         require_once 'view/mainNav.php';
         require_once 'view/modificarEmpleat.php';
         require_once 'view/footer.php';
-
     }
 }
 
