@@ -26,7 +26,16 @@
                 echo "<td>" .$row->getCognom()  . "</td>";
                 echo "<td>" .$row->getDni()  . "</td>";
                 echo "<td>" .$row->getLocalitat()  . "</td>";
-                echo '<td>'.'<a href="?ctl=empleat&act=detall&id='.$row->getId_empleat().'">'.'Veure'.'</a>'.'</td>';
+                //permisos editar
+                ////if(){
+                echo '<td>'.'<a href="?ctl=empleat&act=modificar&id='.$row->getId_empleat().'">'.'<button class ="btn btn-default">Modificar</button>'.'</a>'.'</td>';
+                //}
+                //permisos eliminar
+                ////if(){
+                echo '<td>'.'<a href="?ctl=empleat&act=eliminar&id='.$row->getId_empleat().'">'.'<button class ="btn btn-default">Eliminar</button>'.'</a>'.'</td>';
+                //}
+                echo '<td>'.'<a href="?ctl=empleat&act=detall&id='.$row->getId_empleat().'">'.'Veure detalls'.'</a>'.'</td>';
+
                 echo "</tr>";
                 
                 

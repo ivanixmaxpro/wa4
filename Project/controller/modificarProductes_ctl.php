@@ -97,7 +97,9 @@ if(!empty($_POST)){
 
 
                         $empresa->UpdateProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        $missatge ="Sha modificar satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;
@@ -115,7 +117,9 @@ if(!empty($_POST)){
 
 
                         $empresa->UpdateProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        $missatge ="Sha modificar satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;
@@ -133,11 +137,11 @@ if(!empty($_POST)){
 
 
                         $empresa->UpdateProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        $missatge ="Sha modificar satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
-                   }else{
-                        echo "fuck";
-                    }
+                   }
                     break;
                 case 'Gas':
                     if ( isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMl)) {
@@ -153,7 +157,9 @@ if(!empty($_POST)){
 
 
                         $empresa->UpdateProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        $missatge ="Sha modificar satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;
@@ -171,7 +177,9 @@ if(!empty($_POST)){
 
 
                         $empresa->UpdateProducte($producte, get_class($producte));
-                        echo "S'ha modificar satisfactoriament.";
+                        $missatge ="Sha modificar satisfactoriament.";
+                        $redireccio='index.php?ctl=producte&act=llista';
+                        require_once 'view/confirmacio.php';
                         require_once 'view/footer.php';
                     }
                     break;

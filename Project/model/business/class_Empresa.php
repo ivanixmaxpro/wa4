@@ -216,7 +216,11 @@ class Empresa {
 
     function updateProducte($producte, $type) {
         $EmpresaDAO = new EmpresaDAO();
-        $producte = $EmpresaDAO->updateProducte($producte, $type);
+        $EmpresaDAO->updateProducte($producte, $type);
+    }
+    function updateEmpleat($empleat) {
+        $EmpresaDAO = new EmpresaDAO();
+        $EmpresaDAO->updateEmpleat($empleat);
     }
 
     function searchPermissos($id_usuari) {
