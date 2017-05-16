@@ -229,4 +229,15 @@ class Empresa {
         return $permisos;
     }
 
+        function searchHoraris($id_usuari) {
+        $EmpresaDAO = new EmpresaDAO();
+        $permisos = $EmpresaDAO->searchHoraris($id_usuari);
+        return $permisos;
+    }
+    
+    function populateDia() {
+        $EmpresaDAO = new EmpresaDAO();
+        $dies = $EmpresaDAO->populateDia();
+        return $dies;
+    }
 }
