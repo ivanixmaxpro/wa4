@@ -90,14 +90,14 @@
             </thead>
             <tbody>
             <?php
+            $i = 0;
             foreach ($dies as $dia) {
                 echo '<tr>';
                 echo '<tr>';
                 echo '<td>' . $dia->getNom() . '<input type="text" name="' . $dia->getNom() . '" value="' . $i . '" hidden></td>';
                 echo '<td> <input type="time" id="time" name="horaInici_' . $i . '" value=""/></td>';
                 echo '<td> <input type="time" id="time" name="horaFinal_' . $i . '" value=""/></td>';
-                echo '<td> <input type="radio" name="festa' . $i . '" value="1" checked></td>';
-                echo '<td> <input type="radio" name="festa' . $i . '" value="1"></td>';
+                echo '<td> <input type="checkbox" name="festa' . $i . '" value="1" ></td>';
                 echo '</tr>';
                 $i++;
             }
@@ -105,10 +105,40 @@
 
             </tbody>
         </table>
+
+
+        <h3>Permisos:</h3>
+        <table id="taulaHoraris" class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Visualitzar</th>
+                <th>Crear</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($llistatFuncionalitats as $permis) {
+                echo '<tr>';
+                echo '<td>'.$permis->getNom().'</td>';
+                echo '<td> <input type="checkbox" name="visualitzar_'.$permis->getNom().'" value="1"></td>';
+                echo '<td> <input type="checkbox" name="crear_'.$permis->getNom().'" value="1"></td>';
+                echo '<td> <input type="checkbox" name="editar_'.$permis->getNom().'" value="1"></td>';
+                echo '<td> <input type="checkbox" name="eliminar_'.$permis->getNom().'" value="1"></td>';
+                echo '</tr>';
+            }
+
+            ?>
+            </tbody>
+        </table>
+
 </div>
 <div class="clearfix">
-    <button type="submit" name="modify" class="btn btn-default">Modificar</button>
+    <button type="submit" name="modify" class="btn btn-default">Afegir Empleat</button>
     <a name="tornar" class="btn btn-default" href="?ctl=empleat&act=llista">Tornar</a>
 </div>
+<br/>
 </form>
 </div>
