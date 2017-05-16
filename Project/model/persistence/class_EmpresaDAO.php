@@ -868,6 +868,45 @@ class EmpresaDAO {
         }
         $con = null;
     }
+    
+        public function searchHoraris($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM horari WHERE id_usuari = :id_usuari ORDER BY id_dia ASC ");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $horaris = array();
+
+        foreach ($result as $row) {
+            $id_horari = $row['id_horari'];
+            $id_usuari = $row['id_usuari'];
+            $id_dia = $row['id_dia'];
+            $horaInici = $row['horaInici'];
+            $horaFinal = $row['horaFinal'];
+ 
+            $horari = new Horari($id_horari, $id_usuari, $id_dia, $horaInici,$horaFinal);
+            array_push($horaris, $horari);
+        }
+        $con = null;
+        return $horaris;
+    }
+    
+        public function populateDia() {
+
+        $dies = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM dia;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_dia = $row["id_dia"];
+            $nom = $row["nom"];
+
+            $dia = new Dia($id_dia, $nom);
+            array_push($dies, $dia);
+        }
+        $con = null;
+        return $dies;
+    }
 }
 
 ?>

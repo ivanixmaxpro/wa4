@@ -209,6 +209,13 @@ switch ($ctl) {
                 break;
         }
         break;
+    case "horari":
+        switch ($act) {
+            case "modificar":
+                include "controller/modificarHorari_ctl.php";
+                break;
+        }
+        break;
     default:
         include "controller/" . $ctl . "_ctl.php";
         break;
