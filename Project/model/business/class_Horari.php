@@ -10,12 +10,17 @@ class Horari {
     private $horaInici;
     private $horaFinal;
 
-    function __construct($id_usuari, $id_dia, $horaInici, $horaFinal) {
-        $this->setId_horari(null);
-        $this->setId_usuari($id_usuari);
-        $this->setId_dia($id_dia);
-        $this->setHoraInici($horaInici);
-        $this->setHoraFinal($horaFinal);
+    function __construct() {        
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 5:
+                $this->setId_horari(func_get_args()[0]);
+                $this->setId_usuari(func_get_args()[1]);
+                $this->setId_dia(func_get_args()[2]);
+                $this->setHoraInici(func_get_args()[3]);
+                $this->setHoraFinal(func_get_args()[4]);
+        }
     }
 
     function getId_horari() {
@@ -56,6 +61,11 @@ class Horari {
 
     function setHoraFinal($horaFinal) {
         $this->horaFinal = $horaFinal;
+    }
+    
+    function updateHorari (){
+        $HorariDAO = new HorariDAO();
+        $HorariDAO->updateHorari($this);
     }
 
 }
