@@ -1,5 +1,10 @@
 <?php
 
+include 'view/mostrarSelects.php';
+$title = "Creacio d'un Albar de venta";
+require_once 'view/header.php';
+require_once 'view/sidebar.php';
+require_once 'view/mainNav.php';
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -30,7 +35,26 @@ if (isset($_REQUEST["submit"])) {
     $albara = new AlbaraVenta();
 
     $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
-    header("Location: index.php");
+
+    $albara = new AlbaraCompra(null, $campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat);
+    $redireccio = 'index.php?ctl=albara&act=llista';
+    if ($albara->validateAlbara()->getOk()) {
+        try {
+            $albara->insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+            $missatge = $albara->validateAlbara()->getMsg();
+
+            require_once 'view/confirmacio.php';
+        } catch (Exception $e) {
+
+            $missatge = $e->getMessage();
+            require_once 'view/error.php';
+        }
+    } else {
+        //missatege de la clase validar
+
+        $missatge = $albara->validateAlbara()->getMsg();
+        require_once 'view/error.php';
+    }
 } else {
 
     $productes = $empresa->populateProductes();
@@ -38,11 +62,8 @@ if (isset($_REQUEST["submit"])) {
 }
 
 
-$title = "Creacio d'un Albar de venta";
 
-include 'view/mostrarSelects.php';
-require_once 'view/header.php';
-require_once 'view/sidebar.php';
-require_once 'view/mainNav.php';
+
+
 require_once 'view/form_addAlbaraVenta.php';
 require_once 'view/footer.php';

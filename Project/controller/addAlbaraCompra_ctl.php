@@ -14,9 +14,11 @@ if (isset($_SESSION['empresa'])) {
 
     $_SESSION['empresa'] = serialize($empresa);
 }
-
+$data = getdate();
+$data = date('Y-m-d H:i:s');
 if (isset($_REQUEST["submit"])) {
-
+    $data = getdate();
+    $data = date('Y-m-d H:i:s');
     $arrProductesDelAlbara = array();
 
     $ss = $_POST['passarArrProductes'];
@@ -25,7 +27,7 @@ if (isset($_REQUEST["submit"])) {
     $campCodi = $_POST['campCodi'];
     $campObservacions = $_POST['campObservacions'];
     $campPreu = $_POST['campPreu'];
-    $campData = $_POST['campData'];
+    $campData = $data;
     $campLocalitat = $_POST['campLocalitat'];
     $arrDePosProductes = explode(',', $ss);
 
@@ -33,7 +35,7 @@ if (isset($_REQUEST["submit"])) {
         array_push($arrProductesDelAlbara, explode('-', $prod));
     }
 
-    $albara = new AlbaraCompra(null,$campProveidor, $campEmpresa, $campCodi, $campObservacions,$campPreu, $campData, $campLocalitat);
+    $albara = new AlbaraCompra(null, $campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat);
     $redireccio = 'index.php?ctl=albara&act=llista';
     if ($albara->validateAlbara()->getOk()) {
         try {
