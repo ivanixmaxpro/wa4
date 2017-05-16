@@ -449,6 +449,32 @@ class EmpresaDAO {
         return $usuari;
     }
 
+
+    public function searchEmpleatById($id_empleat) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat;");
+        $query->bindValue(":id_empleat", $id_empleat);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+
+            $usuari = new Empleat($id_empleat, $id_empresa, $nom, $cognom, $dni, $localitat,$nomina, $nss, $imatge ,$descripcio  );
+        }
+        $con = null;
+        return $usuari;
+    }
+
     public function searchUbicacioById($id_ubicacio) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM producte INNER JOIN ubicacio ON producte.id_ubicacio = ubicacio.id_ubicacio WHERE ubicacio.id_ubicacio = :id_ubicacio;");
@@ -508,7 +534,7 @@ class EmpresaDAO {
 
 
         foreach ($result as $row) {
-            $id_client = $row["id_proveidor"];
+            $id_proveidor = $row["id_proveidor"];
             $nom = $row["nom"];
             $codi = $row["codi"];
             $proveidor = new Proveidor($id_proveidor, $nom, $codi);
@@ -796,7 +822,52 @@ class EmpresaDAO {
         }
         $con = null;
     }
+    
+    public function searchPermissos($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_permis WHERE id_usuari = :id_usuari");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $permisos = array();
 
+        foreach ($result as $row) {
+            $id_permis = $row['id_permis'];
+            $id_usuari = $row['id_usuari'];
+            $id_funcionalitat = $row['id_funcionalitat'];
+            $visualitzar = $row['visualitzar'];
+            $crear = $row['crear'];
+            $editar = $row['editar'];
+            $eliminar = $row['eliminar'];
+            $nom = $row['nom'];
+ 
+            $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar,$crear,$editar,$eliminar,$nom);
+            array_push($permisos, $permis);
+        }
+        $con = null;
+        return $permisos;
+    }
+
+    function updateEmpleat($empleat) {
+        try {
+            $con = new db();
+
+            $query = $con->prepare("UPDATE empleat SET nom = :nom, cognom = :cognom, dni = :dni, localitat = :localitat, nss = :nss, nomina = :nomina, imatge = :imatge, descripcio = :descripcio WHERE id_empleat = :id_empleat;");
+            $query->bindValue(":id_empleat", $empleat->getId_empleat());
+            $query->bindValue(":nom", $empleat->getNom());
+            $query->bindValue(":cognom", $empleat->getCognom());
+            $query->bindValue(":dni", $empleat->getDni());
+            $query->bindValue(":localitat", $empleat->getLocalitat());
+            $query->bindValue(":nss", $empleat->getNss());
+            $query->bindValue(":nomina", $empleat->getNomina());
+            $query->bindValue(":imatge", $empleat->getImatge());
+            $query->bindValue(":descripcio", $empleat->getDescripcio());
+            $con->consulta($query);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+        $con = null;
+    }
 }
 
 ?>
