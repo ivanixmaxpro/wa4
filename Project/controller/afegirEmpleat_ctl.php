@@ -13,27 +13,26 @@ if (isset($_SESSION['empresa'])) {
 
     $_SESSION['empresa'] = serialize($empresa);
 }
-$clientDAO = new ClientDAO();
-
 
 if (isset($_REQUEST['Submit'])) {
+//
+//    if (isset($_REQUEST['codi'])) {
+//        $codi = $_REQUEST['codi'];
+//    }
 
-    if (isset($_REQUEST['codi'])) {
-        $codi = $_REQUEST['codi'];
-    }
-    if (isset($_REQUEST['nom'])) {
-        $nom = $_REQUEST['nom'];
-    }
-    if (isset($_REQUEST['informacio'])) {
-        $informacio = $_REQUEST['informacio'];
-    }
-
-    $client = new Client(null,$nom, $codi,$informacio);
-    $clientDAO->inserir($client);
-    $missatge = 'client afegit';
-    $redireccio = 'index.php?ctl=client&act=llista';
-    require_once 'view/confirmacio.php';
+    $usuari = new Usuari();
+    $empleat = new Empleat();
+    $horari = new Horari();
+    $permis = new Permis();
+    
+//    $clientDAO->inserir($client);
+//    $missatge = 'client afegit';
+//    $redireccio = 'index.php?ctl=client&act=llista';
+//    require_once 'view/confirmacio.php';
 } else {
+     $llistatFuncionalitats = $empresa->populateFuncionalitats();
+     $dies = $empresa->populateDia();
+    
     require_once 'view/afegirClient.php';
 }
 require_once 'view/footer.php';
