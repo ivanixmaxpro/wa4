@@ -60,12 +60,12 @@ function emmagatzemarProducte() {
             repetit = true;
         }
     }
-    
+
     //Check que el valro que vols treure no superi el maxim
     var checkquant = parseInt($("#campQuantitatDeProductes").attr("max"));
 
 
-    if (quantProducte != 0 && repetit == false && checkquant >= quantProducte ) {
+    if (quantProducte != 0 && repetit == false && checkquant >= quantProducte) {
 
         arrProTotal.push(arrPro);
 
@@ -73,7 +73,7 @@ function emmagatzemarProducte() {
     } else {
         alert("Error al introduir producte");
     }
-    
+
     $("#campQuantitatDeProductes").val(0);
 
 

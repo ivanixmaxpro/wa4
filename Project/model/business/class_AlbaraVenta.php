@@ -99,4 +99,40 @@ class AlbaraVenta {
         $albaraVentaDAO->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
     }
 
+    /**
+     * metode per validar que els parametres son correctes
+     * @return objecte Validation
+     */
+    function validateAlbara() {
+        $validation = new Validation(true, '');
+
+        if (is_nan(!$this->getId_empresa())) {
+            $validation->setMsg("has d'escollir una empressa");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getCodi()) == '') {
+            $validation->setMsg("codi esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getObservacions()) == '') {
+            $validation->setMsg("observacions esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getObservacions()) == '') {
+            $validation->setMsg("observacions esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getLocalitat()) == '') {
+            $validation->setMsg("localitat esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && $this->getPreu() <= 0) {
+            $validation->setMsg("No hi han productes");
+            $validation->setOK(false);
+        }
+
+        return $validation;
+    }
+
 }
