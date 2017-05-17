@@ -101,7 +101,7 @@ if (isset($_REQUEST['Submit'])) {
  
     $horari = new Horari();
     $permis = new Permis();
-    
+
 //    $clientDAO->inserir($client);
 //    $missatge = 'client afegit';
 //    $redireccio = 'index.php?ctl=client&act=llista';

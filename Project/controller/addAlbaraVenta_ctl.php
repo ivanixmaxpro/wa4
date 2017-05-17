@@ -13,9 +13,11 @@ if (isset($_SESSION['empresa'])) {
 
     $_SESSION['empresa'] = serialize($empresa);
 }
-
+$data = getdate();
+$data = date('Y-m-d H:i:s');
 if (isset($_REQUEST["submit"])) {
-
+    $data = getdate();
+    $data = date('Y-m-d H:i:s');
     $arrProductesDelAlbara = array();
 
     $ss = $_POST['passarArrProductes'];
@@ -24,7 +26,7 @@ if (isset($_REQUEST["submit"])) {
     $campCodi = $_POST['campCodi'];
     $campObservacions = $_POST['campObservacions'];
     $campPreu = $_POST['campPreu'];
-    $campData = $_POST['campData'];
+    $campData = $data;
     $campLocalitat = $_POST['campLocalitat'];
     $arrDePosProductes = explode(',', $ss);
 
@@ -32,15 +34,15 @@ if (isset($_REQUEST["submit"])) {
         array_push($arrProductesDelAlbara, explode('-', $prod));
     }
 
-    $albara = new AlbaraVenta();
+ //   $albara = new AlbaraVenta();
 
-    $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+//    $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
 
-    $albara = new AlbaraCompra(null, $campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat);
+    $albara = new AlbaraVenta(null, $campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat);
     $redireccio = 'index.php?ctl=albara&act=llista';
     if ($albara->validateAlbara()->getOk()) {
         try {
-            $albara->insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+            $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
             $missatge = $albara->validateAlbara()->getMsg();
 
             require_once 'view/confirmacio.php';
@@ -56,14 +58,8 @@ if (isset($_REQUEST["submit"])) {
         require_once 'view/error.php';
     }
 } else {
-
     $productes = $empresa->populateProductes();
     $clients = $empresa->populateClients();
+    require_once 'view/form_addAlbaraVenta.php';
 }
-
-
-
-
-
-require_once 'view/form_addAlbaraVenta.php';
 require_once 'view/footer.php';
