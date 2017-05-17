@@ -75,9 +75,14 @@ class Horari {
         $this->horaFinal = $horaFinal;
     }
     
-    function updateHorari (){
+    function updateHorari(){
         $HorariDAO = new HorariDAO();
         $HorariDAO->updateHorari($this);
+    }
+    
+    function insertHorari(){
+        $HorariDAO = new HorariDAO();
+        $HorariDAO->insertHorari($this);
     }
 
 }

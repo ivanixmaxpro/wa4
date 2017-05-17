@@ -16,8 +16,9 @@ class Permis extends Funcionalitat {
         switch (func_num_args()) {
             case 0:
                 break;
-            case 1:
+            case 2:
                 $this->setId_usuari(func_get_args()[0]);
+                parent::setId_funcionalitat(func_get_args()[1]);
                 break;
             case 8:
                 $this->setId_permis(func_get_args()[0]);
@@ -86,10 +87,15 @@ class Permis extends Funcionalitat {
     function setEliminar($eliminar) {
         $this->eliminar = $eliminar;
     }
-    
-    function updatePermis (){
+
+    function updatePermis() {
         $PermisDAO = new PermisDAO();
         $PermisDAO->updatePermis($this);
+    }
+
+    function insertPermis() {
+        $PermisDAO = new PermisDAO();
+        $PermisDAO->insertPermis($this);
     }
 
 }
