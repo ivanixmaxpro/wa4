@@ -112,8 +112,16 @@
                 <span id="errorConservar"></span>
             </div>
             <div class="form-group">
+                <label>Imatge</label>
+                <img src="<?php
+                if (isset($producte)) {
+                    echo $producte->getImatge();
+                }
+                ?>" alt="Imatge Producte">
+            </div>
+            <div class="form-group">
                 <label>Pujar imatge</label>
-                <input type="file" name="imatge" class="btn btn-default" id="imatge" required>
+                <input type="file" name="imatge" class="btn btn-default" id="imatge">
                 <p class="help-block">
                     Només es permet el tipus d'imatge: .jpg .png .jpeg
                 </p>

@@ -148,7 +148,7 @@ function Alfabetic(elemValor) {
 }
 
 function AlfaNumeric(elemValor) {
-    
+
     var alphaExp = /^[a-zA-Z0-9\,\.\s]+$/;
     if (elemValor.match(alphaExp)) {
         return true;
@@ -203,11 +203,16 @@ function validarImatge() {
 function validarFormulariAmbImatge() {
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
+    var valorAct = $("form").attr('action');
+    var n = valorAct.search("modificar");
 
-    if (!$('#imatge').val()) {
-        var mierror = "No has seleccionat cap imatge encara.";
-        $('#errorImatge').html(mierror);
-        totOkFormulari = false;
+    if (n == -1) {
+
+        if (!$('#imatge').val()) {
+            var mierror = "No has seleccionat cap imatge encara.";
+            $('#errorImatge').html(mierror);
+            totOkFormulari = false;
+        }
     }
 
     if (!$('input:radio[name=conservar]:checked').val()) {

@@ -54,6 +54,11 @@ if (!empty($_POST)) {
 
         $producte = $empresa->searchProducteChilds($_REQUEST['id']);
 
+        if ($imatge == null) {
+
+            $imatge = $producte->getImatge();
+        }
+
         if (!isset($nom) && !is_string($nom)) {
             $dades = false;
         }
@@ -72,8 +77,7 @@ if (!empty($_POST)) {
         if (!isset($descripcio) && !is_string($descripcio)) {
             $dades = false;
         }
-        // mirar que fer amb imatges
-        if (!is_string($imatge)) {
+        if ($imatge < 0) {
             $dades = false;
         }
         if (!isset($conservar) && !is_bool($conservar)) {
