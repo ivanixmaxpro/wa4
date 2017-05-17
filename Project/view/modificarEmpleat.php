@@ -92,8 +92,8 @@
                     </div>
             </div>
                     <div class="clearfix">
-                        <button type="submit" name="modify" class="btn btn-default">Modificar</button>
-                        <a name="tornar" class="btn btn-default" href="?ctl=empleat&act=llista">Tornar</a>
+                        <button type="submit" name="modify" class="btn btn-primary">Modificar</button>
+                        <a name="tornar" class="btn btn-primary" href="?ctl=empleat&act=llista">Tornar</a>
                     </div>
                 </form>
                 </div>
