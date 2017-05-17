@@ -59,8 +59,9 @@
             </div>
             <div class="form-group">
                 <label>Imatge</label>
-                <input type="text" name="imagte" class="form-control" id="imagte" readonly
-                       placeholder="Imatge del producte" required value="<?php if(isset($producte)){ echo $producte->getImatge(); }?>">
+<!--                <input type="text" name="imagte" class="form-control" id="imagte" readonly
+                       placeholder="Imatge del producte" required value="<?php //if(isset($producte)){ $producte->getImatge(); }?>">-->
+                <img src="<?php if(isset($producte)){ echo $producte->getImatge(); }?>" alt="Imatge Producte">
             </div>
             <div class="form-group" id="capacitatMl" hidden>
                 <label>Capacitat Ml</label>

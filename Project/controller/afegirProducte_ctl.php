@@ -98,7 +98,7 @@ if (!empty($_POST)) {
                     }
                     break;
                 case 'semi-solid':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg)) {
+                    if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg)) {
                         $producte = new Semisolid();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
