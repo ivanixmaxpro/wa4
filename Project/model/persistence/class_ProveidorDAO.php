@@ -80,6 +80,7 @@ class ProveidorDAO {
         $con->consulta($query);
         $con = null;
     }
+
     /**
      * metode per eliminar un proveidor determinat a la base de dades
      * @param type $id
