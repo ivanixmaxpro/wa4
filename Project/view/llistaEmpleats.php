@@ -12,7 +12,6 @@
                 <th>Cognoms</th>
                 <th>DNI</th>
                 <th>Localitat</th>
-                <th></th>
             </tr></thead>
             <tbody>
 
@@ -28,13 +27,9 @@
                 echo "<td>" .$row->getLocalitat()  . "</td>";
                 //permisos editar
                 ////if(){
-                echo '<td>'.'<a href="?ctl=empleat&act=modificar&id='.$row->getId_empleat().'">'.'<button class ="btn btn-default">Modificar</button>'.'</a>'.'</td>';
+                echo '<td>'.'<a href="?ctl=empleat&act=menu&id='.$row->getId_empleat().'">'.'<button class ="btn btn-default">Modificacions empleat</button>'.'</a>'.'</td>';
                 //}
-                //permisos eliminar
-                ////if(){
-                echo '<td>'.'<a href="?ctl=empleat&act=eliminar&id='.$row->getId_empleat().'">'.'<button class ="btn btn-default">Eliminar</button>'.'</a>'.'</td>';
-                //}
-                echo '<td>'.'<a href="?ctl=empleat&act=detall&id='.$row->getId_empleat().'">'.'Veure detalls'.'</a>'.'</td>';
+                echo '<td>'.'<a class="btn btn-default" href="?ctl=empleat&act=detall&id='.$row->getId_empleat().'">'.'Veure detalls'.'</a>'.'</td>';
 
                 echo "</tr>";
                 

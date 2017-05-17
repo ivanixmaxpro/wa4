@@ -52,6 +52,12 @@ switch ($ctl) {
 
     case "empleat":
         switch ($act) {
+            case "afegir":
+                include "controller/afegirEmpleat_ctl.php";
+                break;
+            case "menu":
+                include "controller/menuEmpleat_ctl.php";
+                break;
             case "detall":
                 include "controller/detallEmpleat_ctl.php";
                 break;
@@ -203,6 +209,13 @@ switch ($ctl) {
         switch ($act) {
             case "modificar":
                 include "controller/modificarPermissos_ctl.php";
+                break;
+        }
+        break;
+    case "horari":
+        switch ($act) {
+            case "modificar":
+                include "controller/modificarHorari_ctl.php";
                 break;
         }
         break;
