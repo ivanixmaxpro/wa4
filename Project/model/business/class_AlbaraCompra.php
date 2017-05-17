@@ -98,10 +98,11 @@ class AlbaraCompra {
         $albaraVentaDAO = new AlbaraCompraDAO();
         $albaraVentaDAO->insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
     }
-/**
- * metode per validar que els parametres son correctes
- * @return objecte Validation
- */
+
+    /**
+     * metode per validar que els parametres son correctes
+     * @return objecte Validation
+     */
     function validateAlbara() {
         $validation = new Validation(true, '');
 
@@ -130,37 +131,8 @@ class AlbaraCompra {
             $validation->setMsg("No hi han productes");
             $validation->setOK(false);
         }
-        
+
         return $validation;
-    }
-    /**
-     * metode per validar format i data correctes
-     * @return boolean
-     */
-    function validateRegistrationDate() {
-
-        $ok = true;
-
-        //we split the date in 3 parts separated by "/"
-        $auxDate = explode("/", $this->getRegistrationDate());
-
-        //we check if the date is right. Remember that: checkdate(month,day,year);
-        if (checkdate($auxDate[1], $auxDate[0], $auxDate[2])) {
-
-            $today = new DateTime(date('Y/m/d'));
-            $registrationDate = new DateTime($auxDate[2] . $auxDate[1] . $auxDate[0]);
-            // we check if the date is previous or equal to the system date. Both possibilities are good.
-            //$diff = date_diff($today, $registrationDate);
-            $diff = $today->diff($registrationDate);
-
-            // Check http://php.net/manual/es/dateinterval.format.php
-            if (($diff->format("%r%a")) > 0) {
-                $ok = false;
-            }
-        } else {
-            $ok = false;
-        }
-        return $ok;
     }
 
 }

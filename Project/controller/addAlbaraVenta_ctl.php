@@ -34,7 +34,7 @@ if (isset($_REQUEST["submit"])) {
         array_push($arrProductesDelAlbara, explode('-', $prod));
     }
 
-    $albara = new AlbaraVenta();
+ //   $albara = new AlbaraVenta();
 
 //    $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
 
