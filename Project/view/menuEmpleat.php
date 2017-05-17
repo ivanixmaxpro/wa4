@@ -5,7 +5,7 @@
     <a><button id="opener" class="btn btn-default" type="button" class="btn btn-default">Veure horari</button></a>
     <a href="?ctl=empleat&act=llista&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-default">Modificar horari</button></a>
     <a href="?ctl=permis&act=detall&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-default">Veure permisos</button></a>
-    <a href="?ctl=permis&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-default">Veure permisos</button></a>
+    <a href="?ctl=permis&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-default">Modificar permisos permisos</button></a>
     <a href="?ctl=empleat&act=llista"><button type="button" class="btn btn-default">Tornar</button></a>
 </div>
 <div class="content">

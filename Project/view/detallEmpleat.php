@@ -5,10 +5,10 @@
             <div class="header">
                 <div class="card card-user author">
                     <div class="image">
-                        <img src="view/images/sidebar-6.jpg" alt="...">
+                        <img src="view/images/sidebar-6.jpg" alt="banner">
                     </div>
                     <a href="#">
-                        <img class="avatar border-gray" src="https://paracortarselasvenasconunapaladepescado.files.wordpress.com/2016/08/images1.jpg?w=240" alt="...">
+                        <img class="avatar border-gray" src="<?php echo $empleat->getImatge()?>" alt="...">
                     </a>
                 </div>
                 <h4 class="title">Dades</h4>

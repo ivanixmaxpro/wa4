@@ -40,19 +40,14 @@ if (isset($_REQUEST['submit'])) {
         } else {
            $permis->setEliminar(0);  
         }
-        
         $permis->updatePermis();
-        
     }
-    
-    
 
 } else {
-    $llistatPermissos = $empresa->searchPermissos($id);
-    
-  
-    
-    
+    if($_REQUEST['id']){
+        $id = $_REQUEST['id'];
+        $llistatPermissos = $empresa->searchPermissos($id);
+    }
 }
 require_once 'view/header.php';
 require_once 'view/sidebar.php';

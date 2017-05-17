@@ -1,4 +1,4 @@
-<form role="form" method="post" action="?ctl=permis&act=modificar" >
+
     <table id="taulaPermisos" class="table table-bordered">
         <thead>
             <tr>
@@ -43,7 +43,6 @@
         </tbody>
     </table>
 
-    <a class="?ctl=empleat&act=llista"><button class="btn btn-default">Tornar</button></a>
-</form>
+    <a href="?ctl=empleat&act=llista"><button class="btn btn-default">Tornar</button></a>
 
 
