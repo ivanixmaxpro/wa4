@@ -49,23 +49,23 @@ class UsuariDAO {
         }
     }
 
-//    public function validateUser($usuari, $pass) {
-//
-//        $con = new db();
-//        $query = $con->prepare("SELECT contrasenya FROM usuari WHERE usuari = :usuari");
-//        $query->bindValue(":usuari", $usuari);
-//        $contra = $con->consultar($query);
-//
-//        foreach ($contra as $row){
-//            $contra = $row['contrasenya'];
-//        }
-//         
-//        if(password_verify($pass, $contra)){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
+    public function insertUsuari($usuari) {
+
+        try {
+            $con = new db();
+            $query = $con->prepare("INSERT INTO usuari (id_empleat,usuari,contraseya) 
+                VALUES (:id_empleat,:usuari,:contraseya)");
+            $query->bindValue(":id_empleat", $usuari->getId_empleat());
+            $query->bindValue(":usuari", $usuari->getUsuari());
+            $query->bindValue(":contraseya", $usuari->getContraseya());
+            $con->consulta($query);
+            return $con->lastInsertId();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+        $con = null;
+    }
+
 }
 
 ?>
