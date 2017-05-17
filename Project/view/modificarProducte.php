@@ -74,6 +74,6 @@
             </div>
         </div>
     </div>
-    <button name="modify" type="submit" class="btn btn-default">Modificar</button>
-    <a name="tornar" class="btn btn-default" href="?ctl=producte&act=llista">Tornar</a>
+    <button name="modify" type="submit" class="btn btn-primary">Modificar</button>
+    <a name="tornar" class="btn btn-primary" href="?ctl=producte&act=llista">Tornar</a>
 </form>

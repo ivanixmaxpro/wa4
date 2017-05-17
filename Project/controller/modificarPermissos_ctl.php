@@ -13,6 +13,10 @@ if (isset($_SESSION['empresa'])) {
     $_SESSION['empresa'] = serialize($empresa);
 }
 if (isset($_REQUEST['submit'])) {
+
+    require_once 'view/header.php';
+    require_once 'view/sidebar.php';
+    require_once 'view/mainNav.php';
     
     $llistatPermissos = $empresa->searchPermissos($id);
     
@@ -43,15 +47,21 @@ if (isset($_REQUEST['submit'])) {
         $permis->updatePermis();
     }
 
+    $missatge = "S'ha modificar correctament el permisos.";
+    $redireccio = "?ctl=empleat&act=llista";
+    require_once 'view/confirmacio.php';
+    require_once 'view/footer.php';
+
 } else {
     if($_REQUEST['id']){
         $id = $_REQUEST['id'];
         $llistatPermissos = $empresa->searchPermissos($id);
     }
+    require_once 'view/header.php';
+    require_once 'view/sidebar.php';
+    require_once 'view/mainNav.php';
+    require_once 'view/form_modificarPermissos.php';
+    require_once 'view/footer.php';
 }
-require_once 'view/header.php';
-require_once 'view/sidebar.php';
-require_once 'view/mainNav.php';
-require_once 'view/form_modificarPermissos.php';
-require_once 'view/footer.php';
+
 ?>
