@@ -58,6 +58,54 @@ class Gas extends Producte {
         $this->id_gas = $id_gas;
     }
 
+    public function validateProduct() {
+         $patroNum ="/^[[:digit:]]+$/";
+       $validation = new Validation(true, '');
+        $validation->setMsg("producte afegit correctament");
+
+        if ($validation->getOk() && trim($this->getNom()) == '') {
+            $validation->setOk(false);
+            $validation->setMsg("camp Nom esta buit");
+        }
+        if ($validation->getOk() && trim($this->getMarca()) == '') {
+            $validation->setOk(false);
+            $validation->setMsg("camp Marca esta buit");
+        }
+        if ($validation->getOk() && preg_match($patroNum,trim($this->getPreuBase())) == '') {
+            $validation->setOk(false);
+            $validation->setMsg("import preu ha de ser un num");
+        }
+        if ($validation->getOk() && !$this->validatePrice()) {
+            $validation->setOk(false);
+            $validation->setMsg("import preu ha de ser superior a 0");
+        }
+        if ($validation->getOk() && trim($this->getReferencia()) == '') {
+            $validation->setMsg("referencia esta buida");
+            $validation->setOK(false);
+        }
+         if ($validation->getOk() && preg_match($patroNum,trim($this->getReferencia())) == '') {
+            $validation->setMsg("referencia només poden ser numeros");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getModel()) == '') {
+            $validation->setMsg("model esta buit");
+            $validation->setOK(false);
+        }
+         if ($validation->getOk() && trim($this->getDescripcio()) == '') {
+            $validation->setMsg("descripcio esta buida");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getCapacitatMl()) == '') {
+            $validation->setMsg("capacitatMl esta buida");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && preg_match($patroNum, trim($this->getCapacitatMl())) == '') {
+            $validation->setMsg("capacitatMl només poden ser numeros");
+            $validation->setOK(false);
+        }
+        return $validation;
+    }
+
 }
 
 ?>
