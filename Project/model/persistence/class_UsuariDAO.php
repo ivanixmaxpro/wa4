@@ -50,15 +50,15 @@ class UsuariDAO {
     }
 
     public function insertUsuari($usuari) {
-
         try {
             $con = new db();
-            $query = $con->prepare("INSERT INTO usuari (id_empleat,usuari,contraseya) 
-                VALUES (:id_empleat,:usuari,:contraseya)");
+            $query = $con->prepare("INSERT INTO usuari (id_empleat,usuari,contrasenya) 
+                VALUES (:id_empleat, :usuari, :contrasenya)");
             $query->bindValue(":id_empleat", $usuari->getId_empleat());
             $query->bindValue(":usuari", $usuari->getUsuari());
-            $query->bindValue(":contraseya", $usuari->getContraseya());
+            $query->bindValue(":contrasenya", $usuari->getContrasenya());
             $con->consulta($query);
+            var_dump($con->lastInsertId());
             return $con->lastInsertId();
         } catch (Exception $e) {
             die($e->getMessage());

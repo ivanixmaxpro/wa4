@@ -14,8 +14,7 @@ if (isset($_SESSION['empresa'])) {
     $_SESSION['empresa'] = serialize($empresa);
 }
 
-if (isset($_REQUEST['Submit'])) {
-    
+if (isset($_REQUEST['submit'])) {
     $dies = $empresa->populateDia();
     $llistatFuncionalitats = $empresa->populateFuncionalitats();
     
@@ -35,7 +34,7 @@ if (isset($_REQUEST['Submit'])) {
     //Introduces empleado y devuelve id_empleat
  
     $usuari = $_REQUEST['usuari'];
-    $contrasenya = $_REQUEST['contra'];
+    $contrasenya = password_hash($_REQUEST['contra'], PASSWORD_BCRYPT);
 
     $user = new Usuari($id_empleat,$usuari,$contrasenya);
     $id_usuari = $user->addUsuari();
@@ -92,7 +91,8 @@ if (isset($_REQUEST['Submit'])) {
       $permis->insertPermis();
         
     }
-    
+
+    var_dump($empleat);
 
 //    $clientDAO->inserir($client);
 //    $missatge = 'client afegit';
