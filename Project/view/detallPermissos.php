@@ -43,6 +43,6 @@
         </tbody>
     </table>
 
-    <a href="?ctl=empleat&act=llista"><button class="btn btn-default">Tornar</button></a>
+    <a href="?ctl=empleat&act=llista"><button class="btn btn-primary">Tornar</button></a>
 
 

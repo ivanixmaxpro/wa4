@@ -83,7 +83,9 @@
                     </div>
 
 
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+
+                    </div>
                 </form>
                 <div class="content">
 
