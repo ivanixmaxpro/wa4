@@ -30,15 +30,15 @@ if (isset($_REQUEST['Submit'])) {
     $imatge = $_REQUEST['imatge'];
     
     $empleat = new Empleat($id_empresa,$nom,$cognom,$dni,$address,$nomina,$nss,$imatge,$description);
+    $id_empleat = $empleat->addEmpleat();
     
     //Introduces empleado y devuelve id_empleat
-    
-    
+ 
     $usuari = $_REQUEST['usuari'];
     $contrasenya = $_REQUEST['contra'];
 
-    $user = new Usuari($usuari,$contrasenya);
-    
+    $user = new Usuari($id_empleat,$usuari,$contrasenya);
+    $id_usuari = $user->addUsuari();
     //Introduces usuario y devuelve id_usuario
     
      $i = 0;
@@ -55,7 +55,7 @@ if (isset($_REQUEST['Submit'])) {
         }
 
         
-//        $horari->updateHorari();
+       $horari->insertHorari();
         $i++;
     }
     
@@ -65,7 +65,7 @@ if (isset($_REQUEST['Submit'])) {
        foreach ($llistatFuncionalitats as $funcionalitat) {
         
         $nom = $funcionalitat->getNom();
-        $permis = new Permis($id_usuari);
+        $permis = new Permis($id_usuari,$funcionalitat->getId_funcionalitat());
         
         
         if (isset($_REQUEST["visualitzar_$nom"])) {
@@ -88,19 +88,11 @@ if (isset($_REQUEST['Submit'])) {
         } else {
            $permis->setEliminar(0);  
         }
-//        
-//        $permis->updatePermis();
+        
+      $permis->insertPermis();
         
     }
     
-    
-  
-    
-    
-    
- 
-    $horari = new Horari();
-    $permis = new Permis();
 
 //    $clientDAO->inserir($client);
 //    $missatge = 'client afegit';
