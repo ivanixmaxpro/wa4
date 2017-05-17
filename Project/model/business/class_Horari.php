@@ -20,18 +20,21 @@ class Horari {
                 $this->setId_dia(func_get_args()[1]);
                 $this->setHoraInici(null);
                 $this->setHoraFinal(null);
+                break;
             case 4:
                 $this->setId_horari(null);
                 $this->setId_usuari(func_get_args()[0]);
                 $this->setId_dia(func_get_args()[1]);
                 $this->setHoraInici(func_get_args()[2]);
                 $this->setHoraFinal(func_get_args()[3]);
+                break;
             case 5:
                 $this->setId_horari(func_get_args()[0]);
                 $this->setId_usuari(func_get_args()[1]);
                 $this->setId_dia(func_get_args()[2]);
                 $this->setHoraInici(func_get_args()[3]);
                 $this->setHoraFinal(func_get_args()[4]);
+                break;
         }
     }
 
