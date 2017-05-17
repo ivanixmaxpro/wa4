@@ -16,6 +16,9 @@ class Permis extends Funcionalitat {
         switch (func_num_args()) {
             case 0:
                 break;
+            case 1:
+                $this->setId_usuari(func_get_args()[0]);
+                break;
             case 8:
                 $this->setId_permis(func_get_args()[0]);
                 $this->setId_usuari(func_get_args()[1]);

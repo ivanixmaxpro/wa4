@@ -15,8 +15,8 @@ class Funcionalitat {
                 $this->setNom(func_get_args()[0]);
                 break;
             case 2:
-                $this->setNom(func_get_args()[0]);
-                $this->setId_funcionalitat(func_get_args()[1]);
+                $this->setId_funcionalitat(func_get_args()[0]);
+                $this->setNom(func_get_args()[1]);
                 break;
         }
     }

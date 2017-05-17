@@ -449,7 +449,6 @@ class EmpresaDAO {
         return $usuari;
     }
 
-
     public function searchEmpleatById($id_empleat) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat;");
@@ -469,7 +468,7 @@ class EmpresaDAO {
             $imatge = $row["imatge"];
             $descripcio = $row["descripcio"];
 
-            $usuari = new Empleat($id_empleat, $id_empresa, $nom, $cognom, $dni, $localitat,$nomina, $nss, $imatge ,$descripcio  );
+            $usuari = new Empleat($id_empleat, $id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
         }
         $con = null;
         return $usuari;
@@ -509,9 +508,9 @@ class EmpresaDAO {
         $con = null;
         return $client;
     }
-    
+
     function searchUsuariById($id_usuari) {
-        
+
         $con = new db();
         $query = $con->prepare("SELECT * FROM usuari WHERE id_usuari = :id_usuari;");
         $query->bindValue(":id_usuari", $id_usuari);
@@ -822,7 +821,7 @@ class EmpresaDAO {
         }
         $con = null;
     }
-    
+
     public function searchPermissos($id_usuari) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_permis WHERE id_usuari = :id_usuari");
@@ -839,8 +838,8 @@ class EmpresaDAO {
             $editar = $row['editar'];
             $eliminar = $row['eliminar'];
             $nom = $row['nom'];
- 
-            $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar,$crear,$editar,$eliminar,$nom);
+
+            $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar, $nom);
             array_push($permisos, $permis);
         }
         $con = null;
@@ -862,12 +861,69 @@ class EmpresaDAO {
             $query->bindValue(":imatge", $empleat->getImatge());
             $query->bindValue(":descripcio", $empleat->getDescripcio());
             $con->consulta($query);
-
         } catch (Exception $e) {
             die($e->getMessage());
         }
         $con = null;
     }
+
+    public function searchHoraris($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM horari WHERE id_usuari = :id_usuari ORDER BY id_dia ASC ");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $horaris = array();
+
+        foreach ($result as $row) {
+            $id_horari = $row['id_horari'];
+            $id_usuari = $row['id_usuari'];
+            $id_dia = $row['id_dia'];
+            $horaInici = $row['horaInici'];
+            $horaFinal = $row['horaFinal'];
+
+            $horari = new Horari($id_horari, $id_usuari, $id_dia, $horaInici, $horaFinal);
+            array_push($horaris, $horari);
+        }
+        $con = null;
+        return $horaris;
+    }
+
+    public function populateDia() {
+
+        $dies = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM dia;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_dia = $row["id_dia"];
+            $nom = $row["nom"];
+
+            $dia = new Dia($id_dia, $nom);
+            array_push($dies, $dia);
+        }
+        $con = null;
+        return $dies;
+    }
+
+    public function populateFuncionalitats() {
+
+        $funcionalitats = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM funcionalitat;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_funcionalitat = $row["id_funcionalitat"];
+            $nom = $row["nom"];
+
+            $funcionalitat = new Funcionalitat($id_funcionalitat, $nom);
+            array_push($funcionalitats, $funcionalitat);
+        }
+        $con = null;
+        return $funcionalitats;
+    }
+
 }
 
 ?>
