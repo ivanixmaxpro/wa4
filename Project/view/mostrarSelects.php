@@ -74,3 +74,23 @@ function mostrarSelectUsuaris($usuaris) {
     }
     echo '</select>';
 }
+
+
+//function mostrarHoraris($value) {
+//
+//   
+//        for ($i = 0; $i <= 24; $i++) {
+//            
+//            if ()
+//            
+//            
+//            
+//        }
+//            
+//    	echo '<option value="00:00:00">0:00</option>';
+//    	
+//    	
+//    
+//    
+//    
+//}

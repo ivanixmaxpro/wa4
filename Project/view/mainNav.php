@@ -54,11 +54,7 @@
                             </p>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Informació</a></li>
                             <li><a href="?ctl=login&act=canviar">Canviar contrasenya</a></li>
-                            <li><a href="#">Action3</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Action action2</a></li>
                             <li class="divider"></li>
                             <?php
                             if (isset($_SESSION["usuari"])) {
