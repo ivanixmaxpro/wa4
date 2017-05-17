@@ -87,7 +87,6 @@ if (isset($_REQUEST['submit'])) {
         } else {
            $permis->setEliminar(0);  
         }
-        
       $permis->insertPermis();
         
     }
