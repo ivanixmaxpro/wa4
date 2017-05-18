@@ -2,14 +2,6 @@
 
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="view/images/sidebar-5.jpg">
-
-            <!--
-    
-                Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-                Tip 2: you can also add an image using data-image tag
-    
-            -->
-
             <div class="sidebar-wrapper">
                 <div class="logo simple-text">
                     WA4
@@ -46,44 +38,72 @@
                             <p>Llista empleats</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php
+                    if ($ctl == "empleat" && $act == "fitxar") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=empleat&act=fitxar">
                             <i class="pe-7s-power"></i>
                             <p>Fitxar</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php
+                    if ($ctl == "control" && $act == "llista") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=control&act=llista">
                             <i class="pe-7s-bell"></i>
                             <p>Control</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php
+                    if ($ctl == "producte" && $act == "llista") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=producte&act=llista">
                             <i class="pe-7s-note2"></i>
                             <p>Llistat de productes</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php
+                    if ($ctl == "albara" && $act == "llista") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=albara&act=llista">
                             <i class="pe-7s-news-paper"></i>
                             <p>Llistat de Albarans</p>
                         </a>
                     </li>
 
-                    <li>
+                    <li <?php
+                    if ($ctl == "client" && $act == "llista") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=client&act=llista">
                             <i class="pe-7s-users"></i>
                             <p>Llistat clients</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php
+                    if ($ctl == "proveidor" && $act == "llista") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=proveidor&act=llista">
                             <i class="pe-7s-plugin"></i>
                             <p>Llistat proveidors</p>
                         </a>
                     </li>
-                    <li>
+                    <li <?php
+                    if ($ctl == "missatge" && $act == "llistaMissatges") {
+                        echo 'class="active"';
+                    }
+                    ?>>
                         <a href="?ctl=missatge&act=llistaMissatges">
                             <i class="pe-7s-mail"></i>
                             <p>Missatges</p>

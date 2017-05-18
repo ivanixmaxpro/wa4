@@ -784,7 +784,7 @@ class EmpresaDAO {
                     $query = $con->prepare("INSERT INTO liquid (id_producte, capacitatMl) 
                 VALUES (:id_producte,:capacitatMl);");
                     $query->bindValue(":id_producte", $idProducte);
-                    $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
                     $con->consulta($query);
 
                     break;
@@ -893,7 +893,7 @@ class EmpresaDAO {
             $nom = $row['nom'];
 
             $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar, $nom);
-            array_push($permisos, $permis);
+            $permisos[$row['nom']] = $permis;
         }
         $con = null;
         return $permisos;

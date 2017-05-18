@@ -51,6 +51,8 @@
 		?>
 	<?php if($ctl == "albaraCompra" && $act == "afegir" ) { echo '<script src="view/js/albaraCompra.js"></script>'; }
 		?>
+        <?php if($ctl == "ubicacio" && $act == "modificar" ) { echo '<script src="view/js/ubicacio.js"></script>'; }
+		?>
         <script src="view/js/validacionsFormularis.js"></script>
         <script src="view/js/busquedaNom.js"></script>
         <!--  Charts Plugin -->
