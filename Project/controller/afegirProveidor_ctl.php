@@ -30,16 +30,12 @@ if (isset($_REQUEST['Submit'])) {
         try {
             $proveidorsDAO->inserir($proveidor);
             $missatge = $proveidor->validateProveidor()->getMsg();
-
             require_once 'view/confirmacio.php';
         } catch (Exception $e) {
-
             $missatge = $e->getMessage();
             require_once 'view/error.php';
         }
     } else {
-        //missatege de la clase validar
-
         $missatge = $proveidor->validateProveidor()->getMsg();
         require_once 'view/error.php';
     }

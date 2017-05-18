@@ -65,7 +65,7 @@ class Proveidor {
             $validation->setMsg("codi esta buit");
             $validation->setOK(false);
         }
-         if ($validation->getOk() && preg_match($patroNum,trim($this->getCodi())) == '') {
+         if ($validation->getOk() && !preg_match($patroNum,trim($this->getCodi()))) {
             $validation->setMsg("codi només poden ser numeros");
             $validation->setOK(false);
         }
