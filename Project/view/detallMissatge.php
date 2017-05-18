@@ -9,7 +9,7 @@
                 <h5><?php echo $missatge->getTitol(); ?></h5> 
                 <h5><?php echo $missatge->getData(); ?></h5> 
                 <h5><?php echo $missatge->getMissatge(); ?></h5> 
-                <a href="index.php?ctl=missatge&act=llistaMissatges"><button class="btn btn-default">Tornar</button></a>
+                <a href="index.php?ctl=missatge&act=llistaMissatges"><button class="btn btn-primary">Tornar</button></a>
             </div>
         </div> 
     </div>

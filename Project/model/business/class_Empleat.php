@@ -114,5 +114,10 @@ class Empleat {
     function setDescripcio($descripcio) {
         $this->descripcio = $descripcio;
     }
-
+    
+    function addEmpleat(){
+        $EmpleatDAO = new EmpleatDAO();
+        $id_empleat = $EmpleatDAO->insertEmpleat($this);
+        return $id_empleat;
+    }
 }

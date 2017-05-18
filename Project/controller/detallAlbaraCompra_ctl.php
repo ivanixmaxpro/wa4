@@ -12,10 +12,14 @@ if (isset($_SESSION['empresa'])) {
 
 
 $albaraCompraComplet = $empresa->searchAlbaraCompra($_REQUEST['id']);
-$title = "Albarà: " . $albaraCompraComplet[0][0]->getCodi();
+$proveidor = $empresa->searchProveidorById($albaraCompraComplet[0][0]->getId_proveidor());
+$data = date_create($albaraCompraComplet[0][0]->getData());
+$dataFormatada = date_format($data, 'd-m-Y');
+$title = "Albarà Codi: " . $albaraCompraComplet[0][0]->getCodi();
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
+require_once 'view/tablas.php';
 require_once 'view/detallAlbaraCompra.php';
 require_once 'view/footer.php';
