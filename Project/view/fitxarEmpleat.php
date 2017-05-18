@@ -1,6 +1,6 @@
 
     <div class="col-md-12">
-        <div class="card">
+        <div class="card col-md-12">
             <div class="header">
                 <h4 class="title">Fitxar</h4>
             </div>
@@ -62,7 +62,7 @@
                                 <?php
                             }
                         }
-                        echo "Refresca per veure els última canvis.";
+                        echo "Refresca per veure els últims canvis.";
                     }else{
                         ?>
                         <div class="content card row">

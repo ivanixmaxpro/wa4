@@ -75,6 +75,7 @@ function mostrarSelectUsuaris($usuaris) {
     echo '</select>';
 }
 
+
 function mostrarSelectUbicacio() {
 
     echo '<select name="moureUbicacio" id="moureUbicacio">';
@@ -84,3 +85,4 @@ function mostrarSelectUbicacio() {
 
     echo '</select>';
 }
+
