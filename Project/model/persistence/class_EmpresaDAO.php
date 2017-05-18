@@ -840,7 +840,7 @@ class EmpresaDAO {
             $nom = $row['nom'];
 
             $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar, $nom);
-            array_push($permisos, $permis);
+            $permisos[$row['nom']] = $permis;
         }
         $con = null;
         return $permisos;
