@@ -199,6 +199,59 @@ class EmpresaDAO {
         return $empleat;
     }
 
+    public function searchEmpleatByNSS($nss) {
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE nss = :nss;");
+        $query->bindValue(":nss", $nss);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
+    public function searchEmpleatByDNI($dni) {
+
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE dni = :dni;");
+        $query->bindValue(":dni", $dni);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
     public function searchAlbaraVenta($id_albaraVenta) {
         $con = new db();
         $albaraTrobatIGuardat = false;

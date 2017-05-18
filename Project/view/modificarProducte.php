@@ -117,7 +117,7 @@
                 if (isset($producte)) {
                     echo $producte->getImatge();
                 }
-                ?>" alt="Imatge Producte">
+                ?>" class="img-rounded" width="304" height="236" alt="Imatge Producte">
             </div>
             <div class="form-group">
                 <label>Pujar imatge</label>
