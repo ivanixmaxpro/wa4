@@ -1,6 +1,7 @@
 <?php
 
 $title = "modificar client";
+$redireccio = 'index.php?ctl=client&act=llista';
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
@@ -30,11 +31,21 @@ if (isset($_REQUEST['Submit'])) {
     }
 
     $client = new Client($nom, $codi, $informacio);
-    $clientDAO->modificar($client, $id);
-    $missatge = 'client modificat';
-    $redireccio = 'index.php?ctl=client&act=llista';
-    require_once 'view/confirmacio.php';
-    // falta missatge confirmacio
+    if ($client->validateClient()->getOk()) {
+        try {
+            $clientDAO->modificar($client, $id);
+            $missatge = $client->validateClient()->getMsg();
+
+            require_once 'view/confirmacio.php';
+        } catch (Exception $e) {
+
+            $missatge = $e->getMessage();
+            require_once 'view/error.php';
+        }
+    } else {
+        $missatge = $client->validateClient()->getMsg();
+        require_once 'view/error.php';
+    }
 } else {
     require_once 'view/modificarClient.php';
 }
