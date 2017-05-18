@@ -22,7 +22,7 @@
             </div>
 
         </form>
-        <a href="index.php?ctl=client&act=llista"><button class="btn btn-default">Tornar</button></a>
+        <a href="index.php?ctl=client&act=llista"><button class="btn btn-primary">Tornar</button></a>
     </div>
 </div>
 

@@ -6,8 +6,12 @@
  * Date: 9/05/17
  * Time: 16:20
  */
+
 $title = "Modificar producte";
 $redireccio = 'index.php?ctl=producte&act=llista';
+
+include 'emmagatzemarFoto.php';
+
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -44,7 +48,7 @@ if (!empty($_POST)) {
         $model = $_REQUEST['model'];
         $descripcio = $_REQUEST['descripcio'];
         $conservar = $_REQUEST['conservar'];
-        $imatge = $_REQUEST['imagte'];
+        $imatge = guardarImatge('productes');
         $capacitatMl = $_REQUEST['capacitatMlInput'];
         $capacitatMg = $_REQUEST['capacitatMgInput'];
         $unitats = $_REQUEST['unitatsInput'];
@@ -52,6 +56,12 @@ if (!empty($_POST)) {
 
 
         $producte = $empresa->searchProducteChilds($_REQUEST['id']);
+
+
+        if ($imatge == null) {
+
+            $imatge = $producte->getImatge();
+        }
 
         if (!isset($nom) && !is_string($nom)) {
             $dades = false;
@@ -71,8 +81,9 @@ if (!empty($_POST)) {
         if (!isset($descripcio) && !is_string($descripcio)) {
             $dades = false;
         }
-        // mirar que fer amb imatges
-        if (!is_string($imatge)) {
+
+        if ($imatge < 0) {
+
             $dades = false;
         }
         if (!isset($conservar) && !is_bool($conservar)) {
@@ -95,6 +106,7 @@ if (!empty($_POST)) {
                         $producte->setCapacitatMg($capacitatMg);
                         $producte->setUnitats($unitats);
 
+
                         if ($producte->validateProduct()->getOk()) {
                             try {
                                 $empresa->updateProducte($producte, get_class($producte));
@@ -108,6 +120,7 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
+
                     }
                     break;
                 case 'Semisolid':
@@ -135,6 +148,7 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
+
                     }
                     break;
                 case 'Liquid':
@@ -149,6 +163,7 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMl($capacitatMl);
 
+
                         if ($producte->validateProduct()->getOk()) {
                             try {
                                 $empresa->updateProducte($producte, get_class($producte));
@@ -162,6 +177,7 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
+
                     }
                     break;
                 case 'Gas':
@@ -189,6 +205,7 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
+
                     }
                     break;
                 case 'Altres':

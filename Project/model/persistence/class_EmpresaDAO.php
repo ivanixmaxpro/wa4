@@ -824,7 +824,7 @@ class EmpresaDAO {
 
     public function searchPermissos($id_usuari) {
         $con = new db();
-        $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_permis WHERE id_usuari = :id_usuari");
+        $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_funcionalitat WHERE id_usuari = :id_usuari");
         $query->bindValue(":id_usuari", $id_usuari);
         $result = $con->consultar($query);
         $permisos = array();

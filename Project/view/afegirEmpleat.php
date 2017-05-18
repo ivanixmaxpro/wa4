@@ -1,6 +1,15 @@
 <div class="content">
-    <form action="?ctl=empleat&act=modificar&id=" method="POST">
+    <form action="?ctl=empleat&act=afegir" method="POST">
         <div class="row">
+            <h3>Empresa:</h3>
+            <div class="col-md-12">
+            <div class="form-group">
+                <label for="campEmpresa">Empresa</label>
+                <br/>
+                <input type="text" class="form-control" id="campEmpresa" name="id_empresa" value="<?php echo $empresa->getId_empresa(); ?>" readonly>
+            </div>
+            </div>
+
             <h3>Dades Empleat:</h3>
             <br/>
             <div class="col-md-6">
@@ -41,7 +50,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Nomina</label>
-                    <input type="text" class="form-control" placeholder="DNI" name="nomina" value="">
+                    <input type="text" class="form-control" placeholder="Nomina" name="nomina" value="">
                 </div>
             </div>
         </div>
@@ -50,7 +59,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Sobre l'empleat</label>
-                    <textarea rows="5" class="form-control" name="info" placeholder="Here can be your description" ></textarea>
+                    <textarea rows="5" class="form-control" placeholder="Here can be your description" name="description"></textarea>
                 </div>
             </div>
 
@@ -136,8 +145,8 @@
 
 </div>
 <div class="clearfix">
-    <button type="submit" name="modify" class="btn btn-default">Afegir Empleat</button>
-    <a name="tornar" class="btn btn-default" href="?ctl=empleat&act=llista">Tornar</a>
+    <button type="submit" name="submit" class="btn btn-primary">Afegir Empleat</button>
+    <a name="tornar" class="btn btn-primary" href="?ctl=empleat&act=llista">Tornar</a>
 </div>
 <br/>
 </form>

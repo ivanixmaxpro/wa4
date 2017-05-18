@@ -1,5 +1,6 @@
 <?php
 
+include 'emmagatzemarFoto.php';
 /**
  * Created by PhpStorm.
  * User: ivan
@@ -39,7 +40,7 @@ if (!empty($_POST)) {
         $model = $_REQUEST['model'];
         $descripcio = $_REQUEST['descripcio'];
         $conservar = $_REQUEST['conservar'];
-        $imatge = $_REQUEST['imagte'];
+        $imatge = guardarImatge('productes');
         $capacitatMl = $_REQUEST['capacitatMlInput'];
         $capacitatMg = $_REQUEST['capacitatMgInput'];
         $unitats = $_REQUEST['unitatsInput'];
@@ -64,10 +65,11 @@ if (!empty($_POST)) {
         if (!isset($descripcio) && !is_string($descripcio)) {
             $dades = false;
         }
-        // mirar que fer amb imatges
-        if (!is_string($imatge)) {
+
+        if (($imatge) < 0) {
             $dades = false;
         }
+
         if (!isset($conservar) && !is_bool($conservar)) {
             $dades = false;
         }
@@ -87,6 +89,7 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMg($capacitatMg);
                         $producte->setUnitats($unitats);
+
    //                     $producte= new Solid($nom, $marca,$preu, $referencia,$model,$descripcio,$conservar,$imatge,$capacitatMg,$unitats);
 
                         if ($producte->validateProduct()->getOk()) {
@@ -102,6 +105,7 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
+
                     }
                     break;
                 case 'semi-solid':
@@ -116,6 +120,7 @@ if (!empty($_POST)) {
                         $producte->setConservarFred($conservar);
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMg($capacitatMg);
+
 
                         if ($producte->validateProduct()->getOk()) {
                             try {

@@ -1,4 +1,8 @@
-<form role="form" method="post" action="?ctl=permis&act=modificar" >    
+<form role="form" method="post" action="?ctl=permis&act=modificar" >
+
+        Marca per afeguir el permís a aquest usuari, desmarca per treure-li.
+    
+    <div class="card">
     <table id="taulaPermisos" class="table table-bordered">
         <thead>
             <tr>
@@ -42,9 +46,10 @@
             
         </tbody>
     </table>
+    </div>
     
     <input name="id_usuari" id="passarArray" type="hidden" value="<?php echo  $id;?>"></input>
-    <input type="submit" id="botoModificarPermissos" name="submit" value="Crear" class="btn btn-danger"></input>
+    <input type="submit" id="botoModificarPermissos" name="submit" value="Modificar" class="btn btn-danger"></input>
 </form>
 
 

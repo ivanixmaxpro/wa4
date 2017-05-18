@@ -210,6 +210,9 @@ switch ($ctl) {
             case "modificar":
                 include "controller/modificarPermissos_ctl.php";
                 break;
+            case "detall":
+                include "controller/detallPermissos_ctl.php";
+                break;
         }
         break;
     case "horari":
