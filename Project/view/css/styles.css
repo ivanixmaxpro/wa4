@@ -52,23 +52,23 @@ una horden solo poden un !important */
     white-space: nowrap;        
 }
 
-table {
+#taulaDetalls table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 20px;
 }
 
-table tr:nth-child(2n-1) td {
+#taulaDetalls table tr:nth-child(2n-1) td {
     background: #F5F5F5;
 }
 
-table th,
-table td {
+#taulaDetalls table th,
+#taulaDetalls table td {
     text-align: center;
 }
 
-table th {
+#taulaDetalls table th {
     padding: 5px 20px;
     color: #5D6975;
     border-bottom: 1px solid #C1CED9;
@@ -76,28 +76,28 @@ table th {
     font-weight: normal;
 }
 
-table .service,
-table .desc {
+#taulaDetalls table .service,
+#taulaDetalls table .desc {
     text-align: left;
 }
 
-table td {
+#taulaDetalls table td {
     padding: 20px;
     text-align: right;
 }
 
-table td.service,
+#taulaDetalls table td.service,
 table td.desc {
     vertical-align: top;
 }
 
-table td.unit,
-table td.qty,
-table td.total {
+#taulaDetalls table td.unit,
+#taulaDetalls table td.qty,
+#taulaDetalls table td.total {
     font-size: 1.2em;
 }
 
-table td.grand {
+#taulaDetalls table td.grand {
     border-top: 1px solid #5D6975;;
 }
 

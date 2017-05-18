@@ -174,7 +174,7 @@ function tablaTotControlUsuaris($control, $empresa) {
 function taulaDetallsAlbarans($arrDetalls, $empresa) {
     ?>
     <div class="content table-responsive table-full-width">
-        <table class="table table-hover table-striped">
+        <table id="taulaDetalls" class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th class="service"></th>
@@ -194,7 +194,7 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     echo '<td class="service">' . $linia . "</td>";
                     echo '<td class="desc">' . $producte->getNom() . "</td>";
                     echo '<td class="text-center">' . $row->getQuantitat() . "</td>";
-                    echo '<td class="text-center">' . $row->getPreu() . " €" . "</td>";
+                    echo '<td class="text-rigth">' . $row->getPreu() . " €" . "</td>";
                     echo "</tr>";
                     $linia++;
                 }
