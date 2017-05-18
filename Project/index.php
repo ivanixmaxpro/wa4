@@ -43,9 +43,6 @@ switch ($ctl) {
             case "canviar":
                 include "controller/canviarContra_ctl.php";
                 break;
-            case "registre":
-                include "controller/registreusuari_ctl.php";
-                break;
             case"sortir";
                 include "controller/logout.php";
                 break;
@@ -62,6 +59,7 @@ switch ($ctl) {
                     include "view/header.php";
                     include "view/sidebar.php";
                     include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
                     $missatge = "No tens permisos per accedir.";
                     include "view/error.php";
                 }
@@ -74,6 +72,7 @@ switch ($ctl) {
                     include "view/header.php";
                     include "view/sidebar.php";
                     include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
                     $missatge = "No tens permisos per accedir.";
                     include "view/error.php";
                 }
@@ -213,22 +212,72 @@ switch ($ctl) {
     case "proveidor":
         switch ($act) {
             case "afegir":
-                include "controller/afegirProveidor_ctl.php";
+                if($_SESSION['permisos']['proveidor']->getCrear() == 1){
+                    include "controller/afegirProveidor_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "cercar":
                 include "controller/cercarProveidor_ctl.php";
                 break;
             case "modificar":
-                include "controller/modificarProveidor_ctl.php";
+                if($_SESSION['permisos']['proveidor']->getEditar() == 1){
+                    include "controller/modificarProveidor_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "eliminar":
-                include "controller/eliminarProveidor_ctl.php";
+                if($_SESSION['permisos']['proveidor']->getEliminar() == 1){
+                    include "controller/eliminarProveidor_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "detall":
-                include "controller/detallProveidor_ctl.php";
+                if($_SESSION['permisos']['proveidor']->getVisualitzar() == 1){
+                    include "controller/detallProveidor_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "llista":
-                include "controller/llistaProveidor_ctl.php";
+                if($_SESSION['permisos']['proveidor']->getVisualitzar() == 1){
+                    include "controller/llistaProveidor_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
         }
         break;
@@ -236,22 +285,72 @@ switch ($ctl) {
     case "client":
         switch ($act) {
             case "afegir":
-                include "controller/afegirClient_ctl.php";
+                if($_SESSION['permisos']['client']->getCrear() == 1){
+                    include "controller/afegirClient_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "cercar":
-                include "controller/cercarClient_ctl.php";
+                    include "controller/cercarClient_ctl.php";
                 break;
             case "modificar":
-                include "controller/modificarClient_ctl.php";
+                if($_SESSION['permisos']['client']->getEditar() == 1){
+                    include "controller/modificarClient_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "eliminar":
-                include "controller/eliminarClient_ctl.php";
+                if($_SESSION['permisos']['client']->getEliminar() == 1){
+                    include "controller/eliminarClient_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "detall":
-                include "controller/detallClient_ctl.php";
+                if($_SESSION['permisos']['client']->getVisualitzar() == 1){
+                    include "controller/detallClient_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "llista":
-                include "controller/llistaClient_ctl.php";
+                if($_SESSION['permisos']['client']->getVisualitzar() == 1){
+                    include "controller/llistaClient_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
         }
         break;
@@ -259,7 +358,17 @@ switch ($ctl) {
         switch ($act) {
 
             case "llista":
-                include "controller/llistaAlbarans_ctl.php";
+                if($_SESSION['permisos']['albaraVenta']->getVisualitzar() == 1 && $_SESSION['permisos']['albaraCompra']->getVisualitzar() == 1){
+                    include "controller/llistaAlbarans_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
         }
         break;
@@ -366,10 +475,30 @@ switch ($ctl) {
                 }
                 break;
             case "detall":
-                include "controller/detallAlbaraCompra_ctl.php";
+                if($_SESSION['permisos']['albaraCompra']->getVisualitzar() == 1){
+                    include "controller/detallAlbaraCompra_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
             case "llista":
-                include "controller/llistaAlbaransCompra_ctl.php";
+                if($_SESSION['permisos']['albaraCompra']->getVisualitzar() == 1){
+                    include "controller/llistaAlbaransCompra_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
         }
         break;
