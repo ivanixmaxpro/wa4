@@ -15,7 +15,7 @@ $(document).ready(function () {
     $('#cognom').focusout(validarNoBuitIAlfa);
     $("#dni").focusout(validarDNIEmpleat);
     $("#nss").focusout(validarNSSEmpleat);
-    $('#adreca').focusout(validarNoBuitIAlfaNum);
+    $('#localitat').focusout(validarNoBuitIAlfa);
     $('#nomina').focusout(validarNum);
     $('#contrasenya').focusout(validarNoBuitIAlfaNum);
     $('#usuari').focusout(validarNoBuitIAlfaNum);
@@ -191,10 +191,21 @@ function validarNSSEmpleat() {
     var nss = nssValor.replace(/\D+/g, "");
 
     if (nssValid(nss)) {
+        $.ajax({
+            type: "POST",
+            url: "./controller/comprovarDNI_NSS_Usuari.php",
+            data: {nss: nss},
+            success: function (resposta) {
+                $('#error' + errorCamp).html(resposta);
+                $('#' + idCamp).focus();
+                totOkFormulari = false;
+            }
+        });
         $('#error' + errorCamp).html("");
     } else {
         $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El númuero de la Seguretat Social no és correcte.");
+        totOkFormulari = false;
     }
 }
 
@@ -207,15 +218,18 @@ function validarDNIEmpleat() {
 
         $.ajax({
             type: "POST",
-            url: "./controller/comprovarDNI.php",
+            url: "./controller/comprovarDNI_NSS_Usuari.php",
             data: {dni: dni},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
+                $('#' + idCamp).focus();
+                totOkFormulari = false;
             }
         });
 
     } else {
         $('#error' + errorCamp).html("No pot està buit.");
+        totOkFormulari = false;
     }
 
 }
