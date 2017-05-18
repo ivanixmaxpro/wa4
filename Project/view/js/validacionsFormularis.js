@@ -208,13 +208,13 @@ function validarDNIEmpleat() {
         $.ajax({
             type: "POST",
             url: "./controller/comprovarDNI.php",
-            data: dni,
+            data: {dni: dni},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
             }
         });
-        
-    }else{
+
+    } else {
         $('#error' + errorCamp).html("No pot està buit.");
     }
 
