@@ -88,5 +88,11 @@ class Usuari {
         $UsuariDAO = new UsuariDAO();
         $UsuariDAO->updateContrasenya($this->getId_usuari(), $this->getContrasenya());
     }
+    
+    function addUsuari(){
+        $UsuariDAO = new UsuariDAO();
+        $id_usuari = $UsuariDAO->insertUsuari($this);
+        return $id_usuari;
+    }
 
 }

@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label>Pujar imatge</label>
-                <input type="file" name="imatge" class="btn btn-default" id="imatge" required>
+                <input type="file" name="imatge" class="btn btn-primary" id="imatge" required>
                 <p class="help-block">
                     Només es permet el tipus d'imatge: .jpg .png .jpeg
                 </p>
@@ -83,6 +83,7 @@
         </div>
         <span id="errorBotoGuardar"></span>
     </div>
-    <button name="afegir" id="botoGuardar" type="submit" class="btn btn-default">Afegir</button>
-    <a name="tornar" class="btn btn-default" href="?ctl=producte&act=llista">Tornar</a>
+    <span id="errorBotoGuardar"></span>
+    <button name="afegir" id="botoGuardar" type="submit" class="btn btn-primary">Afegir</button>
+    <a name="tornar" class="btn btn-primary" href="?ctl=producte&act=llista">Tornar</a>
 </form>

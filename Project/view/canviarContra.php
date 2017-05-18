@@ -14,5 +14,5 @@
         <input type="password" name="nova2" class="form-control" id="ejemplo_password_1"
                placeholder="Nova contrasenya" required>
     </div>
-  <input name="send" type="submit" class="btn btn-default"></input>
+  <input name="send" type="submit" class="btn btn-primary"></input>
 </form>
