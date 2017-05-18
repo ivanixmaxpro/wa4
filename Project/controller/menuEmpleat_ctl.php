@@ -17,7 +17,7 @@ if(isset($_SESSION['empresa'])){
 }
 
 $empleat = $empresa->searchEmpleat($_REQUEST['id']);
-$horari = $empresa->showHorari($_SESSION['id_usuari']);
+$horari = $empresa->showHorari($_REQUEST['id']);
     require_once 'view/header.php';
     require_once 'view/sidebar.php';
     require_once 'view/mainNav.php';

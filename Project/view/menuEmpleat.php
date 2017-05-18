@@ -3,9 +3,9 @@
     <a href="?ctl=empleat&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar empleat</button></a>
     <a href="?ctl=empleat&act=eliminar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Eliminar empleat</button></a>
     <a><button id="opener" class="btn btn-primary" type="button" class="btn btn-primary">Veure horari</button></a>
-    <a href="?ctl=empleat&act=llista&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar horari</button></a>
+    <a href="?ctl=horari&act=modificar&id_usuari=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar horari</button></a>
     <a href="?ctl=permis&act=detall&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Veure permisos</button></a>
-    <a href="?ctl=permis&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar permisos permisos</button></a>
+    <a href="?ctl=permis&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar permisos</button></a>
     <a href="?ctl=empleat&act=llista"><button type="button" class="btn btn-primary">Tornar</button></a>
 </div>
 <div class="content">
