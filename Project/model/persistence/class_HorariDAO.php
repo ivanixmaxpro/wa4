@@ -15,7 +15,23 @@ class HorariDAO {
         $query->bindValue(":horaFinal", $horari->getHoraFinal());
         $con->consulta($query);
     }
+    
+    public function insertHorari($horari) {
 
+        try {
+            $con = new db();
+            $query = $con->prepare("INSERT INTO horari (id_usuari,id_dia,horaInici,horaFinal) 
+                VALUES (:id_usuari,:id_dia,:horaInici,:horaFinal)");
+            $query->bindValue(":id_usuari", $horari->getId_usuari());
+            $query->bindValue(":id_dia", $horari->getId_dia());
+            $query->bindValue(":horaInici", $horari->getHoraInici());
+            $query->bindValue(":horaFinal", $horari->getHoraFinal());
+            $con->consulta($query);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+        $con = null;
+    }
 }
 
 ?>

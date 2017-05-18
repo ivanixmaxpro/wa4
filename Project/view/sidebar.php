@@ -53,6 +53,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="?ctl=control&act=llista">
+                            <i class="pe-7s-bell"></i>
+                            <p>Control</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="?ctl=producte&act=llista">
                             <i class="pe-7s-note2"></i>
                             <p>Llistat de productes</p>
@@ -81,12 +87,6 @@
                         <a href="?ctl=missatge&act=llistaMissatges">
                             <i class="pe-7s-mail"></i>
                             <p>Missatges</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="?ctl=control&act=llista">
-                            <i class="pe-7s-bell"></i>
-                            <p>Control</p>
                         </a>
                     </li>
                 </ul>

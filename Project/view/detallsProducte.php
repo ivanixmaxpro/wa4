@@ -168,5 +168,5 @@
             </div>
         </div>
     </div>
-    <a name="tornar" class="btn btn-default" href="?ctl=producte&act=llista">Tornar</a>
+    <a name="tornar" class="btn btn-primary" href="?ctl=producte&act=llista">Tornar</a>
 </form>
