@@ -731,7 +731,7 @@ class EmpresaDAO {
                     $query = $con->prepare("INSERT INTO liquid (id_producte, capacitatMl) 
                 VALUES (:id_producte,:capacitatMl);");
                     $query->bindValue(":id_producte", $idProducte);
-                    $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
                     $con->consulta($query);
 
                     break;
