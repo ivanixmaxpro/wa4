@@ -265,6 +265,7 @@ switch ($ctl) {
         break;
     case "control":
         switch ($act) {
+
             case "llista":
                 if($_SESSION['permisos']['control']->getVisualitzar() == 1){
                     include "controller/llistaControl_ctl.php";
@@ -418,6 +419,13 @@ switch ($ctl) {
                     $missatge = "No tens permisos per accedir.";
                     include "view/error.php";
                 }
+                break;
+        }
+        break;
+    case "ubicacio":
+        switch ($act) {
+            case "modificar":
+                include "controller/modificarUbicacio_ctl.php";
                 break;
         }
         break;

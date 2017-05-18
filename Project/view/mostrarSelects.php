@@ -75,3 +75,14 @@ function mostrarSelectUsuaris($usuaris) {
     echo '</select>';
 }
 
+
+function mostrarSelectUbicacio() {
+
+    echo '<select name="moureUbicacio" id="moureUbicacio">';
+    echo "<option value='-' selected> - </option>";
+    echo "<option value='tenda' > Tenda </option>";
+    echo "<option value='stock' > Stock </option>";
+
+    echo '</select>';
+}
+
