@@ -165,7 +165,7 @@ switch ($ctl) {
         break;
     case "control":
         switch ($act) {
-           
+
             case "llista":
                 include "controller/llistaControl_ctl.php";
                 break;
@@ -219,6 +219,13 @@ switch ($ctl) {
         switch ($act) {
             case "modificar":
                 include "controller/modificarHorari_ctl.php";
+                break;
+        }
+        break;
+    case "ubicacio":
+        switch ($act) {
+            case "modificar":
+                include "controller/modificarUbicacio_ctl.php";
                 break;
         }
         break;

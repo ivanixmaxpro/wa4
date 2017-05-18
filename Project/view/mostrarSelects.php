@@ -75,22 +75,12 @@ function mostrarSelectUsuaris($usuaris) {
     echo '</select>';
 }
 
+function mostrarSelectUbicacio() {
 
-//function mostrarHoraris($value) {
-//
-//   
-//        for ($i = 0; $i <= 24; $i++) {
-//            
-//            if ()
-//            
-//            
-//            
-//        }
-//            
-//    	echo '<option value="00:00:00">0:00</option>';
-//    	
-//    	
-//    
-//    
-//    
-//}
+    echo '<select name="moureUbicacio" id="moureUbicacio">';
+    echo "<option value='-' selected> - </option>";
+    echo "<option value='tenda' > Tenda </option>";
+    echo "<option value='stock' > Stock </option>";
+
+    echo '</select>';
+}
