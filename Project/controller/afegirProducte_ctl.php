@@ -45,7 +45,7 @@ if (!empty($_POST)) {
         $capacitatMg = $_REQUEST['capacitatMgInput'];
         $unitats = $_REQUEST['unitatsInput'];
         $dades = true;
-
+        $redireccio = 'index.php?ctl=producte&act=llista';
 
         if (!isset($nom) && !is_string($nom)) {
             $dades = false;
@@ -65,6 +65,7 @@ if (!empty($_POST)) {
         if (!isset($descripcio) && !is_string($descripcio)) {
             $dades = false;
         }
+
         if (($imatge) < 0) {
             $dades = false;
         }
@@ -89,16 +90,26 @@ if (!empty($_POST)) {
                         $producte->setCapacitatMg($capacitatMg);
                         $producte->setUnitats($unitats);
 
+   //                     $producte= new Solid($nom, $marca,$preu, $referencia,$model,$descripcio,$conservar,$imatge,$capacitatMg,$unitats);
 
-                        $empresa->afegirProducte($producte, get_class($producte));
-                        $missatge = "Sha afegit satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->afegirProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
+
                     }
                     break;
                 case 'semi-solid':
-                    if (isset($select) && isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg)) {
+                    if (isset($nom) && isset($marca) && isset($preu) && isset($referencia) && isset($model) && isset($descripcio) && isset($conservar) && isset($imatge) && isset($capacitatMg)) {
                         $producte = new Semisolid();
                         $producte->setNom($nom);
                         $producte->setMarca($marca);
@@ -111,11 +122,19 @@ if (!empty($_POST)) {
                         $producte->setCapacitatMg($capacitatMg);
 
 
-                        $empresa->afegirProducte($producte, get_class($producte));
-                        $missatge = "Sha afegit satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->afegirProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'liquid':
@@ -131,14 +150,19 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMl($capacitatMl);
 
-
-                        $empresa->afegirProducte($producte, get_class($producte));
-                        $missatge = "Sha afegit satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
-                    } else {
-                        echo "fuck";
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->afegirProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'gas':
@@ -154,12 +178,19 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMl($capacitatMl);
 
-
-                        $empresa->afegirProducte($producte, get_class($producte));
-                        $missatge = "Sha afegit satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->afegirProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'altres':
@@ -175,19 +206,24 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setUnitats($unitats);
 
-
-                        $empresa->afegirProducte($producte, get_class($producte));
-                        $missatge = "Sha afegit satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->afegirProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
             }
-        } else {
-            echo "Dades entrades incorrectament.";
-            // dades entrades erroneament
         }
     }
 }
+require_once 'view/footer.php';
 ?>

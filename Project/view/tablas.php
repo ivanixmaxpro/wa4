@@ -75,16 +75,15 @@ function tablaTotAlbaransVenta($albaransVenta, $empresa) {
                 <?php
                 foreach ($albaransVenta as $row) {
                     $client = $empresa->searchClientById($row->getId_client());
+                    $date = date_create($row->getData());
 
                     echo '<tr>';
                     echo "<td>" . $row->getId_albara() . "</td>";
                     echo "<td>" . $client->getNom() . "</td>";
-                    echo "<td>" . $row->getId_empresa() . "</td>";
+                    echo "<td>" . $empresa->getNom() . "</td>";
                     echo "<td>" . $row->getCodi() . "</td>";
-                    echo "<td>" . $row->getData() . "</td>";
+                    echo "<td>" . date_format($date, 'd-m-Y') . "</td>";
                     echo '<td>' . '<a href="?ctl=albaraVenta&act=detall&id=' . $row->getId_albara() . '">' . 'Veure' . '</a>' . '</td>';
-                    ?>  
-                    <?php
                     echo "</tr>";
                 }
                 ?> 
@@ -93,9 +92,6 @@ function tablaTotAlbaransVenta($albaransVenta, $empresa) {
         </table> 
     </div> 
     <?php
-    /* <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-      <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
-     */
 }
 ?>
 <?php
@@ -108,11 +104,8 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
                 <tr><th>ID</th> 
                     <th>Proveidor</th> 
                     <th>Empresa</th> 
-                    <th>Codi</th> 
-                    <th>Observacions</th>
-                    <th>Preu</th>
+                    <th>Codi</th>
                     <th>Data</th>
-                    <th>Localitat</th>
 
                     <th>Detall</th>
                 </tr>
@@ -122,19 +115,15 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
                 <?php
                 foreach ($albaransCompra as $row) {
                     $proveidor = $empresa->searchProveidorById($row->getId_proveidor());
+                    $date = date_create($row->getData());
 
                     echo '<tr>';
                     echo "<td>" . $row->getId_albara() . "</td>";
                     echo "<td>" . $proveidor->getNom() . "</td>";
-                    echo "<td>" . $row->getId_empresa() . "</td>";
+                    echo "<td>" . $empresa->getNom() . "</td>";
                     echo "<td>" . $row->getCodi() . "</td>";
-                    echo "<td>" . $row->getObservacions() . "</td>";
-                    echo "<td>" . $row->getPreu() . "</td>";
-                    echo "<td>" . $row->getData() . "</td>";
-                    echo "<td>" . $row->getLocalitat() . "</td>";
+                    echo "<td>" . date_format($date, 'd-m-Y') . "</td>";
                     echo '<td>' . '<a href="?ctl=albaraCompra&act=detall&id=' . $row->getId_albara() . '">' . 'Veure' . '</a>' . '</td>';
-                    ?>  
-                    <?php
                     echo "</tr>";
                 }
                 ?> 
@@ -143,9 +132,6 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
         </table> 
     </div> 
     <?php
-    /* <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-      <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
-     */
 }
 ?>
 
@@ -173,8 +159,6 @@ function tablaTotControlUsuaris($control, $empresa) {
                     echo "<td>" . $usuari->getUsuari() . "</td>";
                     echo "<td>" . $row->getFitxat() . "</td>";
                     echo "<td>" . $row->getData() . "</td>";
-                    ?>  
-                    <?php
                     echo "</tr>";
                 }
                 ?> 
@@ -183,8 +167,36 @@ function tablaTotControlUsuaris($control, $empresa) {
         </table> 
     </div> 
     <?php
-    /* <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-      <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
-     */
 }
 ?>
+<?php
+
+function taulaDetallsAlbarans($arrDetalls, $empresa) {
+    ?>
+    <div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th class="service"></th>
+                    <th class="desc">Producte</th>
+                    <th>Quantitat</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php
+                $linia = 1;
+                foreach ($arrDetalls as $row) {
+                    $producte = $empresa->searchProducte($row->getId_producte());
+
+                    echo '<tr>';
+                    echo '<td class="service">' . $linia . "</td>";
+                    echo '<td class="desc">' . $producte->getNom() . "</td>";
+                    echo '<td class="text-center">' . $row->getQuantitat() . "</td>";
+                    echo '<td class="text-center">' . $row->getPreu() . " €" . "</td>";
+                    echo "</tr>";
+                    $linia++;
+                }
+            }
+            ?>

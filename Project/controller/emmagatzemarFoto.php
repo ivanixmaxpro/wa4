@@ -15,8 +15,8 @@ function guardarImatge($subcarpeta) {
     $imgNeta = limpiarStringDeCaracters($imgSenseBlancs);
 
     $imgDefinitivamentNet = $imgNeta;
-    
-    $rutaDesti = getcwd() . "/view/images/" . $subcarpeta . "/" . $imgDefinitivamentNet;
+
+    $rutaDesti = $_SERVER['DOCUMENT_ROOT'] . "/wa4/Project/view/images/" . $subcarpeta . "/" . $imgDefinitivamentNet;
 
     if ((($_FILES["imatge"]["type"] == "image/png") || ($_FILES["imatge"]["type"] == "image/jpg") || ($_FILES["imatge"]["type"] == "image/jpeg")
             ) && ($_FILES["imatge"]["size"] < 20000000)//Approx. 20MB files can be uploaded.
@@ -24,6 +24,8 @@ function guardarImatge($subcarpeta) {
 
         if (!file_exists($rutaDesti)) {
             move_uploaded_file($_FILES["imatge"]["tmp_name"], $rutaDesti);
+
+            $rutaDesti = "/wa4/Project/view/images/" . $subcarpeta . "/" . $imgDefinitivamentNet;
         }
         return $rutaDesti;
     }
