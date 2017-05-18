@@ -425,7 +425,17 @@ switch ($ctl) {
     case "ubicacio":
         switch ($act) {
             case "modificar":
-                include "controller/modificarUbicacio_ctl.php";
+                if($_SESSION['permisos']['producte']->getEditar() == 1){
+                    include "controller/modificarUbicacio_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
         }
         break;
