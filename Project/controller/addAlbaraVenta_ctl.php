@@ -14,10 +14,10 @@ if (isset($_SESSION['empresa'])) {
     $_SESSION['empresa'] = serialize($empresa);
 }
 $data = getdate();
-$data = date('Y-m-d H:i:s');
+$data = date('d-m-Y');
 if (isset($_REQUEST["submit"])) {
     $data = getdate();
-    $data = date('Y-m-d H:i:s');
+    $data = date('Y-m-d');
     $arrProductesDelAlbara = array();
 
     $ss = $_POST['passarArrProductes'];

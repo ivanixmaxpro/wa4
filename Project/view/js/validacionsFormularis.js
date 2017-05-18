@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    $('#nom').focusout(validarNoBuitIAlfa);
-    $('#marca').focusout(validarNoBuitIAlfa);
+    $('#nom').focusout(validarNoBuitIAlfaNum);
+    $('#marca').focusout(validarNoBuitIAlfaNum);
     $('#imatge').change(validarImatge);
     $('#preu').focusout(validarAmb2Decimals);
     $('#referencia').focusout(validarNum4Digits);
-    $('#model').focusout(validarNoBuitIAlfa);
+    $('#model').focusout(validarNoBuitIAlfaNum);
     $('#descripcio').focusout(validarNoBuit);
     $('#capacitatMlInput').focusout(validarAmb2Decimals);
     $('#capacitatMgInput').focusout(validarAmb2Decimals);
@@ -25,9 +25,32 @@ function validarNoBuitIAlfa() {
         $('#error' + errorCamp).html("El camp ha de ser alfabètic i no pot estar buit.");
         totOkFormulari = false;
     } else {
-        if (valor.length < 5) {
+        if (valor.length < 2) {
             $('#' + idCamp).focus();
-            $('#error' + errorCamp).html("Ha de tenir un mínim de 5 lletres.");
+            $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
+            totOkFormulari = false;
+        } else {
+            $('#error' + errorCamp).html("");
+            totOkFormulari = true;
+        }
+    }
+
+}
+
+function validarNoBuitIAlfaNum() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var val = $('#' + idCamp).val();
+    var valor = val.trim();
+
+    if (valor == '' || !AlfaNumeric(valor)) {
+        $('#' + idCamp).focus();
+        $('#error' + errorCamp).html("El camp ha de ser alfanumèric i no pot estar buit.");
+        totOkFormulari = false;
+    } else {
+        if (valor.length < 2) {
+            $('#' + idCamp).focus();
+            $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
             totOkFormulari = false;
         } else {
             $('#error' + errorCamp).html("");
@@ -39,7 +62,7 @@ function validarNoBuitIAlfa() {
 
 
 function validarNum() {
-    var reg = /^\d+$/;
+    var reg = /^[1-9]+$/;
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
     var val = $('#' + idCamp).val();
@@ -49,6 +72,9 @@ function validarNum() {
     if (!valor.match(reg)) {
         $('#' + idCamp).focus();
         $('#error' + errorCamp).html("Han de ser nombres numèrics.");
+        if (valor == 0) {
+            $('#error' + errorCamp).html("Has de introduir mínim 1 unitat.");
+        }
         totOkFormulari = false;
     } else {
         $('#error' + errorCamp).html("");
@@ -121,6 +147,17 @@ function Alfabetic(elemValor) {
     }
 }
 
+function AlfaNumeric(elemValor) {
+
+    var alphaExp = /^[a-zA-Z0-9\,\.\s]+$/;
+    if (elemValor.match(alphaExp)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 function primeraLletraMayus(idCamp) {
 
     return idCamp.substr(0, 1).toUpperCase() + idCamp.substr(1);
@@ -166,11 +203,16 @@ function validarImatge() {
 function validarFormulariAmbImatge() {
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
+    var valorAct = $("form").attr('action');
+    var n = valorAct.search("modificar");
 
-    if (!$('#imatge').val()) {
-        var mierror = "No has seleccionat cap imatge encara.";
-        $('#errorImatge').html(mierror);
-        totOkFormulari = false;
+    if (n == -1) {
+
+        if (!$('#imatge').val()) {
+            var mierror = "No has seleccionat cap imatge encara.";
+            $('#errorImatge').html(mierror);
+            totOkFormulari = false;
+        }
     }
 
     if (!$('input:radio[name=conservar]:checked').val()) {
