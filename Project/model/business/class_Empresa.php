@@ -125,6 +125,12 @@ class Empresa {
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
         return $empleat;
     }
+    
+    function searchEmpleatByDNI($dni) {
+        $EmpresaDAO = new EmpresaDAO();
+        $empleat = $EmpresaDAO->searchEmpleatByDNI($dni);
+        return $empleat;
+    }
 
     function searchAlbaraVenta($id_albaraVenta) {
         $EmpresaDAO = new EmpresaDAO();
