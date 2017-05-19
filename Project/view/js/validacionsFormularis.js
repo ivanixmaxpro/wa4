@@ -17,8 +17,8 @@ $(document).ready(function () {
     $("#nss").focusout(validarNSSEmpleat);
     $('#localitat').focusout(validarNoBuitIAlfa);
     $('#nomina').focusout(validarNum);
-    $('#contrasenya').focusout(validarNoBuitIAlfaNum);
-    $('#usuari').focusout(validarNoBuitIAlfaNum);
+    $('#contrasenya').focusout(validarContrasenya);
+    $('#usuari').focusout(validarUsuariEmpleat);
     $("#botoguardarempleat").focusout(validarFormulari);
 
     /* CAMPS COMUNS A TOTS ELS FORMULARIS */
@@ -231,6 +231,48 @@ function validarDNIEmpleat() {
         $('#error' + errorCamp).html("No pot està buit.");
         totOkFormulari = false;
     }
+
+}
+
+function validarUsuariEmpleat() {
+    var idCamp = this.id;
+    var nomUsuari = $('#' + idCamp).val();
+    var errorCamp = primeraLletraMayus(idCamp);
+
+    if (nomUsuari != '' && Alfabetic(nomUsuari)) {
+        $.ajax({
+            type: "POST",
+            url: "./controller/comprovarDNI_NSS_Usuari.php",
+            data: {usuari: nomUsuari},
+            success: function (resposta) {
+                $('#error' + errorCamp).html(resposta);
+                $('#' + idCamp).focus();
+                totOkFormulari = false;
+            }
+        });
+        $('#error' + errorCamp).html("");
+    } else {
+        $('#' + idCamp).focus();
+        $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
+        totOkFormulari = false;
+    }
+
+
+}
+
+function validarContrasenya() {
+    var idCamp = this.id;
+    var pass = $('#' + idCamp).val();
+    var errorCamp = primeraLletraMayus(idCamp);
+    var reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
+    if (!pass.match(reg)) {
+        $('#' + idCamp).focus();
+        $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters</li><li>Mínim 1 digit</li><li>Mínim 1 majúscula</li><li>Mínim 1 minúscula</li></ul>.");
+    } else {
+        $('#error' + errorCamp).html("");
+    }
+
 
 }
 

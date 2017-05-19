@@ -136,6 +136,13 @@ class Empresa {
         $empleat = $EmpresaDAO->searchEmpleatByNSS($nss);
         return $empleat;
     }
+    
+    function searchUsuariByNom($usuari){
+        $EmpresaDAO = new EmpresaDAO();
+        $usri = $EmpresaDAO->searchUsuariByNom($usuari);
+        return $usri;
+        
+    }
 
     function searchAlbaraVenta($id_albaraVenta) {
         $EmpresaDAO = new EmpresaDAO();
