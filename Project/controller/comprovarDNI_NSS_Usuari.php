@@ -18,6 +18,9 @@ if (!empty($_REQUEST['dni'])) {
 } else if (!empty($_REQUEST['nss'])) {
     $nss = $_REQUEST['nss'];
     validar_nss($nss, $empresa);
+} else if (!empty($_REQUEST['usuari'])) {
+    $usuari = $_REQUEST['usuari'];
+    validar_usuari($usuari, $empresa);
 }
 
 function validar_dni($dni, $empresa) {
@@ -46,5 +49,13 @@ function validar_nss($nss, $empresa) {
 
     if (isset($empleat) && $empleat != null) {
         echo 'Aquest número de la Seguretat Social ja és troba registrat.';
+    }
+}
+
+function validar_usuari($usuari, $empresa) {
+    $usri = $empresa->searchUsuariByNom($usuari);
+
+    if (isset($usri) && $usri != null) {
+        echo 'Aquest usuari ja és troba registrat.';
     }
 }
