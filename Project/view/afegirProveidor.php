@@ -1,9 +1,5 @@
 <div class="card">
-
     <div class="container">
-
-
-
         <form action="?ctl=proveidor&act=afegir" method="post">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
