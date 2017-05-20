@@ -75,6 +75,19 @@ switch ($ctl) {
                     include "view/error.php";
                 }
                 break;
+            case "canviarContra":
+                if($_SESSION['permisos']['empleat']->getEditar() == 1 && isset($_SESSION['permisos'])){
+                    include "controller/canviarContraEmpleat_ctl.php";
+                }else{
+                    $title="Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
+                break;
             case "menu":
                 if($_SESSION['permisos']['empleat']->getEliminar() == 1 && $_SESSION['permisos']['empleat']->getEditar() && $_SESSION['permisos']['empleat']->getVisualitzar() && isset($_SESSION['permisos'])){
                     include "controller/menuEmpleat_ctl.php";
