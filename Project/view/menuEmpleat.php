@@ -6,12 +6,12 @@
     <a href="?ctl=empleat&act=eliminar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Eliminar empleat</button></a>
     <h4>Horari</h4>
     <a><button id="opener" class="btn btn-primary" type="button" class="btn btn-primary">Veure horari</button></a>
-    <a href="?ctl=horari&act=modificar&id_usuari=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar horari</button></a>
+    <a href="?ctl=horari&act=modificar&id_usuari=<?php echo  $usuari->getId_usuari()?>"><button type="button" class="btn btn-primary">Modificar horari</button></a>
     <h4>Permissos</h4>
-    <a href="?ctl=permis&act=detall&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Veure permisos</button></a>
-    <a href="?ctl=permis&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar permisos</button></a>
+    <a href="?ctl=permis&act=detall&id=<?php echo  $usuari->getId_usuari()?>"><button type="button" class="btn btn-primary">Veure permisos</button></a>
+    <a href="?ctl=permis&act=modificar&id_usuari=<?php echo  $usuari->getId_usuari()?>"><button type="button" class="btn btn-primary">Modificar permisos</button></a>
     <a href="?ctl=empleat&act=canviarContra&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Canviar constrasenya empleat</button></a>
-    <a href="?ctl=empleat&act=llista"><button type="button" class="btn btn-primary">Tornar</button></a>
+    <br><br><a href="?ctl=empleat&act=llista"><button type="button" class="btn btn-primary">Tornar</button></a>
 </div>
 </div>
 <div class="content">
