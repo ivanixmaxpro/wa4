@@ -58,7 +58,6 @@ class UsuariDAO {
             $query->bindValue(":usuari", $usuari->getUsuari());
             $query->bindValue(":contrasenya", $usuari->getContrasenya());
             $con->consulta($query);
-            var_dump($con->lastInsertId());
             return $con->lastInsertId();
         } catch (Exception $e) {
             die($e->getMessage());

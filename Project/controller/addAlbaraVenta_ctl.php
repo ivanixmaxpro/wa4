@@ -54,7 +54,6 @@ if (isset($_REQUEST["submit"])) {
                 $quantProducteCalc = $quantProducteCalc - $quantitatTenda;
                 $quantitatTenda = 0;
                 $quantitatStock = $quantitatStock - $quantProducteCalc;
-                var_dump($quantitatStock);
             }
             $arrProductesDelAlbara[$i][3] = $quantitatTenda;
             $arrProductesDelAlbara[$i][4] = $quantitatStock;
