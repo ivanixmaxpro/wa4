@@ -19,6 +19,7 @@ $(document).ready(function () {
     $('#nomina').focusout(validarNum);
     $('#contrasenya').focusout(validarContrasenya);
     $('#usuari').focusout(validarUsuariEmpleat);
+    $('input[type=time]').change(validarHores);
     $("#botoguardarempleat").focusout(validarFormulari);
 
     /* CAMPS COMUNS A TOTS ELS FORMULARIS */
@@ -26,6 +27,8 @@ $(document).ready(function () {
     $("#botoGuardar").click(validarFormulariAmbImatgeProducte);
 });
 
+var horaInici;
+var horaFinal;
 var totOkFormulari = true;
 
 function validarNoBuitIAlfa() {
@@ -35,12 +38,10 @@ function validarNoBuitIAlfa() {
     var valor = val.trim();
 
     if (valor == '' || !Alfabetic(valor)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser alfabètic i no pot estar buit.");
         totOkFormulari = false;
     } else {
         if (valor.length < 2) {
-            $('#' + idCamp).focus();
             $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
             totOkFormulari = false;
         } else {
@@ -58,12 +59,10 @@ function validarNoBuitIAlfaNum() {
     var valor = val.trim();
 
     if (valor == '' || !AlfaNumeric(valor)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser alfanumèric i no pot estar buit.");
         totOkFormulari = false;
     } else {
         if (valor.length < 2) {
-            $('#' + idCamp).focus();
             $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
             totOkFormulari = false;
         } else {
@@ -84,7 +83,6 @@ function validarNum() {
 
 
     if (!valor.match(reg)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("Han de ser nombres numèrics.");
         if (valor == 0) {
             $('#error' + errorCamp).html("Has de introduir mínim 1.");
@@ -124,7 +122,6 @@ function validarNoBuit() {
     var valor = val.trim();
 
     if (valor == '') {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp no pot estar buit.");
         totOkFormulari = false;
     } else {
@@ -143,7 +140,6 @@ function validarAmb2Decimals() {
     var valor = val.trim();
 
     if (!valor.match(reg)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser un nombre positiu o amb 2 decimal.");
         totOkFormulari = false;
     } else {
@@ -158,6 +154,8 @@ function nssValid(nss) {
             valid = nss.match(re);
 
     var correcte = false;
+
+    var x = parseInt(nss) % 97;
 
     if (valid) {
         var nums = nss.slice(0, 10);
@@ -197,14 +195,16 @@ function validarNSSEmpleat() {
             data: {nss: nss},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
-                $('#' + idCamp).focus();
                 totOkFormulari = false;
             }
         });
         $('#error' + errorCamp).html("");
     } else {
-        $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("El númuero de la Seguretat Social no és correcte.");
+        if (nssValor == "") {
+            $('#error' + errorCamp).html("El camp no pot estar buit.");
+        } else {
+            $('#error' + errorCamp).html("El númuero de la Seguretat Social no és correcte.");
+        }
         totOkFormulari = false;
     }
 }
@@ -222,7 +222,6 @@ function validarDNIEmpleat() {
             data: {dni: dni},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
-                $('#' + idCamp).focus();
                 totOkFormulari = false;
             }
         });
@@ -246,13 +245,11 @@ function validarUsuariEmpleat() {
             data: {usuari: nomUsuari},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
-                $('#' + idCamp).focus();
                 totOkFormulari = false;
             }
         });
         $('#error' + errorCamp).html("");
     } else {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
         totOkFormulari = false;
     }
@@ -267,8 +264,7 @@ function validarContrasenya() {
     var reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
     if (!pass.match(reg)) {
-        $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters</li><li>Mínim 1 digit</li><li>Mínim 1 majúscula</li><li>Mínim 1 minúscula</li></ul>.");
+        $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters.</li><li>Mínim 1 digit.</li><li>Mínim 1 majúscula.</li><li>Mínim 1 minúscula.</li></ul>.");
     } else {
         $('#error' + errorCamp).html("");
     }
@@ -276,6 +272,37 @@ function validarContrasenya() {
 
 }
 
+
+function validarHores() {
+    var idCamp = this.id;
+    var arrInici = ["horaInici_0", "horaInici_1", "horaInici_2", "horaInici_3", "horaInici_4", "horaInici_5", "horaInici_6"];
+    var arrInici = ["horaFinal_0", "horaFinal_1", "horaFinal_2", "horaFinal_3", "horaFinal_4", "horaFinal_5", "horaFinal_6"];
+    var tipusHora = idCamp.search("horaInici_");
+    var primeraIdHora = idCamp;
+    var segonaIdHora;
+    var alphaExp = /^\d{2}:\d{2}$/;
+
+    if (tipusHora == -1) {
+        horaFinal = $('#' + idCamp).val();
+        segonaIdHora = idCamp;
+        for (var i = 0; i < arrInici.length; i++) {
+            if (arrInici[i] == segonaIdHora) {
+
+            }
+        }
+    } else {
+        horaInici = $('#' + idCamp).val();
+        primeraIdHora = idCamp;
+        for (var i = 0; i < arrInici.length; i++) {
+            if (arrInici[i] == primeraIdHora) {
+
+            }
+        }
+    }
+
+
+
+}
 
 function Alfabetic(elemValor) {
     var alphaExp = /^[a-zA-ZáéíóúÁÉÍÓÚÑñÇçàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ\s]+$/;
