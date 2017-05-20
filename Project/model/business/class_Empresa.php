@@ -156,11 +156,30 @@ class Empresa {
         return $albaraCompraComplet;
     }
 
-    function filtrarProductes($conservarenfred, $quantitat, $tipus) {
+    function filtrarProductes($nom, $conservarenfred, $quantitat, $tipus) {
         $EmpresaDAO = new EmpresaDAO();
-        $resultatDelFiltre = $EmpresaDAO->filterProducte($conservarenfred, $quantitat, $tipus);
+        $resultatDelFiltre = $EmpresaDAO->filterProducte($nom, $conservarenfred, $quantitat, $tipus);
         return $resultatDelFiltre;
     }
+
+    function filtrarProveidors($nom) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filtrarProveidors($nom);
+        return $resultatDelFiltre;
+    }
+
+    function filtrarMissatges($titol) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filtrarMissatges($titol);
+        return $resultatDelFiltre;
+    }
+
+    function filtrarClients($nom) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filtrarClients($nom);
+        return $resultatDelFiltre;
+    }
+
 
     function filtrarControlUsuari($id_usuari) {
         $EmpresaDAO = new ControlDAO();

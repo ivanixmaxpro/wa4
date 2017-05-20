@@ -5,10 +5,10 @@
         <p class="category">A continuació un llistat de tots els nostres Proveidors:</p>
     </div>
 
-    <form action="?ctl=producte&act=llista" method="post">
+    <form action="?ctl=proveidor&act=llista" method="post">
         <div class="form-group">
             Cercar per Nom:
-            <input type="text" name="nom" >
+            <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;}?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
             <a href="?ctl=proveidor&act=afegir" class="btn btn-primary"></span> Afegir proveidor</a>
         </div>
