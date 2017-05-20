@@ -1,6 +1,7 @@
 <?php
 
 $title = "afegir empleat";
+$redireccio = 'index.php?ctl=empleat&act=llista';
 include 'emmagatzemarFoto.php';
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
@@ -29,20 +30,44 @@ if (isset($_REQUEST['submit'])) {
     $description = $_REQUEST['description'];
     $imatge = guardarImatge('empleats');
 
+    $usuari = $_REQUEST['usuari'];
+    $contrasenya = password_hash($_REQUEST['contra'], PASSWORD_BCRYPT);
+
     if ($imatge == null) {
         $imatge = "/wa4/Project/view/images/empleats/default-avatar.png";
     }
 
     $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $address, $nomina, $nss, $imatge, $description);
-    $id_empleat = $empleat->addEmpleat();
+
+
+    if ($empleat->validateEmpleat()->getOk()) {
+        $id_empleat = $empleat->addEmpleat();
+        $user = new Usuari($id_empleat, $usuari, $contrasenya);
+        if ($usuari->validateNewUser()->getOk()) {
+            try {
+                $clientDAO->inserir($client);
+                $id_usuari = $user->addUsuari();
+                $missatge = $empleat->validateClient()->getMsg();
+
+                require_once 'view/confirmacio.php';
+            } catch (Exception $e) {
+
+                $missatge = $e->getMessage();
+                require_once 'view/error.php';
+            }
+        } else {
+            //missatege de la clase validar
+
+            $missatge = $usuari->validateNewUser()->getMsg();
+            require_once 'view/error.php';
+        }
+    } else {
+        $missatge = $empleat->validateEmpleat()->getMsg();
+        require_once 'view/error.php';
+    }
+
 
     //Introduces empleado y devuelve id_empleat
-
-    $usuari = $_REQUEST['usuari'];
-    $contrasenya = password_hash($_REQUEST['contra'], PASSWORD_BCRYPT);
-
-    $user = new Usuari($id_empleat, $usuari, $contrasenya);
-    $id_usuari = $user->addUsuari();
     //Introduces usuario y devuelve id_usuario
 
     $i = 0;
@@ -95,8 +120,7 @@ if (isset($_REQUEST['submit'])) {
         $permis->insertPermis();
     }
 
-    var_dump($empleat);
-
+//    var_dump($empleat);
 //    $clientDAO->inserir($client);
 //    $missatge = 'client afegit';
 //    $redireccio = 'index.php?ctl=client&act=llista';

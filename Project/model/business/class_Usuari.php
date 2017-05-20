@@ -94,5 +94,11 @@ class Usuari {
         $id_usuari = $UsuariDAO->insertUsuari($this);
         return $id_usuari;
     }
+    /**
+     * 
+     */
+    function validateNewUser(){
+        
+    }
 
 }
