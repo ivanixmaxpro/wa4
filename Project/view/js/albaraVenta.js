@@ -43,14 +43,14 @@ function emmagatzemarProducte() {
     var quantitatTenda = parseInt($("#quantitatTenda").val());
     var quantitatStock = parseInt($("#quantitatStock").val());
     var idUbicacio = $("#idUbicacio").val();
-
-    if (quantProducte <= quantitatTenda) {
-        quantitatTenda = quantitatTenda - quantProducte;
-    } else {
-        quantProducteCalc = quantProducteCalc - quantitatTenda;
-        quantitatTenda = 0;
-        quantitatStock = quantitatStock - quantProducteCalc;
-    }
+//
+//    if (quantProducte <= quantitatTenda) {
+//        quantitatTenda = quantitatTenda - quantProducte;
+//    } else {
+//        quantProducteCalc = quantProducteCalc - quantitatTenda;
+//        quantitatTenda = 0;
+//        quantitatStock = quantitatStock - quantProducteCalc;
+//    }
 
     var arrPro = [idPro, preuTotal, quantProducte, nomProducte, quantitatTenda, quantitatStock, idUbicacio];
     var repetit = false;

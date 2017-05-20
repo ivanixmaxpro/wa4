@@ -116,8 +116,8 @@
                     echo '<tr>';
                     echo '<tr>';
                     echo '<td>' . $dia->getNom() . '<input type="text" name="' . $dia->getNom() . '" value="' . $i . '" hidden></td>';
-                    echo '<td> <input type="time" id="time" name="horaInici_' . $i . '" value=""/></td>';
-                    echo '<td> <input type="time" id="time" name="horaFinal_' . $i . '" value=""/></td>';
+                    echo '<td> <input type="time" id="horaInici_' . $i . '" name="horaInici_' . $i . '" value=""/></td>';
+                    echo '<td> <input type="time" id="horaFinal_' . $i . '" name="horaFinal_' . $i . '" value=""/></td>';
                     echo '<td> <input type="checkbox" name="festa' . $i . '" value="1" ></td>';
                     echo '</tr>';
                     $i++;
