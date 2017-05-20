@@ -1,7 +1,7 @@
 $(document).ready(function () {
+    /* VALIDACIONS FORMULARI PRODUCTE */
     $('#nom').focusout(validarNoBuitIAlfaNum);
     $('#marca').focusout(validarNoBuitIAlfaNum);
-    $('#imatge').change(validarImatge);
     $('#preu').focusout(validarAmb2Decimals);
     $('#referencia').focusout(validarNum4Digits);
     $('#model').focusout(validarNoBuitIAlfaNum);
@@ -9,7 +9,21 @@ $(document).ready(function () {
     $('#capacitatMlInput').focusout(validarAmb2Decimals);
     $('#capacitatMgInput').focusout(validarAmb2Decimals);
     $('#unitatsInput').focusout(validarNum);
-    $("#botoGuardar").click(validarFormulariAmbImatge);
+
+    /* VALIDACIONS FORMULARI EMPLEAT */
+    $('#nomempleat').focusout(validarNoBuitIAlfa);
+    $('#cognom').focusout(validarNoBuitIAlfa);
+    $("#dni").focusout(validarDNIEmpleat);
+    $("#nss").focusout(validarNSSEmpleat);
+    $('#localitat').focusout(validarNoBuitIAlfa);
+    $('#nomina').focusout(validarNum);
+    $('#contrasenya').focusout(validarContrasenya);
+    $('#usuari').focusout(validarUsuariEmpleat);
+    $("#botoguardarempleat").focusout(validarFormulari);
+
+    /* CAMPS COMUNS A TOTS ELS FORMULARIS */
+    $('#imatge').change(validarImatge);
+    $("#botoGuardar").click(validarFormulariAmbImatgeProducte);
 });
 
 var totOkFormulari = true;
@@ -62,7 +76,7 @@ function validarNoBuitIAlfaNum() {
 
 
 function validarNum() {
-    var reg = /^[1-9]+$/;
+    var reg = /^[0-9]+$/;
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
     var val = $('#' + idCamp).val();
@@ -73,7 +87,7 @@ function validarNum() {
         $('#' + idCamp).focus();
         $('#error' + errorCamp).html("Han de ser nombres numèrics.");
         if (valor == 0) {
-            $('#error' + errorCamp).html("Has de introduir mínim 1 unitat.");
+            $('#error' + errorCamp).html("Has de introduir mínim 1.");
         }
         totOkFormulari = false;
     } else {
@@ -138,6 +152,131 @@ function validarAmb2Decimals() {
     }
 }
 
+function nssValid(nss) {
+
+    var re = /^\d{12}$/,
+            valid = nss.match(re);
+
+    var correcte = false;
+
+    if (valid) {
+        var nums = nss.slice(0, 10);
+        var numsControl = nss.slice(10, 12);
+
+        if (nums.substr(2, 1) == 0) {
+            nums = nums.substr(0, 2) + nums.substr(3, nums.length - 3);
+        }
+
+        var residu = parseInt(nums) % 97;
+
+        if (residu < 10) {
+            var residu = "0" + residu;
+        }
+
+        if (residu == numsControl) {
+            correcte = true;
+        }
+
+    }
+
+    return correcte;
+
+}
+
+
+function validarNSSEmpleat() {
+    var idCamp = this.id;
+    var nssValor = $('#' + idCamp).val();
+    var errorCamp = primeraLletraMayus(idCamp);
+    var nss = nssValor.replace(/\D+/g, "");
+
+    if (nssValid(nss)) {
+        $.ajax({
+            type: "POST",
+            url: "./controller/comprovarDNI_NSS_Usuari.php",
+            data: {nss: nss},
+            success: function (resposta) {
+                $('#error' + errorCamp).html(resposta);
+                $('#' + idCamp).focus();
+                totOkFormulari = false;
+            }
+        });
+        $('#error' + errorCamp).html("");
+    } else {
+        $('#' + idCamp).focus();
+        $('#error' + errorCamp).html("El númuero de la Seguretat Social no és correcte.");
+        totOkFormulari = false;
+    }
+}
+
+function validarDNIEmpleat() {
+    var idCamp = this.id;
+    var dni = $('#' + idCamp).val();
+    var errorCamp = primeraLletraMayus(idCamp);
+
+    if (dni != "") {
+
+        $.ajax({
+            type: "POST",
+            url: "./controller/comprovarDNI_NSS_Usuari.php",
+            data: {dni: dni},
+            success: function (resposta) {
+                $('#error' + errorCamp).html(resposta);
+                $('#' + idCamp).focus();
+                totOkFormulari = false;
+            }
+        });
+
+    } else {
+        $('#error' + errorCamp).html("No pot està buit.");
+        totOkFormulari = false;
+    }
+
+}
+
+function validarUsuariEmpleat() {
+    var idCamp = this.id;
+    var nomUsuari = $('#' + idCamp).val();
+    var errorCamp = primeraLletraMayus(idCamp);
+
+    if (nomUsuari != '' && Alfabetic(nomUsuari)) {
+        $.ajax({
+            type: "POST",
+            url: "./controller/comprovarDNI_NSS_Usuari.php",
+            data: {usuari: nomUsuari},
+            success: function (resposta) {
+                $('#error' + errorCamp).html(resposta);
+                $('#' + idCamp).focus();
+                totOkFormulari = false;
+            }
+        });
+        $('#error' + errorCamp).html("");
+    } else {
+        $('#' + idCamp).focus();
+        $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
+        totOkFormulari = false;
+    }
+
+
+}
+
+function validarContrasenya() {
+    var idCamp = this.id;
+    var pass = $('#' + idCamp).val();
+    var errorCamp = primeraLletraMayus(idCamp);
+    var reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
+    if (!pass.match(reg)) {
+        $('#' + idCamp).focus();
+        $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters</li><li>Mínim 1 digit</li><li>Mínim 1 majúscula</li><li>Mínim 1 minúscula</li></ul>.");
+    } else {
+        $('#error' + errorCamp).html("");
+    }
+
+
+}
+
+
 function Alfabetic(elemValor) {
     var alphaExp = /^[a-zA-ZáéíóúÁÉÍÓÚÑñÇçàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ\s]+$/;
     if (elemValor.match(alphaExp)) {
@@ -200,7 +339,8 @@ function validarImatge() {
     }
 }
 
-function validarFormulariAmbImatge() {
+
+function validarFormulariAmbImatgeProducte() {
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
     var valorAct = $("form").attr('action');

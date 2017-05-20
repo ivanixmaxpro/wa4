@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label>Imatge</label>
                             <?php
-                            echo '<input type="text" class="form-control" placeholder="Imatge" name="imatge" value="' . $empleat->getImatge() . '">';
+                            echo '<input type="text" class="img-rounded" width="600" height="470" placeholder="Imatge" name="imatge" value="' . $empleat->getImatge() . '">';
                             ?>
                         </div>
                     </div>
