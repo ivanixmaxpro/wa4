@@ -87,51 +87,46 @@ class Horari {
         $HorariDAO = new HorariDAO();
         $HorariDAO->insertHorari($this);
     }
-/**
- * metode per validar que el format de una data sigui bo
- * @param type $date
- */
-    public function validarData($date) {
 
-        if ($this->ok) {
-
-            try {
-
-                $auxDate = explode("-", $date);
-
-                if (!checkdate($auxDate[0], $auxDate[1], $auxDate[2])) {
-
-                    $this->msg = "La data introduïda no és correcte.";
-                }
-            } catch (Exception
-            $exc) {
-
-                $this->msg = "La data introduïda no és correcte.";
-            }
+    /**
+     * metode per validar que el format de una data sigui bo
+     * @param type $date
+     */
+    public function validarData($time) {
+        $pattern = "/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/";
+        if (preg_match($pattern, $time)) {
+            return true;
+        } else {
+            return false;
         }
     }
-/**
- * metode per validar que una data no sigui anterior a l'altre
- * @param type $dataInici
- * @param type $dataFi
- */
+
+    /**
+     * metode per validar que una data no sigui anterior a l'altre
+     * @param type $dataInici
+     * @param type $dataFi
+     */
     public function validarDataIniciFinal($dataInici, $dataFi) {
 
-        if ($this->ok) {
+        if ($this->validarData($dataInici) && $this->validarData($dataFi)) {
+            $dataIniciArray = explode(":", $dataInici);
+            $dataFinalArray = explode(":", $dataFi);
 
-            $this->validarData($dataInici);
-
-            $this->validarData($dataFi);
-
-
-            if ($this->ok && ($dataFi <
-                    $dataInici)) {
-
-                $this->ok = false;
-
-                $this->msg = "La data final ha de ser major a la data d'inici.";
+            $horaInici = $dataIniciArray[0]*1000;
+            $horaFi = $dataFinalArray[0]*1000;
+            
+            $minInici = $dataIniciArray[1];
+            $minFi = $dataIniciArray[1];
+            
+            if ($horaInici+ $minInici < $horaFi + $minFi){
+                return true;
+            }else{
+                return false;
             }
+            
+            
         }
+
     }
 
 }

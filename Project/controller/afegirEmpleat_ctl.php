@@ -33,6 +33,8 @@ if (isset($_REQUEST['submit'])) {
     $usuari = $_REQUEST['usuari'];
     $contrasenya = password_hash($_REQUEST['contra'], PASSWORD_BCRYPT);
 
+    $horariValid = true;
+
     if ($imatge == null) {
         $imatge = "/wa4/Project/view/images/empleats/default-avatar.png";
     }
@@ -40,21 +42,13 @@ if (isset($_REQUEST['submit'])) {
     $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $address, $nomina, $nss, $imatge, $description);
 
 
+
     if ($empleat->validateEmpleat()->getOk()) {
         $id_empleat = $empleat->addEmpleat();
         $user = new Usuari($id_empleat, $usuari, $contrasenya);
-        if ($usuari->validateNewUser()->getOk()) {
-            try {
-                $clientDAO->inserir($client);
-                $id_usuari = $user->addUsuari();
-                $missatge = $empleat->validateClient()->getMsg();
-
-                require_once 'view/confirmacio.php';
-            } catch (Exception $e) {
-
-                $missatge = $e->getMessage();
-                require_once 'view/error.php';
-            }
+        if ($user->validateNewUser()->getOk()) {
+            $id_usuari = $user->getId_usuari();
+            //seccio horari
             $i = 0;
             foreach ($dies as $dia) {
 
@@ -64,12 +58,20 @@ if (isset($_REQUEST['submit'])) {
                     $horari->setHoraInici(null);
                     $horari->setHoraFinal(null);
                 } else {
-                    $horari->setHoraInici($_REQUEST["horaInici_$i"]);
-                    $horari->setHoraFinal($_REQUEST["horaFinal_$i"]);
+                    $horaInici = $_REQUEST["horaInici_$i"];
+                    $horaFinal = $_REQUEST["horaFinal_$i"];
+                  
+                    if ($horari->validarDataIniciFinal($horaInici, $horaFinal)) {
+                        $horari->setHoraInici($horaInici);
+                        $horari->setHoraFinal($horaFinal);
+                    } else {
+                        $horariValid = false;
+                    }
                 }
                 $horari->insertHorari();
                 $i++;
             }
+
             foreach ($llistatFuncionalitats as $funcionalitat) {
 
                 $nom = $funcionalitat->getNom();
@@ -97,15 +99,30 @@ if (isset($_REQUEST['submit'])) {
                 }
                 $permis->insertPermis();
             }
+
+            if ($horariValid) {
+                try {
+                    $clientDAO->inserir($client);
+                    $id_usuari = $user->addUsuari();
+                    $missatge = $empleat->validateEmpleat()->getMsg();
+                    require_once 'view/confirmacio.php';
+                } catch (Exception $e) {
+
+                    $missatge = $e->getMessage();
+                    require_once 'view/error.php';
+                }
+            }else{
+                $missatge = "horari no valid";
+            require_once 'view/error.php';
+            }
         } else {
-           $missatge = $usuari->validateNewUser()->getMsg();
+            $missatge = $usuari->validateNewUser()->getMsg();
             require_once 'view/error.php';
         }
     } else {
         $missatge = $empleat->validateEmpleat()->getMsg();
         require_once 'view/error.php';
     }
-
 } else {
     $llistatFuncionalitats = $empresa->populateFuncionalitats();
     $dies = $empresa->populateDia();

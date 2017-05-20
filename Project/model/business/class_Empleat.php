@@ -120,11 +120,31 @@ class Empleat {
         $id_empleat = $EmpleatDAO->insertEmpleat($this);
         return $id_empleat;
     }
+
+    /**
+     * funcio per validar per php un dni
+     * @param type $dni
+     * @return boolean
+     */
+    public function validarDni($dni) {
+        $letraExt = substr($dni, -1);
+        $letra = strtoupper($letraExt);
+        $numeros = substr($dni, 0, -1);
+        if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros % 23, 1) == $letra && strlen($letra) == 1 && strlen($numeros) == 8) {
+            return true;
+        } else {
+            return false;
+            
+        }
+    }
+
     /**
      * funcio per validar per php que tots els cmaps de un empleat son correctes
      * @return \objecte Validation
      */
-    function validateEmpleat() {
+    public function validateEmpleat() {
+        
+        
         $validation = new Validation(true, '');
         $patroLletres = "/^[a-zA-Z]+$/i";
         $patroNum = "/^[[:digit:]]+$/";
@@ -137,11 +157,11 @@ class Empleat {
             $validation->setMsg("nom només poden ser lletres");
             $validation->setOK(false);
         }
-        if ($validation->getOk() && trim($this->getCognomNom()) == '') {
+        if ($validation->getOk() && trim($this->getCognom()) == '') {
             $validation->setMsg("cognom esta buit");
             $validation->setOK(false);
         }
-        if ($validation->getOk() && !preg_match($patroLletres, trim($this->getCognomNom()))) {
+        if ($validation->getOk() && !preg_match($patroLletres, trim($this->getCognom()))) {
             $validation->setMsg("cognom només poden ser lletres");
             $validation->setOK(false);
         }
@@ -150,7 +170,7 @@ class Empleat {
             $validation->setMsg("dni esta buit");
             $validation->setOK(false);
         }
-        if ($validation->getOk() && !validateDni($this->getDni())) {
+        if ($validation->getOk() && !$this->validarDni($this->getDni())) {
             $validation->setMsg("dni no vàlid");
             $validation->setOK(false);
         }
@@ -175,11 +195,11 @@ class Empleat {
             $validation->setOK(false);
         }
 
-        if ($validation->getOk() && !validateNss($this->getNss())) {
+        if ($validation->getOk() && !$this->validateNss($this->getNss())) {
             $validation->setMsg("nss no vàlid");
             $validation->setOK(false);
         }
-        
+
         if ($validation->getOk() && trim($this->getDescripcio()) == '') {
             $validation->setMsg("camp descripcio esta buit");
             $validation->setOK(false);
@@ -187,22 +207,7 @@ class Empleat {
 
         return $validation;
     }
-    /**
-     * funcio per validar per php un dni
-     * @param type $dni
-     * @return boolean
-     */
-    function validateDni($dni) {
-        $letraExt = substr($dni, -1);
-        $letra = strtoupper($letraExt);
-        $numeros = substr($dni, 0, -1);
-        if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros % 23, 1) == $letra && strlen($letra) == 1 && strlen($numeros) == 8) {
-            return true;
-        } else {
-            return false;
-            ;
-        }
-    }
+
     /**
      * funcrio per validar per php el nss
      * @param type $nss
@@ -216,7 +221,7 @@ class Empleat {
             $nb = substr($nss, 2, 8);
             $nc = substr($nss, 10, 2);
         }
-       //Si falta alguno de los dígitos da error
+        //Si falta alguno de los dígitos da error
         if ($na && $nb && $nc) {
 
             //Si el número es menor de 10 millones
@@ -246,5 +251,6 @@ class Empleat {
             return false;
         }
     }
+    
 
 }
