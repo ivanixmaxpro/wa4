@@ -5,10 +5,10 @@
         <p class="category">A continuació un llistat de tots els nostres Clients:</p>
     </div>
 
-    <form action="?ctl=client&act=llista"onkeyup="doSearch()" method="post">
+    <form action="?ctl=client&act=llista" method="post">
         <div class="form-group">
             Cercar per Nom:
-            <input type="text" name="nom" >
+            <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;} ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
             <a href="?ctl=client&act=afegir" class="btn btn-primary"></span> Afegir client</a>
         </div>
