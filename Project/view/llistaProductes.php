@@ -7,9 +7,7 @@
                 <p class="category">A continuació un llistat:</p>
             </div>
         </div>
-        <div class="col-md-6"><a href="?ctl=producte&act=afegir">
-            <button class="btn btn-primary">Afeguir producte</button></a>
-        </div>
+        
     </div>
 
     <form action="?ctl=producte&act=llista" method="post">
@@ -47,6 +45,8 @@
 
             </select>
             <button name="Submit" class="btn btn-primary">Buscar</button>
+            <a class="btn btn-primary" href="?ctl=producte&act=afegir">
+             Afeguir producte</a>
         </div>
     </form> 
     <?php
