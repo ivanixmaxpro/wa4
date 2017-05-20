@@ -1,9 +1,11 @@
 
 <div class="header">
-    <h4 class="title">Compra</h4>
+    
 </div>
 <div class="row">
+    
     <div class="container">
+        <h4 class="title">Compra</h4>
         <div class="card">
             <?php
             tablaTotAlbaransCompra($albaransCompra, $empresa);
@@ -13,9 +15,10 @@
     </div>
 </div>
 <br/>
-<h4 class="title">Venta</h4>
+
 <div class="row">
     <div class="container">
+        <h4 class="title">Venta</h4>
         <div class="card">          
             <?php
             tablaTotAlbaransVenta($albaransVenta, $empresa);
