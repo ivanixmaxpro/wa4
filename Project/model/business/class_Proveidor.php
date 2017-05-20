@@ -49,6 +49,7 @@ class Proveidor {
      */
     function validateProveidor() {
         $validation = new Validation(true, '');
+        $validation->setMsg("has afegit un proveidor correctament");
         $patroLletres ="/^[a-zA-Z]+$/i";
         $patroNum ="/^[[:digit:]]+$/";
         

@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     /* VALIDACIONS FORMULARI EMPLEAT */
     $('#nomempleat').focusout(validarNoBuitIAlfa);
-    $('#cognom').focusout(validarNoBuitIAlfa);
+    $('#cognomempleat').focusout(validarNoBuitIAlfa);
     $("#dni").focusout(validarDNIEmpleat);
     $("#nss").focusout(validarNSSEmpleat);
     $('#localitat').focusout(validarNoBuitIAlfa);
@@ -21,12 +21,47 @@ $(document).ready(function () {
     $('#usuari').focusout(validarUsuariEmpleat);
     $("#botoguardarempleat").focusout(validarFormulari);
 
+    /* VALIDACIONS FORMULARI CLIENT */
+    $('#nomclient').focusout(validarNoBuitIAlfa);
+    $('#codiclient').focusout(validarNoBuitIAlfa);
+    $('#info').focusout(validarNoBuitIAlfa);
+    $("#botoguardarclient").focusout(validarFormulari);
+
+    /* VALIDACIONS FORMULARI PROVEIDOR */
+    $('#nomproveidor').focusout(validarNoBuitIAlfa);
+    $('#codiproveidor').focusout(validarNoBuitIAlfa);
+    $("#botoguardarproveidor").focusout(validarFormulari);
+
+    /* VALIDACIONS FORMULARI ALBARANS */
+    $('#campClient').change(comprovarIndexSelect);
+    $('#campProveidor').change(comprovarIndexSelect);
+    $('#campCodi').focusout(validarNoBuitIAlfa);
+    $("#campObservacions").focusout(validarNoBuitIAlfa);
+    $("#campLocalitat").focusout(validarNoBuitIAlfa);
+    $("#botoCrearAlbaraCompra").click(validarFormulariAlbara);
+    $("#botoCrearAlbaraVenta").click(validarFormulariAlbara);
+
     /* CAMPS COMUNS A TOTS ELS FORMULARIS */
     $('#imatge').change(validarImatge);
-    $("#botoGuardar").click(validarFormulariAmbImatgeProducte);
-});
+    $("#botoGuardarProducte").click(validarFormulariAmbImatgeProducte);
+    $("#botoGuardarEmpleat").click(validarFormulariAmbImatgeEmpleat);
 
+});
 var totOkFormulari = true;
+
+
+function comprovarIndexSelect() {
+    var idCamp = this.target.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var posSelected = document.getElementById(idCamp).selectedIndex;
+
+    if (posSelected == null || posSelected == 0) {
+        $('#error' + errorCamp).html("Selecciona una opció correcte.");
+        totOkFormulari = false;
+    } else {
+        totOkFormulari = true;
+    }
+}
 
 function validarNoBuitIAlfa() {
     var idCamp = this.id;
@@ -35,12 +70,10 @@ function validarNoBuitIAlfa() {
     var valor = val.trim();
 
     if (valor == '' || !Alfabetic(valor)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser alfabètic i no pot estar buit.");
         totOkFormulari = false;
     } else {
         if (valor.length < 2) {
-            $('#' + idCamp).focus();
             $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
             totOkFormulari = false;
         } else {
@@ -58,12 +91,10 @@ function validarNoBuitIAlfaNum() {
     var valor = val.trim();
 
     if (valor == '' || !AlfaNumeric(valor)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser alfanumèric i no pot estar buit.");
         totOkFormulari = false;
     } else {
         if (valor.length < 2) {
-            $('#' + idCamp).focus();
             $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
             totOkFormulari = false;
         } else {
@@ -84,7 +115,6 @@ function validarNum() {
 
 
     if (!valor.match(reg)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("Han de ser nombres numèrics.");
         if (valor == 0) {
             $('#error' + errorCamp).html("Has de introduir mínim 1.");
@@ -124,7 +154,6 @@ function validarNoBuit() {
     var valor = val.trim();
 
     if (valor == '') {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp no pot estar buit.");
         totOkFormulari = false;
     } else {
@@ -143,7 +172,6 @@ function validarAmb2Decimals() {
     var valor = val.trim();
 
     if (!valor.match(reg)) {
-        $('#' + idCamp).focus();
         $('#error' + errorCamp).html("El camp ha de ser un nombre positiu o amb 2 decimal.");
         totOkFormulari = false;
     } else {
@@ -158,6 +186,8 @@ function nssValid(nss) {
             valid = nss.match(re);
 
     var correcte = false;
+
+    var x = parseInt(nss) % 97;
 
     if (valid) {
         var nums = nss.slice(0, 10);
@@ -197,14 +227,16 @@ function validarNSSEmpleat() {
             data: {nss: nss},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
-                $('#' + idCamp).focus();
                 totOkFormulari = false;
             }
         });
         $('#error' + errorCamp).html("");
     } else {
-        $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("El númuero de la Seguretat Social no és correcte.");
+        if (nssValor == "") {
+            $('#error' + errorCamp).html("El camp no pot estar buit.");
+        } else {
+            $('#error' + errorCamp).html("El númuero de la Seguretat Social no és correcte.");
+        }
         totOkFormulari = false;
     }
 }
@@ -222,7 +254,6 @@ function validarDNIEmpleat() {
             data: {dni: dni},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
-                $('#' + idCamp).focus();
                 totOkFormulari = false;
             }
         });
@@ -246,15 +277,21 @@ function validarUsuariEmpleat() {
             data: {usuari: nomUsuari},
             success: function (resposta) {
                 $('#error' + errorCamp).html(resposta);
-                $('#' + idCamp).focus();
                 totOkFormulari = false;
             }
         });
-        $('#error' + errorCamp).html("");
+        if (nomUsuari.length < 2) {
+            $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
+            totOkFormulari = false;
+        }
     } else {
-        $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
-        totOkFormulari = false;
+        if (nomUsuari == "") {
+            $('#error' + errorCamp).html("El camp no pot està buit.");
+            totOkFormulari = false;
+        } else {
+            $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
+            totOkFormulari = false;
+        }
     }
 
 
@@ -267,15 +304,13 @@ function validarContrasenya() {
     var reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
     if (!pass.match(reg)) {
-        $('#' + idCamp).focus();
-        $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters</li><li>Mínim 1 digit</li><li>Mínim 1 majúscula</li><li>Mínim 1 minúscula</li></ul>.");
+        $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters.</li><li>Mínim 1 digit.</li><li>Mínim 1 majúscula.</li><li>Mínim 1 minúscula.</li></ul>.");
     } else {
         $('#error' + errorCamp).html("");
     }
 
 
 }
-
 
 function Alfabetic(elemValor) {
     var alphaExp = /^[a-zA-ZáéíóúÁÉÍÓÚÑñÇçàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ\s]+$/;
@@ -340,6 +375,42 @@ function validarImatge() {
 }
 
 
+function validarFormulariAlbara() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var valorAct = $("form").attr('action');
+    var n = valorAct.search("albaraCompra");
+
+    if (n == -1) {
+
+        var posSelectedClient = document.getElementById("campClient").selectedIndex;
+
+        if (posSelectedClient == null || posSelectedClient == 0) {
+            totOkFormulari = false;
+        } else {
+            totOkFormulari = true;
+        }
+    } else {
+        var posSelectedProveidor = document.getElementById("campProveidor").selectedIndex;
+
+        if (posSelectedProveidor == null || posSelectedProveidor == 0) {
+            totOkFormulari = false;
+        } else {
+            totOkFormulari = true;
+        }
+
+    }
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        $('#error' + errorCamp).html("Revisa els camps del formulari, falten camps per omplir!");
+        return false;
+    }
+
+
+}
+
 function validarFormulariAmbImatgeProducte() {
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
@@ -361,6 +432,30 @@ function validarFormulariAmbImatgeProducte() {
         totOkFormulari = false;
     } else {
         $('#errorConservar').html("");
+    }
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        $('#error' + errorCamp).html("Revisa els camps del formulari, falten camps per omplir!");
+        return false;
+    }
+
+}
+
+function validarFormulariAmbImatgeEmpleat() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var valorAct = $("form").attr('action');
+    var n = valorAct.search("modificar");
+
+    if (n == -1) {
+
+        if (!$('#imatge').val()) {
+            var mierror = "No has seleccionat cap imatge encara.";
+            $('#errorImatge').html(mierror);
+            totOkFormulari = false;
+        }
     }
 
     if (totOkFormulari == true) {

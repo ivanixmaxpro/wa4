@@ -114,10 +114,139 @@ class Empleat {
     function setDescripcio($descripcio) {
         $this->descripcio = $descripcio;
     }
-    
-    function addEmpleat(){
+
+    function addEmpleat() {
         $EmpleatDAO = new EmpleatDAO();
         $id_empleat = $EmpleatDAO->insertEmpleat($this);
         return $id_empleat;
     }
+
+    /**
+     * funcio per validar per php un dni
+     * @param type $dni
+     * @return boolean
+     */
+    public function validarDni($dni) {
+        $letraExt = substr($dni, -1);
+        $letra = strtoupper($letraExt);
+        $numeros = substr($dni, 0, -1);
+        if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros % 23, 1) == $letra && strlen($letra) == 1 && strlen($numeros) == 8) {
+            return true;
+        } else {
+            return false;
+            
+        }
+    }
+
+    /**
+     * funcio per validar per php que tots els cmaps de un empleat son correctes
+     * @return \objecte Validation
+     */
+    public function validateEmpleat() {
+        
+        
+        $validation = new Validation(true, '');
+        $patroLletres = "/^[a-zA-Z]+$/i";
+        $patroNum = "/^[[:digit:]]+$/";
+
+        if ($validation->getOk() && trim($this->getNom()) == '') {
+            $validation->setMsg("nom esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && !preg_match($patroLletres, trim($this->getNom()))) {
+            $validation->setMsg("nom només poden ser lletres");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getCognom()) == '') {
+            $validation->setMsg("cognom esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && !preg_match($patroLletres, trim($this->getCognom()))) {
+            $validation->setMsg("cognom només poden ser lletres");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getDni()) == '') {
+            $validation->setMsg("dni esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && !$this->validarDni($this->getDni())) {
+            $validation->setMsg("dni no vàlid");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getLocalitat()) == '') {
+            $validation->setMsg("camp localitat esta buit");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getNomina()) == '') {
+            $validation->setMsg("camp nomina esta buit");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && preg_match($patroNum, trim($this->getNomina())) == '') {
+            $validation->setMsg("nomina només poden ser numeros");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getNss()) == '') {
+            $validation->setMsg("camp nss esta buit");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && !$this->validateNss($this->getNss())) {
+            $validation->setMsg("nss no vàlid");
+            $validation->setOK(false);
+        }
+
+
+        return $validation;
+    }
+
+    /**
+     * funcrio per validar per php el nss
+     * @param type $nss
+     * @return boolean
+     */
+    function validateNss($nss) {
+        $nss = preg_replace("/[^0-9]/i", "", $nss); //número S.S. entero
+
+        if (strlen($nss) == 12) {
+            $na = substr($nss, 0, 2);
+            $nb = substr($nss, 2, 8);
+            $nc = substr($nss, 10, 2);
+        }
+        //Si falta alguno de los dígitos da error
+        if ($na && $nb && $nc) {
+
+            //Si el número es menor de 10 millones
+            if ($nb < 10000000) {
+
+                //Asignamos a d la suma de b+a * 10 millones
+                $nd = $nb + $na * 10000000;
+
+                //Si el número es mayor de 10 millones
+            } else {
+
+                //Asignamos a d la concatenación de a y b
+                $nd = $na . $nb;
+            }
+
+            //El código de validación ($c), 
+            //debe ser el resto de la división d entre 97
+            $validacion = $nd % 97;
+
+            //Muestra el resultado de la validación
+            if ($validacion == $nc) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+
 }

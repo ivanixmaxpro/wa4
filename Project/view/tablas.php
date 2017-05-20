@@ -18,7 +18,8 @@ function tablaTotProductes($productes) {
                     <th>Conservar en fred</th> 
 
                     <th>Detall</th> 
-                    <th>Modificar</th> 
+                    <th>Modificar</th>
+                    <th>Modificar ubicació</th>
                     <th>Eliminar</th> 
                 </tr>
             </thead> 
@@ -41,6 +42,7 @@ function tablaTotProductes($productes) {
                     }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
                     ?>  <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
+                    <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio()?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
                 <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
                 <?php
                 echo "</tr>";

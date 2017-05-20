@@ -43,14 +43,14 @@ function emmagatzemarProducte() {
     var quantitatTenda = parseInt($("#quantitatTenda").val());
     var quantitatStock = parseInt($("#quantitatStock").val());
     var idUbicacio = $("#idUbicacio").val();
-
-    if (quantProducte <= quantitatTenda) {
-        quantitatTenda = quantitatTenda - quantProducte;
-    } else {
-        quantProducteCalc = quantProducteCalc - quantitatTenda;
-        quantitatTenda = 0;
-        quantitatStock = quantitatStock - quantProducteCalc;
-    }
+//
+//    if (quantProducte <= quantitatTenda) {
+//        quantitatTenda = quantitatTenda - quantProducte;
+//    } else {
+//        quantProducteCalc = quantProducteCalc - quantitatTenda;
+//        quantitatTenda = 0;
+//        quantitatStock = quantitatStock - quantProducteCalc;
+//    }
 
     var arrPro = [idPro, preuTotal, quantProducte, nomProducte, quantitatTenda, quantitatStock, idUbicacio];
     var repetit = false;
@@ -102,7 +102,7 @@ function generarTaula() {
 
     for (var prod in arrProTotal) {
         aux = str + count;
-        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'></button>";
+        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'>Eliminar</button>";
 
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')

@@ -425,7 +425,7 @@ class EmpresaDAO {
         return $fitxesArray;
     }
 
-    function filterProducte($conservarenfred, $quantitat, $tipus) {
+    function filterProducte($nom = null, $conservarenfred, $quantitat, $tipus) {
         $productesArray = array();
         $con = new db();
         $consulta = "SELECT * FROM";
@@ -441,7 +441,6 @@ class EmpresaDAO {
                 break;
         }
 
-
         switch ($conservarenfred) {
             case "tots":
                 $consulta .= "";
@@ -452,17 +451,22 @@ class EmpresaDAO {
                 $consulta .= " WHERE producte.conservarFred=" . $conservarenfred;
                 break;
         }
+        if($nom != null && $conservarenfred == 'tots'){
+            $consulta .= " WHERE nom LIKE '%". $nom ."%'";
+        }else{
+            $consulta .= " AND nom LIKE '%". $nom ."%'";
+        }
         switch ($quantitat) {
             case "tots":
-                $consulta .= "";
+                $consulta .= ";";
 
                 break;
 
             default:
-                $consulta .= " LIMIT " . $quantitat + ";";
+                $consulta .= " LIMIT " . $quantitat . ";";
                 break;
         }
-        $consulta .= ";";
+
         $query = $con->prepare($consulta);
         $result = $con->consultar($query);
 
@@ -996,6 +1000,80 @@ class EmpresaDAO {
         }
         $con = null;
         return $funcionalitats;
+    }
+
+    public function filtrarClients($nom) {
+        $clients = array();
+        $con = new db();
+        if($nom != null){
+            $consulta = "SELECT * FROM client WHERE nom LIKE '%" . $nom . "%';";
+        }else{
+            $consulta = "SELECT * FROM client;";
+        }
+        $query = $con->prepare($consulta);
+        $query->bindValue(":nom", $nom);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_client"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $informacio = $row["informacio"];
+
+            $client = new Client($id_client, $nom, $codi, $informacio);
+            array_push($clients, $client);
+        }
+        $con = null;
+        return $clients;
+    }
+
+    public function filtrarMissatges($titol) {
+        $missatges = array();
+        $con = new db();
+        if($titol != null){
+            $consulta = "SELECT ms.*, u.usuari FROM missatge as ms INNER JOIN usuari as u ON ms.id_usuari = u.id_usuari WHERE titol LIKE '%" . $titol . "%';";
+        }else{
+            $consulta = "SELECT ms.*, u.usuari FROM missatge as ms INNER JOIN usuari as u ON ms.id_usuari = u.id_usuari";
+        }
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_missatge = null;
+            $id_usuari = $row["usuari"];
+            $llegit = $row["llegit"];
+            $titol = $row["titol"];
+            $data = $row["data"];
+            $missatge = $row["missatge"];
+
+            $missatge = new Missatge($id_usuari, $llegit, $titol, $data, $missatge);
+            array_push($missatges, $missatge);
+        }
+        $con = null;
+        return $missatges;
+    }
+
+    public function filtrarProveidors($nom = null) {
+        var_dump($nom);
+        $proveidors = array();
+        $con = new db();
+        if($nom != null){
+            $consulta = "SELECT * FROM proveidor WHERE nom LIKE '%" . $nom . "%';";
+        }else{
+            $consulta = "SELECT * FROM proveidor;";
+        }
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_proveidor"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $proveidor = new Proveidor($id_client, $nom, $codi);
+            array_push($proveidors, $proveidor);
+        }
+        $con = null;
+        return $proveidors;
     }
 
 }

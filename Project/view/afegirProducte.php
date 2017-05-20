@@ -81,9 +81,8 @@
                 <span id="errorUnitatsInput"></span>
             </div>
         </div>
-        <span id="errorBotoGuardar"></span>
+        <span id="errorBotoGuardarProducte"></span>
     </div>
-    <span id="errorBotoGuardar"></span>
-    <button name="afegir" id="botoGuardar" type="submit" class="btn btn-primary">Afegir</button>
+    <button name="afegir" id="botoGuardarProducte" type="submit" class="btn btn-primary">Afegir</button>
     <a name="tornar" class="btn btn-primary" href="?ctl=producte&act=llista">Tornar</a>
 </form>

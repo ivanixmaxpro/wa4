@@ -11,7 +11,7 @@ if(isset($_SESSION['empresa'])){
 
 if (isset($_REQUEST["Submit"])) {
     $nom = $_REQUEST['nom'];
-    $clients = $empresa->filtrarProveidors($conservarFred, $limitRegistres, $tipusProducte);
+    $clients = $empresa->filtrarClients($nom);
 } else {
     $clients = $empresa->populateClients();
 }
