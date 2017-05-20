@@ -13,7 +13,7 @@
     </div>
 
     <form action="?ctl=producte&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group" style="padding-left:1% ">
             Cercar per Nom:
             <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;}?>">
             Conservar en fred:
@@ -47,6 +47,9 @@
 
             </select>
             <button name="Submit" class="btn btn-primary">Buscar</button>
+        </div>
+        <div class="col-md-12"><a href="?ctl=producte&act=afegir">
+            <button class="btn btn-primary pull-right">Afeguir producte</button></a>
         </div>
     </form> 
     <?php

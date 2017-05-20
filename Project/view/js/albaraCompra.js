@@ -31,7 +31,7 @@ function emmagatzemarProducte() {
 
 
 
-    if (quantProducte != 0 && repetit == false ) {
+    if (quantProducte != 0 && repetit == false) {
 
         arrProTotal.push(arrPro);
 
@@ -54,7 +54,7 @@ function generarTaula() {
 
     for (var prod in arrProTotal) {
         aux = str + count;
-        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'></button>";
+        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'>Eliminar</button>";
 
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')
