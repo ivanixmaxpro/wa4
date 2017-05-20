@@ -8,7 +8,7 @@
                 <thead>
                     <tr>
                         <th>Tenda</th>
-                        <th>Stock</th>
+                        <th>Estoc</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +38,7 @@
             </div>
         </div>    
         <input name="passarArrProductes" id="passarArray" type="hidden"></input>
-        <input type="submit" id="botoCrearAlbaraVenta" name="submit" value="Crear" class="btn btn-danger"></input>
+        <input type="submit" id="botoCrearUbicacio" name="submit" value="Crear" class="btn btn-danger"></input>
     </form>
 </div>
 

@@ -28,54 +28,55 @@ function loadUbicacio() {
 
 function emmagatzemarProducte() {
     var producte = $("#campProductes").val();
+    var posSelected = document.getElementById("campProductes").selectedIndex;
 
-    var producteJSON = JSON.parse(producte);
-
-    var idPro = producteJSON.id_producte;
-    var preuBase = parseFloat(producteJSON.preuBase);
-    var quantProducte = parseInt($("#campQuantitatDeProductes").val());
-    var preuTotal = preuBase * quantProducte;
-    var nomProducte = producteJSON.nom;
-
-
-    //Calcul de quantitats restants al stock
-    var quantProducteCalc = parseInt(quantProducte);
-    var quantitatTenda = parseInt($("#quantitatTenda").val());
-    var quantitatStock = parseInt($("#quantitatStock").val());
-    var idUbicacio = $("#idUbicacio").val();
-//
-//    if (quantProducte <= quantitatTenda) {
-//        quantitatTenda = quantitatTenda - quantProducte;
-//    } else {
-//        quantProducteCalc = quantProducteCalc - quantitatTenda;
-//        quantitatTenda = 0;
-//        quantitatStock = quantitatStock - quantProducteCalc;
-//    }
-
-    var arrPro = [idPro, preuTotal, quantProducte, nomProducte, quantitatTenda, quantitatStock, idUbicacio];
-    var repetit = false;
-
-    for (var prod in arrProTotal) {
-        if (arrProTotal[prod][0] == idPro) {
-            repetit = true;
-        }
-    }
-
-    //Check que el valro que vols treure no superi el maxim
-    var checkquant = parseInt($("#campQuantitatDeProductes").attr("max"));
-
-
-    if (quantProducte != 0 && repetit == false && checkquant >= quantProducte) {
-
-        arrProTotal.push(arrPro);
-
-        generarTaula();
+    if (posSelected == null || posSelected == 0) {
+        $.alert({
+            title: 'Selecció errònia de producte!',
+            content: 'Cal seleccionar un producte vàlid per afegir-lo.',
+        });
     } else {
-        alert("Error al introduir producte");
+        var producteJSON = JSON.parse(producte);
+
+        var idPro = producteJSON.id_producte;
+        var preuBase = parseFloat(producteJSON.preuBase);
+        var quantProducte = parseInt($("#campQuantitatDeProductes").val());
+        var preuTotal = preuBase * quantProducte;
+        var nomProducte = producteJSON.nom;
+
+
+        //Calcul de quantitats restants al stock
+        var quantitatTenda = parseInt($("#quantitatTenda").val());
+        var quantitatStock = parseInt($("#quantitatStock").val());
+        var idUbicacio = $("#idUbicacio").val();
+
+        var arrPro = [idPro, preuTotal, quantProducte, nomProducte, quantitatTenda, quantitatStock, idUbicacio];
+        var repetit = false;
+
+        for (var prod in arrProTotal) {
+            if (arrProTotal[prod][0] == idPro) {
+                repetit = true;
+            }
+        }
+
+        //Check que el valro que vols treure no superi el maxim
+        var checkquant = parseInt($("#campQuantitatDeProductes").attr("max"));
+
+
+        if (quantProducte != 0 && repetit == false && checkquant >= quantProducte) {
+
+            arrProTotal.push(arrPro);
+
+            generarTaula();
+        } else {
+            $.alert({
+                title: 'Error en inserir el producte!',
+                content: 'Cal marcar com a mínim una unitat de producte.',
+            });
+        }
+
+        $("#campQuantitatDeProductes").val(0);
     }
-
-    $("#campQuantitatDeProductes").val(0);
-
 
 }
 
@@ -115,7 +116,7 @@ function generarTaula() {
 
                                 )
                         .append($('<td>')
-                                .text(arrProTotal[prod][1])
+                                .text(arrProTotal[prod][1].toFixed(2))
 
                                 )
                         .append($('<td>')
@@ -162,5 +163,5 @@ function canviarPreu() {
         preuTotal += arrProTotal[prod][1];
     }
 
-    $("#campPreu").val(preuTotal);
+    $("#campPreu").val(preuTotal.toFixed(2));
 }
