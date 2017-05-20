@@ -118,7 +118,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a href="?ctl=missatge&act=llistaMissatges">
+                        <a href="?ctl=missatge&act=llista">
                             <i class="pe-7s-mail"></i>
                             <p>Missatges</p>
                         </a>
