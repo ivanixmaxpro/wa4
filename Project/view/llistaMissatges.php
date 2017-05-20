@@ -4,10 +4,10 @@
         <h4 class="title">Missatges</h4>
         <p class="category">Missatges interns:</p>
     </div>
-    <form action="?ctl=missatge&act=llista" method="post" onkeyup="cercar()">
+    <form action="?ctl=missatge&act=llista" method="post">
         <div class="form-group">
-            Cercar per Nom:
-            <input type="text" name="nom" id="nom" >
+            Cercar per Titol:
+            <input type="text" name="titol" id="nom" value="<?php if(isset($titol)){ echo $titol;}?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
             <a href="?ctl=missatge&act=crear" class="btn btn-primary"></span> crear missatge</a>
         </div>
