@@ -544,7 +544,7 @@ switch ($ctl) {
                 }
                 break;
             case "detall":
-                if($_SESSION['permisos']['permisos']->getVisualitzar() == 1 && issert($_SESSION['permisos']) && isset($_SESSION['permisos'])){
+                if($_SESSION['permisos']['permisos']->getVisualitzar() == 1 && isset($_SESSION['permisos']) && isset($_SESSION['permisos'])){
                     include "controller/detallPermissos_ctl.php";
                 }else{
                     $title="Error de permisos";
