@@ -40,87 +40,71 @@ if (isset($_REQUEST['submit'])) {
     }
 
     $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $address, $nomina, $nss, $imatge, $description);
+    $user = new Usuari($usuari, $contrasenya);
 
-
-
-    if ($empleat->validateEmpleat()->getOk()) {
+    if ($empleat->validateEmpleat()->getOk() && $user->validateNewUser()->getOk()) {
         $id_empleat = $empleat->addEmpleat();
-        $user = new Usuari($id_empleat, $usuari, $contrasenya);
-        if ($user->validateNewUser()->getOk()) {
-            $id_usuari = $user->getId_usuari();
-            //seccio horari
-            $i = 0;
-            foreach ($dies as $dia) {
+        $user->setId_empleat($id_empleat);
+        $id_usuari = $user->addUsuari();
+        //seccio horari
+        $i = 0;
+        foreach ($dies as $dia) {
 
-                $horari = new Horari($id_usuari, $dia->getId_dia());
+            $horari = new Horari($id_usuari, $dia->getId_dia());
 
-                if (isset($_REQUEST["festa$i"])) {
+            if (isset($_REQUEST["festa$i"])) {
+                $horari->setHoraInici(null);
+                $horari->setHoraFinal(null);
+            } else {
+                $horaInici = $_REQUEST["horaInici_$i"];
+                $horaFinal = $_REQUEST["horaFinal_$i"];
+
+                if ($horari->validarDataIniciFinal($horaInici, $horaFinal)) {
+                    $horari->setHoraInici($horaInici);
+                    $horari->setHoraFinal($horaFinal);
+                } else {
                     $horari->setHoraInici(null);
                     $horari->setHoraFinal(null);
-                } else {
-                    $horaInici = $_REQUEST["horaInici_$i"];
-                    $horaFinal = $_REQUEST["horaFinal_$i"];
-                  
-                    if ($horari->validarDataIniciFinal($horaInici, $horaFinal)) {
-                        $horari->setHoraInici($horaInici);
-                        $horari->setHoraFinal($horaFinal);
-                    } else {
-                        $horariValid = false;
-                    }
                 }
-                $horari->insertHorari();
-                $i++;
             }
+            $horari->insertHorari();
+            $i++;
+        }
 
-            foreach ($llistatFuncionalitats as $funcionalitat) {
+        foreach ($llistatFuncionalitats as $funcionalitat) {
 
-                $nom = $funcionalitat->getNom();
-                $permis = new Permis($id_usuari, $funcionalitat->getId_funcionalitat());
+            $nom = $funcionalitat->getNom();
+            $permis = new Permis($id_usuari, $funcionalitat->getId_funcionalitat());
 
-                if (isset($_REQUEST["visualitzar_$nom"])) {
-                    $permis->setVisualitzar(1);
-                } else {
-                    $permis->setVisualitzar(0);
-                }
-                if (isset($_REQUEST["crear_$nom"])) {
-                    $permis->setCrear(1);
-                } else {
-                    $permis->setCrear(0);
-                }
-                if (isset($_REQUEST["editar_$nom"])) {
-                    $permis->setEditar(1);
-                } else {
-                    $permis->setEditar(0);
-                }
-                if (isset($_REQUEST["eliminar_$nom"])) {
-                    $permis->setEliminar(1);
-                } else {
-                    $permis->setEliminar(0);
-                }
-                $permis->insertPermis();
+            if (isset($_REQUEST["visualitzar_$nom"])) {
+                $permis->setVisualitzar(1);
+            } else {
+                $permis->setVisualitzar(0);
             }
-
-            if ($horariValid) {
-                try {
-                    $clientDAO->inserir($client);
-                    $id_usuari = $user->addUsuari();
-                    $missatge = $empleat->validateEmpleat()->getMsg();
-                    require_once 'view/confirmacio.php';
-                } catch (Exception $e) {
-
-                    $missatge = $e->getMessage();
-                    require_once 'view/error.php';
-                }
-            }else{
-                $missatge = "horari no valid";
-            require_once 'view/error.php';
+            if (isset($_REQUEST["crear_$nom"])) {
+                $permis->setCrear(1);
+            } else {
+                $permis->setCrear(0);
             }
-        } else {
-            $missatge = $usuari->validateNewUser()->getMsg();
-            require_once 'view/error.php';
+            if (isset($_REQUEST["editar_$nom"])) {
+                $permis->setEditar(1);
+            } else {
+                $permis->setEditar(0);
+            }
+            if (isset($_REQUEST["eliminar_$nom"])) {
+                $permis->setEliminar(1);
+            } else {
+                $permis->setEliminar(0);
+            }
+            $permis->insertPermis();
         }
     } else {
-        $missatge = $empleat->validateEmpleat()->getMsg();
+        
+        if ($empleat->validateEmpleat()->getOk()){
+            $missatge = $user->validateNewUser()->getMsg();
+        } else {
+            $missatge = $empleat->validateEmpleat()->getMsg();
+        }
         require_once 'view/error.php';
     }
 } else {

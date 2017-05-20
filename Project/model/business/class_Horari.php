@@ -21,6 +21,13 @@ class Horari {
                 $this->setHoraInici(null);
                 $this->setHoraFinal(null);
                 break;
+            case 3:
+                $this->setId_horari(null);
+                $this->setId_usuari(null);
+                $this->setId_dia(func_get_args()[0]);
+                $this->setHoraInici(func_get_args()[1]);
+                $this->setHoraFinal(func_get_args()[2]);
+                break;
             case 4:
                 $this->setId_horari(null);
                 $this->setId_usuari(func_get_args()[0]);
@@ -112,21 +119,18 @@ class Horari {
             $dataIniciArray = explode(":", $dataInici);
             $dataFinalArray = explode(":", $dataFi);
 
-            $horaInici = $dataIniciArray[0]*1000;
-            $horaFi = $dataFinalArray[0]*1000;
-            
+            $horaInici = $dataIniciArray[0] * 1000;
+            $horaFi = $dataFinalArray[0] * 1000;
+
             $minInici = $dataIniciArray[1];
             $minFi = $dataIniciArray[1];
-            
-            if ($horaInici+ $minInici < $horaFi + $minFi){
+
+            if ($horaInici + $minInici < $horaFi + $minFi) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-            
-            
         }
-
     }
 
 }

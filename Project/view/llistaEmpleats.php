@@ -35,11 +35,8 @@
                 echo '<td>'.'<a class="btn btn-primary" href="?ctl=empleat&act=detall&id='.$row->getId_empleat().'">'.'Veure detalls'.'</a>'.'</td>';
 
                 echo "</tr>";
-                
-                
             }
             ?>
-
             </tbody>
         </table>
 
