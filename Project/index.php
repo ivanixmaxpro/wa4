@@ -150,7 +150,7 @@ switch ($ctl) {
         break;
     case "missatge":
         switch ($act) {
-            case "llistaMissatges":
+            case "llista":
                 include "controller/llistaMissatges_ctl.php";
                 break;
 
