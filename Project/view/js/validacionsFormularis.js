@@ -12,24 +12,56 @@ $(document).ready(function () {
 
     /* VALIDACIONS FORMULARI EMPLEAT */
     $('#nomempleat').focusout(validarNoBuitIAlfa);
-    $('#cognom').focusout(validarNoBuitIAlfa);
+    $('#cognomempleat').focusout(validarNoBuitIAlfa);
     $("#dni").focusout(validarDNIEmpleat);
     $("#nss").focusout(validarNSSEmpleat);
     $('#localitat').focusout(validarNoBuitIAlfa);
     $('#nomina').focusout(validarNum);
     $('#contrasenya').focusout(validarContrasenya);
     $('#usuari').focusout(validarUsuariEmpleat);
-    $('input[type=time]').change(validarHores);
     $("#botoguardarempleat").focusout(validarFormulari);
+
+    /* VALIDACIONS FORMULARI CLIENT */
+    $('#nomclient').focusout(validarNoBuitIAlfa);
+    $('#codiclient').focusout(validarNoBuitIAlfa);
+    $('#info').focusout(validarNoBuitIAlfa);
+    $("#botoguardarclient").focusout(validarFormulari);
+
+    /* VALIDACIONS FORMULARI PROVEIDOR */
+    $('#nomproveidor').focusout(validarNoBuitIAlfa);
+    $('#codiproveidor').focusout(validarNoBuitIAlfa);
+    $("#botoguardarproveidor").focusout(validarFormulari);
+
+    /* VALIDACIONS FORMULARI ALBARANS */
+    $('#campClient').change(comprovarIndexSelect);
+    $('#campProveidor').change(comprovarIndexSelect);
+    $('#campCodi').focusout(validarNoBuitIAlfa);
+    $("#campObservacions").focusout(validarNoBuitIAlfa);
+    $("#campLocalitat").focusout(validarNoBuitIAlfa);
+    $("#botoCrearAlbaraCompra").click(validarFormulariAlbara);
+    $("#botoCrearAlbaraVenta").click(validarFormulariAlbara);
 
     /* CAMPS COMUNS A TOTS ELS FORMULARIS */
     $('#imatge').change(validarImatge);
-    $("#botoGuardar").click(validarFormulariAmbImatgeProducte);
-});
+    $("#botoGuardarProducte").click(validarFormulariAmbImatgeProducte);
+    $("#botoGuardarEmpleat").click(validarFormulariAmbImatgeEmpleat);
 
-var horaInici;
-var horaFinal;
+});
 var totOkFormulari = true;
+
+
+function comprovarIndexSelect() {
+    var idCamp = this.target.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var posSelected = document.getElementById(idCamp).selectedIndex;
+
+    if (posSelected == null || posSelected == 0) {
+        $('#error' + errorCamp).html("Selecciona una opció correcte.");
+        totOkFormulari = false;
+    } else {
+        totOkFormulari = true;
+    }
+}
 
 function validarNoBuitIAlfa() {
     var idCamp = this.id;
@@ -248,10 +280,18 @@ function validarUsuariEmpleat() {
                 totOkFormulari = false;
             }
         });
-        $('#error' + errorCamp).html("");
+        if (nomUsuari.length < 2) {
+            $('#error' + errorCamp).html("Ha de tenir un mínim de 2 lletres.");
+            totOkFormulari = false;
+        }
     } else {
-        $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
-        totOkFormulari = false;
+        if (nomUsuari == "") {
+            $('#error' + errorCamp).html("El camp no pot està buit.");
+            totOkFormulari = false;
+        } else {
+            $('#error' + errorCamp).html("El camp ha de ser alfabètic.");
+            totOkFormulari = false;
+        }
     }
 
 
@@ -268,38 +308,6 @@ function validarContrasenya() {
     } else {
         $('#error' + errorCamp).html("");
     }
-
-
-}
-
-
-function validarHores() {
-    var idCamp = this.id;
-    var arrInici = ["horaInici_0", "horaInici_1", "horaInici_2", "horaInici_3", "horaInici_4", "horaInici_5", "horaInici_6"];
-    var arrInici = ["horaFinal_0", "horaFinal_1", "horaFinal_2", "horaFinal_3", "horaFinal_4", "horaFinal_5", "horaFinal_6"];
-    var tipusHora = idCamp.search("horaInici_");
-    var primeraIdHora = idCamp;
-    var segonaIdHora;
-    var alphaExp = /^\d{2}:\d{2}$/;
-
-    if (tipusHora == -1) {
-        horaFinal = $('#' + idCamp).val();
-        segonaIdHora = idCamp;
-        for (var i = 0; i < arrInici.length; i++) {
-            if (arrInici[i] == segonaIdHora) {
-
-            }
-        }
-    } else {
-        horaInici = $('#' + idCamp).val();
-        primeraIdHora = idCamp;
-        for (var i = 0; i < arrInici.length; i++) {
-            if (arrInici[i] == primeraIdHora) {
-
-            }
-        }
-    }
-
 
 
 }
@@ -367,6 +375,42 @@ function validarImatge() {
 }
 
 
+function validarFormulariAlbara() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var valorAct = $("form").attr('action');
+    var n = valorAct.search("albaraCompra");
+
+    if (n == -1) {
+
+        var posSelectedClient = document.getElementById("campClient").selectedIndex;
+
+        if (posSelectedClient == null || posSelectedClient == 0) {
+            totOkFormulari = false;
+        } else {
+            totOkFormulari = true;
+        }
+    } else {
+        var posSelectedProveidor = document.getElementById("campProveidor").selectedIndex;
+
+        if (posSelectedProveidor == null || posSelectedProveidor == 0) {
+            totOkFormulari = false;
+        } else {
+            totOkFormulari = true;
+        }
+
+    }
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        $('#error' + errorCamp).html("Revisa els camps del formulari, falten camps per omplir!");
+        return false;
+    }
+
+
+}
+
 function validarFormulariAmbImatgeProducte() {
     var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
@@ -388,6 +432,30 @@ function validarFormulariAmbImatgeProducte() {
         totOkFormulari = false;
     } else {
         $('#errorConservar').html("");
+    }
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        $('#error' + errorCamp).html("Revisa els camps del formulari, falten camps per omplir!");
+        return false;
+    }
+
+}
+
+function validarFormulariAmbImatgeEmpleat() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var valorAct = $("form").attr('action');
+    var n = valorAct.search("modificar");
+
+    if (n == -1) {
+
+        if (!$('#imatge').val()) {
+            var mierror = "No has seleccionat cap imatge encara.";
+            $('#errorImatge').html(mierror);
+            totOkFormulari = false;
+        }
     }
 
     if (totOkFormulari == true) {
