@@ -52,7 +52,7 @@ if (!empty($_POST)) {
 
         if ($imatge == null) {
 
-            $imatge = $producte->getImatge();
+            $imatge = $empleat->getImatge();
         }
         if (!isset($nom) && !is_string($nom)) {
             $dades = false;

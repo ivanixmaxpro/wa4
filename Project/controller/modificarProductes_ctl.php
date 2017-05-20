@@ -6,7 +6,6 @@
  * Date: 9/05/17
  * Time: 16:20
  */
-
 $title = "Modificar producte";
 $redireccio = 'index.php?ctl=producte&act=llista';
 
@@ -120,7 +119,6 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
-
                     }
                     break;
                 case 'Semisolid':
@@ -148,7 +146,6 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
-
                     }
                     break;
                 case 'Liquid':
@@ -177,7 +174,6 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
-
                     }
                     break;
                 case 'Gas':
@@ -205,7 +201,6 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
-
                     }
                     break;
                 case 'Altres':

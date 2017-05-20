@@ -26,6 +26,7 @@ if (isset($_REQUEST['submit'])) {
     $dni = $_REQUEST['dni'];
     $address = $_REQUEST['address'];
     $nss = $_REQUEST['nss'];
+    $nssBo = preg_replace("/[^0-9]/i", "", $nss);
     $nomina = $_REQUEST['nomina'];
     $description = $_REQUEST['description'];
     $imatge = guardarImatge('empleats');
@@ -39,7 +40,7 @@ if (isset($_REQUEST['submit'])) {
         $imatge = "/wa4/Project/view/images/empleats/default-avatar.png";
     }
 
-    $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $address, $nomina, $nss, $imatge, $description);
+    $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $address, $nomina, $nssBo, $imatge, $description);
     $user = new Usuari($usuari, $contrasenya);
 
     if ($empleat->validateEmpleat()->getOk() && $user->validateNewUser()->getOk()) {
@@ -97,10 +98,13 @@ if (isset($_REQUEST['submit'])) {
                 $permis->setEliminar(0);
             }
             $permis->insertPermis();
+
+            $missatge = $producte->$empleat->validateEmpleat()->getOk();
+            require_once 'view/confirmacio.php';
         }
     } else {
-        
-        if ($empleat->validateEmpleat()->getOk()){
+
+        if ($empleat->validateEmpleat()->getOk()) {
             $missatge = $user->validateNewUser()->getMsg();
         } else {
             $missatge = $empleat->validateEmpleat()->getMsg();

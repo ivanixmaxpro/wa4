@@ -134,7 +134,6 @@ class Empleat {
             return true;
         } else {
             return false;
-            
         }
     }
 
@@ -143,60 +142,60 @@ class Empleat {
      * @return \objecte Validation
      */
     public function validateEmpleat() {
-        
-        
+
+
         $validation = new Validation(true, '');
-        $patroLletres = "/^[a-zA-Z]+$/i";
+        $patroLletres = "/^[a-zA-Z\s]+$/i";
         $patroNum = "/^[[:digit:]]+$/";
 
         if ($validation->getOk() && trim($this->getNom()) == '') {
-            $validation->setMsg("nom esta buit");
+            $validation->setMsg("El nom no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && !preg_match($patroLletres, trim($this->getNom()))) {
-            $validation->setMsg("nom només poden ser lletres");
+            $validation->setMsg("El nom ha de ser Alfabètic.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && trim($this->getCognom()) == '') {
-            $validation->setMsg("cognom esta buit");
+            $validation->setMsg("El cognom no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && !preg_match($patroLletres, trim($this->getCognom()))) {
-            $validation->setMsg("cognom només poden ser lletres");
+            $validation->setMsg("El cognom ha de ser Alfabètic.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && trim($this->getDni()) == '') {
-            $validation->setMsg("dni esta buit");
+            $validation->setMsg("El DNI no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && !$this->validarDni($this->getDni())) {
-            $validation->setMsg("dni no vàlid");
+            $validation->setMsg("El DNI no és vàlid.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && trim($this->getLocalitat()) == '') {
-            $validation->setMsg("camp localitat esta buit");
+            $validation->setMsg("El camp localitat no pot està buit.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && trim($this->getNomina()) == '') {
-            $validation->setMsg("camp nomina esta buit");
+            $validation->setMsg("El camp nòmina no pot està buit.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && preg_match($patroNum, trim($this->getNomina())) == '') {
-            $validation->setMsg("nomina només poden ser numeros");
+            $validation->setMsg("El camp nòmina ha de ser númeric.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && trim($this->getNss()) == '') {
-            $validation->setMsg("camp nss esta buit");
+            $validation->setMsg("El camp Nº Seguretat Social no pot està buit.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && !$this->validateNss($this->getNss())) {
-            $validation->setMsg("nss no vàlid");
+            $validation->setMsg("El Nº Seguretat Social no és vàlid.");
             $validation->setOK(false);
         }
 
@@ -210,35 +209,32 @@ class Empleat {
      * @return boolean
      */
     function validateNss($nss) {
-        $nss = preg_replace("/[^0-9]/i", "", $nss); //número S.S. entero
+        $nssBo = preg_replace("/[^0-9]/i", "", $nss); //número S.S. entero.replace(/\D+/g, "");
 
-        if (strlen($nss) == 12) {
-            $na = substr($nss, 0, 2);
-            $nb = substr($nss, 2, 8);
-            $nc = substr($nss, 10, 2);
+        if (strlen($nssBo) == 12) {
+            $na = substr($nssBo, 0, 2);
+            $nb = substr($nssBo, 2, 8);
+            $nc = substr($nssBo, 10, 2);
         }
         //Si falta alguno de los dígitos da error
         if ($na && $nb && $nc) {
+            $numsSenseControl = substr($nssBo, 0, 10);
+            $numsControl = substr($nssBo, 10, 12);
 
-            //Si el número es menor de 10 millones
-            if ($nb < 10000000) {
-
-                //Asignamos a d la suma de b+a * 10 millones
-                $nd = $nb + $na * 10000000;
-
-                //Si el número es mayor de 10 millones
-            } else {
-
-                //Asignamos a d la concatenación de a y b
-                $nd = $na . $nb;
+            if (substr($numsSenseControl, 2, 1) == 0) {
+                $operan1 = substr($numsSenseControl, 0, 2);
+                $operant2 = substr($numsSenseControl, 3, 10);
+                $nums = $operan1 . $operant2;
             }
-
             //El código de validación ($c), 
             //debe ser el resto de la división d entre 97
-            $validacion = $nd % 97;
+            $validacion = $nums % 97;
 
+            if ($validacion < 10) {
+                $validacion = "0" . $validacion;
+            }
             //Muestra el resultado de la validación
-            if ($validacion == $nc) {
+            if ($validacion == $numsControl) {
                 return true;
             } else {
                 return false;
@@ -247,6 +243,5 @@ class Empleat {
             return false;
         }
     }
-    
 
 }
