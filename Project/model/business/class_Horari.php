@@ -10,7 +10,7 @@ class Horari {
     private $horaInici;
     private $horaFinal;
 
-    function __construct() {        
+    function __construct() {
         switch (func_num_args()) {
             case 0:
                 break;
@@ -77,15 +77,61 @@ class Horari {
     function setHoraFinal($horaFinal) {
         $this->horaFinal = $horaFinal;
     }
-    
-    function updateHorari(){
+
+    function updateHorari() {
         $HorariDAO = new HorariDAO();
         $HorariDAO->updateHorari($this);
     }
-    
-    function insertHorari(){
+
+    function insertHorari() {
         $HorariDAO = new HorariDAO();
         $HorariDAO->insertHorari($this);
+    }
+/**
+ * metode per validar que el format de una data sigui bo
+ * @param type $date
+ */
+    public function validarData($date) {
+
+        if ($this->ok) {
+
+            try {
+
+                $auxDate = explode("-", $date);
+
+                if (!checkdate($auxDate[0], $auxDate[1], $auxDate[2])) {
+
+                    $this->msg = "La data introduïda no és correcte.";
+                }
+            } catch (Exception
+            $exc) {
+
+                $this->msg = "La data introduïda no és correcte.";
+            }
+        }
+    }
+/**
+ * metode per validar que una data no sigui anterior a l'altre
+ * @param type $dataInici
+ * @param type $dataFi
+ */
+    public function validarDataIniciFinal($dataInici, $dataFi) {
+
+        if ($this->ok) {
+
+            $this->validarData($dataInici);
+
+            $this->validarData($dataFi);
+
+
+            if ($this->ok && ($dataFi <
+                    $dataInici)) {
+
+                $this->ok = false;
+
+                $this->msg = "La data final ha de ser major a la data d'inici.";
+            }
+        }
     }
 
 }

@@ -95,10 +95,24 @@ class Usuari {
         return $id_usuari;
     }
     /**
-     * 
+     * metode per validar que els camps usuari i password no estan buits
+     * @return  objecte Validation
      */
     function validateNewUser(){
+        $validation = new Validation(true, '');
+        $patroLletres ="/^[a-zA-Z]+$/i";
+        $patroNum ="/^[[:digit:]]+$/";
         
+        if ($validation->getOk() && trim($this->getUsuari()) == '') {
+            $validation->setMsg("nom usuari esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() &&  trim($this->getContrasenya()) == '' ){
+            $validation->setMsg("pass esta buit");
+            $validation->setOK(false);
+        }
+              
+        return $validation;
     }
 
 }
