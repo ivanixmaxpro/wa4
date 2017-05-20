@@ -7,7 +7,9 @@
                 <p class="category">A continuació un llistat:</p>
             </div>
         </div>
-        
+        <div class="col-md-6"><a href="?ctl=producte&act=afegir">
+            <a href="?ctl=producte&act=afegir"></a><button class="btn btn-primary">Afegir producte</button></a>
+        </div>
     </div>
 
     <form action="?ctl=producte&act=llista" method="post">
