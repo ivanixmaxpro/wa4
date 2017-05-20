@@ -10,7 +10,7 @@ class Horari {
     private $horaInici;
     private $horaFinal;
 
-    function __construct() {        
+    function __construct() {
         switch (func_num_args()) {
             case 0:
                 break;
@@ -77,15 +77,56 @@ class Horari {
     function setHoraFinal($horaFinal) {
         $this->horaFinal = $horaFinal;
     }
-    
-    function updateHorari(){
+
+    function updateHorari() {
         $HorariDAO = new HorariDAO();
         $HorariDAO->updateHorari($this);
     }
-    
-    function insertHorari(){
+
+    function insertHorari() {
         $HorariDAO = new HorariDAO();
         $HorariDAO->insertHorari($this);
+    }
+
+    /**
+     * metode per validar que el format de una data sigui bo
+     * @param type $date
+     */
+    public function validarData($time) {
+        $pattern = "/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/";
+        if (preg_match($pattern, $time)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * metode per validar que una data no sigui anterior a l'altre
+     * @param type $dataInici
+     * @param type $dataFi
+     */
+    public function validarDataIniciFinal($dataInici, $dataFi) {
+
+        if ($this->validarData($dataInici) && $this->validarData($dataFi)) {
+            $dataIniciArray = explode(":", $dataInici);
+            $dataFinalArray = explode(":", $dataFi);
+
+            $horaInici = $dataIniciArray[0]*1000;
+            $horaFi = $dataFinalArray[0]*1000;
+            
+            $minInici = $dataIniciArray[1];
+            $minFi = $dataIniciArray[1];
+            
+            if ($horaInici+ $minInici < $horaFi + $minFi){
+                return true;
+            }else{
+                return false;
+            }
+            
+            
+        }
+
     }
 
 }
