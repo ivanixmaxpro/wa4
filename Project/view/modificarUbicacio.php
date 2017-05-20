@@ -30,6 +30,7 @@
         <div class="form-group">
             <input type="number" min="0" max="0" step="1" value="0" class="" name="quantitatMoure" id="campQuantitatDeProductes">
             <input name="id_ubicacio" id="idUbicacio" value="<?php echo $id ?>"type="hidden"/>
+            <input name="id" id="idProducte" value="<?php echo $producte->getId_producte(); ?>"type="hidden"/>
         </div>
     </div>    
         <input name="passarArrProductes" id="passarArray" type="hidden"></input>

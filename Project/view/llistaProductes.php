@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="col-md-6"><a href="?ctl=producte&act=afegir">
-            <button class="btn btn-primary">Afeguir producte</button></a>
+            <a href="?ctl=producte&act=afegir"></a><button class="btn btn-primary">Afegir producte</button></a>
         </div>
     </div>
 
