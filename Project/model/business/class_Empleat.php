@@ -200,10 +200,6 @@ class Empleat {
             $validation->setOK(false);
         }
 
-        if ($validation->getOk() && trim($this->getDescripcio()) == '') {
-            $validation->setMsg("camp descripcio esta buit");
-            $validation->setOK(false);
-        }
 
         return $validation;
     }

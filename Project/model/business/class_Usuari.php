@@ -16,6 +16,10 @@ class Usuari {
             case 1:
                 $this->setUsuari(func_get_args()[0]);
                 break;
+            case 2:
+                $this->setUsuari(func_get_args()[0]);
+                $this->setContrasenya(func_get_args()[1]);
+                break;
             case 3:
                 $this->setId_empleat(func_get_args()[0]);
                 $this->setUsuari(func_get_args()[1]);
