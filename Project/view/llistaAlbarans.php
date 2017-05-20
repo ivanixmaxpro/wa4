@@ -1,31 +1,26 @@
 
-    <div class="header">
-        <h4 class="title">Llista Albarans</h4>
-
-    </div>
-    <div class="row">
+<div class="header">
+    <h4 class="title">Compra</h4>
+</div>
+<div class="row">
     <div class="container">
         <div class="card">
-
-
-                <a href="?ctl=albaraCompra&act=afegir" class="btn btn-primary"></span> Afegir Albara compra</a>
-                <p class="category">llistat compra:</p>
-                <?php
-                tablaTotAlbaransCompra($albaransCompra, $empresa);
-                ?>
-            </div>
+            <?php
+            tablaTotAlbaransCompra($albaransCompra, $empresa);
+            ?>
         </div>
+        <a href="?ctl=albaraCompra&act=afegir" class="btn btn-primary"></span> Afegir Albara compra</a>
     </div>
-    <br/>
-    <div class="row">
+</div>
+<br/>
+<h4 class="title">Venta</h4>
+<div class="row">
     <div class="container">
-        <div class="card">
-                <a href="?ctl=albaraVenta&act=afegir" class="btn btn-primary"></span> Afegir Albara Venta</a>
-                <p class="category">llistat venta:</p>
-                <?php
-                tablaTotAlbaransVenta($albaransVenta, $empresa);
-                ?>
-
-            </div>
+        <div class="card">          
+            <?php
+            tablaTotAlbaransVenta($albaransVenta, $empresa);
+            ?>
+        </div>
+        <a href="?ctl=albaraVenta&act=afegir" class="btn btn-primary"></span> Afegir Albara Venta</a>
     </div>
-    </div>
+</div>
