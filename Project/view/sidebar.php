@@ -8,6 +8,7 @@
                 </div>
 
                 <ul class="nav">
+
                     <li <?php
                     if ($ctl == "home") {
                         echo 'class="active"';
@@ -15,7 +16,7 @@
                     ?>>
                         <a href="?ctl=home">
                             <i class="pe-7s-graph"></i>
-                            <p>Home</p>
+                            <p>Inici</p>
                         </a>
                     </li>
                     <li <?php
@@ -28,7 +29,11 @@
                             <p>Empleat</p>
                         </a>
                     </li>
-                    <li <?php
+                    <li
+                        <?php if($_SESSION['permisos']['empleat']->getVisualitzar() == 1 && isset($_SESSION['permisos'])){
+
+                        ?>
+                        <?php
                     if ($ctl == "empleat" && $act == "llista") {
                         echo 'class="active"';
                     }
@@ -37,8 +42,9 @@
                             <i class="pe-7s-id"></i>
                             <p>Llista empleats</p>
                         </a>
-                    </li>
-                    <li <?php
+                    </li><?php } ?>
+                    <li
+                        <?php
                     if ($ctl == "empleat" && $act == "fitxar") {
                         echo 'class="active"';
                     }
@@ -48,7 +54,9 @@
                             <p>Fitxar</p>
                         </a>
                     </li>
-                    <li <?php
+                    <li
+                        <?php if($_SESSION['permisos']['control']->getVisualitzar() == 1 && isset($_SESSION['permisos'])){
+
                     if ($ctl == "control" && $act == "llista") {
                         echo 'class="active"';
                     }
@@ -57,8 +65,10 @@
                             <i class="pe-7s-bell"></i>
                             <p>Control</p>
                         </a>
-                    </li>
-                    <li <?php
+                    </li> <?php } ?>
+                    <li
+                        <?php if($_SESSION['permisos']['producte']->getVisualitzar() == 1 && isset($_SESSION['permisos'])){
+
                     if ($ctl == "producte" && $act == "llista") {
                         echo 'class="active"';
                     }
@@ -67,8 +77,10 @@
                             <i class="pe-7s-note2"></i>
                             <p>Llistat de productes</p>
                         </a>
-                    </li>
-                    <li <?php
+                    </li><?php } ?>
+                    <li
+                        <?php if($_SESSION['permisos']['albaraCompra']->getVisualitzar() == 1 && isset($_SESSION['permisos']) && $_SESSION['permisos']['albaraVenta']->getVisualitzar() == 1){
+
                     if ($ctl == "albara" && $act == "llista") {
                         echo 'class="active"';
                     }
@@ -77,9 +89,10 @@
                             <i class="pe-7s-news-paper"></i>
                             <p>Llistat de Albarans</p>
                         </a>
-                    </li>
+                    </li> <?php } ?>
 
                     <li <?php
+                        if($_SESSION['permisos']['client']->getVisualitzar() == 1 && isset($_SESSION['permisos'])){
                     if ($ctl == "client" && $act == "llista") {
                         echo 'class="active"';
                     }
@@ -88,8 +101,9 @@
                             <i class="pe-7s-users"></i>
                             <p>Llistat clients</p>
                         </a>
-                    </li>
+                    </li> <?php } ?>
                     <li <?php
+                        if($_SESSION['permisos']['proveidor']->getVisualitzar() == 1 && isset($_SESSION['permisos'])){
                     if ($ctl == "proveidor" && $act == "llista") {
                         echo 'class="active"';
                     }
@@ -98,7 +112,7 @@
                             <i class="pe-7s-plugin"></i>
                             <p>Llistat proveidors</p>
                         </a>
-                    </li>
+                    </li><?php } ?>
                     <li <?php
                     if ($ctl == "missatge" && $act == "llistaMissatges") {
                         echo 'class="active"';
