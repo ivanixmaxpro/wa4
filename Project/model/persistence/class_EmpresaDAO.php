@@ -199,6 +199,80 @@ class EmpresaDAO {
         return $empleat;
     }
 
+    public function searchEmpleatByNSS($nss) {
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE nss = :nss;");
+        $query->bindValue(":nss", $nss);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
+    public function searchUsuariByNom($usuari) {
+
+        $con = new db();
+        $usri = null;
+        $query = $con->prepare("SELECT * FROM usuari WHERE usuari = :usuari;");
+        $query->bindValue(":usuari", $usuari);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_usuari = $row["id_usuari"];
+            $id_empleat = $row["id_empleat"];
+            $nomusuari = $row["usuari"];
+            $contrasenya = $row["contrasenya"];
+
+            $usri = new Usuari($id_usuari, $id_empleat, $nomusuari, $contrasenya);
+        }
+        $con = null;
+        return $usri;
+    }
+
+    public function searchEmpleatByDNI($dni) {
+
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE dni = :dni;");
+        $query->bindValue(":dni", $dni);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
     public function searchAlbaraVenta($id_albaraVenta) {
         $con = new db();
         $albaraTrobatIGuardat = false;
@@ -840,7 +914,7 @@ class EmpresaDAO {
             $nom = $row['nom'];
 
             $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar, $nom);
-            array_push($permisos, $permis);
+            $permisos[$row['nom']] = $permis;
         }
         $con = null;
         return $permisos;
