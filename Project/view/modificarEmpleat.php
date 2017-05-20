@@ -8,7 +8,7 @@
                         <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&amp;fm=jpg&amp;h=300&amp;q=75&amp;w=400" alt="...">
                     </div>
                     <a href="#">
-                        <img class="avatar border-gray" src="https://paracortarselasvenasconunapaladepescado.files.wordpress.com/2016/08/images1.jpg?w=240" alt="...">
+                        <img class="avatar border-gray" src="<?php echo $empleat->getImatge()?>" alt="...">
                     </a>
                 </div>
                 <h4 class="title">Dades</h4>
