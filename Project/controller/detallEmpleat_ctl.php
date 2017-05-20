@@ -10,6 +10,10 @@ if(isset($_SESSION['empresa'])){
     $_SESSION['empresa'] = serialize($empresa);
 }
 
+if ($_REQUEST['id'] != $_SESSION['id_usuari'] && $_SESSION['permisos']['empleat']->getVisualitzar() != 1) {
+header("Location: index.php");
+}
+
 $empleat = $empresa->searchEmpleat($_REQUEST['id']);
 $horari = $empresa->showHorari($_SESSION['id_usuari']);
 if($horari == null || $horari == ""){
