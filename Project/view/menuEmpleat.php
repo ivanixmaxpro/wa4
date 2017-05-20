@@ -10,6 +10,8 @@
     <h4>Permissos</h4>
     <a href="?ctl=permis&act=detall&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Veure permisos</button></a>
     <a href="?ctl=permis&act=modificar&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Modificar permisos</button></a>
+    <a href="?ctl=empleat&act=canviarContra&id=<?php echo  $empleat->getId_empleat()?>"><button type="button" class="btn btn-primary">Canviar constrasenya empleat</button></a>
+    <a href="?ctl=empleat&act=llista"><button type="button" class="btn btn-primary">Tornar</button></a>
 </div>
 </div>
 <div class="content">
