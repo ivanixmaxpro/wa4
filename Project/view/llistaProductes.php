@@ -47,6 +47,8 @@
 
             </select>
             <button name="Submit" class="btn btn-primary">Buscar</button>
+            <a class="btn btn-primary" href="?ctl=producte&act=afegir">
+             Afeguir producte</a>
         </div>
         <div class="col-md-12"><a href="?ctl=producte&act=afegir">
             <button class="btn btn-primary pull-right">Afeguir producte</button></a>
