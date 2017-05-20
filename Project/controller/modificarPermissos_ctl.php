@@ -57,8 +57,8 @@ if (isset($_REQUEST['submit'])) {
     require_once 'view/footer.php';
 
 } else {
-    if($_REQUEST['id']){
-        $id = $_REQUEST['id'];
+    if($_REQUEST['id_usuari']){
+        $id = $_REQUEST['id_usuari'];
         $llistatPermissos = $empresa->searchPermissos($id);
     }
     require_once 'view/header.php';
