@@ -147,6 +147,8 @@ class Empleat {
         $validation = new Validation(true, '');
         $patroLletres = "/^[a-zA-Z\s]+$/i";
         $patroNum = "/^[[:digit:]]+$/";
+        
+         $validation->setMsg("empleat afegit correctament");
 
         if ($validation->getOk() && trim($this->getNom()) == '') {
             $validation->setMsg("El nom no pot està buit.");

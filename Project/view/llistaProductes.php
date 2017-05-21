@@ -10,7 +10,7 @@
     </div>
 
     <form action="?ctl=producte&act=llista" method="post">
-        <div class="form-group capcelera-llista">
+        <div class="form-group caixa">
             Cercar per Nom:
             <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;}?>">
             Conservar en fred:

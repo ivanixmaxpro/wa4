@@ -68,6 +68,8 @@ class Client {
         $patroLletres ="/^[a-zA-Z]+$/i";
         $patroNum ="/^[[:digit:]]+$/";
         
+         $validation->setMsg("client afegit correctament");
+        
         if ($validation->getOk() && trim($this->getNom()) == '') {
             $validation->setMsg("nom esta buit");
             $validation->setOK(false);

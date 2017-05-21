@@ -1,5 +1,5 @@
 
-    <div class="card" >
+    <div class="card caixa" >
         <div class="header ">
 
             <div class="alert alert-dismissible alert-success text-center">

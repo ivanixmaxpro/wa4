@@ -4,7 +4,7 @@
         <p class="category">Missatges interns:</p>
     </div>
     <form action="?ctl=missatge&act=llista" method="post">
-        <div class="form-group capcelera-llista">
+        <div class="form-group caixa">
             Cercar per Titol:
             <input type="text" name="titol" id="nom" value="<?php
             if (isset($titol)) {

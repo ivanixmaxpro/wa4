@@ -1,5 +1,5 @@
 
-    <div class="card" >
+    <div class="card caixa" >
         <div class="header ">
             <div class="alert-dismissible alert-danger text-center">
                 <button type="button" class="close" data-dismiss="alert" >&times;</button>

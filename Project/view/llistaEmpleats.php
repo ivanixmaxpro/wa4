@@ -4,7 +4,7 @@
         <h4 class="title">Llista empleats</h4>
         <p class="category">A continuació un llistat de tots els nostres empleats:</p>
     </div>
-    <div class="capcelera-llista">
+    <div class="caixa">
     <a href="?ctl=empleat&act=afegir">
         <button class="btn btn-primary">Afegir empleat</button>
     </a>
