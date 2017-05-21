@@ -99,7 +99,7 @@ if (isset($_REQUEST['submit'])) {
             }
             $permis->insertPermis();
 
-            $missatge = $producte->$empleat->validateEmpleat()->getOk();
+            $missatge = $empleat->validateEmpleat()->getOk();
             require_once 'view/confirmacio.php';
         }
     } else {

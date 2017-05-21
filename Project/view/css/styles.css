@@ -12,18 +12,6 @@ una horden solo poden un !important */
     clear: both;
 }
 
-/*#albaraCap .estilAlbara {
-    position: relative;
-    width: 21cm;  
-    height: 29.7cm; 
-    margin: 0 auto; 
-    color: #001028;
-    background: #FFFFFF; 
-    font-family: Arial, sans-serif; 
-    font-size: 12px; 
-    font-family: Arial;
-}*/
-
 #albaraCap {
     padding: 10px 0;
     margin-bottom: 30px;
@@ -124,7 +112,15 @@ footer {
 }
 
 .panell{
-    
+
+}
+
+.msgCorrecte {
+    color: #6dc030;
+}
+
+.msgIncorrecte {
+    color: red;
 }
 
 

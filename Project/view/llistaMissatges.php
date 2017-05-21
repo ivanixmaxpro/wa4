@@ -1,6 +1,5 @@
 <div class="card">
     <div class="header">
-        <h4 class="title">Missatges</h4>
         <p class="category">Missatges interns:</p>
     </div>
     <form action="?ctl=missatge&act=llista" method="post">

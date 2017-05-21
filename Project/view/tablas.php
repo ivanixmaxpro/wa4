@@ -42,7 +42,7 @@ function tablaTotProductes($productes) {
                     }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
                     ?>  <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-                    <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio()?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
+                <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio() ?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
                 <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
                 <?php
                 echo "</tr>";
@@ -147,7 +147,7 @@ function tablaTotControlUsuaris($control, $empresa) {
                 <tr><th>ID</th> 
                     <th>Usuari</th> 
                     <th>Fitxat</th> 
-                    <th>Data</th>
+                    <th>Registrat el:</th>
                 </tr>
             </thead> 
             <tbody> 
@@ -155,12 +155,22 @@ function tablaTotControlUsuaris($control, $empresa) {
                 <?php
                 foreach ($control as $row) {
                     $usuari = $empresa->searchUsuariById($row->getId_usuari());
+                    $fitxat;
+                    $dta = new DateTime($row->getData());
+                    $dtaBona = $dta->format('d-m-Y H:i:s');
+                    $temps = explode(" ", $dtaBona);
+
+                    if ($row->getFitxat() == 0) {
+                        $fitxat = "No";
+                    } else if ($row->getFitxat() == 1) {
+                        $fitxat = "Si";
+                    }
 
                     echo '<tr>';
                     echo "<td>" . $row->getId_control() . "</td>";
                     echo "<td>" . $usuari->getUsuari() . "</td>";
-                    echo "<td>" . $row->getFitxat() . "</td>";
-                    echo "<td>" . $row->getData() . "</td>";
+                    echo "<td>" . $fitxat . "</td>";
+                    echo "<td>" . $temps[0] . " " . $temps[1] . "</td>";
                     echo "</tr>";
                 }
                 ?> 
