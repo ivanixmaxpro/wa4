@@ -10,17 +10,17 @@ if (isset($_SESSION['empresa'])) {
 }
 
 if (isset($_REQUEST["SubmitC"])) {
-
+    
 } else {
     $albaransCompra = $empresa->populateAlbaransCompra();
 }
 
 if (isset($_REQUEST["Submit"])) {
-
+    
 } else {
     $albaransVenta = $empresa->populateAlbaransVenta();
 }
-$title = "Llista albarans";
+$title = "Albarans";
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';

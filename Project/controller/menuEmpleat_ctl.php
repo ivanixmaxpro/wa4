@@ -6,7 +6,7 @@
  * Time: 16:20
  */
 
-$title = "Menu empleats";
+$title = "Menú empleats";
 if(isset($_SESSION['empresa'])){
     $empresa = unserialize($_SESSION['empresa']);
 } else {

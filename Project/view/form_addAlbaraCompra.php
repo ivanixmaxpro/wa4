@@ -1,6 +1,6 @@
 <form role="form" method="post" action="?ctl=albaraCompra&act=afegir" >
     <div class="form-group">
-        <label for="campClient">Proveidor</label>
+        <label for="campProveidor">Proveidor</label>
         <br/>
         <?php
         mostrarSelectProveidors($proveidors);

@@ -1,14 +1,14 @@
-
 <div class="card">
     <div class="header">
-        <h4 class="title">Llista clients</h4>
-        <p class="category">A continuació un llistat de tots els nostres Clients:</p>
+        <p class="category">Llistat de tots els nostres clients:</p>
     </div>
 
     <form action="?ctl=client&act=llista" method="post">
         <div class="form-group">
             Cercar per Nom:
-            <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;} ?>">
+            <input type="text" name="nom" value="<?php if (isset($nom)) {
+    echo $nom;
+} ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
             <a href="?ctl=client&act=afegir" class="btn btn-primary"></span> Afegir client</a>
         </div>

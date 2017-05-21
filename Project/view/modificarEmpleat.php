@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Cognom</label>
+                                <label>Cognoms</label>
                                 <?php
                                 echo '<input type="text" id="cognomempleat" class="form-control" placeholder="Cognom" name="cognom" value="' . $empleat->getCognom() . '">';
                                 ?>

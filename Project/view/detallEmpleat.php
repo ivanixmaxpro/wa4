@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address</label>
+                                <label>Localitat</label>
                                 <?php
                                 echo '<input type="text" class="form-control" placeholder="DNI" value="' . $empleat->getLocalitat() . '" disabled>';
                                 ?>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nomina</label>
+                                <label>Nòmina</label>
                                 <?php
                                 echo '<input type="text" class="form-control" placeholder="DNI" value="' . $empleat->getNomina() . '€/mes" disabled>';
                                 ?>
