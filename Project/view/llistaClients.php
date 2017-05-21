@@ -21,8 +21,12 @@
                     <th>Nom</th>
                     <th>Codi</th>
                     <th>Detall</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
+                    <?php
+                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['client']->getEditar() == true && $_SESSION['permisos']['client']->getEliminar() == true ){
+                        echo "<th>Modificar</th>";
+                        echo "<th>Eliminar</th>";
+                    }
+                    ?>
                 </tr></thead>
             <tbody id="lista">
 
@@ -34,8 +38,10 @@
                     echo "<td>" . $row->getNom() . "</td>";
                     echo "<td>" . $row->getCodi() . "</td>";
                     echo '<td>' . '<a href="?ctl=client&act=detall&id=' . $row->getId_client() . '&missatge">' . 'Veure' . '</a>' . '</td>';
-                    echo '<td>' . '<a href="?ctl=client&act=modificar&id=' . $row->getId_client() . '&missatge">' . 'modificar' . '</a>' . '</td>';
-                    echo '<td>' . '<a href="?ctl=client&act=eliminar&id=' . $row->getId_client() . '&missatge">' . 'eliminar' . '</a>' . '</td>';
+                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['client']->getEditar() == true && $_SESSION['permisos']['client']->getEliminar() == true ){
+                        echo '<td>' . '<a href="?ctl=client&act=modificar&id=' . $row->getId_client() . '&missatge" class="btn btn-danger">' . 'modificar' . '</a>' . '</td>';
+                        echo '<td>' . '<a href="?ctl=client&act=eliminar&id=' . $row->getId_client() . '&missatge" class="btn btn-danger">' . 'eliminar' . '</a>' . '</td>';
+                    }
                     echo "</tr>";
                 }
                 ?>

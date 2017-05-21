@@ -4,6 +4,9 @@ una horden solo poden un !important */
     margin-top: 15px !important;
 }
 
+#banner1{
+    width: 200% !important;
+}
 /* ESTILS DETALLS ALBARANS */
 
 .clearfix:after {

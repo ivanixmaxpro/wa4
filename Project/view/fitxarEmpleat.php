@@ -10,7 +10,8 @@
                 </div>
                 <div id="fitxarOn" class="img-thumbnail" >
                     <img src="view/images/fitxar_on.png" height="75" width="75" />
-                    Recorda fitxar en quan entris a treballar. Bon dia :)
+                    Recorda fitxar en quan entris a treballar.
+                    Bon dia :)
                 </div>
                 <div id="fitxarOff" class="img-thumbnail">
                     <img src="view/images/fitxar_off.png" height="75" width="75" />
@@ -23,7 +24,7 @@
                 </div>
             </div>
             <div class="col-md-6 content">
-                <h5>Últims 8 registres d'entrada y sortida:</h5>
+                <h5>Últims 5 registres d'entrada y sortida:</h5>
                 <?php
                 if (isset($fitxesEmpleat) && count($fitxesEmpleat) > 0) {
                     foreach ($fitxesEmpleat as $fitxa) {
