@@ -106,7 +106,7 @@ class AlbaraCompra {
     function validateAlbara() {
         $validation = new Validation(true, '');
         $validation->setMsg("Has afegit correctament l'albarà de compra.");
-        if (is_nan(!$this->getId_proveidor())) {
+        if ($this->getId_proveidor() == "-") {
             $validation->setMsg("Has d'escollir un proveïdor.");
             $validation->setOK(false);
         }

@@ -348,7 +348,7 @@ function validarContrasenya() {
 }
 
 function Alfabetic(elemValor) {
-    var alphaExp = /^[a-zA-ZáéíóúÁÉÍÓÚÑñÇçàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ\s]+$/;
+    var alphaExp = /^[a-zA-ZáéíóúÁÉÍÓÚÑñÇçàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ-_\s]+$/;
     if (elemValor.match(alphaExp)) {
         return true;
     } else {
@@ -423,6 +423,9 @@ function validarFormulariAlbara() {
         if (posSelectedClient == null || posSelectedClient == 0) {
             $('#errorCampClient').html("Selecciona una opció correcte.").addClass("msgIncorrecte");
             totOkFormulari = false;
+        } else {
+            $('#errorCampClient').html("");
+            totOkFormulari = true;
         }
     } else {
         var posSelectedProveidor = document.getElementById("campProveidor").selectedIndex;
@@ -430,6 +433,9 @@ function validarFormulariAlbara() {
         if (posSelectedProveidor == null || posSelectedProveidor == 0) {
             $('#errorCampProveidor').html("Selecciona una opció correcte.").addClass("msgIncorrecte");
             totOkFormulari = false;
+        } else {
+            $('#errorCampProveidor').html("");
+            totOkFormulari = true;
         }
     }
 
@@ -441,40 +447,26 @@ function validarFormulariAlbara() {
         $('#errorCampCodi').html("El camp ha de ser alfabètic i no pot estar buit.").addClass("msgIncorrecte");
         totOkFormulari = false;
     } else {
-        if (vlrCodi.length < 2) {
-            $('#errorCampCodi').html("Ha de tenir un mínim de 2 lletres.").addClass("msgIncorrecte");
-            totOkFormulari = false;
-        } else {
-            $('#errorCampCodi').html("");
-            totOkFormulari = true;
-        }
+        $('#errorCampCodi').html("");
+        totOkFormulari = true;
     }
 
     if (vlrObservacions == '' || !Alfabetic(vlrObservacions)) {
         $('#errorCampObservacions').html("El camp ha de ser alfabètic i no pot estar buit.").addClass("msgIncorrecte");
         totOkFormulari = false;
     } else {
-        if (vlrObservacions.length < 2) {
-            $('#errorCampObservacions').html("Ha de tenir un mínim de 2 lletres.").addClass("msgIncorrecte");
-            totOkFormulari = false;
-        } else {
-            $('#errorCampObservacions').html("");
-            totOkFormulari = true;
-        }
+        $('#errorCampObservacions').html("");
+        totOkFormulari = true;
     }
 
     if (vlrLocalitat == '' || !Alfabetic(vlrLocalitat)) {
         $('#errorCampLocalitat').html("El camp ha de ser alfabètic i no pot estar buit.").addClass("msgIncorrecte");
         totOkFormulari = false;
     } else {
-        if (vlrLocalitat.length < 2) {
-            $('#errorCampLocalitat').html("Ha de tenir un mínim de 2 lletres.").addClass("msgIncorrecte");
-            totOkFormulari = false;
-        } else {
-            $('#errorCampLocalitat').html("");
-            totOkFormulari = true;
-        }
+        $('#errorCampLocalitat').html("");
+        totOkFormulari = true;
     }
+
 
     if (totOkFormulari == true) {
         return true;
@@ -483,8 +475,8 @@ function validarFormulariAlbara() {
         return false;
     }
 
-
 }
+
 
 function validarFormulariAmbImatgeProducte() {
     var idCamp = this.id;

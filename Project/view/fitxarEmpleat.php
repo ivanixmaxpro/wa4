@@ -10,14 +10,14 @@
                 </div>
                 <div id="fitxarOn" class="img-thumbnail" >
                     <img src="view/images/fitxar_on.png" height="75" width="75" />
-                    Recorda fitxar en quan entris a trenallar. Bon dia :)
+                    Recorda fitxar en quan entris a treballar. Bon dia :)
                 </div>
                 <div id="fitxarOff" class="img-thumbnail">
                     <img src="view/images/fitxar_off.png" height="75" width="75" />
-                    Gracies per fitxar, l'hora d'entrada ha sigut registrada. Recorda fitxar al anar-ten.
+                    Gràcies per fitxar, l'hora d'entrada ha sigut registrada. Recorda fitxar al sortir.
                     <?php
                     if (isset($eight) == true) {
-                        echo "\nPortes més de 8 hores treballant. Hauries de descansar o passar report de les teves hores extres.";
+                        echo "\nPortes més de 8 hores treballant. Hauries de descansar o passar les teves hores extres a Recursos Humans.";
                     }
                     ?>
                 </div>
@@ -66,7 +66,7 @@
                     ?>
                     <div class="content card row">
                         <div class="col-md-12">
-                            <h4>No tens registres atics.</h4>
+                            <h4>No tens registres.</h4>
                         </div>
                     </div>
                     <?php
