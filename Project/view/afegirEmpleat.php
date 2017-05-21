@@ -38,7 +38,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Localitat</label>
-                    <input type="text" id="localitat" class="form-control" placeholder="Adreça" name="address" value="" required>
+                    <input type="text" id="localitat" class="form-control" placeholder="Localitat" name="address" value="" required>
                     <span id="errorLocalitat"></span>
                 </div>
             </div>

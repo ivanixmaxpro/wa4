@@ -7,7 +7,7 @@
 function tablaTotProductes($productes) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Referència</th> 
@@ -19,7 +19,7 @@ function tablaTotProductes($productes) {
 
                     <th>Detall</th>
                     <?php
-                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true ){
+                    if (isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true) {
                         echo "<th>Modificar</th>";
                         echo "<th>Modificar ubicació</th>";
                         echo "<th>Eliminar</th>";
@@ -38,22 +38,21 @@ function tablaTotProductes($productes) {
                     echo "<td>" . $row->getNom() . "</td>";
                     echo "<td>" . $row->getMarca() . "</td>";
                     echo "<td>" . $row->getModel() . "</td>";
-                    echo "<td>" . $row->getpreuBase() . "</td>";
+                    echo "<td>" . $row->getpreuBase() . " €" . "</td>";
                     if ($row->getConservarFred() == 0) {
                         echo "<td>No</td>";
                     } else {
                         echo "<td>Si</td>";
                     }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
-                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true ){
+                    if (isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true) {
                         ?>
-                        <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-                        <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio() ?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
-                        <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
+                    <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
+                    <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio() ?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
+                    <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
 
-                        <?php
-
-                    }
+                    <?php
+                }
                 echo "</tr>";
             }
             ?> 
@@ -70,7 +69,7 @@ function tablaTotProductes($productes) {
 function tablaTotAlbaransVenta($albaransVenta, $empresa) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio2" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Client</th> 
@@ -110,7 +109,7 @@ function tablaTotAlbaransVenta($albaransVenta, $empresa) {
 function tablaTotAlbaransCompra($albaransCompra, $empresa) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Proveidor</th> 
@@ -151,7 +150,7 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
 function tablaTotControlUsuaris($control, $empresa) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Usuari</th> 
@@ -170,9 +169,9 @@ function tablaTotControlUsuaris($control, $empresa) {
                     $temps = explode(" ", $dtaBona);
 
                     if ($row->getFitxat() == 0) {
-                        $fitxat = "No";
+                        $fitxat = "Sortida";
                     } else if ($row->getFitxat() == 1) {
-                        $fitxat = "Si";
+                        $fitxat = "Entrada";
                     }
 
                     echo '<tr>';
@@ -222,33 +221,41 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     $linia++;
                 }
             }
+            ?>
+        </tbody> 
+    </table> 
+</div>
+<
+<?php
 
-            function tablaRegistresMoviments($registres) {
+function tablaRegistresMoviments($registres) {
+    ?> 
+    <div class="content table-responsive table-full-width"> 
+        <table id="taulaPaginacioRegistres" class="table table-hover table-striped"> 
+            <thead> 
+                <tr>
+                    <th>Nº Registre</th>
+                    <th></th>
+                </tr>
+            </thead> 
+            <tbody> 
+
+                <?php
+                $count = 1;
+                for ($i = 0; $i < count($registres); $i++) {
+                    if ($registres[$i] != false) {
+                        echo '<tr>';
+                        echo "<td>" . $count . "</td>";
+                        echo "<td>" . $registres[$i] . "</td>";
+                        echo '</tr>';
+                        $count++;
+                    }
+                }
                 ?> 
-            <div class="content table-responsive table-full-width"> 
-                <table class="table table-hover table-striped"> 
-                    <thead> 
-                        <tr><th>Nº Registre</th>
-                        </tr>
-                    </thead> 
-                    <tbody> 
 
-                        <?php
-                        $count = 1;
-                        for ($i = 0; $i < count($registres); $i++) {
-                            if ($registres[$i] != false) {
-                                echo '<tr>';
-                                echo "<td>" . $count . "</td>";
-                                echo "<td>" . $registres[$i] . "</td>";
-                                echo '</tr>';
-                                $count++;
-                            }
-                        }
-                        ?> 
-
-                    </tbody> 
-                </table> 
-            </div> 
-            <?php
-        }
-        ?>
+            </tbody> 
+        </table>
+    </div>
+    <?php
+}
+?>
