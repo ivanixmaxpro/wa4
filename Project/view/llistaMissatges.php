@@ -4,7 +4,7 @@
         <p class="category">Missatges interns:</p>
     </div>
     <form action="?ctl=missatge&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group capcelera-llista">
             Cercar per Titol:
             <input type="text" name="titol" id="nom" value="<?php
             if (isset($titol)) {
@@ -15,7 +15,7 @@
             <a href="?ctl=missatge&act=crear" class="btn btn-primary">Crear missatge</a>
         </div>
     </form> 
-    <div class="content table-responsive table-full-width">
+    <div class="content table-responsive table-full-width ">
         <table class="table table-hover table-striped" id="tabla">
             <thead>
                 <tr>

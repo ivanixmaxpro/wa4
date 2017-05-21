@@ -5,7 +5,7 @@
         <p class="category">llistat control usuaris:</p>
     </div>
     <form action="?ctl=control&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group capcelera-llista">
             Cercar per Usuari:
             <?php
             mostrarSelectUsuaris($usuaris);

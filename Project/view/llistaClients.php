@@ -6,7 +6,7 @@
     </div>
 
     <form action="?ctl=client&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group capcelera-llista">
             Cercar per Nom:
             <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;} ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
