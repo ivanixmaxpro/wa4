@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-            <a href="?ctl=producte&act=llista" ><img src="view/images/foto1.jpg" class="img-responsive" style="width: 100%;" alt="Per fitxar pulsa aquí"/></a>
+            <a href="?ctl=empleat&act=fitxar" ><img src="view/images/foto1.jpg" class="img-responsive" style="width: 100%;" alt="Per fitxar pulsa aquí"/></a>
         </div>
     </div>
     <div class="col-md-6">
