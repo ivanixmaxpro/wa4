@@ -170,9 +170,9 @@ function tablaTotControlUsuaris($control, $empresa) {
                     $temps = explode(" ", $dtaBona);
 
                     if ($row->getFitxat() == 0) {
-                        $fitxat = "No";
+                        $fitxat = "Sortida";
                     } else if ($row->getFitxat() == 1) {
-                        $fitxat = "Si";
+                        $fitxat = "Entrada";
                     }
 
                     echo '<tr>';
