@@ -283,7 +283,7 @@ function validarDNIEmpleat() {
             data: {dni: dni},
             success: function (resposta) {
                 if (resposta == "El DNI és vàlid") {
-                    $('#error' + errorCamp).html(resposta).addClass("msgCorrecte");
+                    $('#error' + errorCamp).html(resposta).addClass("msgCorrecte").removeClass("msgIncorrecte");
                     totOkFormulari = true;
                 } else {
                     $('#error' + errorCamp).html(resposta).addClass("msgIncorrecte");
