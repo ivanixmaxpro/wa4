@@ -124,9 +124,10 @@
             </select>
             <button name="Submit" class="btn btn-primary">Buscar</button>
         </div>
-        <div class="col-md-12"><a href="?ctl=producte&act=afegir" class="btn btn-primary pull-right">Afegir producte</a>
-        </div>
     </form> 
+    <div class="col-md-12"><a href="?ctl=producte&act=afegir">
+            <button class="btn btn-primary pull-right">Afeguir producte</button></a>
+        </div>
     <?php
     tablaTotProductes($productes);
     ?>
