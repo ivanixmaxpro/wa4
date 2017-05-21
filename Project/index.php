@@ -155,8 +155,19 @@ switch ($ctl) {
             case "detall":
                 include "controller/detallMissatge_ctl.php";
                 break;
+            
             case "crear":
+                if ($_SESSION['permisos']['missatge']->getCrear() == 1 && isset($_SESSION['permisos'])) {
                 include "controller/crearMissatge_ctl.php";
+                }else {
+                    $title = "Error de permisos";
+                    include "view/header.php";
+                    include "view/sidebar.php";
+                    include "view/mainNav.php";
+                    $redireccio = "?ctl=home";
+                    $missatge = "No tens permisos per accedir.";
+                    include "view/error.php";
+                }
                 break;
         }
         break;
