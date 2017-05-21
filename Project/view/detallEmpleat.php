@@ -2,19 +2,14 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="header">
-                <div class="card card-user author">
-                    <div class="image">
-                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&amp;fm=jpg&amp;h=300&amp;q=75&amp;w=400" alt="...">
-                    </div>
-                    <a href="#">
-                        <img class="avatar border-gray" src="https://paracortarselasvenasconunapaladepescado.files.wordpress.com/2016/08/images1.jpg?w=240" alt="...">
-                    </a>
-                </div>
-                <h4 class="title">Dades</h4>
-            </div>
             <div class="content">
                 <form>
+                    <h4 class="">Dades</h4>
+           <div class="row ">
+               <div class="col-md-11">
+                <img class="pull-right" width="150" height="150" src="<?php echo $empleat->getImatge()?>" alt="...">
+               </div>
+            </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -83,7 +78,9 @@
                     </div>
 
 
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+
+                    </div>
                 </form>
                 <div class="content">
 

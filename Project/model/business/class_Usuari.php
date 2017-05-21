@@ -13,6 +13,13 @@ class Usuari {
         switch (func_num_args()) {
             case 0:
                 break;
+            case 1:
+                $this->setUsuari(func_get_args()[0]);
+                break;
+            case 2:
+                $this->setUsuari(func_get_args()[0]);
+                $this->setContrasenya(func_get_args()[1]);
+                break;
             case 3:
                 $this->setId_empleat(func_get_args()[0]);
                 $this->setUsuari(func_get_args()[1]);
@@ -84,6 +91,32 @@ class Usuari {
     function updateContrasenya() {
         $UsuariDAO = new UsuariDAO();
         $UsuariDAO->updateContrasenya($this->getId_usuari(), $this->getContrasenya());
+    }
+    
+    function addUsuari(){
+        $UsuariDAO = new UsuariDAO();
+        $id_usuari = $UsuariDAO->insertUsuari($this);
+        return $id_usuari;
+    }
+    /**
+     * metode per validar que els camps usuari i password no estan buits
+     * @return  objecte Validation
+     */
+    function validateNewUser(){
+        $validation = new Validation(true, '');
+        $patroLletres ="/^[a-zA-Z]+$/i";
+        $patroNum ="/^[[:digit:]]+$/";
+        
+        if ($validation->getOk() && trim($this->getUsuari()) == '') {
+            $validation->setMsg("El nom d'usuari no pot està buit.");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() &&  trim($this->getContrasenya()) == '' ){
+            $validation->setMsg("La contrasenya no pot està buida.");
+            $validation->setOK(false);
+        }
+              
+        return $validation;
     }
 
 }

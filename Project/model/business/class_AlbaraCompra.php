@@ -13,15 +13,21 @@ class AlbaraCompra {
     private $data;
     private $localitat;
 
-    function __construct($id_proveidor, $id_empresa, $codi, $observacions, $preu, $data, $localitat) {
-        $this->setId_albara(null);
-        $this->setId_client($id_proveidor);
-        $this->setId_empresa($id_empresa);
-        $this->setCodi($codi);
-        $this->setObservacions($observacions);
-        $this->setPreu($preu);
-        $this->setData($data);
-        $this->setLocalitat($localitat);
+    function __construct() {
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 8:
+                $this->setId_albara(func_get_args()[0]);
+                $this->setId_proveidor(func_get_args()[1]);
+                $this->setId_empresa(func_get_args()[2]);
+                $this->setCodi(func_get_args()[3]);
+                $this->setObservacions(func_get_args()[4]);
+                $this->setPreu(func_get_args()[5]);
+                $this->setData(func_get_args()[6]);
+                $this->setLocalitat(func_get_args()[7]);
+                break;
+        }
     }
 
     function getId_albara() {
@@ -86,6 +92,47 @@ class AlbaraCompra {
 
     function setLocalitat($localitat) {
         $this->localitat = $localitat;
+    }
+
+    function insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara) {
+        $albaraVentaDAO = new AlbaraCompraDAO();
+        $albaraVentaDAO->insertAlbara($campProveidor, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+    }
+
+    /**
+     * metode per validar que els parametres son correctes
+     * @return objecte Validation
+     */
+    function validateAlbara() {
+        $validation = new Validation(true, '');
+        $validation->setMsg("has afegit el albara correctament");
+        if (is_nan(!$this->getId_proveidor())) {
+            $validation->setMsg("has d'escollir un proveidor");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getCodi()) == '') {
+            $validation->setMsg("codi esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getObservacions()) == '') {
+            $validation->setMsg("observacions esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getObservacions()) == '') {
+            $validation->setMsg("observacions esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && trim($this->getLocalitat()) == '') {
+            $validation->setMsg("localitat esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && $this->getPreu() <= 0) {
+            $validation->setMsg("No hi han productes");
+            $validation->setOK(false);
+        }
+
+        return $validation;
     }
 
 }

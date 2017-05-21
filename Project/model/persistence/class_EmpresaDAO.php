@@ -110,6 +110,47 @@ class EmpresaDAO {
         return $albaransVentaArray;
     }
 
+    function populateAlbaransCompra() {
+        $albaransCompraArray = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM albara_compra;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_proveidor = $row["id_proveidor"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preu = $row["preu"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $albaraCompra = new AlbaraCompra($id_albara, $id_proveidor, $id_empresa, $codi, $observacions, $preu, $data, $localitat);
+            array_push($albaransCompraArray, $albaraCompra);
+        }
+        $con = null;
+        return $albaransCompraArray;
+    }
+
+    public function populateControl() {
+
+        $arrControl = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM control;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_control = $row["id_control"];
+            $id_usuari = $row["id_usuari"];
+            $fitxat = $row["fitxat"];
+            $data = $row["data"];
+            $control = new Control($id_control, $id_usuari, $fitxat, $data);
+            array_push($arrControl, $control);
+        }
+        $con = null;
+        return $arrControl;
+    }
+
     public function populateUsuariDAO() {
         $usuaris = array();
         $con = new db();
@@ -156,6 +197,168 @@ class EmpresaDAO {
         }
         $con = null;
         return $empleat;
+    }
+
+    public function searchEmpleatByNSS($nss) {
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE nss = :nss;");
+        $query->bindValue(":nss", $nss);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
+    public function searchUsuariByNom($usuari) {
+
+        $con = new db();
+        $usri = null;
+        $query = $con->prepare("SELECT * FROM usuari WHERE usuari = :usuari;");
+        $query->bindValue(":usuari", $usuari);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_usuari = $row["id_usuari"];
+            $id_empleat = $row["id_empleat"];
+            $nomusuari = $row["usuari"];
+            $contrasenya = $row["contrasenya"];
+
+            $usri = new Usuari($id_usuari, $id_empleat, $nomusuari, $contrasenya);
+        }
+        $con = null;
+        return $usri;
+    }
+
+    public function searchEmpleatByDNI($dni) {
+
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE dni = :dni;");
+        $query->bindValue(":dni", $dni);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
+    public function searchAlbaraVenta($id_albaraVenta) {
+        $con = new db();
+        $albaraTrobatIGuardat = false;
+        $arrInfoAlbaraIDetalls = array();
+        $arrAlbaransVenta = array();
+        $arrDetallsAlbaransVenta = array();
+
+        $query = $con->prepare("SELECT *, albara_venta.preu as preuAlbaraTotal FROM albara_venta INNER JOIN detalls_albara_venta ON detalls_albara_venta.id_albara = albara_venta.id_albara WHERE detalls_albara_venta.id_albara = :id_albaraVenta;");
+        $query->bindValue(":id_albaraVenta", $id_albaraVenta);
+
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_client = $row["id_client"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preuAlbaraTotal = $row["preuAlbaraTotal"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $id_detalls_albara = $row["id_detalls_albara"];
+            $id_producte = $row["id_producte"];
+            $quanitat = $row["quantitat"];
+            $preuDetall = $row["preu"];
+
+            $albaraVenta = new AlbaraVenta($id_albara, $id_client, $id_empresa, $codi, $observacions, $preuAlbaraTotal, $data, $localitat);
+
+            if (!$albaraTrobatIGuardat) {
+                array_push($arrAlbaransVenta, $albaraVenta);
+                $albaraTrobatIGuardat = true;
+            }
+
+            $detallAlbaraVenta = new DetallAlbaraVenta($id_detalls_albara, $id_albara, $id_producte, $quanitat, $preuDetall);
+            array_push($arrDetallsAlbaransVenta, $detallAlbaraVenta);
+        }
+        $con = null;
+
+        $arrInfoAlbaraIDetalls[0] = $arrAlbaransVenta;
+        $arrInfoAlbaraIDetalls[1] = $arrDetallsAlbaransVenta;
+
+        return $arrInfoAlbaraIDetalls;
+    }
+
+    public function searchAlbaraCompra($id_albaraCompra) {
+        $con = new db();
+        $albaraTrobatIGuardat = false;
+        $arrInfoAlbaraIDetalls = array();
+        $arrAlbaransCompra = array();
+        $arrDetallsAlbaransCompra = array();
+
+        $query = $con->prepare("SELECT *, albara_compra.preu as preuAlbaraTotal FROM albara_compra INNER JOIN detalls_albara_compra ON detalls_albara_compra.id_albara = albara_compra.id_albara WHERE detalls_albara_compra.id_albara = :id_albaraCompra;");
+        $query->bindValue(":id_albaraCompra", $id_albaraCompra);
+
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_albara = $row["id_albara"];
+            $id_proveidor = $row["id_proveidor"];
+            $id_empresa = $row["id_empresa"];
+            $codi = $row["codi"];
+            $observacions = $row["observacions"];
+            $preuAlbaraTotal = $row["preuAlbaraTotal"];
+            $data = $row["data"];
+            $localitat = $row["localitat"];
+            $id_detalls_albara = $row["id_detalls_albara"];
+            $id_producte = $row["id_producte"];
+            $quanitat = $row["quantitat"];
+            $preuDetall = $row["preu"];
+
+            $albaraCompra = new AlbaraCompra($id_albara, $id_proveidor, $id_empresa, $codi, $observacions, $preuAlbaraTotal, $data, $localitat);
+
+            if (!$albaraTrobatIGuardat) {
+                array_push($arrAlbaransCompra, $albaraCompra);
+                $albaraTrobatIGuardat = true;
+            }
+
+            $detallAlbaraCompra = new DetallAlbaraCompra($id_detalls_albara, $id_albara, $id_producte, $quanitat, $preuDetall);
+            array_push($arrDetallsAlbaransCompra, $detallAlbaraCompra);
+        }
+        $con = null;
+
+        $arrInfoAlbaraIDetalls[0] = $arrAlbaransCompra;
+        $arrInfoAlbaraIDetalls[1] = $arrDetallsAlbaransCompra;
+
+        return $arrInfoAlbaraIDetalls;
     }
 
     public function searchProducte($id_producte) {
@@ -222,7 +425,7 @@ class EmpresaDAO {
         return $fitxesArray;
     }
 
-    function filterProducte($conservarenfred, $quantitat, $tipus) {
+    function filterProducte($nom = null, $conservarenfred, $quantitat, $tipus) {
         $productesArray = array();
         $con = new db();
         $consulta = "SELECT * FROM";
@@ -238,7 +441,6 @@ class EmpresaDAO {
                 break;
         }
 
-
         switch ($conservarenfred) {
             case "tots":
                 $consulta .= "";
@@ -249,17 +451,22 @@ class EmpresaDAO {
                 $consulta .= " WHERE producte.conservarFred=" . $conservarenfred;
                 break;
         }
+        if($nom != null && $conservarenfred == 'tots'){
+            $consulta .= " WHERE nom LIKE '%". $nom ."%'";
+        }else{
+            $consulta .= " AND nom LIKE '%". $nom ."%'";
+        }
         switch ($quantitat) {
             case "tots":
-                $consulta .= "";
+                $consulta .= ";";
 
                 break;
 
             default:
-                $consulta .= " LIMIT " . $quantitat + ";";
+                $consulta .= " LIMIT " . $quantitat . ";";
                 break;
         }
-        $consulta .= ";";
+
         $query = $con->prepare($consulta);
         $result = $con->consultar($query);
 
@@ -320,6 +527,31 @@ class EmpresaDAO {
         return $usuari;
     }
 
+    public function searchEmpleatById($id_empleat) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM empleat WHERE id_empleat = :id_empleat;");
+        $query->bindValue(":id_empleat", $id_empleat);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+
+            $usuari = new Empleat($id_empleat, $id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+        }
+        $con = null;
+        return $usuari;
+    }
+
     public function searchUbicacioById($id_ubicacio) {
         $con = new db();
         $query = $con->prepare("SELECT * FROM producte INNER JOIN ubicacio ON producte.id_ubicacio = ubicacio.id_ubicacio WHERE ubicacio.id_ubicacio = :id_ubicacio;");
@@ -353,6 +585,39 @@ class EmpresaDAO {
         }
         $con = null;
         return $client;
+    }
+
+    function searchUsuariById($id_usuari) {
+
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM usuari WHERE id_usuari = :id_usuari;");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $usuari = $row["usuari"];
+            $client = new Usuari($usuari);
+        }
+        $con = null;
+        return $client;
+    }
+
+    function searchProveidorById($id_proveidor) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM proveidor WHERE id_proveidor = :id_proveidor;");
+        $query->bindValue(":id_proveidor", $id_proveidor);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_proveidor = $row["id_proveidor"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $proveidor = new Proveidor($id_proveidor, $nom, $codi);
+        }
+        $con = null;
+        return $proveidor;
     }
 
     public function populateClients() {
@@ -544,7 +809,7 @@ class EmpresaDAO {
                     $query = $con->prepare("INSERT INTO liquid (id_producte, capacitatMl) 
                 VALUES (:id_producte,:capacitatMl);");
                     $query->bindValue(":id_producte", $idProducte);
-                    $query->bindValue(":capacitatMg", $producte->getCapacitatMl());
+                    $query->bindValue(":capacitatMl", $producte->getCapacitatMl());
                     $con->consulta($query);
 
                     break;
@@ -633,6 +898,182 @@ class EmpresaDAO {
             die($e->getMessage());
         }
         $con = null;
+    }
+
+    public function searchPermissos($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM permis INNER JOIN funcionalitat ON funcionalitat.id_funcionalitat = permis.id_funcionalitat WHERE id_usuari = :id_usuari");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $permisos = array();
+
+        foreach ($result as $row) {
+            $id_permis = $row['id_permis'];
+            $id_usuari = $row['id_usuari'];
+            $id_funcionalitat = $row['id_funcionalitat'];
+            $visualitzar = $row['visualitzar'];
+            $crear = $row['crear'];
+            $editar = $row['editar'];
+            $eliminar = $row['eliminar'];
+            $nom = $row['nom'];
+
+            $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar, $nom);
+            $permisos[$row['nom']] = $permis;
+        }
+        $con = null;
+        return $permisos;
+    }
+
+    function updateEmpleat($empleat) {
+        try {
+            $con = new db();
+
+            $query = $con->prepare("UPDATE empleat SET nom = :nom, cognom = :cognom, dni = :dni, localitat = :localitat, nss = :nss, nomina = :nomina, imatge = :imatge, descripcio = :descripcio WHERE id_empleat = :id_empleat;");
+            $query->bindValue(":id_empleat", $empleat->getId_empleat());
+            $query->bindValue(":nom", $empleat->getNom());
+            $query->bindValue(":cognom", $empleat->getCognom());
+            $query->bindValue(":dni", $empleat->getDni());
+            $query->bindValue(":localitat", $empleat->getLocalitat());
+            $query->bindValue(":nss", $empleat->getNss());
+            $query->bindValue(":nomina", $empleat->getNomina());
+            $query->bindValue(":imatge", $empleat->getImatge());
+            $query->bindValue(":descripcio", $empleat->getDescripcio());
+            $con->consulta($query);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+        $con = null;
+    }
+
+    public function searchHoraris($id_usuari) {
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM horari WHERE id_usuari = :id_usuari ORDER BY id_dia ASC ");
+        $query->bindValue(":id_usuari", $id_usuari);
+        $result = $con->consultar($query);
+        $horaris = array();
+
+        foreach ($result as $row) {
+            $id_horari = $row['id_horari'];
+            $id_usuari = $row['id_usuari'];
+            $id_dia = $row['id_dia'];
+            $horaInici = $row['horaInici'];
+            $horaFinal = $row['horaFinal'];
+
+            $horari = new Horari($id_horari, $id_usuari, $id_dia, $horaInici, $horaFinal);
+            array_push($horaris, $horari);
+        }
+        $con = null;
+        return $horaris;
+    }
+
+    public function populateDia() {
+
+        $dies = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM dia;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_dia = $row["id_dia"];
+            $nom = $row["nom"];
+
+            $dia = new Dia($id_dia, $nom);
+            array_push($dies, $dia);
+        }
+        $con = null;
+        return $dies;
+    }
+
+    public function populateFuncionalitats() {
+
+        $funcionalitats = array();
+        $con = new db();
+        $query = $con->prepare("SELECT * FROM funcionalitat;");
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_funcionalitat = $row["id_funcionalitat"];
+            $nom = $row["nom"];
+
+            $funcionalitat = new Funcionalitat($id_funcionalitat, $nom);
+            array_push($funcionalitats, $funcionalitat);
+        }
+        $con = null;
+        return $funcionalitats;
+    }
+
+    public function filtrarClients($nom) {
+        $clients = array();
+        $con = new db();
+        if($nom != null){
+            $consulta = "SELECT * FROM client WHERE nom LIKE '%" . $nom . "%';";
+        }else{
+            $consulta = "SELECT * FROM client;";
+        }
+        $query = $con->prepare($consulta);
+        $query->bindValue(":nom", $nom);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_client"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $informacio = $row["informacio"];
+
+            $client = new Client($id_client, $nom, $codi, $informacio);
+            array_push($clients, $client);
+        }
+        $con = null;
+        return $clients;
+    }
+
+    public function filtrarMissatges($titol) {
+        $missatges = array();
+        $con = new db();
+        if($titol != null){
+            $consulta = "SELECT ms.*, u.usuari FROM missatge as ms INNER JOIN usuari as u ON ms.id_usuari = u.id_usuari WHERE titol LIKE '%" . $titol . "%';";
+        }else{
+            $consulta = "SELECT ms.*, u.usuari FROM missatge as ms INNER JOIN usuari as u ON ms.id_usuari = u.id_usuari";
+        }
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_missatge = null;
+            $id_usuari = $row["usuari"];
+            $llegit = $row["llegit"];
+            $titol = $row["titol"];
+            $data = $row["data"];
+            $missatge = $row["missatge"];
+
+            $missatge = new Missatge($id_usuari, $llegit, $titol, $data, $missatge);
+            array_push($missatges, $missatge);
+        }
+        $con = null;
+        return $missatges;
+    }
+
+    public function filtrarProveidors($nom = null) {
+        var_dump($nom);
+        $proveidors = array();
+        $con = new db();
+        if($nom != null){
+            $consulta = "SELECT * FROM proveidor WHERE nom LIKE '%" . $nom . "%';";
+        }else{
+            $consulta = "SELECT * FROM proveidor;";
+        }
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_proveidor"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $proveidor = new Proveidor($id_client, $nom, $codi);
+            array_push($proveidors, $proveidor);
+        }
+        $con = null;
+        return $proveidors;
     }
 
 }

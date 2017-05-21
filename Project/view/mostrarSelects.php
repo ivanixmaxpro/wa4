@@ -32,7 +32,7 @@ function mostrarSelectProductes($productes) {
 
 function mostrarSelectClients($clients) {
 
-    echo "<select id='campClient'>";
+    echo "<select id='campClient' name='campClient'>";
 
 
     echo "<option value='-' selected> - </option>";
@@ -47,6 +47,42 @@ function mostrarSelectClients($clients) {
     echo "</select>";
 }
 
+function mostrarSelectProveidors($proveidors) {
+
+    echo "<select id='campProveidor' name='campProveidor'>";
 
 
+    echo "<option value='-' selected> - </option>";
+
+    foreach ($proveidors as $proveidor) {
+
+        $id = $proveidor->getId_proveidor();
+        $nom = $proveidor->getNom();
+
+        echo "<option value='" . $id . "'>" . $nom . "</option>";
+    }
+    echo "</select>";
+}
+
+function mostrarSelectUsuaris($usuaris) {
+
+    echo '<select name="usuari" id="usuari">';
+    echo "<option value='-' selected> - </option>";
+    foreach ($usuaris as $usuari) {
+
+        echo '<option value="' . $usuari->getId_usuari() . '">' . $usuari->getUsuari() . '</option>';
+    }
+    echo '</select>';
+}
+
+
+function mostrarSelectUbicacio() {
+
+    echo '<select name="moureUbicacio" id="moureUbicacio">';
+    echo "<option value='-' selected> - </option>";
+    echo "<option value='tenda' > Tenda </option>";
+    echo "<option value='stock' > Estoc </option>";
+
+    echo '</select>';
+}
 

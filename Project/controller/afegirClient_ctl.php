@@ -1,6 +1,7 @@
 <?php
 
 $title = "afegir client";
+$redireccio = 'index.php?ctl=client&act=llista';
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
@@ -28,12 +29,26 @@ if (isset($_REQUEST['Submit'])) {
         $informacio = $_REQUEST['informacio'];
     }
 
-    $client = new Client(null,$nom, $codi,$informacio);
-    $clientDAO->inserir($client);
-    $missatge = 'client afegit';
-    $redireccio = 'index.php?ctl=client&act=llista';
-    require_once 'view/confirmacio.php';
-} else {
+    $client = new Client(null, $nom, $codi, $informacio);
+
+    if ($client->validateClient()->getOk()) {
+        try {
+            $clientDAO->inserir($client);
+            $missatge = $client->validateClient()->getMsg();
+
+            require_once 'view/confirmacio.php';
+        } catch (Exception $e) {
+
+            $missatge = $e->getMessage();
+            require_once 'view/error.php';
+        }
+    } else {
+        //missatege de la clase validar
+
+        $missatge = $client->validateClient()->getMsg();
+        require_once 'view/error.php';
+    }
+}else{
     require_once 'view/afegirClient.php';
 }
 require_once 'view/footer.php';

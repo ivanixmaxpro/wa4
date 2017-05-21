@@ -8,10 +8,16 @@ class Proveidor {
     private $nom;
     private $codi;
 
-    function __construct($nom, $codi) {
-        $this->setId_proveidor(null);
-        $this->setNom($nom);
-        $this->setCodi($codi);
+    function __construct() {
+        switch (func_num_args()) {
+            case 0:
+                break;
+            case 3:
+                $this->setId_proveidor(func_get_args()[0]);
+                $this->setNom(func_get_args()[1]);
+                $this->setCodi(func_get_args()[2]);
+                break;
+        }
     }
 
     function getId_proveidor() {
@@ -36,6 +42,36 @@ class Proveidor {
 
     function setCodi($codi) {
         $this->codi = $codi;
+    }
+    /**
+     * metode per validar les dades entrades per php
+     * @return  objecte Validation
+     */
+    function validateProveidor() {
+        $validation = new Validation(true, '');
+        $validation->setMsg("has afegit un proveidor correctament");
+        $patroLletres ="/^[a-zA-Z]+$/i";
+        $patroNum ="/^[[:digit:]]+$/";
+        
+        if ($validation->getOk() && trim($this->getNom()) == '') {
+            $validation->setMsg("nom esta buit");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() &&  !preg_match($patroLletres,trim($this->getNom()) )){
+            $validation->setMsg("nom només poden ser lletres");
+            $validation->setOK(false);
+        }
+        
+        if ($validation->getOk() && trim($this->getCodi()) == '') {
+            $validation->setMsg("codi esta buit");
+            $validation->setOK(false);
+        }
+         if ($validation->getOk() && !preg_match($patroNum,trim($this->getCodi()))) {
+            $validation->setMsg("codi només poden ser numeros");
+            $validation->setOK(false);
+        }
+       
+        return $validation;
     }
 
 }
