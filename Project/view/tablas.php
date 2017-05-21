@@ -213,4 +213,33 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     $linia++;
                 }
             }
-            ?>
+
+            function tablaRegistresMoviments($registres) {
+                ?> 
+            <div class="content table-responsive table-full-width"> 
+                <table class="table table-hover table-striped"> 
+                    <thead> 
+                        <tr><th>Nº Registre</th>
+                        </tr>
+                    </thead> 
+                    <tbody> 
+
+                        <?php
+                        $count = 1;
+                        for ($i = 0; $i < count($registres); $i++) {
+                            if ($registres[$i] != false) {
+                                echo '<tr>';
+                                echo "<td>" . $count . "</td>";
+                                echo "<td>" . $registres[$i] . "</td>";
+                                echo '</tr>';
+                                $count++;
+                            }
+                        }
+                        ?> 
+
+                    </tbody> 
+                </table> 
+            </div> 
+            <?php
+        }
+        ?>

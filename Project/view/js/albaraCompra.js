@@ -48,7 +48,7 @@ function emmagatzemarProducte() {
         } else {
             $.alert({
                 title: 'Error en inserir el producte!',
-                content: 'Cal marcar com a mínim una unitat de producte.',
+                content: 'Revisa la quantitat del producte.',
             });
         }
 

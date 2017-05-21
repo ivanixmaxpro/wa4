@@ -36,7 +36,7 @@ if (isset($_REQUEST['submit'])) {
                 case 'tenda':
                     if ($_REQUEST['quantitatMoure'] <= $stock) {
                         $ubicacio->updateUbicacio($_REQUEST['quantitatMoure'], $id, $_REQUEST['moureUbicacio']);
-                        $missatgeFitxer = "Del producte " . $producte->getNom() . " s’ha traspassat la quantitat de " . $_REQUEST['quantitatMoure'] . " del estoc cap a la tenda al dia " . date("d-m-Y") . " a les " . date("H:i:s") . ".";
+                        $missatgeFitxer = "Del producte " . $producte->getNom() . " s’ha traspassat la quantitat de " . $_REQUEST['quantitatMoure'] . " unitats d'estoc cap a la tenda al dia " . date("d-m-Y") . " a les " . date("H:i:s") . ".";
                         $redireccio = "?ctl=producte&act=llista";
                         $missatge = "S'ha canviar l'ubicació correctament.";
                         require_once 'view/confirmacio.php';
@@ -46,7 +46,7 @@ if (isset($_REQUEST['submit'])) {
                 case 'stock':
                     if ($_REQUEST['quantitatMoure'] <= $tenda) {
                         $ubicacio->updateUbicacio($_REQUEST['quantitatMoure'], $id, $_REQUEST['moureUbicacio']);
-                        $missatgeFitxer = "Del producte " . $producte->getNom() . " s’ha traspassat la quantitat " . $_REQUEST['quantitatMoure'] . " de la tenda cap a l'estoc al dia " . date("Y-m-d ") . " a les " . date("H:i:s") . ".";
+                        $missatgeFitxer = "Del producte " . $producte->getNom() . " s’ha traspassat la quantitat de " . $_REQUEST['quantitatMoure'] . " unitats de la tenda cap a l'estoc al dia " . date("Y-m-d ") . " a les " . date("H:i:s") . ".";
                         ;
                         $redireccio = "?ctl=producte&act=llista";
                         $missatge = "S'ha canviar l'ubicació correctament.";
