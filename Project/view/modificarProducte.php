@@ -112,12 +112,11 @@
                 <span id="errorConservar"></span>
             </div>
             <div class="form-group">
-                <label>Imatge</label>
                 <img src="<?php
                 if (isset($producte)) {
                     echo $producte->getImatge();
                 }
-                ?>" class="img-rounded" width="304" height="236" alt="Imatge Producte">
+                ?>" class="img-rounded" width="300" height="250" alt="Imatge Producte">
             </div>
             <div class="form-group">
                 <label>Pujar imatge</label>
