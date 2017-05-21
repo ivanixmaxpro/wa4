@@ -100,7 +100,7 @@ class Gas extends Producte {
             $validation->setMsg("El camp capacitatMl no pot està buit.");
             $validation->setOK(false);
         }
-        if ($validation->getOk() && preg_match($patroNum, trim($this->getCapacitatMl())) == '') {
+        if ($validation->getOk() && preg_match($patroPreu, trim($this->getCapacitatMl())) == '') {
             $validation->setMsg("La capacitatMl ha de ser nùmeric.");
             $validation->setOK(false);
         }

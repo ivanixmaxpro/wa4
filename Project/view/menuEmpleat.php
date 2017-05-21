@@ -1,6 +1,7 @@
+
 <h3>Tens selecionat l'empleat: <?php echo $empleat->getNom(); ?> amb DNI: <?php echo $empleat->getDni() ?></h3>
 <div class="card">
-    <div class="btn-group" role="group" aria-label="...">
+    <div class="btn-group caixa" style="margin-bottom: 15px" role="group" aria-label="...">
         <h4>Dades empleat</h4>
         <a href="?ctl=empleat&act=modificar&id=<?php echo $empleat->getId_empleat() ?>"><button type="button" class="btn btn-primary">Modificar empleat</button></a>
         <a href="?ctl=empleat&act=eliminar&id=<?php echo $empleat->getId_empleat() ?>"><button type="button" class="btn btn-primary">Eliminar empleat</button></a>

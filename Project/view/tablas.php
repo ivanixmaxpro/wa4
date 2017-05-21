@@ -207,8 +207,8 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     echo '<td class="service">' . $linia . "</td>";
                     echo '<td class="desc">' . $producte->getNom() . "</td>";
                     echo '<td class="text-center">' . $row->getQuantitat() . "</td>";
-                    echo '<td class="desc">' . $producte->getPreuBase() . " €</td>";
-                    echo '<td class="text-rigth">' . $row->getPreu() . " €" . "</td>";
+                    echo '<td class="desc">' . round($producte->getPreuBase(), 2) . " €</td>";
+                    echo '<td class="text-rigth">' . round($row->getPreu(), 2) . " €" . "</td>";
                     echo "</tr>";
                     $linia++;
                 }

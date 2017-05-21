@@ -131,6 +131,6 @@
     <?php
     tablaTotProductes($productes);
     ?>
-    <div class="col-md-12"><a class="btn btn-primary pull-right" href="?ctl=producte&act=registres">Registres de moviments</a>
+    <div class="col-md-12" style="margin-top: 10px"><a class="btn btn-primary pull-right" href="?ctl=producte&act=registres">Registres de moviments</a>
     </div>
 </div>

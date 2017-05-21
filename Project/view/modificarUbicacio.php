@@ -1,5 +1,5 @@
 <div class="content">
-
+    <div style="margin-left: 1%">
     <form role="form" method="post" action="?ctl=ubicacio&act=modificar" >
         <div class="row">
             <label >Quantitats:</label>
@@ -39,8 +39,9 @@
             </div>
         </div>    
         <input name="passarArrProductes" id="passarArray" type="hidden"></input>
-        <input type="submit" id="botoCrearUbicacio" name="submit" value="Crear" class="btn btn-danger"></input>
+        <input type="submit" id="botoCrearUbicacio" name="submit" value="Crear" class="btn btn-danger pull-left"></input>
     </form>
+    </div>
 </div>
 
 
