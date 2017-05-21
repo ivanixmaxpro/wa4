@@ -106,7 +106,7 @@ class AlbaraVenta {
     function validateAlbara() {
         $validation = new Validation(true, '');
         $validation->setMsg("Has afegit correctament l'albarà de venta.");
-        if (is_nan(!$this->getId_empresa())) {
+        if ($this->getId_empresa() == "-") {
             $validation->setMsg("Has d'escollir un client.");
             $validation->setOK(false);
         }
