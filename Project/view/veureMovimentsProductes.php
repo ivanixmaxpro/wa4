@@ -9,6 +9,6 @@
     <?php
     tablaRegistresMoviments($registre);
     ?>
-    <div class="col-md-12"><a class="btn btn-primary pull-left" href="?ctl=producte&act=llista">Tornar</a>
+    <div class="col-md-12" style="margin-top: 10px"><a class="btn btn-primary pull-left" href="?ctl=producte&act=llista">Tornar</a>
     </div>
 </div>
