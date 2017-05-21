@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Cognom</label>
+                    <label>Cognoms</label>
                     <input type="text"  id="cognomempleat" class="form-control" placeholder="Cognom" name="cognom" value="" required>
                     <span id="errorCognomempleat"></span>
                 </div>

@@ -1,5 +1,6 @@
 <?php
-$title = "Llista productes";
+
+$title = "Productes";
 
 require_once 'view/tablas.php';
 require_once 'view/header.php';
@@ -12,7 +13,7 @@ if (isset($_SESSION['empresa'])) {
     $empresa = new Empresa();
     $empresa->recuperarEmpresa();
 
-	$_SESSION['empresa'] = serialize($empresa);
+    $_SESSION['empresa'] = serialize($empresa);
 }
 
 if (isset($_REQUEST["Submit"])) {
@@ -24,12 +25,10 @@ if (isset($_REQUEST["Submit"])) {
 
 
     $productes = $empresa->filtrarProductes($nom, $conservarFred, $limitRegistres, $tipusProducte);
-
 } else {
     $productes = $empresa->populateProductes();
 }
 
 require_once 'view/llistaProductes.php';
 require_once 'view/footer.php';
-
 ?>

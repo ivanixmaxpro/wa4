@@ -1,13 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ivan
  * Date: 9/05/17
  * Time: 16:20
  */
-
 $title = "Detalls producte";
-if(isset($_SESSION['empresa'])){
+if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
     $empresa = New Empresa();
@@ -18,7 +18,7 @@ if(isset($_SESSION['empresa'])){
 $usuariId = $_SESSION['id_usuari'];
 
 
-if(isset($_REQUEST['id'])){
+if (isset($_REQUEST['id'])) {
     $producte = $empresa->searchProducteChilds($_REQUEST['id']);
     $ubicacio = $empresa->searchUbicacioById($producte->getId_ubicacio());
 }

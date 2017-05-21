@@ -1,5 +1,5 @@
 <?php
-$title= "Llista client";
+$title= "Clients";
 if(isset($_SESSION['empresa'])){
 	$empresa = unserialize($_SESSION['empresa']);
 } else {

@@ -7,12 +7,12 @@
                 if (get_class($producte) == 'Solid') {
                     echo "selected";
                 }
-                ?>>Solid</option>
+                ?>>Sòlid</option>
                 <option disabled="disabled" value="semi-solid" <?php
                 if (get_class($producte) == 'Semisolid') {
                     echo "selected";
                 }
-                ?>>Semi-solid</option>
+                ?>>Semisòlid</option>
                 <option disabled="disabled" value="liquid" <?php
                 if (get_class($producte) == 'Liquid') {
                     echo "selected";
