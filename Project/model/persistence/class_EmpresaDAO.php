@@ -451,11 +451,9 @@ class EmpresaDAO {
                 $consulta .= " WHERE producte.conservarFred=" . $conservarenfred;
                 break;
         }
-        if($nom != null && $conservarenfred == 'tots'){
+        if($nom != "" && $nom != null && $conservarenfred == 'tots'){
             $consulta .= " WHERE nom LIKE '%". $nom ."%'";
-        }/*else{
-            $consulta .= " AND nom LIKE '%". $nom ."%'";
-        }*/
+        }
         switch ($quantitat) {
             case "tots":
                 $consulta .= ";";
