@@ -23,8 +23,12 @@
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Codi</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
+                    <?php
+                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['proveidor']->getEditar() == true && $_SESSION['permisos']['proveidor']->getEliminar() == true ){
+                        echo "<th>Modificar</th>";
+                        echo "<th>Eliminar</th>";
+                    }
+                    ?>
                 </tr></thead>
             <tbody>
 
@@ -35,9 +39,11 @@
                     echo "<td>" . $row->getId_proveidor() . "</td>";
                     echo "<td>" . $row->getNom() . "</td>";
                     echo "<td>" . $row->getCodi() . "</td>";
-                    echo '<td>' . '<a href="?ctl=proveidor&act=modificar&id=' . $row->getId_proveidor() . '&missatge">' . 'modificar' . '</a>' . '</td>';
-                    echo '<td>' . '<a href="?ctl=proveidor&act=eliminar&id=' . $row->getId_proveidor() . '&missatge">' . 'eliminar' . '</a>' . '</td>';
-                    echo "</tr>";
+                if(isset($_SESSION['permisos']) && $_SESSION['permisos']['proveidor']->getEditar() == true && $_SESSION['permisos']['proveidor']->getEliminar() == true ){
+                    echo '<td>' . '<a href="?ctl=proveidor&act=modificar&id=' . $row->getId_proveidor() . '&missatge" class="btn btn-danger">' . 'modificar' . '</a>' . '</td>';
+                    echo '<td>' . '<a href="?ctl=proveidor&act=eliminar&id=' . $row->getId_proveidor() . '&missatge" class="btn btn-danger">' . 'eliminar' . '</a>' . '</td>';
+                }
+                     echo "</tr>";
                 }
                 ?>
 
