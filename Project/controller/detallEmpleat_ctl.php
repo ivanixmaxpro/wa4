@@ -20,7 +20,8 @@ if ($_REQUEST['id'] != $_SESSION['id_usuari'] && $_SESSION['permisos']['empleat'
 } else {
 
     $empleat = $empresa->searchEmpleat($_REQUEST['id']);
-    $horari = $empresa->showHorari($_SESSION['id_usuari']);
+    $usuari = $empresa->searchUsuariByEmpleat($_REQUEST['id']);
+    $horari = $empresa->showHorari($usuari->getId_usuari());
     if ($horari == null || $horari == "") {
         $horari = "Aquest usuari no té un horari assignat, siusplau, posis amb contace amb resursus humans per establir-lo.";
     }
