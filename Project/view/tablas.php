@@ -192,6 +192,7 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     <th class="service"></th>
                     <th class="desc">Producte</th>
                     <th>Quantitat</th>
+                    <th>Preu unitari</th>
                     <th>TOTAL</th>
                 </tr>
             </thead>
@@ -206,9 +207,39 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     echo '<td class="service">' . $linia . "</td>";
                     echo '<td class="desc">' . $producte->getNom() . "</td>";
                     echo '<td class="text-center">' . $row->getQuantitat() . "</td>";
+                    echo '<td class="desc">' . $producte->getPreuBase() . " €</td>";
                     echo '<td class="text-rigth">' . $row->getPreu() . " €" . "</td>";
                     echo "</tr>";
                     $linia++;
                 }
             }
-            ?>
+
+            function tablaRegistresMoviments($registres) {
+                ?> 
+            <div class="content table-responsive table-full-width"> 
+                <table class="table table-hover table-striped"> 
+                    <thead> 
+                        <tr><th>Nº Registre</th>
+                        </tr>
+                    </thead> 
+                    <tbody> 
+
+                        <?php
+                        $count = 1;
+                        for ($i = 0; $i < count($registres); $i++) {
+                            if ($registres[$i] != false) {
+                                echo '<tr>';
+                                echo "<td>" . $count . "</td>";
+                                echo "<td>" . $registres[$i] . "</td>";
+                                echo '</tr>';
+                                $count++;
+                            }
+                        }
+                        ?> 
+
+                    </tbody> 
+                </table> 
+            </div> 
+            <?php
+        }
+        ?>

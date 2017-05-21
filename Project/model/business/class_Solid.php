@@ -112,7 +112,7 @@ class Solid extends Producte {
             $validation->setMsg("El camp capacitatMg no pot està buit.");
             $validation->setOK(false);
         }
-        if ($validation->getOk() && preg_match($patroNum, trim($this->getCapacitatMg())) == '') {
+        if ($validation->getOk() && preg_match($patroPreu, trim($this->getCapacitatMg())) == '') {
             $validation->setMsg("La capacitatMg ha de ser nùmeric.");
             $validation->setOK(false);
         }
