@@ -25,6 +25,7 @@ if (isset($_REQUEST["Submit"])) {
 
 
     $productes = $empresa->filtrarProductes($nom, $conservarFred, $limitRegistres, $tipusProducte);
+
 } else {
     $productes = $empresa->populateProductes();
 }
