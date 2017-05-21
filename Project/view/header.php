@@ -34,6 +34,8 @@
         <link href="view/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
         <!--  CSS for Demo Purpose, don't include it in your project     -->
         <link href="view/css/demo.css" rel="stylesheet" />
+        <!-- CSS JQueary Alerts Confirm-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -46,13 +48,21 @@
         <script src="view/js/bootstrap.min.js" type="text/javascript"></script>
         <!--  Checkbox, Radio & Switch Plugins -->
         <script src="view/js/bootstrap-checkbox-radio-switch.js"></script>
+        <!-- JS JQuery Alerts Confirm -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
         <script src="view/js/custom.js"></script>
-        <?php if($ctl == "albaraVenta" && $act == "afegir" ) { echo '<script src="view/js/albaraVenta.js"></script>'; }
-		?>
-	<?php if($ctl == "albaraCompra" && $act == "afegir" ) { echo '<script src="view/js/albaraCompra.js"></script>'; }
-		?>
-        <?php if($ctl == "ubicacio" && $act == "modificar" ) { echo '<script src="view/js/ubicacio.js"></script>'; }
-		?>
+        <?php if ($ctl == "albaraVenta" && $act == "afegir") {
+            echo '<script src="view/js/albaraVenta.js"></script>';
+        }
+        ?>
+        <?php if ($ctl == "albaraCompra" && $act == "afegir") {
+            echo '<script src="view/js/albaraCompra.js"></script>';
+        }
+        ?>
+<?php if ($ctl == "ubicacio" && $act == "modificar") {
+    echo '<script src="view/js/ubicacio.js"></script>';
+}
+?>
         <script src="view/js/validacionsFormularis.js"></script>
         <script src="view/js/busquedaNom.js"></script>
         <!--  Charts Plugin -->

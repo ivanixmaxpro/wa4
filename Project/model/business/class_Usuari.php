@@ -108,11 +108,11 @@ class Usuari {
         $patroNum ="/^[[:digit:]]+$/";
         
         if ($validation->getOk() && trim($this->getUsuari()) == '') {
-            $validation->setMsg("nom usuari esta buit");
+            $validation->setMsg("El nom d'usuari no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() &&  trim($this->getContrasenya()) == '' ){
-            $validation->setMsg("pass esta buit");
+            $validation->setMsg("La contrasenya no pot està buida.");
             $validation->setOK(false);
         }
               
