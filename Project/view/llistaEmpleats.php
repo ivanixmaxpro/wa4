@@ -3,9 +3,11 @@
     <div class="header">
         <p class="category">Llistat de tots els nostres empleats:</p>
     </div>
+    <div class="caixa">
     <a href="?ctl=empleat&act=afegir">
         <button class="btn btn-primary">Afegir empleat</button>
     </a>
+    </div>
     <div class="content table-responsive table-full-width">
         <table class="table table-hover table-striped">
             <thead>
