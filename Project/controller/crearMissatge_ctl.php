@@ -35,14 +35,17 @@ if (isset($_REQUEST['Submit'])) {
         try {
             $missatgesDAO->inserir($missatgeNou);
             $missatge = $missatgeNou->validateMissatge()->getMsg();
+            $redireccio = "?ctl=missatge&act=llista";
             require_once 'view/confirmacio.php';
         } catch (Exception $e) {
             $missatge = $e->getMessage();
+            $redireccio = "?ctl=missatge&act=llista";
             require_once 'view/error.php';
         }
     } else {
         //missatege de la clase validar
         $missatge = $missatgeNou->validateMissatge()->getMsg();
+        $redireccio = "?ctl=missatge&act=llista";
         require_once 'view/error.php';
     }
 } else {
