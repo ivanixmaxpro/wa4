@@ -17,6 +17,7 @@
 
 
                 <button name="Submit" class="btn btn-primary" style="margin-top: 15px">Afegir</button>
+                <a name="tornar" class="btn btn-primary" style="margin-top: 15px" href="?ctl=proveidor&act=llista">Tornar</a>
             </div>
 
         </form> 
