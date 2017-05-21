@@ -124,13 +124,21 @@
             </select>
             <button name="Submit" class="btn btn-primary">Buscar</button>
         </div>
-    </form> 
-    <div class="col-md-12"><a href="?ctl=producte&act=afegir">
-            <button class="btn btn-primary pull-right">Afegir producte</button></a>
-    </div>
+    </form>
+    <?php
+    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getCrear() == true ) {
+        echo "<div class=\"col-md-12\"><a href=\"?ctl=producte&act=afegir\">
+            <button class=\"btn btn-primary pull-right\">Afegir producte</button></a>
+    </div>";
+    }
+    ?>
     <?php
     tablaTotProductes($productes);
     ?>
-    <div class="col-md-12" style="margin-top: 10px"><a class="btn btn-primary pull-right" href="?ctl=producte&act=registres">Registres de moviments</a>
-    </div>
+<?php
+if(isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true ) {
+    echo " <div class=\"col-md-12\" style=\"margin-top: 10px\"><a class=\"btn btn-primary pull-right\" href=\"?ctl=producte&act=registres\">Registres de moviments</a>
+    </div>";
+}
+?>
 </div>
