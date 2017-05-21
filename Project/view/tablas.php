@@ -7,7 +7,7 @@
 function tablaTotProductes($productes) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Referència</th> 
@@ -69,7 +69,7 @@ function tablaTotProductes($productes) {
 function tablaTotAlbaransVenta($albaransVenta, $empresa) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio2" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Client</th> 
@@ -109,7 +109,7 @@ function tablaTotAlbaransVenta($albaransVenta, $empresa) {
 function tablaTotAlbaransCompra($albaransCompra, $empresa) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Proveidor</th> 
@@ -150,7 +150,7 @@ function tablaTotAlbaransCompra($albaransCompra, $empresa) {
 function tablaTotControlUsuaris($control, $empresa) {
     ?> 
     <div class="content table-responsive table-full-width"> 
-        <table class="table table-hover table-striped"> 
+        <table id="taulaPaginacio" class="table table-hover table-striped"> 
             <thead> 
                 <tr><th>ID</th> 
                     <th>Usuari</th> 
@@ -221,33 +221,41 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     $linia++;
                 }
             }
+            ?>
+        </tbody> 
+    </table> 
+</div>
+<
+<?php
 
-            function tablaRegistresMoviments($registres) {
+function tablaRegistresMoviments($registres) {
+    ?> 
+    <div class="content table-responsive table-full-width"> 
+        <table id="taulaPaginacioRegistres" class="table table-hover table-striped"> 
+            <thead> 
+                <tr>
+                    <th>Nº Registre</th>
+                    <th></th>
+                </tr>
+            </thead> 
+            <tbody> 
+
+                <?php
+                $count = 1;
+                for ($i = 0; $i < count($registres); $i++) {
+                    if ($registres[$i] != false) {
+                        echo '<tr>';
+                        echo "<td>" . $count . "</td>";
+                        echo "<td>" . $registres[$i] . "</td>";
+                        echo '</tr>';
+                        $count++;
+                    }
+                }
                 ?> 
-            <div class="content table-responsive table-full-width"> 
-                <table class="table table-hover table-striped"> 
-                    <thead> 
-                        <tr><th>Nº Registre</th>
-                        </tr>
-                    </thead> 
-                    <tbody> 
 
-                        <?php
-                        $count = 1;
-                        for ($i = 0; $i < count($registres); $i++) {
-                            if ($registres[$i] != false) {
-                                echo '<tr>';
-                                echo "<td>" . $count . "</td>";
-                                echo "<td>" . $registres[$i] . "</td>";
-                                echo '</tr>';
-                                $count++;
-                            }
-                        }
-                        ?> 
-
-                    </tbody> 
-                </table> 
-            </div> 
-            <?php
-        }
-        ?>
+            </tbody> 
+        </table>
+    </div>
+    <?php
+}
+?>

@@ -126,4 +126,7 @@ footer {
     color: red;
 }
 
+.dataTables_info {
+    margin-left: 15px!important;
+}
 

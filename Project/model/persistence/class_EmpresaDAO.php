@@ -453,9 +453,9 @@ class EmpresaDAO {
         }
         if($nom != null && $conservarenfred == 'tots'){
             $consulta .= " WHERE nom LIKE '%". $nom ."%'";
-        }else{
+        }/*else{
             $consulta .= " AND nom LIKE '%". $nom ."%'";
-        }
+        }*/
         switch ($quantitat) {
             case "tots":
                 $consulta .= ";";
