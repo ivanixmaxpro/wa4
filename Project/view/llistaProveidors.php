@@ -5,7 +5,7 @@
     </div>
 
     <form action="?ctl=proveidor&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group caixa">
             Cercar per Nom:
             <input type="text" name="nom" value="<?php
             if (isset($nom)) {

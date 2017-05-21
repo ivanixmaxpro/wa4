@@ -70,17 +70,17 @@ class Missatge {
 
     function validateMissatge() {
         $validation = new Validation(true, '');
-
+        $validation->setMsg("missatge afegit correctament");
         if ($validation->getOk() && trim($this->getTitol()) == '') {
             $validation->setMsg("titol esta buit");
             $validation->setOK(false);
         }
-     
+
         if ($validation->getOk() && trim($this->getMissatge()) == '') {
             $validation->setMsg("el contingut del missatge esta buit");
             $validation->setOK(false);
         }
-              return $validation;
+        return $validation;
     }
 
 }
