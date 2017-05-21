@@ -14,7 +14,7 @@
             <?php taulaDetallsAlbarans($albaraVentaComplet[1], $empresa); ?>
             <tr>
                 <td colspan="4" class="grand total">TOTAL</td>
-                <td class="grand total"><?php echo $albaraVentaComplet[0][0]->getPreu() . "€" ?></td>
+                <td class="grand total"><?php echo round($albaraVentaComplet[0][0]->getPreu(), 2) . "€" ?></td>
             </tr>
             </tbody>
             </table>
