@@ -11,7 +11,11 @@
             tablaTotAlbaransCompra($albaransCompra, $empresa);
             ?>
         </div>
-        <a href="?ctl=albaraCompra&act=afegir" class="btn btn-primary"></span> Afegir Albara compra</a>
+        <?php
+        if(isset($_SESSION['permisos']) && $_SESSION['permisos']['albaraCompra']->getCrear() == true ) {
+            echo "<a href='?ctl=albaraCompra&act=afegir' class='btn btn-primary pull-right'></span> Afegir Albara compra</a>";
+        }
+        ?>
     </div>
 </div>
 <br/>
@@ -24,6 +28,10 @@
             tablaTotAlbaransVenta($albaransVenta, $empresa);
             ?>
         </div>
-        <a href="?ctl=albaraVenta&act=afegir" class="btn btn-primary"></span> Afegir Albara Venta</a>
+<?php
+if(isset($_SESSION['permisos']) && $_SESSION['permisos']['albaraVenta']->getCrear() == true ) {
+ echo "<a href=\"?ctl=albaraVenta&act=afegir\" class=\"btn btn-primary pull-right\"></span> Afegir Albara Venta</a>";
+}
+?>
     </div>
 </div>

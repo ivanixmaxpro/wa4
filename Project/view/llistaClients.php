@@ -10,7 +10,12 @@
     echo $nom;
 } ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
-            <a href="?ctl=client&act=afegir" class="btn btn-primary"></span> Afegir client</a>
+            <?php
+            if(isset($_SESSION['permisos']) && $_SESSION['permisos']['client']->getCrear() == true ) {
+                echo "<a href=\"?ctl=client&act=afegir\" class=\"btn btn-primary pull-right\"></span> Afegir client</a>";
+            }
+
+            ?>
         </div>
     </form> 
     <div class="content table-responsive table-full-width">

@@ -13,7 +13,12 @@
             }
             ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
-            <a href="?ctl=proveidor&act=afegir" class="btn btn-primary"></span> Afegir proveidor</a>
+            <?php
+            if(isset($_SESSION['permisos']) && $_SESSION['permisos']['proveidor']->getCrear() == true ) {
+                echo "<a href=\"?ctl=proveidor&act=afegir\" class=\"btn btn-primary pull-right\"></span> Afegir proveidor</a>";
+            }
+
+            ?>
         </div>
     </form> 
     <div class="content table-responsive table-full-width">

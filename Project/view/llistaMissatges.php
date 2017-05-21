@@ -11,7 +11,7 @@
             }
             ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
-            <a href="?ctl=missatge&act=crear" class="btn btn-primary">Crear missatge</a>
+            <a href="?ctl=missatge&act=crear" class="btn btn-primary pull-right">Crear missatge</a>
         </div>
     </form> 
     <div class="content table-responsive table-full-width ">
