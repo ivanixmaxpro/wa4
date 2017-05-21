@@ -66,7 +66,9 @@ class Client {
      */
     function validateClient() {
         $validation = new Validation(true, '');
-        $patroLletres = "/^[\A-Za-z]+$/i";
+        $patroLletres ="/^[a-zA-Z]+$/i";
+        $patroNum ="/^[[:digit:]]+$/";        
+        $validation->setMsg("client afegit correctament.");
 
         if ($validation->getOk() && trim($this->getNom()) == '') {
             $validation->setMsg("El nom no pot està buit.");
