@@ -1,6 +1,6 @@
 <?php
 
-$title = "Crear Missatge";
+$title = "Control de personal";
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {

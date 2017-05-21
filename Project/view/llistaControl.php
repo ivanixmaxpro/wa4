@@ -2,10 +2,10 @@
 <div class="card">
     <div class="header">
         <h4 class="title">Control</h4>
-        <p class="category">llistat control usuaris:</p>
+        <p class="category">llistat de control d'usuaris:</p>
     </div>
     <form action="?ctl=control&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group caixa">
             Cercar per Usuari:
             <?php
             mostrarSelectUsuaris($usuaris);

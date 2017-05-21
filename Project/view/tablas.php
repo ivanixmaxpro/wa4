@@ -42,7 +42,7 @@ function tablaTotProductes($productes) {
                     }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
                     ?>  <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-                    <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio()?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
+                <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio() ?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
                 <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
                 <?php
                 echo "</tr>";
@@ -147,7 +147,7 @@ function tablaTotControlUsuaris($control, $empresa) {
                 <tr><th>ID</th> 
                     <th>Usuari</th> 
                     <th>Fitxat</th> 
-                    <th>Data</th>
+                    <th>Registrat el:</th>
                 </tr>
             </thead> 
             <tbody> 
@@ -155,12 +155,22 @@ function tablaTotControlUsuaris($control, $empresa) {
                 <?php
                 foreach ($control as $row) {
                     $usuari = $empresa->searchUsuariById($row->getId_usuari());
+                    $fitxat;
+                    $dta = new DateTime($row->getData());
+                    $dtaBona = $dta->format('d-m-Y H:i:s');
+                    $temps = explode(" ", $dtaBona);
+
+                    if ($row->getFitxat() == 0) {
+                        $fitxat = "No";
+                    } else if ($row->getFitxat() == 1) {
+                        $fitxat = "Si";
+                    }
 
                     echo '<tr>';
                     echo "<td>" . $row->getId_control() . "</td>";
                     echo "<td>" . $usuari->getUsuari() . "</td>";
-                    echo "<td>" . $row->getFitxat() . "</td>";
-                    echo "<td>" . $row->getData() . "</td>";
+                    echo "<td>" . $fitxat . "</td>";
+                    echo "<td>" . $temps[0] . " " . $temps[1] . "</td>";
                     echo "</tr>";
                 }
                 ?> 
@@ -182,6 +192,7 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     <th class="service"></th>
                     <th class="desc">Producte</th>
                     <th>Quantitat</th>
+                    <th>Preu unitari</th>
                     <th>TOTAL</th>
                 </tr>
             </thead>
@@ -196,9 +207,39 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     echo '<td class="service">' . $linia . "</td>";
                     echo '<td class="desc">' . $producte->getNom() . "</td>";
                     echo '<td class="text-center">' . $row->getQuantitat() . "</td>";
-                    echo '<td class="text-rigth">' . $row->getPreu() . " €" . "</td>";
+                    echo '<td class="desc">' . round($producte->getPreuBase(), 2) . " €</td>";
+                    echo '<td class="text-rigth">' . round($row->getPreu(), 2) . " €" . "</td>";
                     echo "</tr>";
                     $linia++;
                 }
             }
-            ?>
+
+            function tablaRegistresMoviments($registres) {
+                ?> 
+            <div class="content table-responsive table-full-width"> 
+                <table class="table table-hover table-striped"> 
+                    <thead> 
+                        <tr><th>Nº Registre</th>
+                        </tr>
+                    </thead> 
+                    <tbody> 
+
+                        <?php
+                        $count = 1;
+                        for ($i = 0; $i < count($registres); $i++) {
+                            if ($registres[$i] != false) {
+                                echo '<tr>';
+                                echo "<td>" . $count . "</td>";
+                                echo "<td>" . $registres[$i] . "</td>";
+                                echo '</tr>';
+                                $count++;
+                            }
+                        }
+                        ?> 
+
+                    </tbody> 
+                </table> 
+            </div> 
+            <?php
+        }
+        ?>

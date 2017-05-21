@@ -1,7 +1,7 @@
 <div class="content">
     <form action="?ctl=empleat&act=afegir" method="POST" enctype="multipart/form-data">
         <div class="row">
-            <h3>Empresa:</h3>
+            <h3 style="margin-left: 10px">Empresa:</h3>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="campEmpresa">Empresa</label>
@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <h3>Dades Empleat:</h3>
+            <h3 style="margin-left: 10px">Dades Empleat:</h3>
             <br/>
             <div class="col-md-6">
                 <div class="form-group">
@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Cognom</label>
+                    <label>Cognoms</label>
                     <input type="text"  id="cognomempleat" class="form-control" placeholder="Cognom" name="cognom" value="" required>
                     <span id="errorCognomempleat"></span>
                 </div>

@@ -1,14 +1,17 @@
 
 <div class="card">
     <div class="header">
-        <h4 class="title">Llista proveidors</h4>
-        <p class="category">A continuació un llistat de tots els nostres Proveidors:</p>
+        <p class="category">Llistat de tots els nostres proveidors:</p>
     </div>
 
     <form action="?ctl=proveidor&act=llista" method="post">
-        <div class="form-group">
+        <div class="form-group caixa">
             Cercar per Nom:
-            <input type="text" name="nom" value="<?php if(isset($nom)){echo $nom;}?>">
+            <input type="text" name="nom" value="<?php
+            if (isset($nom)) {
+                echo $nom;
+            }
+            ?>">
             <button name="Submit" class="btn btn-primary">Buscar</button>
             <a href="?ctl=proveidor&act=afegir" class="btn btn-primary"></span> Afegir proveidor</a>
         </div>

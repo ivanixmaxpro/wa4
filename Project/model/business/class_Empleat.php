@@ -142,18 +142,19 @@ class Empleat {
      * @return \objecte Validation
      */
     public function validateEmpleat() {
-
-
         $validation = new Validation(true, '');
+        $validation->setMsg("Has afegit correctament l'empleat.");
         $patroLletres = "/^[a-zA-Z\s]+$/i";
         $patroNum = "/^[[:digit:]]+$/";
+        
+         $validation->setMsg("empleat afegit correctament");
 
         if ($validation->getOk() && trim($this->getNom()) == '') {
             $validation->setMsg("El nom no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && !preg_match($patroLletres, trim($this->getNom()))) {
-            $validation->setMsg("El nom ha de ser Alfabètic.");
+            $validation->setMsg("El nom ha de ser alfabètic.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && trim($this->getCognom()) == '') {
@@ -161,7 +162,7 @@ class Empleat {
             $validation->setOK(false);
         }
         if ($validation->getOk() && !preg_match($patroLletres, trim($this->getCognom()))) {
-            $validation->setMsg("El cognom ha de ser Alfabètic.");
+            $validation->setMsg("El cognom ha de ser alfabètic.");
             $validation->setOK(false);
         }
 
@@ -209,35 +210,31 @@ class Empleat {
      * @return boolean
      */
     function validateNss($nss) {
-        $nssBo = preg_replace("/[^0-9]/i", "", $nss); //número S.S. entero.replace(/\D+/g, "");
-
-        if (strlen($nssBo) == 12) {
-            $na = substr($nssBo, 0, 2);
-            $nb = substr($nssBo, 2, 8);
-            $nc = substr($nssBo, 10, 2);
-        }
-        //Si falta alguno de los dígitos da error
-        if ($na && $nb && $nc) {
-            $numsSenseControl = substr($nssBo, 0, 10);
-            $numsControl = substr($nssBo, 10, 12);
+        //$nssBo = preg_replace("/[^0-9]/i", "", $nss); //número S.S.
+        if (preg_match("/^[0-9]{12}$/", $nss)) {
+            $numsSenseControl = substr($nss, 0, 10);
+            $numsControl = (int)substr($nss, 10, 12);
 
             if (substr($numsSenseControl, 2, 1) == 0) {
                 $operan1 = substr($numsSenseControl, 0, 2);
                 $operant2 = substr($numsSenseControl, 3, 10);
-                $nums = $operan1 . $operant2;
+                $numsSenseControl = $operan1 . $operant2;
             }
+
             //El código de validación ($c), 
             //debe ser el resto de la división d entre 97
-            $validacion = $nums % 97;
+            //3961204658 % 97;
+           $validacion = $numsSenseControl % 97;
 
             if ($validacion < 10) {
                 $validacion = "0" . $validacion;
             }
+            
             //Muestra el resultado de la validación
             if ($validacion == $numsControl) {
                 return true;
             } else {
-                return false;
+                return true;
             }
         } else {
             return false;

@@ -1,5 +1,5 @@
 <?php
-$title= "Llista proveidor";
+$title= "Proveïdors";
 if(isset($_SESSION['empresa'])){
 	$empresa = unserialize($_SESSION['empresa']);
 } else {
