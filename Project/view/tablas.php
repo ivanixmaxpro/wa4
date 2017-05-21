@@ -19,7 +19,7 @@ function tablaTotProductes($productes) {
 
                     <th>Detall</th>
                     <?php
-                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true ){
+                    if (isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true) {
                         echo "<th>Modificar</th>";
                         echo "<th>Modificar ubicació</th>";
                         echo "<th>Eliminar</th>";
@@ -38,22 +38,21 @@ function tablaTotProductes($productes) {
                     echo "<td>" . $row->getNom() . "</td>";
                     echo "<td>" . $row->getMarca() . "</td>";
                     echo "<td>" . $row->getModel() . "</td>";
-                    echo "<td>" . $row->getpreuBase() . "</td>";
+                    echo "<td>" . $row->getpreuBase() . " €" . "</td>";
                     if ($row->getConservarFred() == 0) {
                         echo "<td>No</td>";
                     } else {
                         echo "<td>Si</td>";
                     }
                     echo '<td>' . '<a href="?ctl=producte&act=detall&id=' . $row->getId_producte() . '">' . 'Veure' . '</a>' . '</td>';
-                    if(isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true ){
+                    if (isset($_SESSION['permisos']) && $_SESSION['permisos']['producte']->getEditar() == true && $_SESSION['permisos']['producte']->getEliminar() == true) {
                         ?>
-                        <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
-                        <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio() ?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
-                        <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
+                    <td> <a href="?ctl=producte&act=modificar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Modificar producte</a> </td>
+                    <td> <a href="?ctl=ubicacio&act=modificar&id_ubicacio=<?php echo $row->getId_ubicacio() ?>&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Canviar ubicacio producte</a> </td>
+                    <td> <a href="?ctl=producte&act=eliminar&id=<?php echo $row->getId_producte(); ?>" class="btn btn-danger btn-sm"></span> Eliminar producte</a> </td>
 
-                        <?php
-
-                    }
+                    <?php
+                }
                 echo "</tr>";
             }
             ?> 
