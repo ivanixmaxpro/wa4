@@ -48,7 +48,6 @@
         </div>
     </nav>
     <body>
-
-    <div class="wrapper">
-        <div class="content">
-            <div class="container-fluid up-space">
+        <div class="wrapper">
+            <div class="content">
+                <div class="container-fluid up-space">
