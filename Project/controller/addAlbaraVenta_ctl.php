@@ -1,7 +1,7 @@
 <?php
 
 include 'view/mostrarSelects.php';
-$title = "Creacio d'un Albar de venta";
+$title = "Albarà de venta";
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
