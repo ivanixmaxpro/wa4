@@ -18,7 +18,11 @@
             ?>">
             Conservar en fred:
             <select name="conservarFred">
-                <option value="tots">-</option>
+                <option value="tots" <?php
+                if (isset($conservarFred) && $conservarFred == 'tots') {
+                    echo "selected";
+                }
+                ?> > - </option>
                 <option value="0" <?php
                 if (isset($conservarFred) && $conservarFred == 0) {
                     echo "selected";
