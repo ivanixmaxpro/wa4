@@ -16,6 +16,7 @@
 
             <span id="errorBotoGuardar"></span>
             <button name="Submit" id="botoGuardar"class="btn btn-primary" style="margin-top: 5px">Enviar</button>
+            <a name="tornar" class="btn btn-primary" style="margin-top: 5px" href="?ctl=proveidor&act=llista">Tornar</a>
         </div>
     </form> 
 </div>
