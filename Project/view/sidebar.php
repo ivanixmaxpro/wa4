@@ -40,7 +40,7 @@
                     ?>>
                         <a href="?ctl=empleat&act=llista">
                             <i class="pe-7s-id"></i>
-                            <p>Llista empleats</p>
+                            <p>Llista d'empleats</p>
                         </a>
                     </li><?php } ?>
                     <li
@@ -63,7 +63,7 @@
                     ?>>
                         <a href="?ctl=control&act=llista">
                             <i class="pe-7s-bell"></i>
-                            <p>Control</p>
+                            <p>Control Personal</p>
                         </a>
                     </li> <?php } ?>
                     <li
@@ -87,7 +87,7 @@
                     ?>>
                         <a href="?ctl=albara&act=llista">
                             <i class="pe-7s-news-paper"></i>
-                            <p>Llistat de Albarans</p>
+                            <p>Llistat d'Albarans</p>
                         </a>
                     </li> <?php } ?>
 
@@ -99,7 +99,7 @@
                     ?>>
                         <a href="?ctl=client&act=llista">
                             <i class="pe-7s-users"></i>
-                            <p>Llistat clients</p>
+                            <p>Llistat de clients</p>
                         </a>
                     </li> <?php } ?>
                     <li <?php
@@ -110,7 +110,7 @@
                     ?>>
                         <a href="?ctl=proveidor&act=llista">
                             <i class="pe-7s-plugin"></i>
-                            <p>Llistat proveidors</p>
+                            <p>Llistat de proveïdors</p>
                         </a>
                     </li><?php } ?>
                     <li <?php

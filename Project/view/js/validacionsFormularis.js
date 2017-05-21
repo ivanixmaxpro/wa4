@@ -41,6 +41,17 @@ $(document).ready(function () {
     $("#botoCrearAlbaraCompra").click(validarFormulariAlbara);
     $("#botoCrearAlbaraVenta").click(validarFormulariAlbara);
 
+    /* VALIDACIONS FORMULARI MISSATGE */
+    $('#titol').focusout(validarNoBuit);
+    $('#missatge').focusout(validarNoBuit);
+    $("#botoGuardar").click(validarFormulari);
+
+    /* VALIDACIONS ACTUALITZAR CONTRASENYES */
+    $('#contra_actual').focusout(validarContrasenya);
+    $('#contra_nova_1').focusout(validarContrasenya);
+    $("#contra_nova_2").focusout(validarContrasenya);
+    $("#botoGuardar").click(validarFormulariIgualContrasenya);
+
     /* CAMPS COMUNS A TOTS ELS FORMULARIS */
     $('#imatge').change(validarImatge);
     $("#botoGuardarProducte").click(validarFormulariAmbImatgeProducte);
@@ -49,9 +60,29 @@ $(document).ready(function () {
 });
 var totOkFormulari = true;
 
+function validarFormulariIgualContrasenya() {
+    var idCamp = this.id;
+    var errorCamp = primeraLletraMayus(idCamp);
+    var contra1 = $('#contra_nova_1').val();
+    var contra2 = $('#contra_nova_2').val();
+
+    if (contra1 === contra2 && contra1 != "" && contra2 != "") {
+        $('#error' + errorCamp).html("Contrasenyes coincidents.");
+        totOkFormulari = true;
+    } else {
+        $('#error' + errorCamp).html("Les contrasenyes no són iguals.");
+        totOkFormulari = false;
+    }
+
+    if (totOkFormulari == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function comprovarIndexSelect() {
-    var idCamp = this.target.id;
+    var idCamp = this.id;
     var errorCamp = primeraLletraMayus(idCamp);
     var posSelected = document.getElementById(idCamp).selectedIndex;
 
@@ -187,8 +218,6 @@ function nssValid(nss) {
 
     var correcte = false;
 
-    var x = parseInt(nss) % 97;
-
     if (valid) {
         var nums = nss.slice(0, 10);
         var numsControl = nss.slice(10, 12);
@@ -303,8 +332,9 @@ function validarContrasenya() {
     var errorCamp = primeraLletraMayus(idCamp);
     var reg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
-    if (!pass.match(reg)) {
+    if (!pass.match(reg) && pass != "") {
         $('#error' + errorCamp).html("Contrasenya no vàlida. Ha de contenir:<ul><li>Mínim 6 caràcters.</li><li>Mínim 1 digit.</li><li>Mínim 1 majúscula.</li><li>Mínim 1 minúscula.</li></ul>.");
+        totOkFormulari = false;
     } else {
         $('#error' + errorCamp).html("");
     }
@@ -386,6 +416,7 @@ function validarFormulariAlbara() {
         var posSelectedClient = document.getElementById("campClient").selectedIndex;
 
         if (posSelectedClient == null || posSelectedClient == 0) {
+            $('#errorCampClient').html("Selecciona una opció correcte.");
             totOkFormulari = false;
         } else {
             totOkFormulari = true;
@@ -394,6 +425,7 @@ function validarFormulariAlbara() {
         var posSelectedProveidor = document.getElementById("campProveidor").selectedIndex;
 
         if (posSelectedProveidor == null || posSelectedProveidor == 0) {
+            $('#errorCampProveidor').html("Selecciona una opció correcte.");
             totOkFormulari = false;
         } else {
             totOkFormulari = true;

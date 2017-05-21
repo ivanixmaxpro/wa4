@@ -21,12 +21,11 @@ require_once 'view/mainNav.php';
 
 if (isset($_REQUEST['submit'])) {
 
-    if(isset($_REQUEST['id'])){
+    if (isset($_REQUEST['id'])) {
         $idProducte = $_REQUEST['id'];
-        $producte  = $empresa->searchProducte($idProducte);
-
+        $producte = $empresa->searchProducte($idProducte);
     }
-    if($producte->getId_ubicacio() == $_REQUEST['id_ubicacio']) {
+    if ($producte->getId_ubicacio() == $_REQUEST['id_ubicacio']) {
 
         if (isset($_REQUEST['quantitatMoure']) && $_REQUEST['quantitatMoure'] > 0) {
             $ubicacio = $empresa->searchUbicacio($id);
@@ -37,7 +36,7 @@ if (isset($_REQUEST['submit'])) {
                 case 'tenda':
                     if ($_REQUEST['quantitatMoure'] <= $stock) {
                         $ubicacio->updateUbicacio($_REQUEST['quantitatMoure'], $id, $_REQUEST['moureUbicacio']);
-                        $missatgeFitxer = "El producte " . $producte->getNom() . " ha estat mogut la queantitat de ". $_REQUEST['quantitatMoure'] . " de stock a tenda a la data ". date("Y-m-d H:i:s");
+                        $missatgeFitxer = "Del producte " . $producte->getNom() . " s’ha traspassat la quantitat de " . $_REQUEST['quantitatMoure'] . " del estoc cap a la tenda al dia " . date("d-m-Y") . " a les " . date("H:i:s") . ".";
                         $redireccio = "?ctl=producte&act=llista";
                         $missatge = "S'ha canviar l'ubicació correctament.";
                         require_once 'view/confirmacio.php';
@@ -47,7 +46,8 @@ if (isset($_REQUEST['submit'])) {
                 case 'stock':
                     if ($_REQUEST['quantitatMoure'] <= $tenda) {
                         $ubicacio->updateUbicacio($_REQUEST['quantitatMoure'], $id, $_REQUEST['moureUbicacio']);
-                        $missatgeFitxer = "El producte " . $producte->getNom() . " ha estat mogut la queantitat de ". $_REQUEST['quantitatMoure'] . " de la tenfa a l'stock a la data ". date("Y-m-d H:i:s");;
+                        $missatgeFitxer = "Del producte " . $producte->getNom() . " s’ha traspassat la quantitat " . $_REQUEST['quantitatMoure'] . " de la tenda cap a l'estoc al dia " . date("Y-m-d ") . " a les " . date("H:i:s") . ".";
+                        ;
                         $redireccio = "?ctl=producte&act=llista";
                         $missatge = "S'ha canviar l'ubicació correctament.";
                         require_once 'view/confirmacio.php';
@@ -57,25 +57,23 @@ if (isset($_REQUEST['submit'])) {
                 default:
                     break;
             }
-            $fp = fopen("logs/MoureProductesLog.txt","a");
-            fwrite($fp, $missatgeFitxer  . PHP_EOL);
+            $fp = fopen("logs/MoureProductesLog.txt", "a");
+            fwrite($fp, $missatgeFitxer . PHP_EOL);
             fclose($fp);
         }
-    }else{
+    } else {
         $redireccio = "?ctl=producte&act=llista";
         $missatge = "S'ha canviar l'ubicació correctament.";
         require_once 'view/confirmacio.php';
         require_once 'view/footer.php';
     }
 } else {
-    if(isset($_REQUEST['id'])){
+    if (isset($_REQUEST['id'])) {
         $idProducte = $_REQUEST['id'];
-        $producte  = $empresa->searchProducte($idProducte);
-
+        $producte = $empresa->searchProducte($idProducte);
     }
     require_once 'view/mostrarSelects.php';
     require_once 'view/modificarUbicacio.php';
     require_once 'view/footer.php';
 }
-
 ?>
