@@ -192,6 +192,7 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     <th class="service"></th>
                     <th class="desc">Producte</th>
                     <th>Quantitat</th>
+                    <th>Preu unitari</th>
                     <th>TOTAL</th>
                 </tr>
             </thead>
@@ -206,6 +207,7 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
                     echo '<td class="service">' . $linia . "</td>";
                     echo '<td class="desc">' . $producte->getNom() . "</td>";
                     echo '<td class="text-center">' . $row->getQuantitat() . "</td>";
+                    echo '<td class="desc">' . $producte->getPreuBase() . " €</td>";
                     echo '<td class="text-rigth">' . $row->getPreu() . " €" . "</td>";
                     echo "</tr>";
                     $linia++;

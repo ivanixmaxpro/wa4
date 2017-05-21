@@ -13,7 +13,7 @@
         <main>
             <?php taulaDetallsAlbarans($albaraVentaComplet[1], $empresa); ?>
             <tr>
-                <td colspan="3" class="grand total">TOTAL</td>
+                <td colspan="4" class="grand total">TOTAL</td>
                 <td class="grand total"><?php echo $albaraVentaComplet[0][0]->getPreu() . "€" ?></td>
             </tr>
             </tbody>
