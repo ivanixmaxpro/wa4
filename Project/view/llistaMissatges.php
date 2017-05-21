@@ -15,7 +15,7 @@
         </div>
     </form> 
     <div class="content table-responsive table-full-width ">
-        <table class="table table-hover table-striped" id="tabla">
+        <table id="taulaPaginacio" class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th>Emissor</th>
@@ -24,7 +24,8 @@
                     <th>Dia</th>
                     <th>Hora</th>
                     <th>Obrir</th>
-                </tr></thead>
+                </tr>
+            </thead>
             <tbody>
                 <?php
                 foreach ($missatges as $row) {
