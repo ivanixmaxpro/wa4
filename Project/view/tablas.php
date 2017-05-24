@@ -225,7 +225,7 @@ function taulaDetallsAlbarans($arrDetalls, $empresa) {
         </tbody> 
     </table> 
 </div>
-<
+
 <?php
 
 function tablaRegistresMoviments($registres) {
