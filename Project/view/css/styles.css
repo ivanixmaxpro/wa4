@@ -4,6 +4,9 @@ una horden solo poden un !important */
     margin-top: 15px !important;
 }
 
+#banner1{
+    width: 200% !important;
+}
 /* ESTILS DETALLS ALBARANS */
 
 .clearfix:after {
@@ -11,18 +14,6 @@ una horden solo poden un !important */
     display: table;
     clear: both;
 }
-
-/*#albaraCap .estilAlbara {
-    position: relative;
-    width: 21cm;  
-    height: 29.7cm; 
-    margin: 0 auto; 
-    color: #001028;
-    background: #FFFFFF; 
-    font-family: Arial, sans-serif; 
-    font-size: 12px; 
-    font-family: Arial;
-}*/
 
 #albaraCap {
     padding: 10px 0;
@@ -123,4 +114,19 @@ footer {
     text-align: center;
 }
 
+.panell{
+
+}
+
+.msgCorrecte {
+    color: #6dc030;
+}
+
+.msgIncorrecte {
+    color: red;
+}
+
+.dataTables_info {
+    margin-left: 15px!important;
+}
 

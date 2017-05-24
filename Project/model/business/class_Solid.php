@@ -70,61 +70,62 @@ class Solid extends Producte {
     }
 
     public function validateProduct() {
-         $patroNum ="/^[[:digit:]]+$/";
-       $validation = new Validation(true, '');
-        $validation->setMsg("producte afegit correctament");
+        $patroNum = "/^[[:digit:]]+$/";
+        $patroPreu = "/^\d+([\.|\,]{1}\d{1,2}){0,1}$/";
+        $validation = new Validation(true, '');
+        $validation->setMsg("El producte s'ha afegit correctament.");
 
         if ($validation->getOk() && trim($this->getNom()) == '') {
             $validation->setOk(false);
-            $validation->setMsg("camp Nom esta buit");
+            $validation->setMsg("El camp nom no pot està buit.");
         }
         if ($validation->getOk() && trim($this->getMarca()) == '') {
             $validation->setOk(false);
-            $validation->setMsg("camp Marca esta buit");
+            $validation->setMsg("El camp marca no pot està buit.");
         }
-        if ($validation->getOk() && preg_match($patroNum,trim($this->getPreuBase())) == '') {
+        if ($validation->getOk() && preg_match($patroPreu, trim($this->getPreuBase())) == '') {
             $validation->setOk(false);
-            $validation->setMsg("import preu ha de ser un num");
+            $validation->setMsg("L'import ha de ser númeric.");
         }
         if ($validation->getOk() && !$this->validatePrice()) {
             $validation->setOk(false);
-            $validation->setMsg("import preu ha de ser superior a 0");
+            $validation->setMsg("L'import ha de ser superior a 0.");
         }
         if ($validation->getOk() && trim($this->getReferencia()) == '') {
-            $validation->setMsg("referencia esta buida");
+            $validation->setMsg("El camp referència no pot està buit.");
             $validation->setOK(false);
         }
-         if ($validation->getOk() && preg_match($patroNum,trim($this->getReferencia())) == '') {
-            $validation->setMsg("referencia només poden ser numeros");
+        if ($validation->getOk() && preg_match($patroNum, trim($this->getReferencia())) == '') {
+            $validation->setMsg("La referència ha de ser nùmeric.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && trim($this->getModel()) == '') {
-            $validation->setMsg("model esta buit");
+            $validation->setMsg("El camp model no pot està buit.");
             $validation->setOK(false);
         }
-         if ($validation->getOk() && trim($this->getDescripcio()) == '') {
-            $validation->setMsg("descripcio esta buida");
+        if ($validation->getOk() && trim($this->getDescripcio()) == '') {
+            $validation->setMsg("El camp descripció no pot està buit.");
             $validation->setOK(false);
         }
-       
-       if ($validation->getOk() && trim($this->getCapacitatMg()) == '') {
-            $validation->setMsg("capacitatMg esta buida");
+
+        if ($validation->getOk() && trim($this->getCapacitatMg()) == '') {
+            $validation->setMsg("El camp capacitatMg no pot està buit.");
             $validation->setOK(false);
         }
-         if ($validation->getOk() && preg_match($patroNum,trim($this->getCapacitatMg())) == '') {
-            $validation->setMsg("capacitatMg només poden ser numeros");
+        if ($validation->getOk() && preg_match($patroPreu, trim($this->getCapacitatMg())) == '') {
+            $validation->setMsg("La capacitatMg ha de ser nùmeric.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && trim($this->getUnitats()) == '') {
-            $validation->setMsg("referencia esta buida");
+            $validation->setMsg("El camp unitats no pot està buit.");
             $validation->setOK(false);
         }
-         if ($validation->getOk() && preg_match($patroNum,trim($this->getUnitats())) == '') {
-            $validation->setMsg("referencia només poden ser numeros");
+        if ($validation->getOk() && preg_match($patroNum, trim($this->getUnitats())) == '') {
+            $validation->setMsg("El camp unitat ha de ser nùmeric.");
             $validation->setOK(false);
         }
-       
-       return $validation;
+
+        return $validation;
     }
 
 }

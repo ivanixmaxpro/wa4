@@ -1,14 +1,15 @@
 <?php
-//Empresa	
-if(isset($_SESSION['empresa'])){
-	$empresa = unserialize($_SESSION['empresa']);
-} else {
-	$empresa = New Empresa();
-	$empresa->recuperarEmpresa(); 
 
-	$_SESSION['empresa'] = serialize($empresa);
+//Empresa	
+if (isset($_SESSION['empresa'])) {
+    $empresa = unserialize($_SESSION['empresa']);
+} else {
+    $empresa = New Empresa();
+    $empresa->recuperarEmpresa();
+
+    $_SESSION['empresa'] = serialize($empresa);
 }
-$title = "Llista empleats";
+$title = "Empleats";
 
 $empleats = $empresa->populateEmpleats();
 
@@ -17,5 +18,4 @@ require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
 require_once 'view/llistaEmpleats.php';
 require_once 'view/footer.php';
-
 ?>

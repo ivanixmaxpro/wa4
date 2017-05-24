@@ -1,6 +1,6 @@
 <?php
 
-$title = "Creacio d'un Albar de compra";
+$title = "Albarà de compra";
 
 include 'view/mostrarSelects.php';
 require_once 'view/header.php';

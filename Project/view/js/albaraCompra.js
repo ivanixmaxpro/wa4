@@ -2,7 +2,7 @@ var arrProTotal = [];
 
 $(document).ready(function () {
 
-    
+
     $("#botoAfegirQuantProducte").click(emmagatzemarProducte);
 
 
@@ -10,39 +10,51 @@ $(document).ready(function () {
 
 function emmagatzemarProducte() {
     var producte = $("#campProductes").val();
+    var posSelected = document.getElementById("campProductes").selectedIndex;
 
-    var producteJSON = JSON.parse(producte);
-
-    var idPro = producteJSON.id_producte;
-    var preuBase = parseFloat(producteJSON.preuBase);
-    var quantProducte = parseInt($("#campQuantitatDeProductes").val());
-    var preuTotal = preuBase * quantProducte;
-    var nomProducte = producteJSON.nom;
-    var idUbicacio = producteJSON.id_ubicacio;
-
-    var arrPro = [idPro, preuTotal, quantProducte, nomProducte, idUbicacio];
-    var repetit = false;
-
-    for (var prod in arrProTotal) {
-        if (arrProTotal[prod][0] == idPro) {
-            repetit = true;
-        }
-    }
-
-
-
-    if (quantProducte != 0 && repetit == false ) {
-
-        arrProTotal.push(arrPro);
-
-        generarTaula();
+    if (posSelected == null || posSelected == 0) {
+        $.alert({
+            title: 'Selecció errònia de producte!',
+            content: 'Cal seleccionar un producte vàlid per afegir-lo.',
+        });
     } else {
-        alert("Error al introduir producte");
+
+
+        var producteJSON = JSON.parse(producte);
+
+        var idPro = producteJSON.id_producte;
+        var preuBase = parseFloat(producteJSON.preuBase);
+        var quantProducte = parseInt($("#campQuantitatDeProductes").val());
+        var preuTotal = preuBase * quantProducte;
+        var nomProducte = producteJSON.nom;
+        var idUbicacio = producteJSON.id_ubicacio;
+
+        var arrPro = [idPro, preuTotal, quantProducte, nomProducte, idUbicacio];
+        var repetit = false;
+
+        for (var prod in arrProTotal) {
+            if (arrProTotal[prod][0] == idPro) {
+                repetit = true;
+            }
+        }
+
+
+
+        if (quantProducte != 0 && repetit == false) {
+
+            arrProTotal.push(arrPro);
+
+            generarTaula();
+        } else {
+            $.alert({
+                title: 'Error en inserir el producte!',
+                content: 'Revisa la quantitat del producte.',
+            });
+        }
+
+        $("#campQuantitatDeProductes").val(0);
+
     }
-    
-    $("#campQuantitatDeProductes").val(0);
-
-
 }
 
 function generarTaula() {
@@ -54,7 +66,7 @@ function generarTaula() {
 
     for (var prod in arrProTotal) {
         aux = str + count;
-        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'></button>";
+        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'>Eliminar</button>";
 
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')
@@ -67,7 +79,7 @@ function generarTaula() {
 
                                 )
                         .append($('<td>')
-                                .text(arrProTotal[prod][1])
+                                .text(arrProTotal[prod][1].toFixed(2))
 
                                 )
                         .append($('<td>')
@@ -113,5 +125,5 @@ function canviarPreu() {
         preuTotal += arrProTotal[prod][1];
     }
 
-    $("#campPreu").val(preuTotal);
+    $("#campPreu").val(preuTotal.toFixed(2));
 }

@@ -94,19 +94,18 @@ class Empresa {
         $albaransCompra = $EmpresaDAO->populateAlbaransCompra();
         return $albaransCompra;
     }
-    
+
     function populateUsuaris() {
         $EmpresaDAO = new EmpresaDAO();
         $usuaris = $EmpresaDAO->populateUsuariDAO();
         return $usuaris;
     }
-    
+
     function populateControl() {
         $EmpresaDAO = new EmpresaDAO();
         $control = $EmpresaDAO->populateControl();
         return $control;
     }
-    
 
     function searchProducte($id_producte) {
         $EmpresaDAO = new EmpresaDAO();
@@ -125,11 +124,24 @@ class Empresa {
         $empleat = $EmpresaDAO->searchEmpleat($id_empleat);
         return $empleat;
     }
-    
+
     function searchEmpleatByDNI($dni) {
         $EmpresaDAO = new EmpresaDAO();
         $empleat = $EmpresaDAO->searchEmpleatByDNI($dni);
         return $empleat;
+    }
+
+    function searchEmpleatByNSS($nss) {
+        $EmpresaDAO = new EmpresaDAO();
+        $empleat = $EmpresaDAO->searchEmpleatByNSS($nss);
+        return $empleat;
+    }
+    
+    function searchUsuariByNom($usuari){
+        $EmpresaDAO = new EmpresaDAO();
+        $usri = $EmpresaDAO->searchUsuariByNom($usuari);
+        return $usri;
+        
     }
 
     function searchAlbaraVenta($id_albaraVenta) {
@@ -144,12 +156,31 @@ class Empresa {
         return $albaraCompraComplet;
     }
 
-    function filtrarProductes($conservarenfred, $quantitat, $tipus) {
+    function filtrarProductes($nom, $conservarenfred, $quantitat, $tipus) {
         $EmpresaDAO = new EmpresaDAO();
-        $resultatDelFiltre = $EmpresaDAO->filterProducte($conservarenfred, $quantitat, $tipus);
+        $resultatDelFiltre = $EmpresaDAO->filterProducte($nom, $conservarenfred, $quantitat, $tipus);
         return $resultatDelFiltre;
     }
-    
+
+    function filtrarProveidors($nom) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filtrarProveidors($nom);
+        return $resultatDelFiltre;
+    }
+
+    function filtrarMissatges($titol) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filtrarMissatges($titol);
+        return $resultatDelFiltre;
+    }
+
+    function filtrarClients($nom) {
+        $EmpresaDAO = new EmpresaDAO();
+        $resultatDelFiltre = $EmpresaDAO->filtrarClients($nom);
+        return $resultatDelFiltre;
+    }
+
+
     function filtrarControlUsuari($id_usuari) {
         $EmpresaDAO = new ControlDAO();
         $usuari = $EmpresaDAO->filtrarControlUsuari($id_usuari);
@@ -190,7 +221,7 @@ class Empresa {
         $ubicacio = $EmpresaDAO->searchUbicacioById($id_ubicacio);
         return $ubicacio;
     }
-    
+
     function searchUsuariById($id_usuari) {
         $EmpresaDAO = new EmpresaDAO();
         $ubicacio = $EmpresaDAO->searchUsuariById($id_usuari);
@@ -224,6 +255,7 @@ class Empresa {
         $EmpresaDAO = new EmpresaDAO();
         $EmpresaDAO->updateProducte($producte, $type);
     }
+
     function updateEmpleat($empleat) {
         $EmpresaDAO = new EmpresaDAO();
         $EmpresaDAO->updateEmpleat($empleat);
@@ -240,16 +272,17 @@ class Empresa {
         $permisos = $EmpresaDAO->searchHoraris($id_usuari);
         return $permisos;
     }
-    
+
     function populateDia() {
         $EmpresaDAO = new EmpresaDAO();
         $dies = $EmpresaDAO->populateDia();
         return $dies;
     }
-    
+
     function populateFuncionalitats() {
         $EmpresaDAO = new EmpresaDAO();
         $funcionalitats = $EmpresaDAO->populateFuncionalitats();
         return $funcionalitats;
     }
+
 }

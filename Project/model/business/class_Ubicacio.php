@@ -62,6 +62,11 @@ class Ubicacio {
     function setSituacio($situacio) {
         $this->situacio = $situacio;
     }
+    
+    function updateUbicacio($quantitat,$id,$moure) {
+        $UbicacioDAO = new UbicacioDAO();
+        $UbicacioDAO->updateUbicacio($quantitat,$id,$moure);
+    }
 
 }
 

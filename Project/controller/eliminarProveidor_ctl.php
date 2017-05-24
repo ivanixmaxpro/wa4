@@ -1,5 +1,6 @@
 <?php
-$title='llista proveidors';
+
+$title = 'llista proveidors';
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
@@ -12,12 +13,12 @@ if (isset($_SESSION['empresa'])) {
 } else {
     $empresa = New Empresa();
     $empresa->recuperarEmpresa();
-$proveidors = $empresa->populateProveidors();
+    $proveidors = $empresa->populateProveidors();
     $_SESSION['empresa'] = serialize($empresa);
 }
 $proveidorsDAO = new ProveidorDAO();
 $proveidorsDAO->eliminar($id);
-$missatge ='proveidor eliminat';
-$redireccio='index.php?ctl=proveidor&act=llista';
+$missatge = 'S\'ha eliminat el proveïdor satisfactòriament.';
+$redireccio = 'index.php?ctl=proveidor&act=llista';
 require_once 'view/confirmacio.php';
 require_once 'view/footer.php';

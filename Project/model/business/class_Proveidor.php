@@ -44,4 +44,29 @@ class Proveidor {
         $this->codi = $codi;
     }
 
+    /**
+     * metode per validar les dades entrades per php
+     * @return  objecte Validation
+     */
+    function validateProveidor() {
+        $validation = new Validation(true, '');
+        $patroLletres = "/^[\A-Za-z]+$/i";
+
+        if ($validation->getOk() && trim($this->getNom()) == '') {
+            $validation->setMsg("El nom no pot està buit.");
+            $validation->setOK(false);
+        }
+        if ($validation->getOk() && !preg_match($patroLletres, trim($this->getNom()))) {
+            $validation->setMsg("El nom només pot ser alfabètic.");
+            $validation->setOK(false);
+        }
+
+        if ($validation->getOk() && trim($this->getCodi()) == '') {
+            $validation->setMsg("El codi no pot està buit.");
+            $validation->setOK(false);
+        }
+
+        return $validation;
+    }
+
 }

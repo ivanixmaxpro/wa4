@@ -6,9 +6,11 @@
  * Date: 9/05/17
  * Time: 16:20
  */
+$title = "Modificar producte";
+$redireccio = 'index.php?ctl=producte&act=llista';
+
 include 'emmagatzemarFoto.php';
 
-$title = "Modificar producte";
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -54,6 +56,7 @@ if (!empty($_POST)) {
 
         $producte = $empresa->searchProducteChilds($_REQUEST['id']);
 
+
         if ($imatge == null) {
 
             $imatge = $producte->getImatge();
@@ -77,7 +80,9 @@ if (!empty($_POST)) {
         if (!isset($descripcio) && !is_string($descripcio)) {
             $dades = false;
         }
+
         if ($imatge < 0) {
+
             $dades = false;
         }
         if (!isset($conservar) && !is_bool($conservar)) {
@@ -101,11 +106,19 @@ if (!empty($_POST)) {
                         $producte->setUnitats($unitats);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
-                        $missatge = "Sha modificar satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->updateProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'Semisolid':
@@ -120,12 +133,19 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMg($capacitatMg);
 
-
-                        $empresa->UpdateProducte($producte, get_class($producte));
-                        $missatge = "Sha modificar satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->updateProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'Liquid':
@@ -141,11 +161,19 @@ if (!empty($_POST)) {
                         $producte->setCapacitatMl($capacitatMl);
 
 
-                        $empresa->UpdateProducte($producte, get_class($producte));
-                        $missatge = "Sha modificar satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->updateProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'Gas':
@@ -160,12 +188,19 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setCapacitatMl($capacitatMl);
 
-
-                        $empresa->UpdateProducte($producte, get_class($producte));
-                        $missatge = "Sha modificar satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->updateProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
                 case 'Altres':
@@ -180,19 +215,24 @@ if (!empty($_POST)) {
                         $producte->setImatge($imatge);
                         $producte->setUnitats($unitats);
 
-
-                        $empresa->UpdateProducte($producte, get_class($producte));
-                        $missatge = "Sha modificar satisfactoriament.";
-                        $redireccio = 'index.php?ctl=producte&act=llista';
-                        require_once 'view/confirmacio.php';
-                        require_once 'view/footer.php';
+                        if ($producte->validateProduct()->getOk()) {
+                            try {
+                                $empresa->updateProducte($producte, get_class($producte));
+                                $missatge = $producte->validateProduct()->getMsg();
+                                require_once 'view/confirmacio.php';
+                            } catch (Exception $e) {
+                                $missatge = $e->getMessage();
+                                require_once 'view/error.php';
+                            }
+                        } else {
+                            $missatge = $producte->validateProduct()->getMsg();
+                            require_once 'view/error.php';
+                        }
                     }
                     break;
             }
-        } else {
-            echo "Dades entrades incorrectament.";
-            // dades entrades erroneament
         }
     }
 }
-
+require_once 'view/footer.php';
+?>

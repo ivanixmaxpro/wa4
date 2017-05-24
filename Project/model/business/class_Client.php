@@ -59,6 +59,7 @@ class Client {
     function setInformacio($informacio) {
         $this->informacio = $informacio;
     }
+
     /**
      * metode per validar dades entrades en el formulari afegir client
      * @return objecte Validation
@@ -66,26 +67,24 @@ class Client {
     function validateClient() {
         $validation = new Validation(true, '');
         $patroLletres ="/^[a-zA-Z]+$/i";
-        $patroNum ="/^[[:digit:]]+$/";
-        
+        $patroNum ="/^[[:digit:]]+$/";        
+        $validation->setMsg("client afegit correctament.");
+
         if ($validation->getOk() && trim($this->getNom()) == '') {
-            $validation->setMsg("nom esta buit");
+            $validation->setMsg("El nom no pot està buit.");
             $validation->setOK(false);
         }
-        if ($validation->getOk() &&  !preg_match($patroLletres,trim($this->getNom()) )){
-            $validation->setMsg("nom només poden ser lletres");
+        if ($validation->getOk() && !preg_match($patroLletres, trim($this->getNom()))) {
+            $validation->setMsg("El nom només pot ser alfabètic.");
             $validation->setOK(false);
         }
-        
+
         if ($validation->getOk() && trim($this->getCodi()) == '') {
-            $validation->setMsg("codi esta buit");
+            $validation->setMsg("El codi no pot està buit.");
             $validation->setOK(false);
         }
-         if ($validation->getOk() && preg_match($patroNum,trim($this->getCodi())) == '') {
-            $validation->setMsg("codi només poden ser numeros");
-            $validation->setOK(false);
-        }
-       
+
         return $validation;
     }
+
 }

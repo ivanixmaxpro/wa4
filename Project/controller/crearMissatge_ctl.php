@@ -1,6 +1,7 @@
 <?php
 
 $title = "llista Missatges";
+$redireccio = 'index.php?ctl=missatge&act=llistaMissatges';
 if (isset($_SESSION['empresa'])) {
     $empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -26,14 +27,28 @@ if (isset($_REQUEST['Submit'])) {
         $informacio = $_REQUEST['informacio'];
     }
     $idUsuari = $_SESSION["id_usuari"];
-    $data=getdate();
+    $data = getdate();
     $data = date('Y-m-d H:i:s');
-    $missatgeNou = new Missatge($idUsuari,false,$titol,$data,$informacio);
-    $missatgesDAO->inserir($missatgeNou);
-    $missatge = 'has creat missatge correctament';
-    $redireccio = 'index.php?ctl=missatge&act=llistaMissatges';
-    require_once 'view/confirmacio.php';
-}else {
+    $missatgeNou = new Missatge($idUsuari, false, $titol, $data, $informacio);
+
+    if ($missatgeNou->validateMissatge()->getOk()) {
+        try {
+            $missatgesDAO->inserir($missatgeNou);
+            $missatge = $missatgeNou->validateMissatge()->getMsg();
+            $redireccio = "?ctl=missatge&act=llista";
+            require_once 'view/confirmacio.php';
+        } catch (Exception $e) {
+            $missatge = $e->getMessage();
+            $redireccio = "?ctl=missatge&act=llista";
+            require_once 'view/error.php';
+        }
+    } else {
+        //missatege de la clase validar
+        $missatge = $missatgeNou->validateMissatge()->getMsg();
+        $redireccio = "?ctl=missatge&act=llista";
+        require_once 'view/error.php';
+    }
+} else {
     require_once 'view/crearMissatge.php';
 }
 

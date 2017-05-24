@@ -1,0 +1,171 @@
+IMPORTANT: si ja esta utilitzat, no et deixara posar el mateix dos cops. Tant el NSS com el DNI.
+
+*******
+* NSS *
+*******
+
+NSS 1: 396120465841, UTILITZAT
+
+NSS 2: 148026500190, UTILITZAT
+
+NSS 3: 381100922183, UTILITZAT
+
+NSS 4: 215451200796, UTILITZAT
+
+NSS 5: 276234699204, UTILITZAT
+
+NSS 6: 080392899233, UTILITZAT
+
+NSS 7: 231234567823, DISPONIBLE
+
+NSS 8: 020123456706, DISPONIBLE
+
+
+*******
+* DNI *
+*******
+
+DNI 1: 94601920E, DISPONIBLE
+
+DNI 2: 29488271V, DISPONIBLE
+
+DNI 3: 28710685S, DISPONIBLE
+
+DNI 4: 38736204H, DISPONIBLE
+
+*******************
+* TEXT PER OMPLIR *
+*******************
+
+Com evident experiència mostra, la debilitat de la nostra memòria, 
+sotsmetent fàcilment a oblivió no solament los actes per longitud de temps envellits, 
+mas encara los actes frescs de nostres dies, és estat doncs molt condecent, 
+útil e expedient deduir en escrit les gestes e històries antigues dels homens forts e virtuosos, 
+com sien espills molt clars, exemples e virtuosa doctrina de nostra vida, segons recita aquell gran orador Tul·li.
+
+*************
+* PRODUCTES *
+*************
+
+----------------------- Sòlid
+
+NOM: XLS Medical Carboblocker 60comp
+
+MARCA: XLS
+
+PREU: 24.99
+
+REFERENCIA: 7465
+
+MODEL: Medical Carboblocker
+
+DESCIRPCIO: Sumplemento alimenticio que bloquea los hidratos de carbono.
+
+CONSERVAR EN FRED? No.
+
+CAPACITAT MG: 160
+
+UNITATS: 60
+
+
+----------------- Semisòlid
+
+NOM: Avène Solar crema coloreada SPF30 50ml
+
+MARCA: Avène
+
+PREU: 11.89
+
+REFERENCIA: 3467
+
+MODEL: Avène Solar
+
+DESCIRPCIO: Protección solar para pieles sensibles.
+
+CONSERVAR EN FRED? No.
+
+CAPACITAT MG: 50
+
+----------------- Lìquid
+
+NOM: Macks Dry-N-Clear 30ml
+
+MARCA: Macks
+
+PREU: 5.85
+
+REFERENCIA: 2147
+
+MODEL: Dry N Clear
+
+DESCIRPCIO: Gotas para aliviar el malestar por la entrada de agua en el oído.
+
+CONSERVAR EN FRED? Si.
+
+CAPACITAT ML: 30
+
+----------------- Gas
+
+NOM: Vichy desodorante aerosol mineral 125ml
+
+MARCA: Vichy 
+
+PREU: 6.90
+
+REFERENCIA: 8563
+
+MODEL: Desodorante aerosol
+
+DESCIRPCIO: Antitranspirante para hombres o mujeres.
+
+CONSERVAR EN FRED? Si.
+
+CAPACITAT ML: 125
+
+----------------- Altres
+
+NOM: Aposan gasa estéril tejido sin tejer 10cmx10cm 50 gasas 
+
+MARCA: Aposan
+
+PREU: 3.45
+
+REFERENCIA: 9873
+
+MODEL: Gasa estéril tejido sin teje
+
+DESCIRPCIO: Limpia y protege las pequeñas heridas o cicatrices.
+
+CONSERVAR EN FRED? No.
+
+UNITATS: 50
+
+**********
+* CLIENT *
+**********
+
+Nom: Farmàcia Nature
+
+Codi: C_FN_21052017
+
+INFO: TEXT PER OMPLIR
+
+
+Nom: Promo Creus
+
+Codi: C_PC_22052017
+
+INFO: TEXT PER OMPLIR
+
+*************
+* PROVEIDOR *
+*************
+
+Nom: JNH Transport
+
+Codi: P_JT_25052017
+
+
+Nom: Takus Farma
+
+Codi: P_TF_29052017

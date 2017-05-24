@@ -7,12 +7,12 @@
                 if (get_class($producte) == 'Solid') {
                     echo "selected";
                 }
-                ?>>Solid</option>
+                ?>>Sòlid</option>
                 <option disabled="disabled" value="semi-solid" <?php
                 if (get_class($producte) == 'Semisolid') {
                     echo "selected";
                 }
-                ?>>Semi-solid</option>
+                ?>>Semisòlid</option>
                 <option disabled="disabled" value="liquid" <?php
                 if (get_class($producte) == 'Liquid') {
                     echo "selected";
@@ -112,12 +112,11 @@
                 <span id="errorConservar"></span>
             </div>
             <div class="form-group">
-                <label>Imatge</label>
                 <img src="<?php
                 if (isset($producte)) {
                     echo $producte->getImatge();
                 }
-                ?>" class="img-rounded" width="304" height="236" alt="Imatge Producte">
+                ?>" class="img-rounded" width="300" height="250" alt="Imatge Producte">
             </div>
             <div class="form-group">
                 <label>Pujar imatge</label>
@@ -158,9 +157,8 @@
                 <span id="errorUnitatsInput"></span>
             </div>
         </div>
-        <span id="errorBotoGuardar"></span>
+        <span id="errorBotoGuardarProducte"></span>
     </div>
-
-    <button name="modify" type="submit" class="btn btn-primary">Modificar</button>
+    <button name="modify" type="submit" id="botoGuardarProducte" class="btn btn-primary">Modificar</button>
     <a name="tornar" class="btn btn-primary" href="?ctl=producte&act=llista">Tornar</a>
 </form>

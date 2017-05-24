@@ -1,7 +1,7 @@
 <div class="content">
     <form action="?ctl=empleat&act=afegir" method="POST" enctype="multipart/form-data">
         <div class="row">
-            <h3>Empresa:</h3>
+            <h3 style="margin-left: 10px">Empresa:</h3>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="campEmpresa">Empresa</label>
@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <h3>Dades Empleat:</h3>
+            <h3 style="margin-left: 10px">Dades Empleat:</h3>
             <br/>
             <div class="col-md-6">
                 <div class="form-group">
@@ -22,8 +22,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Cognoms</label>
-                    <input type="text"  id="cognom" class="form-control" placeholder="Cognom" name="cognom" value="" required>
-                    <span id="errorCogom"></span>
+                    <input type="text"  id="cognomempleat" class="form-control" placeholder="Cognom" name="cognom" value="" required>
+                    <span id="errorCognomempleat"></span>
                 </div>
             </div>
         </div>
@@ -37,9 +37,9 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Adreça</label>
-                    <input type="text" id="adreca" class="form-control" placeholder="Adreça" name="address" value="" required>
-                    <span id="errorAdreca"></span>
+                    <label>Localitat</label>
+                    <input type="text" id="localitat" class="form-control" placeholder="Localitat" name="address" value="" required>
+                    <span id="errorLocalitat"></span>
                 </div>
             </div>
         </div>
@@ -116,8 +116,8 @@
                     echo '<tr>';
                     echo '<tr>';
                     echo '<td>' . $dia->getNom() . '<input type="text" name="' . $dia->getNom() . '" value="' . $i . '" hidden></td>';
-                    echo '<td> <input type="time" id="time" name="horaInici_' . $i . '" value=""/></td>';
-                    echo '<td> <input type="time" id="time" name="horaFinal_' . $i . '" value=""/></td>';
+                    echo '<td> <input type="time" id="horaInici_' . $i . '" name="horaInici_' . $i . '" value=""/></td>';
+                    echo '<td> <input type="time" id="horaFinal_' . $i . '" name="horaFinal_' . $i . '" value=""/></td>';
                     echo '<td> <input type="checkbox" name="festa' . $i . '" value="1" ></td>';
                     echo '</tr>';
                     $i++;

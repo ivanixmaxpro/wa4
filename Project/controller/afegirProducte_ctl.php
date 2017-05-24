@@ -90,7 +90,7 @@ if (!empty($_POST)) {
                         $producte->setCapacitatMg($capacitatMg);
                         $producte->setUnitats($unitats);
 
-   //                     $producte= new Solid($nom, $marca,$preu, $referencia,$model,$descripcio,$conservar,$imatge,$capacitatMg,$unitats);
+                        //                     $producte= new Solid($nom, $marca,$preu, $referencia,$model,$descripcio,$conservar,$imatge,$capacitatMg,$unitats);
 
                         if ($producte->validateProduct()->getOk()) {
                             try {
@@ -105,7 +105,6 @@ if (!empty($_POST)) {
                             $missatge = $producte->validateProduct()->getMsg();
                             require_once 'view/error.php';
                         }
-
                     }
                     break;
                 case 'semi-solid':

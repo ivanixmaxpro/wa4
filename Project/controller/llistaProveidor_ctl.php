@@ -1,5 +1,5 @@
 <?php
-$title= "Llista proveidor";
+$title= "Proveïdors";
 if(isset($_SESSION['empresa'])){
 	$empresa = unserialize($_SESSION['empresa']);
 } else {
@@ -11,7 +11,7 @@ if(isset($_SESSION['empresa'])){
 
 if (isset($_REQUEST["Submit"])) {
     $nom = $_REQUEST['nom'];
-    $proveidors = $empresa->filtrarProveidors($conservarFred, $limitRegistres, $tipusProducte);
+    $proveidors = $empresa->filtrarProveidors($nom);
 } else {
     $proveidors = $empresa->populateProveidors();
 }

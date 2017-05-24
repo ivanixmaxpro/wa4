@@ -6,7 +6,7 @@
  * Date: 19/04/17
  * Time: 16:23
  */
-$title = "Home";
+$title = "Inici";
 
 require_once 'view/header.php';
 require_once 'view/sidebar.php';

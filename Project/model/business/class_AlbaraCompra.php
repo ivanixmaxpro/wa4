@@ -105,30 +105,26 @@ class AlbaraCompra {
      */
     function validateAlbara() {
         $validation = new Validation(true, '');
-
-        if (is_nan(!$this->getId_proveidor())) {
-            $validation->setMsg("has d'escollir un proveidor");
+        $validation->setMsg("Has afegit correctament l'albarà de compra.");
+        if ($this->getId_proveidor() == "-") {
+            $validation->setMsg("Has d'escollir un proveïdor.");
             $validation->setOK(false);
         }
 
         if ($validation->getOk() && trim($this->getCodi()) == '') {
-            $validation->setMsg("codi esta buit");
+            $validation->setMsg("El camp codi no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && trim($this->getObservacions()) == '') {
-            $validation->setMsg("observacions esta buit");
-            $validation->setOK(false);
-        }
-        if ($validation->getOk() && trim($this->getObservacions()) == '') {
-            $validation->setMsg("observacions esta buit");
+            $validation->setMsg("El camp observacions no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && trim($this->getLocalitat()) == '') {
-            $validation->setMsg("localitat esta buit");
+            $validation->setMsg("El camp localitat no pot està buit.");
             $validation->setOK(false);
         }
         if ($validation->getOk() && $this->getPreu() <= 0) {
-            $validation->setMsg("No hi han productes");
+            $validation->setMsg("No hi han productes a l'albarà.");
             $validation->setOK(false);
         }
 

@@ -47,14 +47,18 @@ if (isset($_REQUEST['submit'])) {
         $permis->updatePermis();
     }
 
+    // reposat en sessio els permisos
+    unset($_SESSION['permisos']);
+    $_SESSION['permisos'] = $empresa->searchPermissos($id);
+
     $missatge = "S'ha modificar correctament el permisos.";
     $redireccio = "?ctl=empleat&act=llista";
     require_once 'view/confirmacio.php';
     require_once 'view/footer.php';
 
 } else {
-    if($_REQUEST['id']){
-        $id = $_REQUEST['id'];
+    if($_REQUEST['id_usuari']){
+        $id = $_REQUEST['id_usuari'];
         $llistatPermissos = $empresa->searchPermissos($id);
     }
     require_once 'view/header.php';
