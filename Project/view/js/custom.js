@@ -91,12 +91,11 @@ $(document).ready(function (){
         $("#fitxarOn").hide();
     }
 
-
     $("#fitxarOn").click(function(){
-        $.ajax({ url: 'http://localhost/wa4/Project/index.php?ctl=empleat&act=fitxar',
+        $.ajax({ url: './controller/fitxarEmpleat_ctl.php',
             data: {action: 'fitxarOn'},
             type: 'post',
-            success: function(output) {
+            success: function() {
                 $.notify({
                     icon: "pe-7s-smile",
                     message: "Has fitxat correctament."
@@ -108,10 +107,10 @@ $(document).ready(function (){
     });
 
     $("#fitxarOff").click(function(){
-        $.ajax({ url: 'http://localhost/wa4/Project/index.php?ctl=empleat&act=fitxar',
+        $.ajax({ url: './controller/fitxarEmpleat_ctl.php',
             data: {action: 'fitxarOff'},
             type: 'post',
-            success: function(output) {
+            success: function() {
                 $.notify({
                     icon: "pe-7s-smile",
                     message: "Ja no estás fitxat."

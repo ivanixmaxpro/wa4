@@ -2,8 +2,8 @@
 
 $clientDAO = new ClientDAO;
 $id = $_REQUEST['id'];
-$title = "detall client, id = ".$id;
 $client = $clientDAO->searchById($id);
+$title = "Client, " . $client->getNom();
 
 
 require_once 'view/header.php';

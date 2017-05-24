@@ -28,54 +28,55 @@ function loadUbicacio() {
 
 function emmagatzemarProducte() {
     var producte = $("#campProductes").val();
+    var posSelected = document.getElementById("campProductes").selectedIndex;
 
-    var producteJSON = JSON.parse(producte);
-
-    var idPro = producteJSON.id_producte;
-    var preuBase = parseFloat(producteJSON.preuBase);
-    var quantProducte = parseInt($("#campQuantitatDeProductes").val());
-    var preuTotal = preuBase * quantProducte;
-    var nomProducte = producteJSON.nom;
-
-
-    //Calcul de quantitats restants al stock
-    var quantProducteCalc = parseInt(quantProducte);
-    var quantitatTenda = parseInt($("#quantitatTenda").val());
-    var quantitatStock = parseInt($("#quantitatStock").val());
-    var idUbicacio = $("#idUbicacio").val();
-
-    if (quantProducte <= quantitatTenda) {
-        quantitatTenda = quantitatTenda - quantProducte;
+    if (posSelected == null || posSelected == 0) {
+        $.alert({
+            title: 'Selecció errònia de producte!',
+            content: 'Cal seleccionar un producte vàlid per afegir-lo.',
+        });
     } else {
-        quantProducteCalc = quantProducteCalc - quantitatTenda;
-        quantitatTenda = 0;
-        quantitatStock = quantitatStock - quantProducteCalc;
-    }
+        var producteJSON = JSON.parse(producte);
 
-    var arrPro = [idPro, preuTotal, quantProducte, nomProducte, quantitatTenda, quantitatStock, idUbicacio];
-    var repetit = false;
+        var idPro = producteJSON.id_producte;
+        var preuBase = parseFloat(producteJSON.preuBase);
+        var quantProducte = parseInt($("#campQuantitatDeProductes").val());
+        var preuTotal = preuBase * quantProducte;
+        var nomProducte = producteJSON.nom;
 
-    for (var prod in arrProTotal) {
-        if (arrProTotal[prod][0] == idPro) {
-            repetit = true;
+
+        //Calcul de quantitats restants al stock
+        var quantitatTenda = parseInt($("#quantitatTenda").val());
+        var quantitatStock = parseInt($("#quantitatStock").val());
+        var idUbicacio = $("#idUbicacio").val();
+
+        var arrPro = [idPro, preuTotal, quantProducte, nomProducte, quantitatTenda, quantitatStock, idUbicacio];
+        var repetit = false;
+
+        for (var prod in arrProTotal) {
+            if (arrProTotal[prod][0] == idPro) {
+                repetit = true;
+            }
         }
+
+        //Check que el valro que vols treure no superi el maxim
+        var checkquant = parseInt($("#campQuantitatDeProductes").attr("max"));
+
+
+        if (quantProducte != 0 && repetit == false && checkquant >= quantProducte) {
+
+            arrProTotal.push(arrPro);
+
+            generarTaula();
+        } else {
+            $.alert({
+                title: 'Error en inserir el producte!',
+                content: 'Revisa la quantitat del producte.',
+            });
+        }
+
+        $("#campQuantitatDeProductes").val(0);
     }
-
-    //Check que el valro que vols treure no superi el maxim
-    var checkquant = parseInt($("#campQuantitatDeProductes").attr("max"));
-
-
-    if (quantProducte != 0 && repetit == false && checkquant >= quantProducte) {
-
-        arrProTotal.push(arrPro);
-
-        generarTaula();
-    } else {
-        alert("Error al introduir producte");
-    }
-
-    $("#campQuantitatDeProductes").val(0);
-
 
 }
 
@@ -102,7 +103,7 @@ function generarTaula() {
 
     for (var prod in arrProTotal) {
         aux = str + count;
-        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'></button>";
+        var myButton = "<button type='button' id='" + aux + "' class='btn btn-danger' value='Eliminar' onClick='eliminarProducte(" + prod + ")'>Eliminar</button>";
 
         $("#taulaProductes").find('tbody')
                 .append($('<tr>')
@@ -115,7 +116,7 @@ function generarTaula() {
 
                                 )
                         .append($('<td>')
-                                .text(arrProTotal[prod][1])
+                                .text(arrProTotal[prod][1].toFixed(2))
 
                                 )
                         .append($('<td>')
@@ -162,5 +163,5 @@ function canviarPreu() {
         preuTotal += arrProTotal[prod][1];
     }
 
-    $("#campPreu").val(preuTotal);
+    $("#campPreu").val(preuTotal.toFixed(2));
 }

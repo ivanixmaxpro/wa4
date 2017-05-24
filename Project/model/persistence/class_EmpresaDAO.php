@@ -199,6 +199,80 @@ class EmpresaDAO {
         return $empleat;
     }
 
+    public function searchEmpleatByNSS($nss) {
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE nss = :nss;");
+        $query->bindValue(":nss", $nss);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
+    public function searchUsuariByNom($usuari) {
+
+        $con = new db();
+        $usri = null;
+        $query = $con->prepare("SELECT * FROM usuari WHERE usuari = :usuari;");
+        $query->bindValue(":usuari", $usuari);
+        $result = $con->consultar($query);
+
+
+        foreach ($result as $row) {
+            $id_usuari = $row["id_usuari"];
+            $id_empleat = $row["id_empleat"];
+            $nomusuari = $row["usuari"];
+            $contrasenya = $row["contrasenya"];
+
+            $usri = new Usuari($id_usuari, $id_empleat, $nomusuari, $contrasenya);
+        }
+        $con = null;
+        return $usri;
+    }
+
+    public function searchEmpleatByDNI($dni) {
+
+
+        $con = new db();
+        $empleat = null;
+        $query = $con->prepare("SELECT * FROM empleat WHERE dni = :dni;");
+        $query->bindValue(":dni", $dni);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_empleat = $row["id_empleat"];
+            $id_empresa = $row["id_empresa"];
+            $nom = $row["nom"];
+            $cognom = $row["cognom"];
+            $dni = $row["dni"];
+            $localitat = $row["localitat"];
+            $nomina = $row["nomina"];
+            $nss = $row["nss"];
+            $imatge = $row["imatge"];
+            $descripcio = $row["descripcio"];
+            $empleat = new Empleat($id_empresa, $nom, $cognom, $dni, $localitat, $nomina, $nss, $imatge, $descripcio);
+            $empleat->setId_empleat($id_empleat);
+        }
+        $con = null;
+        return $empleat;
+    }
+
     public function searchAlbaraVenta($id_albaraVenta) {
         $con = new db();
         $albaraTrobatIGuardat = false;
@@ -351,7 +425,7 @@ class EmpresaDAO {
         return $fitxesArray;
     }
 
-    function filterProducte($conservarenfred, $quantitat, $tipus) {
+    function filterProducte($nom = null, $conservarenfred, $quantitat, $tipus) {
         $productesArray = array();
         $con = new db();
         $consulta = "SELECT * FROM";
@@ -367,7 +441,6 @@ class EmpresaDAO {
                 break;
         }
 
-
         switch ($conservarenfred) {
             case "tots":
                 $consulta .= "";
@@ -378,17 +451,20 @@ class EmpresaDAO {
                 $consulta .= " WHERE producte.conservarFred=" . $conservarenfred;
                 break;
         }
+        if($nom != "" && $nom != null && $conservarenfred == 'tots'){
+            $consulta .= " WHERE nom LIKE '%". $nom ."%'";
+        }
         switch ($quantitat) {
             case "tots":
-                $consulta .= "";
+                $consulta .= ";";
 
                 break;
 
             default:
-                $consulta .= " LIMIT " . $quantitat + ";";
+                $consulta .= " LIMIT " . $quantitat . ";";
                 break;
         }
-        $consulta .= ";";
+
         $query = $con->prepare($consulta);
         $result = $con->consultar($query);
 
@@ -840,7 +916,7 @@ class EmpresaDAO {
             $nom = $row['nom'];
 
             $permis = new Permis($id_permis, $id_usuari, $id_funcionalitat, $visualitzar, $crear, $editar, $eliminar, $nom);
-            array_push($permisos, $permis);
+            $permisos[$row['nom']] = $permis;
         }
         $con = null;
         return $permisos;
@@ -922,6 +998,80 @@ class EmpresaDAO {
         }
         $con = null;
         return $funcionalitats;
+    }
+
+    public function filtrarClients($nom) {
+        $clients = array();
+        $con = new db();
+        if($nom != null){
+            $consulta = "SELECT * FROM client WHERE nom LIKE '%" . $nom . "%';";
+        }else{
+            $consulta = "SELECT * FROM client;";
+        }
+        $query = $con->prepare($consulta);
+        $query->bindValue(":nom", $nom);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_client"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $informacio = $row["informacio"];
+
+            $client = new Client($id_client, $nom, $codi, $informacio);
+            array_push($clients, $client);
+        }
+        $con = null;
+        return $clients;
+    }
+
+    public function filtrarMissatges($titol) {
+        $missatges = array();
+        $con = new db();
+        if($titol != null){
+            $consulta = "SELECT ms.*, u.usuari FROM missatge as ms INNER JOIN usuari as u ON ms.id_usuari = u.id_usuari WHERE titol LIKE '%" . $titol . "%';";
+        }else{
+            $consulta = "SELECT ms.*, u.usuari FROM missatge as ms INNER JOIN usuari as u ON ms.id_usuari = u.id_usuari";
+        }
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_missatge = null;
+            $id_usuari = $row["usuari"];
+            $llegit = $row["llegit"];
+            $titol = $row["titol"];
+            $data = $row["data"];
+            $missatge = $row["missatge"];
+
+            $missatge = new Missatge($id_usuari, $llegit, $titol, $data, $missatge);
+            array_push($missatges, $missatge);
+        }
+        $con = null;
+        return $missatges;
+    }
+
+    public function filtrarProveidors($nom = null) {
+        var_dump($nom);
+        $proveidors = array();
+        $con = new db();
+        if($nom != null){
+            $consulta = "SELECT * FROM proveidor WHERE nom LIKE '%" . $nom . "%';";
+        }else{
+            $consulta = "SELECT * FROM proveidor;";
+        }
+        $query = $con->prepare($consulta);
+        $result = $con->consultar($query);
+
+        foreach ($result as $row) {
+            $id_client = $row["id_proveidor"];
+            $nom = $row["nom"];
+            $codi = $row["codi"];
+            $proveidor = new Proveidor($id_client, $nom, $codi);
+            array_push($proveidors, $proveidor);
+        }
+        $con = null;
+        return $proveidors;
     }
 
 }

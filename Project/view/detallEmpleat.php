@@ -2,19 +2,14 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="header">
-                <div class="card card-user author">
-                    <div class="image">
-                        <img src="view/images/sidebar-6.jpg" alt="banner">
-                    </div>
-                    <a href="#">
-                        <img class="avatar border-gray" src="<?php echo $empleat->getImatge()?>" alt="...">
-                    </a>
-                </div>
-                <h4 class="title">Dades</h4>
-            </div>
             <div class="content">
                 <form>
+                    <h4 class="">Dades</h4>
+           <div class="row ">
+               <div class="col-md-11">
+                <img class="pull-right" width="150" height="150" src="<?php echo $empleat->getImatge()?>" alt="...">
+               </div>
+            </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -44,7 +39,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address</label>
+                                <label>Localitat</label>
                                 <?php
                                 echo '<input type="text" class="form-control" placeholder="DNI" value="' . $empleat->getLocalitat() . '" disabled>';
                                 ?>
@@ -63,7 +58,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nomina</label>
+                                <label>Nòmina</label>
                                 <?php
                                 echo '<input type="text" class="form-control" placeholder="DNI" value="' . $empleat->getNomina() . '€/mes" disabled>';
                                 ?>

@@ -19,7 +19,6 @@ class PermisDAO {
     }
 
     public function insertPermis($permis) {
-        var_dump($permis);
         try {
             $con = new db();
             $query = $con->prepare("INSERT INTO permis (id_usuari,id_funcionalitat,visualitzar,crear,editar,eliminar) 

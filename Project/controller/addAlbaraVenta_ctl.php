@@ -1,7 +1,7 @@
 <?php
 
 include 'view/mostrarSelects.php';
-$title = "Creacio d'un Albar de venta";
+$title = "Albarà de venta";
 require_once 'view/header.php';
 require_once 'view/sidebar.php';
 require_once 'view/mainNav.php';
@@ -29,31 +29,61 @@ if (isset($_REQUEST["submit"])) {
     $campData = $data;
     $campLocalitat = $_POST['campLocalitat'];
     $arrDePosProductes = explode(',', $ss);
-
+    $errorQuant = false;
     foreach ($arrDePosProductes as $prod) {
         array_push($arrProductesDelAlbara, explode('-', $prod));
     }
+    $i = 0;
+    foreach ($arrProductesDelAlbara as $producte) {
+        $quantProducte = 0;
+        $quantitatTenda = 0;
+        $quantProducte = 0;
+        $total = 0;
+        $ubicacio = $empresa->searchUbicacio($producte[5]);
+        $total = $ubicacio->getQuantitatStock() + $ubicacio->getQuantitatTenda();
+        $quantProducte = $producte[2];
+        $quantitatTenda = $producte[3];
+        $quantitatStock = $producte[4];
+        $quantProducteCalc = $quantProducte;
 
- //   $albara = new AlbaraVenta();
+        if ($quantProducte <= $total) {
 
-//    $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+            if ($quantProducte <= $quantitatTenda) {
+                $quantitatTenda = $quantitatTenda - $quantProducte;
+            } else {
+                $quantProducteCalc = $quantProducteCalc - $quantitatTenda;
+                $quantitatTenda = 0;
+                $quantitatStock = $quantitatStock - $quantProducteCalc;
+            }
+            $arrProductesDelAlbara[$i][3] = $quantitatTenda;
+            $arrProductesDelAlbara[$i][4] = $quantitatStock;
+        } else {
+            $errorQuant = true;
+        }
+        $i++;
+    }
 
-    $albara = new AlbaraVenta(null, $campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat);
-    $redireccio = 'index.php?ctl=albara&act=llista';
-    if ($albara->validateAlbara()->getOk()) {
-        try {
-            $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+    if ($errorQuant == false) {
+        $albara = new AlbaraVenta(null, $campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat);
+        $redireccio = 'index.php?ctl=albara&act=llista';
+        if ($albara->validateAlbara()->getOk()) {
+            try {
+                $albara->insertAlbara($campClient, $campEmpresa, $campCodi, $campObservacions, $campPreu, $campData, $campLocalitat, $arrProductesDelAlbara);
+                $missatge = $albara->validateAlbara()->getMsg();
+
+                require_once 'view/confirmacio.php';
+            } catch (Exception $e) {
+
+                $missatge = $e->getMessage();
+                require_once 'view/error.php';
+            }
+        } else {
+            //missatege de la clase validar
+
             $missatge = $albara->validateAlbara()->getMsg();
-
-            require_once 'view/confirmacio.php';
-        } catch (Exception $e) {
-
-            $missatge = $e->getMessage();
             require_once 'view/error.php';
         }
     } else {
-        //missatege de la clase validar
-
         $missatge = $albara->validateAlbara()->getMsg();
         require_once 'view/error.php';
     }

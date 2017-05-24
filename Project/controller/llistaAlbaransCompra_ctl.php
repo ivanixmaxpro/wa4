@@ -10,12 +10,6 @@ if (isset($_SESSION['empresa'])) {
 }
 
 if (isset($_REQUEST["Submit"])) {
-
-//    $conservarFred = $_REQUEST['conservarFred'];
-//    $limitRegistres = $_REQUEST['qqa'];
-//    $tipusProducte = $_REQUEST['tipus'];
-//
-//    $productes = $empresa->filtrarProductes($conservarFred, $limitRegistres, $tipusProducte);
 } else {
     $albaransCompra = $empresa->populateAlbaransCompra();
 }

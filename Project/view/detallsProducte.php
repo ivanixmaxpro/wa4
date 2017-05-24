@@ -114,12 +114,11 @@
                 ?>>No<br>
             </div>
             <div class="form-group">
-                <label>Imatge</label>
                 <img src="<?php
                 if (isset($producte)) {
                     echo $producte->getImatge();
                 }
-                ?>" alt="Imatge Producte">
+                ?>" class="img-rounded" width="300" height="250" alt="Imatge Producte">
             </div>
             <div class="form-group" id="capacitatMl" hidden>
                 <label>Capacitat Ml</label>
