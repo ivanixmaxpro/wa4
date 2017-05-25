@@ -453,8 +453,6 @@ class EmpresaDAO {
         }
         if($nom != "" && $nom != null && $conservarenfred == 'tots'){
             $consulta .= " WHERE nom LIKE '%". $nom ."%'";
-        }else if($nom != "" && $nom != null && $conservarenfred != 'tots'){
-            $consulta .= " AND nom LIKE '%". $nom ."%'";
         }
         switch ($quantitat) {
             case "tots":

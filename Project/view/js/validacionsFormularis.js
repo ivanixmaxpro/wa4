@@ -57,6 +57,59 @@ $(document).ready(function () {
     $("#botoGuardarProducte").click(validarFormulariAmbImatgeProducte);
     $("#botoGuardarEmpleat").click(validarFormulariAmbImatgeEmpleat);
 
+
+    /* PAGINACIÓ TAULES */
+    $('#taulaPaginacio').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": false,
+        "bLengthChange": false,
+        "iDisplayLength": 5,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Següent",
+                "sPrevious": "Anterior"
+            },
+            "sInfo": "Total d'entrades: _TOTAL_",
+            "sZeroRecords": "No hi han entrades per mostrar.",
+            "sInfoEmpty": ""
+        }
+    });
+    
+    $('#taulaPaginacio2').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": false,
+        "bLengthChange": false,
+        "iDisplayLength": 5,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Següent",
+                "sPrevious": "Anterior"
+            },
+            "sInfo": "Total d'entrades: _TOTAL_",
+            "sZeroRecords": "No hi han entrades per mostrar.",
+            "sInfoEmpty": ""
+        }
+    });
+    
+    $('#taulaPaginacioRegistres').DataTable({
+        "paging": true,
+        "searching": false,
+        "ordering": false,
+        "bLengthChange": false,
+        "iDisplayLength": 15,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Següent",
+                "sPrevious": "Anterior"
+            },
+            "sInfo": "Total d'entrades: _TOTAL_",
+            "sZeroRecords": "No hi han entrades per mostrar.",
+            "sInfoEmpty": ""
+        }
+    });
+
 });
 var totOkFormulari = true;
 
